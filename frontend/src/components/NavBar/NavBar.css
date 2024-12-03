@@ -1,0 +1,39 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  margin-top: 1.75vh;
+  font-weight: 500;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: min(150px, 25vw);
+  height: min(20vh, 60px);
+  margin-left: 10vw;
+}
+
+.navbar-links {
+  display: flex;
+  margin-right: 5vw;
+  gap: 20px;
+  font-weight: 800;
+
+}
+
+.navbar-links div {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.navbar-links div:hover {
+  text-decoration: underline;
+}
