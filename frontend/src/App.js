@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from './components/NavBar/NavBar';
 import HoverNavItems from './components/HoverBar/HoverBar';
+import Heading from './components/Heading/Heading';
+import Gallery from './components/Gallery/Gallery';
 
 function App() {
   const [backendStatus, setBackendStatus] = useState('Checking...');
@@ -35,7 +37,8 @@ function App() {
     <div className="App">
       <NavBar />
       <HoverNavItems/>
-      <h1>Laparoscopic Surgeon WebApp</h1>
+      <Heading/>
+      <Gallery/>
       <p>Backend Health Status: {backendStatus}</p>
       {error && <p style={{ color: 'red' }}>Error: {error}</p>}
     </div>

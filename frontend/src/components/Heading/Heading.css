@@ -1,0 +1,11 @@
+.heading {
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    height: 5vh;            /* Full viewport height */
+  }
+  
+  h1 {
+    text-align: center;       /* Center the text inside the heading */
+  }
+  
