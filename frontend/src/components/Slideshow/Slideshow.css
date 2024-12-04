@@ -1,0 +1,36 @@
+.container {
+    width: 90vw; /* Container takes 90% of the viewport width */
+    margin: 0 auto; /* Centers the container horizontally */
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  swiper-container {
+    width: 100%; /* Makes the Swiper container span the full width of its parent */
+    display: block; /* Ensures the container is treated as a block element */
+  }
+  
+  swiper-slide {
+    width: 100%; /* Each slide fills the Swiper container */
+  }
+  
+  .main-image {
+    width: 100%; /* Image spans the full width of its parent container */
+    height: 700px; /* Fixed height for the slideshow */
+    background-size: cover; /* Ensures the image covers the div */
+    background-position: center; /* Centers the image within the div */
+    background-repeat: no-repeat; /* Avoids repetition of the image */
+  }
+  
+  .swiper-pagination {
+    bottom: 20px !important; /* Positions pagination closer to the bottom */
+  }
+  
+  .swiper-pagination-bullet-active {
+    background-color: #007bff !important; /* Active bullet color */
+  }
+  
+  .swiper-pagination-bullet {
+    background-color: #999 !important; /* Default bullet color */
+  }
+  

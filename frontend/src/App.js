@@ -3,6 +3,7 @@ import NavBar from './components/NavBar/NavBar';
 import HoverNavItems from './components/HoverBar/HoverBar';
 import Heading from './components/Heading/Heading';
 import Gallery from './components/Gallery/Gallery';
+import SlideShow from './components/Slideshow/Slideshow';
 
 function App() {
   const [backendStatus, setBackendStatus] = useState('Checking...');
@@ -38,6 +39,7 @@ function App() {
       <NavBar />
       <HoverNavItems/>
       <Heading/>
+      <SlideShow/>
       <Gallery/>
       <p>Backend Health Status: {backendStatus}</p>
       {error && <p style={{ color: 'red' }}>Error: {error}</p>}
