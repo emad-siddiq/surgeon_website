@@ -4,6 +4,11 @@ import HoverNavItems from './components/HoverBar/HoverBar';
 import Heading from './components/Heading/Heading';
 import Gallery from './components/Gallery/Gallery';
 import SlideShow from './components/Slideshow/Slideshow';
+import Consultation from './components/Consultation/Consultation';
+import Distinctions from './components/Distinctions/Distinctions';
+import ServiceOfferings from './components/ServiceOfferings/ServiceOfferings';
+import Robotic from './components/Robotic/Robotic';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [backendStatus, setBackendStatus] = useState('Checking...');
@@ -40,9 +45,16 @@ function App() {
       <HoverNavItems/>
       <Heading/>
       <SlideShow/>
+      <Consultation/>
+
+      <ServiceOfferings/>
+      <Robotic/>
+
+      <Distinctions/>
       <Gallery/>
-      <p>Backend Health Status: {backendStatus}</p>
-      {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+      <Footer/>
+      {/* <p>Backend Health Status: {backendStatus}</p>
+      {error && <p style={{ color: 'red' }}>Error: {error}</p>} */}
     </div>
   );
 }

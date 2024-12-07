@@ -21,19 +21,23 @@
 
 .navbar-links {
   display: flex;
-  margin-right: 5vw;
+  margin-right: 4vw;
   gap: 20px;
-  font-weight: 800;
-
+  font-weight: 400;
+  text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05), /* Key shadow */
+               0px 2px 4px rgba(0, 0, 0, 0.025); /* Ambient shadow */
 }
 
 .navbar-links div {
   cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 2vh;
+
   color: #333;
 }
 
 .navbar-links div:hover {
   text-decoration: underline;
+  text-decoration-color: blue; /* Ensures underline is blue */
+  color: rgb(0,0,0, 0.23); /* Blue color with 80% transparency */
 }
+

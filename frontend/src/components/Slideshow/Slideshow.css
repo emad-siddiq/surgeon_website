@@ -1,36 +1,49 @@
 .container {
-    width: 90vw; /* Container takes 90% of the viewport width */
-    margin: 0 auto; /* Centers the container horizontally */
-    padding: 0;
-    overflow: hidden;
-  }
-  
-  swiper-container {
-    width: 100%; /* Makes the Swiper container span the full width of its parent */
-    display: block; /* Ensures the container is treated as a block element */
-  }
-  
-  swiper-slide {
-    width: 100%; /* Each slide fills the Swiper container */
-  }
-  
-  .main-image {
-    width: 100%; /* Image spans the full width of its parent container */
-    height: 700px; /* Fixed height for the slideshow */
-    background-size: cover; /* Ensures the image covers the div */
-    background-position: center; /* Centers the image within the div */
-    background-repeat: no-repeat; /* Avoids repetition of the image */
-  }
-  
-  .swiper-pagination {
-    bottom: 20px !important; /* Positions pagination closer to the bottom */
-  }
-  
-  .swiper-pagination-bullet-active {
-    background-color: #007bff !important; /* Active bullet color */
-  }
-  
-  .swiper-pagination-bullet {
-    background-color: #999 !important; /* Default bullet color */
-  }
-  
+  width: 72vw; /* Container takes 90% of the viewport width */
+  margin: 0 auto; /* Centers the container horizontally */
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), /* Key shadow */
+              0px 1px 3px rgba(0, 0, 0, 0.08); /* Ambient shadow */
+  border-radius: 12px; /* Optional: Adds rounded corners */
+  background-color: #fff; /* Ensures shadows are visible on light surfaces */
+}
+
+swiper-container {
+  width: 100%; /* Makes the Swiper container span the full width of its parent */
+  display: block; /* Ensures the container is treated as a block element */
+}
+
+swiper-slide {
+  width: 100%; /* Each slide fills the Swiper container */
+}
+
+.main-image {
+  width: 100%; /* Image spans the full width of its parent container */
+  height: 650px; /* Fixed height for the slideshow */
+  background-size: cover; /* Ensures the image covers the div */
+  background-position: center; /* Centers the image within the div */
+  background-repeat: no-repeat; /* Avoids repetition of the image */
+  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.14), /* Key shadow */
+              0px 4px 5px rgba(0, 0, 0, 0.12), /* Ambient shadow */
+              0px 2px 4px rgba(0, 0, 0, 0.2); /* Elevation shadow */
+  border-radius: 12px; /* Adds rounded corners */
+  transition: box-shadow 0.3s ease; /* Smooth shadow transition */
+}
+
+.main-image:hover {
+  box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.2), /* Hover shadow for added depth */
+              0px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.swiper-pagination {
+  bottom: 20px !important; /* Positions pagination closer to the bottom */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #007bff !important; /* Active bullet color */
+}
+
+.swiper-pagination-bullet {
+  background-color: #999 !important; /* Default bullet color */
+}

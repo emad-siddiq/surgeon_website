@@ -3,7 +3,8 @@
     justify-content: flex-start;
     padding: 15px;
     background-color: #ffffff;
-    font-weight: 500;
+    font-weight: 400;
+    font-size: 2vh;
     margin-left: 10vw;
   }
   
@@ -12,14 +13,19 @@
     cursor: pointer;
     padding: 10px 20px;
     transition: color 0.3s ease;
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), /* Key shadow */
+                 0px 2px 4px rgba(0, 0, 0, 0.05); /* Ambient shadow */
   }
   
   .menu-item:hover {
     
     text-decoration: underline blue;
+    color: rgb(0,0,0, 0.2); /* Blue color with 80% transparency */
   }
   
   .dropdown-menu {
+    color: rgb(0, 0, 0);
+    font-size: 1.75vh;
     position: absolute;
     top: 100%;
     left: 0;

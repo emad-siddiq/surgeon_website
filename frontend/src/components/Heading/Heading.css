@@ -1,11 +1,18 @@
 .heading {
-    display: flex;
-    justify-content: center;  /* Center horizontally */
-    align-items: center;      /* Center vertically */
-    height: 5vh;            /* Full viewport height */
-  }
-  
-  h1 {
-    text-align: center;       /* Center the text inside the heading */
-  }
-  
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 7vh; /* Adjusted height for better alignment */
+  padding-top: 0.5vh;
+  padding-bottom: 3vh;
+}
+
+h1 {
+  text-align: center; /* Center the text inside the heading */
+  font-weight: 400; /* Slightly bolder for better readability */
+  font-size: 4vh; /* Dynamic size for responsiveness */
+  color: #333; /* Neutral dark color for high contrast */
+  text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), /* Key shadow */
+               0px 2px 4px rgba(0, 0, 0, 0.05); /* Ambient shadow */
+  margin: 0; /* Remove default margin for precise alignment */
+}

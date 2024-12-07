@@ -1,0 +1,90 @@
+.consultation-container {
+  width: 75vw;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  margin-top: 2.5rem;
+  border-radius: 1rem; /* Rounded corners */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), /* Key shadow */
+              0px 2px 4px rgba(0, 0, 0, 0.06); /* Ambient shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.consultation-container:hover {
+  transform: translateY(-5px); /* Subtle lift on hover */
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.15), 
+              0px 4px 8px rgba(0, 0, 0, 0.08); /* Enhanced shadow on hover */
+}
+
+.consultation-title {
+  margin: 0;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #1f2937; /* Darker text for contrast */
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.book-appointment-btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  color: white;
+  text-decoration: none;
+  background: rgb(26,157,228);
+  background: linear-gradient(90deg, rgba(26,157,228,1) 8%, rgba(26,157,228,1) 17%, rgba(26,157,228,1) 80%, rgba(26,157,228,1) 92%);
+  font-size: 1.125rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.book-appointment-btn:hover {
+  filter: brightness(1.1); /* Lighter alternative to color change */
+  transform: translateY(-3px); /* Subtle vertical lift */
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.12),
+              0px 3px 5px rgba(0, 0, 0, 0.08);
+}
+
+.book-appointment-btn:active {
+  transform: translateY(1px);
+  filter: brightness(0.95);
+}
+
+.book-appointment-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.book-appointment-btn:hover::before {
+  left: 100%;
+}
+
+.video-container {
+  margin-top: 3.5rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .video-container {
+      padding: 0 2.5rem;
+  }
+}
+
+.youtube-video {
+  width: 100%;
+  border-radius: 0.5rem; /* Rounded corners for the video */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), /* Add shadow to the video */
+              0px 2px 4px rgba(0, 0, 0, 0.06);
+}
