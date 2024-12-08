@@ -1,5 +1,5 @@
 .container {
-  width: 72vw; /* Container takes 90% of the viewport width */
+  width: 68vw; /* Container takes 90% of the viewport width */
   margin: 0 auto; /* Centers the container horizontally */
   padding: 0;
   overflow: hidden;

@@ -45,10 +45,11 @@ function App() {
       <HoverNavItems/>
       <Heading/>
       <SlideShow/>
+      <Robotic/>
+
       <Consultation/>
 
       <ServiceOfferings/>
-      <Robotic/>
 
       <Distinctions/>
       <Gallery/>

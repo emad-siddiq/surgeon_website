@@ -4,25 +4,26 @@ import award from "../../assets/images/distinctions/1.jpeg";
 import surgery from "../../assets/images/distinctions/surgeries.jpg";
 
 // Card Component
-const Card = ({ title, description, image }) => {
+const Card = ({ title, description, image, link }) => {
   return (
-    <div className="card">
-      <div className="image-container">
+    <div className="distinctions-card">
+      <div className="distinctions-image-container">
         <img
           src={image}
           alt={title}
-          className="card-image"
+          className="distinctions-card-image"
         />
       </div>
-      <div className="card-content">
-        <div className="card-header">
-          <h5>
-            <a href="#" className="card-title">{title}</a>
-          </h5>
-        </div>
-        <p className="card-description">
+      <div className="distinctions-card-content">
+        <h3 className="distinctions-card-title">{title}</h3>
+        <p className="distinctions-card-description">
           {description}
         </p>
+        {link && (
+          <a href={link} className="distinctions-learn-more">
+            Learn More
+          </a>
+        )}
       </div>
     </div>
   );
@@ -31,21 +32,25 @@ const Card = ({ title, description, image }) => {
 // Distinctions Component
 const Distinctions = () => {
   return (
-    <div className="distinctions-container">
-      <div className="distinctions-header">
-        <p className="distinctions-title">Various Distinctions</p>
-      </div>
-      <div className="distinctions-grid">
-        <Card
-          title="Dr. Ghulam Siddiq has received Presidential Award on his skills."
-          description="Medical procedures are a very sensitive topic which require great skills to perform surgeries. Dr. Ghulam Siddiq has earned the trust of many with his attention to detail and steady hand procedures. In this view he has received award from President."
-          image={award}
-        />
-        <Card
-          title="970 Bariatic Surgery Procedures"
-          description="This number of Bariatic surgeries is simply a representation of the experience of Dr. Ghulam Siddiq. With this many procedures done it can be said that Dr. Ghulam Siddiq must be the number one priority for procedures and consultation."
-          image={surgery}
-        />
+    <div className="distinctions-background">
+      <div className="distinctions-container">
+        <div className="distinctions-header">
+          <h2 className="distinctions-title">Professional Distinctions</h2>
+        </div>
+        <div className="distinctions-grid">
+          <Card
+            title="Presidential Award for Surgical Excellence"
+            description="Dr. Ghulam Siddiq has been honored with a Presidential Award, recognizing his exceptional skills and significant contributions to medical science. This prestigious acknowledgment reflects his unparalleled expertise, precision, and dedication to advancing surgical techniques in Pakistan."
+            image={award}
+            link="#"
+          />
+          <Card
+            title="Extensive Bariatric Surgery Expertise"
+            description="With an impressive record of 970 Bariatric surgery procedures, Dr. Siddiq stands as a pioneering figure in metabolic and weight-loss surgical interventions. His extensive experience demonstrates not just technical proficiency, but a commitment to transforming patient lives through advanced surgical solutions."
+            image={surgery}
+            link="#"
+          />
+        </div>
       </div>
     </div>
   );
