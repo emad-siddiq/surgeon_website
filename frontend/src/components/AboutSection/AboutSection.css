@@ -1,8 +1,16 @@
 .experience-container {
-  max-width: 65vw;
+  max-width: 70vw;
   margin: 0 auto;
   padding: 20px;
   margin-top: 3vh;
+}
+
+.card-credentials {
+  font-size: 0.6em;
+  color: #6b7280;
+  font-weight: normal;
+  margin-top: 5px;
+  line-height: 1.4;
 }
 
 .experience-card {
@@ -34,8 +42,15 @@
 .experience-card-image {
   flex: 1;
   min-width: 50%;
-  padding: 1rem;
+  padding: 2rem 1rem 2rem 2rem;
 }
+
+.experience-card-image-2 {
+  flex: 1;
+  min-width: 50%;
+  padding: 2rem 2rem 2rem 0rem;
+}
+
 
 .experience-card-image img {
   width: 100%;
@@ -45,6 +60,16 @@
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 
               0px 2px 4px rgba(0, 0, 0, 0.06);
 }
+
+.experience-card-image-2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 
+              0px 2px 4px rgba(0, 0, 0, 0.06);
+}
+
 
 .experience-card-text {
   flex: 1;
@@ -80,8 +105,13 @@
   color: white;
   text-decoration: none;
   background: rgb(26,157,228);
-  background: linear-gradient(90deg, rgba(26,157,228,1) 8%, rgba(26,157,228,1) 17%, rgba(26,157,228,1) 80%, rgba(26,157,228,1) 92%);
-  font-size: 1.125rem;
+  background: linear-gradient(
+    90deg,
+    rgba(13, 110, 253, 1) 8%,
+    rgba(13, 110, 253, 1) 17%,
+    rgba(13, 110, 253, 1) 80%,
+    rgba(13, 110, 253, 1) 92%
+  );  font-size: 1.125rem;
   font-weight: 500;
   transition: all 0.3s ease;
   position: relative;

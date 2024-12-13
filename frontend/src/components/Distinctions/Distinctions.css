@@ -1,5 +1,8 @@
 .distinctions-background {
     background: rgb(255, 250, 248);
+    max-width: 65vw;
+    margin: 0 auto;
+    margin-top: 3vh;
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -97,8 +100,13 @@
     color: white;
     text-decoration: none;
     background: rgb(26,157,228);
-    background: linear-gradient(90deg, rgba(26,157,228,1) 8%, rgba(26,157,228,1) 17%, rgba(26,157,228,1) 80%, rgba(26,157,228,1) 92%);
-    border-radius: 0.5rem;
+    background: linear-gradient(
+        90deg,
+        rgba(13, 110, 253, 1) 8%,
+        rgba(13, 110, 253, 1) 17%,
+        rgba(13, 110, 253, 1) 80%,
+        rgba(13, 110, 253, 1) 92%
+      );    border-radius: 0.5rem;
     font-size: 1.125rem;
     font-weight: 500;
     transition: all 0.3s ease;

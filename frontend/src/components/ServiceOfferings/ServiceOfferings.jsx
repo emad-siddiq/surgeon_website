@@ -1,28 +1,120 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './ServiceOfferings.css';
 
+const AnimatedCounter = ({ initialCount, speed = 50 }) => {
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const counterRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (counterRef.current) {
+      observer.observe(counterRef.current);
+    }
+
+    return () => {
+      if (counterRef.current) {
+        observer.unobserve(counterRef.current);
+      }
+    };
+  }, [isVisible]);
+
+  useEffect(() => {
+    let interval;
+    if (isVisible) {
+      interval = setInterval(() => {
+        setCount(prevCount => {
+          // Increase the increment time by dividing the increment by the speed
+          const nextCount = prevCount + Math.ceil(initialCount / speed);
+          if (nextCount >= initialCount) {
+            clearInterval(interval);
+            return initialCount;
+          }
+          return nextCount;
+        });
+      }, 50); // Slightly increased interval time
+    }
+
+    return () => clearInterval(interval);
+  }, [isVisible, initialCount, speed]);
+
+  return (
+    <span 
+      ref={counterRef} 
+      className="animated-counter"
+    >
+      {count}+
+    </span>
+  );
+};
+
 const ServiceOfferings = () => {
+  // Predefined list of counts that can be easily modified
+  const serviceCounts = [
+    85, 92, 78, 65, 
+    88, 79, 63, 71, 
+    59, 82
+  ];
+
   return (
     <div className="services-container">
       <div className="services-card">
         <h2 className="services-title">
-          Comprehensive Surgical <br /> Service Offerings
+           Surgical Expertise
         </h2>
         <div className="services-description">
           <p>
-            Dr. Ghulam Siddiq brings decades of surgical expertise, offering a wide range of advanced medical services tailored to meet complex patient needs. His approach combines cutting-edge surgical techniques with compassionate patient care.
-          </p>
+            Dr. Ghulam Siddiq brings decades of surgical expertise, offering a wide range of advanced medical services: </p>
           <ul className="services-list">
-            <li>Colostomy Procedures</li>
-            <li>Laparoscopic Anti-Reflux Surgery For Heartburn</li>
-            <li>Advanced Laparoscopic Gastrointestinal Surgery</li>
-            <li>Complex Hernia Repairs</li>
-            <li>Precision Hemicolectomies</li>
-            <li>Low Anterior Resection</li>
-            <li>Abdominal Perineal Resection (APR)</li>
-            <li>Minimally Invasive Adrenalectomy</li>
+            <li>
+              Gall Bladder Surgery 
+              <AnimatedCounter initialCount={serviceCounts[0]} speed={100} />
+            </li>
+            <li>
+              Appendix Surgery 
+              <AnimatedCounter initialCount={serviceCounts[1]} speed={120} />
+            </li>
+            <li>
+              Laparoscopic Surgery 
+              <AnimatedCounter initialCount={serviceCounts[2]} speed={80} />
+            </li>
+            <li>
+              Colon Surgery 
+              <AnimatedCounter initialCount={serviceCounts[3]} speed={90} />
+            </li>
+            <li>
+              Anterior Resection 
+              <AnimatedCounter initialCount={serviceCounts[4]} speed={110} />
+            </li>
+            <li>
+              Low Anterior Resection 
+              <AnimatedCounter initialCount={serviceCounts[5]} speed={100} />
+            </li>
+            <li>
+              Right Hemicolectomy 
+              <AnimatedCounter initialCount={serviceCounts[6]} speed={70} />
+            </li>
+            <li>
+              Left Hemicolectomy 
+              <AnimatedCounter initialCount={serviceCounts[7]} speed={85} />
+            </li>
+            <li>
+              Partial Gastrectomy 
+              <AnimatedCounter initialCount={serviceCounts[8]} speed={95} />
+            </li>
+            <li>
+              Esophagectomy 
+              <AnimatedCounter initialCount={serviceCounts[9]} speed={105} />
+            </li>
           </ul>
-          
         </div>
         <a href="/services" className="services-learn-more">
           Explore Full Service Range

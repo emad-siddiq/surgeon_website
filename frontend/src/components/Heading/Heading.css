@@ -1,18 +1,31 @@
 .heading {
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  height: 7vh; /* Adjusted height for better alignment */
-  padding-top: 0.5vh;
-  padding-bottom: 3vh;
+  justify-content: center;
+  align-items: center;
+  height: 7vh;
+  padding-top: 2vh;
+  padding-bottom: 4vh;
+  
 }
 
 h1 {
-  text-align: center; /* Center the text inside the heading */
-  font-weight: 400; /* Slightly bolder for better readability */
-  font-size: 4vh; /* Dynamic size for responsiveness */
-  color: #333; /* Neutral dark color for high contrast */
-  text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), /* Key shadow */
-               0px 2px 4px rgba(0, 0, 0, 0.05); /* Ambient shadow */
-  margin: 0; /* Remove default margin for precise alignment */
+  text-align: center;
+  font-weight: 400;
+  font-size: 4vh;
+  color: #333;
+  text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1),
+               0px 2px 4px rgba(0, 0, 0, 0.05);
+  margin: 0; 
+  
+  /* Mobile-specific text adjustments */
+  @media screen and (max-width: 768px) {
+    font-size: 2.8vh; /* Smaller font size for mobile */
+    line-height: 1.2; /* Tighter line height */
+    padding: 0 10px; /* Add side padding to prevent text touching edges */
+  }
+
+  /* Extra small devices */
+  @media screen and (max-width: 480px) {
+    font-size: 2.5vh; /* Even smaller on very small screens */
+  }
 }

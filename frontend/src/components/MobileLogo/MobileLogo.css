@@ -1,0 +1,11 @@
+.logo-container {
+    position: relative;
+    top: 20px;
+    left: 20px;
+    margin-bottom: 20px; /* Adds space below the logo */
+}
+
+.logo-container > img {
+    width: 150px;
+    height: 60px;
+}

@@ -31,7 +31,6 @@ const SlideShow = () => {
         ref={swiperElRef}
         autoplay="true"
         loop="true"
-
       >
         <swiper-slide>
           <div 
