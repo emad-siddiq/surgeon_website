@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import NavBar from './components/NavBar/NavBar';
-import HoverNavItems from './components/HoverBar/HoverBar';
-import MobileSidebar from './components/MobileSidebar/MobileSidebar';
-import MobileLogo from './components/MobileLogo/MobileLogo'; // Import the new MobileLogo component
-import Heading from './components/Heading/Heading';
-import Gallery from './components/Gallery/Gallery';
-import SlideShow from './components/Slideshow/Slideshow';
-import Consultation from './components/Consultation/Consultation';
-import Distinctions from './components/Distinctions/Distinctions';
-import ServiceOfferings from './components/ServiceOfferings/ServiceOfferings';
-import AboutSection from './components/AboutSection/AboutSection';
-import Footer from './components/Footer/Footer';
-import Location from './components/Location/Location';
+import * as Web from "./components/web/Web";
+import * as Mobile from "./components/mobile/Mobile";
 
 function App() {
   const [backendStatus, setBackendStatus] = useState('Checking...');
@@ -61,33 +50,33 @@ function App() {
       {isMobile ? (
         // Mobile view
         <>
-          <MobileLogo />
-          <MobileSidebar />
-          <Heading />
-          <SlideShow />
-          <AboutSection />
-          <Consultation />
-          <ServiceOfferings />
-          <Distinctions />
-          <Location />
-          <Gallery />
-          <Footer />
+          <Mobile.MobileLogo />
+          <Mobile.MobileSidebar />
+          <Mobile.Heading />
+          <Mobile.SlideShow />
+          <Mobile.AboutSection />
+          <Mobile.Consultation />
+          <Mobile.ServiceOfferings />
+          <Mobile.Distinctions />
+          <Mobile.Location />
+          <Mobile.Gallery />
+          <Mobile.Footer />
     
         </>
       ) : (
         // Desktop view
         <>
-          <NavBar />
-          <HoverNavItems />
-          <Heading />
-          <SlideShow />
-          <AboutSection />
-          <Consultation />
-          <ServiceOfferings />
-          <Distinctions />
-          <Location />
-          <Gallery />
-          <Footer />
+          <Web.NavBar />
+          <Web.HoverBar />
+          <Web.Heading />
+          <Web.SlideShow />
+          <Web.AboutSection />
+          <Web.Consultation />
+          <Web.ServiceOfferings />
+          <Web.Distinctions />
+          <Web.Location />
+          <Web.Gallery />
+          <Web.Footer />
         </>
       )}
       

@@ -1,0 +1,211 @@
+.consultation-container {
+  width: 70vw;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  margin-top: 2.5rem;
+  border-radius: 1rem; /* Rounded corners */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), /* Key shadow */
+              0px 2px 4px rgba(0, 0, 0, 0.06); /* Ambient shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.consultation-container:hover {
+  transform: translateY(-5px); /* Subtle lift on hover */
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.15), 
+              0px 4px 8px rgba(0, 0, 0, 0.08); /* Enhanced shadow on hover */
+}
+
+.consultation-title {
+  margin: 0;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #1f2937; /* Darker text for contrast */
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.book-appointment-btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  color: white;
+  text-decoration: none;
+  background: rgb(26,157,228);
+  background: linear-gradient(
+    90deg,
+    rgba(13, 110, 253, 1) 8%,
+    rgba(13, 110, 253, 1) 17%,
+    rgba(13, 110, 253, 1) 80%,
+    rgba(13, 110, 253, 1) 92%
+  );  font-size: 1.125rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.book-appointment-btn:hover {
+  filter: brightness(1.1); /* Lighter alternative to color change */
+  transform: translateY(-3px); /* Subtle vertical lift */
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.12),
+              0px 3px 5px rgba(0, 0, 0, 0.08);
+}
+
+.book-appointment-btn:active {
+  transform: translateY(1px);
+  filter: brightness(0.95);
+}
+
+.book-appointment-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.book-appointment-btn:hover::before {
+  left: 100%;
+}
+
+.video-container {
+  margin-top: 3.5rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .video-container {
+      padding: 0 2.5rem;
+  }
+}
+
+.youtube-video {
+  width: 100%;
+  border-radius: 0.5rem; /* Rounded corners for the video */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), /* Add shadow to the video */
+              0px 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Responsive Styles */
+
+/* Styles for screens larger than 1024px (default large screens) */
+@media (min-width: 1025px) {
+  .consultation-container {
+    width: 70vw;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .consultation-title {
+    font-size: 2.5rem;
+  }
+
+  .button-container {
+    margin-top: 2.5rem;
+  }
+
+  .book-appointment-btn {
+    font-size: 1.125rem;
+    padding: 1rem 2rem;
+  }
+
+  .video-container {
+    margin-top: 3.5rem;
+    padding: 0 1rem;
+  }
+
+  .youtube-video {
+    width: 100%;
+  }
+}
+
+/* Styles for screens 768px to 1024px (Tablets and small laptops) */
+@media (max-width: 1024px) {
+  .consultation-container {
+    width: 80vw;
+    padding: 2rem;
+  }
+
+  .consultation-title {
+    font-size: 2rem;
+  }
+
+  .button-container {
+    margin-top: 2rem; /* Reduced margin for smaller screens */
+  }
+
+  .book-appointment-btn {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .video-container {
+    margin-top: 0.5rem;
+  }
+
+  .youtube-video {
+    width: 100%;
+  }
+}
+
+/* Styles for screens 481px to 768px (Large phones and small tablets) */
+@media (max-width: 768px) {
+  .consultation-container {
+    width: 90vw;
+    padding: 1.5rem;
+  }
+
+  .consultation-title {
+    font-size: 1.75rem;
+  }
+
+  .button-container {
+    margin-top: 1.5rem; /* Further reduced margin */
+  }
+
+  .book-appointment-btn {
+    font-size: 0.95rem;
+    padding: 0.7rem 1.2rem;
+  }
+}
+
+/* Styles for screens up to 480px (Small phones) */
+@media (max-width: 480px) {
+  .consultation-container {
+    width: 95vw;
+    padding: 1rem;
+  }
+
+  .consultation-title {
+    font-size: 1.2rem;
+  }
+
+  .button-container {
+    margin-top: 1rem; /* Minimal margin for very small screens */
+  }
+
+  .book-appointment-btn {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .video-container {
+    width: 100%;
+    max-width: 95vw; /* Ensures the video fits within the viewport */
+    margin: 0 auto;
+  }
+
+  .youtube-video {
+    width: 100%; /* Makes the video responsive */
+    max-width: 95vw; /* Prevents overflow */
+  }
+}
