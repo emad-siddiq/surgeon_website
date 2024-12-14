@@ -54,10 +54,12 @@ function App() {
           <Mobile.MobileSidebar />
           <Mobile.Heading />
           <Mobile.SlideShow />
-          <Mobile.AboutSection />
+          <Web.AboutSection1 />
           <Mobile.Consultation />
-          <Mobile.ServiceOfferings />
-          <Mobile.Distinctions />
+          <Web.AboutSection2 />
+
+          <Web.ServiceOfferings />
+          <Web.Distinctions />
           <Mobile.Location />
           <Mobile.Gallery />
           <Mobile.Footer />
@@ -70,7 +72,9 @@ function App() {
           <Web.HoverBar />
           <Web.Heading />
           <Web.SlideShow />
-          <Web.AboutSection />
+          <Web.AboutSection1 />
+          <Web.AboutSection2 />
+
           <Web.Consultation />
           <Web.ServiceOfferings />
           <Web.Distinctions />
