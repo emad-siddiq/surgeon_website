@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Card.css";
 
-const Card = ({ image, altText, title, credentials, description, actionLink, actionText, reverse }) => (
-  <div className={`experience-card ${reverse ? "reverse" : ""}`}>
+const Card = ({ image, altText, title, credentials, description, actionLink, actionText, reverse, className }) => (
+  <div className={`experience-card ${reverse ? "reverse" : ""} ${className}`}>
     <div className="experience-card-content">
       <div className="experience-card-image">
         <img src={image} alt={altText} />
@@ -13,7 +13,13 @@ const Card = ({ image, altText, title, credentials, description, actionLink, act
           {title}
           <div className="card-credentials">{credentials}</div>
         </h2>
-        <p className="card-description">{description}</p>
+        {typeof description === 'string' ? (
+          <p className="card-description">{description}</p>
+        ) : (
+          description.map((paragraph, index) => (
+            <p key={index} className="card-description">{paragraph}</p>
+          ))
+        )}
         <div className="card-action">
           <a href={actionLink} className="learn-more-button">
             {actionText}
@@ -29,14 +35,19 @@ Card.propTypes = {
   altText: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   credentials: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]).isRequired,
   actionLink: PropTypes.string.isRequired,
   actionText: PropTypes.string.isRequired,
   reverse: PropTypes.bool,
+  className: PropTypes.string
 };
 
 Card.defaultProps = {
   reverse: false,
+  className: ''
 };
 
 export default Card;
