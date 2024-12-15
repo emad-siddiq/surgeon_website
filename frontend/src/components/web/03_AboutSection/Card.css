@@ -1,5 +1,5 @@
 /* Card.css */
-@media (min-width: 300px) and (max-width: 800px) {
+@media (max-width: 800px) {
   .experience-card {
     background-color: white;
     border-radius: 1rem;
@@ -20,6 +20,10 @@
     flex-direction: column;
   }
   
+  .experience-card-image {
+    order: 2;
+
+  }
   .experience-card-image, 
   .experience-card-image-2 {
     flex: 1;
