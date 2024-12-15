@@ -1,6 +1,13 @@
-
 @media (min-width: 800px) {
 .distinctions-background {
+   
+}
+
+
+.distinctions-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
     background: rgb(255, 250, 248);
     max-width: 65vw;
     margin: 0 auto;
@@ -11,16 +18,11 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.distinctions-background:hover {
+.distinctions-container:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
 }
 
-.distinctions-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
 
 .distinctions-header {
     margin-bottom: 2.5rem;
@@ -143,32 +145,13 @@
     left: 100%;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .distinctions-background {
-        padding: 1rem;
-    }
-
-    .distinctions-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .distinctions-title {
-        font-size: 2rem;
-    }
-
-    .distinctions-image-container {
-        height: 300px;
-    }
-
-    .distinctions-card-content {
-        padding: 1.5rem;
-    }
-}
 }
 
-@media (min-width: 300px) and (max-width: 800px) {
+
+
+
+
+@media (max-width: 800px) {
 
     .distinctions-container {
         max-width: 98vw;

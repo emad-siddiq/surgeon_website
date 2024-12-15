@@ -99,13 +99,10 @@ const ServiceOfferings = () => {
               <AnimatedCounter initialCount={serviceCounts[5]} speed={100} />
             </li>
             <li>
-              Right Hemicolectomy 
+              Right & Left Hemicolectomy 
               <AnimatedCounter initialCount={serviceCounts[6]} speed={70} />
             </li>
-            <li>
-              Left Hemicolectomy 
-              <AnimatedCounter initialCount={serviceCounts[7]} speed={85} />
-            </li>
+            
             <li>
               Partial Gastrectomy 
               <AnimatedCounter initialCount={serviceCounts[8]} speed={95} />
