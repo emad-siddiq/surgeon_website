@@ -32,12 +32,13 @@ const Card = ({ title, description, image, link }) => {
 // Distinctions Component
 const Distinctions = () => {
   return (
-    <div className="distinctions-background">
+    
       <div className="distinctions-container">
+        
         <div className="distinctions-header">
           <h2 className="distinctions-title">Professional Distinctions</h2>
         </div>
-        <div className="distinctions-grid">
+      
           <Card
             title="Presidential Award for Surgical Excellence"
             description="Dr. Ghulam Siddiq has been honored with a Presidential Award, recognizing his exceptional skills and significant contributions to medical science. This prestigious acknowledgment reflects his unparalleled expertise, precision, and dedication to advancing surgical techniques in Pakistan."
@@ -50,9 +51,9 @@ const Distinctions = () => {
             image={surgery}
             link="#"
           />
-        </div>
+ 
       </div>
-    </div>
+
   );
 };
 

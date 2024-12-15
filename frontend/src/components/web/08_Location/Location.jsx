@@ -4,7 +4,6 @@ import shifa from '../../../assets/images/shifa.jpeg'; // Adjust the import path
 
 const Location = () => {
   return (
-    <div className="hospital-location-background">
       <div className="hospital-location-container">
         <h2 className="hospital-location-heading">Visit Shifa International Hospital</h2>
         <div className="hospital-location-image-container">
@@ -29,7 +28,6 @@ const Location = () => {
           
         </div>
       </div>
-    </div>
   );
 };
 

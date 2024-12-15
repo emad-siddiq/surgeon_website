@@ -1,6 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import * as Web from "./components/web/Web";
-import * as Mobile from "./components/mobile/Mobile";
+
+/* Mobile specific components */
+import MobileLogo from "./components/mobile/00_MobileLogo/MobileLogo"
+import MobileSidebar from "./components/mobile/00_MobileSidebar/MobileSidebar"
+
+/* Web specific components */
+import HoverBar from "./components/web/00_HoverBar/HoverBar"
+import NavBar from './components/web/00_NavBar/NavBar';
+import Heading from './components/web/01_Heading/Heading';
+import SlideShow from './components/web/02_Slideshow/Slideshow'
+import AboutSection1 from './components/web/03_AboutSection/AboutSection1';
+import AboutSection2 from './components/web/03_AboutSection/AboutSection2';
+import Consultation from './components/web/05_Consultation/Consultation';
+import ServiceOfferings from './components/web/06_ServiceOfferings/ServiceOfferings';
+import Distinctions from './components/web/07_Distinctions/Distinctions';
+import Location from './components/web/08_Location/Location';
+import Gallery from './components/web/09_Gallery/Gallery';
+import Footer from './components/web/10_Footer/Footer';
 
 function App() {
   const [backendStatus, setBackendStatus] = useState('Checking...');
@@ -50,37 +66,36 @@ function App() {
       {isMobile ? (
         // Mobile view
         <>
-          <Mobile.MobileLogo />
-          <Mobile.MobileSidebar />
-          <Mobile.Heading />
-          <Mobile.SlideShow />
-          <Web.AboutSection1 />
-          <Mobile.Consultation />
-          <Web.AboutSection2 />
+          <MobileLogo />
+          <MobileSidebar />
+          <Heading />
+          <SlideShow />
+          <AboutSection1 />
+          <Consultation />
+          <AboutSection2 />
 
-          <Web.ServiceOfferings />
-          <Web.Distinctions />
-          <Mobile.Location />
-          <Mobile.Gallery />
-          <Mobile.Footer />
+          <ServiceOfferings />
+          <Distinctions />
+          <Location />
+          <Gallery />
+          <Footer />
     
         </>
       ) : (
         // Desktop view
         <>
-          <Web.NavBar />
-          <Web.HoverBar />
-          <Web.Heading />
-          <Web.SlideShow />
-          <Web.AboutSection1 />
-          <Web.AboutSection2 />
-
-          <Web.Consultation />
-          <Web.ServiceOfferings />
-          <Web.Distinctions />
-          <Web.Location />
-          <Web.Gallery />
-          <Web.Footer />
+          <NavBar />
+          <HoverBar />
+          <Heading />
+          <SlideShow />
+          <AboutSection1 />
+          <AboutSection2 />
+          <Consultation />
+          <ServiceOfferings />
+          <Distinctions />
+          <Location />
+          <Gallery />
+          <Footer />
         </>
       )}
       

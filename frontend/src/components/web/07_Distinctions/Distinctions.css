@@ -171,30 +171,20 @@
 @media (min-width: 300px) and (max-width: 800px) {
 
     .distinctions-container {
-        max-width: 95vw;
+        max-width: 98vw;
         margin: 0 auto;
         padding: 0 1rem;
         display: flex;
         flex-direction: column;
-    }
-
-    .distinctions-background {
         background: rgb(255, 250, 248);
         margin: 0 auto;
         margin-top: 3vh;
-        padding: 2rem;
+        padding: 1rem;
         border-radius: 1rem;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    
-    .distinctions-background:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
-    }
-    
-   
-    
+
+
     .distinctions-header {
         margin-bottom: 2.5rem;
     }

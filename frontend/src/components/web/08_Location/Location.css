@@ -1,24 +1,26 @@
-.hospital-location-background {
-    background: rgb(255, 250, 248);
-    max-width: 65vw;
+
+
+
+@media (max-width: 800px) {
+  .hospital-location-container {
+    max-width: 95vw;
     margin: 0 auto;
+    padding: 0 1rem;
+
+    /* Background */
+    background: rgb(255, 250, 248);
+    
     margin-top: 3vh;
-    padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden; /* Prevents child elements from overflowing */
   }
-  
-  .hospital-location-background:hover {
+
+    
+  .hospital-location-container:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
-  }
-  
-  .hospital-location-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
   }
   
   .hospital-location-heading {
@@ -81,4 +83,97 @@
       height: auto; /* Ensures image does not distort on smaller screens */
     }
   }
+  
+
+}
+  
+
+@media (min-width: 800px) {
+  .hospital-location-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    /* Background */
+    background: rgb(255, 250, 248);
+    max-width: 65vw;
+    margin: 0 auto;
+    margin-top: 3vh;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Prevents child elements from overflowing */
+  }
+
+    
+  .hospital-location-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .hospital-location-heading {
+    margin-bottom: 2.5rem;
+    font-size: 2.2rem;
+    font-weight: 600;
+    text-align: center;
+    color: #1f2937;
+  }
+  
+  .hospital-location-image-container {
+    position: relative;
+    
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .hospital-location-map-overlay {
+    width: 80%;
+    padding-left: 5vw;
+    height: 500px;
+    border-radius: 8px;
+    padding-top: 3vh;
+    border-radius: 10px 10px 10px 10px;
+    overflow: hidden; /* Prevents the iframe from overflowing */
+    opacity: 0.8;
+  }
+  
+  .hospital-image {
+    padding-left: 5vw;
+    border-radius: 10px 10px 10px 10px;
+    width: 80%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block; /* Prevents extra space under the image */
+  }
+  
+  .hospital-location-map-overlay iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  
+  .hospital-location-map-container {
+    z-index: 1; /* Ensures text stays on top */
+  }
+  
+  @media (max-width: 768px) {
+    .hospital-location-map-overlay {
+      position: static;
+      width: 100%;
+      height: 300px;
+      opacity: 0.7;
+      padding: 1rem;
+    }
+  
+    .hospital-image {
+      width: 100%;
+      height: auto; /* Ensures image does not distort on smaller screens */
+    }
+  }
+  
+
+}
+  
   
