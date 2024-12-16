@@ -1,15 +1,12 @@
 @media (min-width: 800px) {
-.distinctions-background {
-   
-}
 
 
 .distinctions-container {
-    max-width: 1200px;
+    max-width: 70vw;
     margin: 0 auto;
     padding: 0 1rem;
     background: rgb(255, 250, 248);
-    max-width: 65vw;
+  
     margin: 0 auto;
     margin-top: 3vh;
     padding: 2rem;
@@ -23,7 +20,10 @@
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
 }
 
-
+.distinctions-cards {
+    display: flex;
+    flex-direction: row;
+}
 .distinctions-header {
     margin-bottom: 2.5rem;
 }
