@@ -4,19 +4,19 @@
     overflow: hidden;
     background-color: white;
     border-radius: 1rem;
-    min-height: 300px; /* Ensure the container has height */
+    min-height: 300px;
     padding: 4vh;
-    width: 95vw; /* Set container width to 95vw */
-    margin: 0 auto; /* Center the container horizontally */
+    width: 95vw;
+    margin: 0 auto;
     display: flex;
-    justify-content: center; /* Center horizontally */
-    flex-direction: column; /* Ensure elements stack vertically */
+    justify-content: center;
+    flex-direction: column;
   }
   
   .image-wrapper {
     position: relative;
     width: 100%;
-    height: 100%; /* Set consistent height for images */
+    height: 100%;
     min-height: 500px;
     overflow: hidden;
     display: flex;
@@ -26,7 +26,7 @@
   .image-wrapper > img {
     padding-top: 10vh;
     border-radius: 1vh;
-    transition: opacity 1s; /* Smooth transition for image opacity */
+    transition: opacity 1s;
     order: 2;
   }
   
@@ -48,8 +48,8 @@
     border-radius: 0.25rem;
     font-size: 1.3rem;
     text-align: center;
-    opacity: 1; /* Make sure the label is visible by default */
-    transition: opacity 1s; /* Smooth opacity transition */
+    opacity: 1;
+    transition: opacity 1s;
   }
   
   .transition-image {
@@ -64,41 +64,47 @@
   .transition-overlay {
     position: absolute;
     top: 10vh;
-    right: 0%; /* Start from the right edge of the image */
-    width: 100%; /* Cover the full width of the image wrapper */
-    height: 100%; /* Cover the full height of the image wrapper */
-    background: rgba(24, 24, 24, 0.5); /* Semi-transparent overlay */
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2); /* Start with translucent black */
     padding-top: 10vh;
     z-index: 2;
     animation-timing-function: ease-in-out;
-    border-radius: 1rem; /* Match the container's border radius */
-    transition: right 0s; /* Immediately reset position after transition */
+    border-radius: 1rem;
+    transition: right 0s, background 1s; /* Animate background color */
   }
   
   .slide-in {
     animation: slideInFromRight 1s forwards;
+    background: rgb(61, 221, 242); /* Transition to pitch black */
   }
   
   .slide-out {
     animation: slideOutToLeft 1s forwards;
+    background: rgba(44, 193, 247, 0.2); /* Fade back to translucent black */
   }
   
   /* Keyframes for Sliding */
   @keyframes slideInFromRight {
     0% {
       right: -100%;
+      background: rgba(48, 159, 243, 0.2); /* Start with translucent black */
     }
     100% {
-      right: 0%;
+      right: 0;
+      background: rgba(48, 159, 243, 0.9); /* Start with translucent black */
     }
   }
   
   @keyframes slideOutToLeft {
     0% {
-      right: 0%;
+      right: 0;
+      background: rgba(48, 159, 243, 0.9); /* Start with translucent black */
     }
     100% {
       right: 100%;
+      background: rgba(48, 159, 243, 0.2); /* Start with translucent black */
     }
   }
   
@@ -112,7 +118,7 @@
     order: 3;
     text-align: center;
     font-size: 1.2rem;
-    margin-top: 1rem; /* Add margin to separate from image */
+    margin-top: 1rem;
   }
   
   /* Media Queries */
