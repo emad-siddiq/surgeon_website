@@ -17,6 +17,7 @@ import Distinctions from './components/web/07_Distinctions/Distinctions';
 import Location from './components/web/08_Location/Location';
 import Gallery from './components/web/09_Gallery/Gallery';
 import Footer from './components/web/10_Footer/Footer';
+import BeforeAfterComponent from './components/web/04_BeforeAfter/Before_After';
 
 function App() {
   const [backendStatus, setBackendStatus] = useState('Checking...');
@@ -72,6 +73,7 @@ function App() {
           <SlideShow />
           <AboutSection1 />
           <Consultation />
+          <BeforeAfterComponent/>
           <AboutSection2 />
 
           <ServiceOfferings />
