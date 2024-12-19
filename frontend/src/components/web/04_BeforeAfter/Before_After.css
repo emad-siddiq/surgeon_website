@@ -157,7 +157,13 @@
     }
 
     .image-label {
-        background-color: rgba(64, 146, 247);
+         background: linear-gradient( 
+          90deg, 
+          rgba(13, 110, 253, 1) 8%, 
+          rgba(13, 110, 253, 1) 17%, 
+          rgba(13, 110, 253, 1) 80%, 
+          rgba(13, 110, 253, 1) 92% 
+      ); 
         color: white;
         padding: 0.5rem 1rem;
         border-radius: 0.25rem;
