@@ -12,6 +12,7 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
+        
     }
 
     .image-wrapper {
@@ -121,6 +122,11 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
+        background: rgb(255, 252, 250);
+        border-radius: 1rem;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1),
+                    0px 2px 4px rgba(0, 0, 0, 0.06);
+        margin-top: 2vh;
     }
 
     .image-wrapper {
@@ -135,7 +141,7 @@
     }
 
     .image-wrapper > img {
-        padding-top: 5vh;
+        padding-top: 8vh;
         border-radius: 1vh;
         transition: opacity 1s;
         width: 100%;
@@ -144,18 +150,18 @@
 
     .image-label-container {
         position: absolute;
-        top:0;
+        top:1vh;
         display: flex;
         justify-content: center;
         width: 100%;
     }
 
     .image-label {
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(64, 146, 247);
         color: white;
         padding: 0.5rem 1rem;
         border-radius: 0.25rem;
-        font-size: 1.1rem; /* Slightly smaller font size */
+        font-size: 1.4rem; /* Slightly smaller font size */
         text-align: center;
         opacity: 1;
         transition: opacity 1s;
@@ -163,7 +169,7 @@
 
     .transition-overlay {
         position: absolute;
-        top: 5vh;
+        top: 8vh;
         right: 0;
         width: 100%;
         height: 100%;
