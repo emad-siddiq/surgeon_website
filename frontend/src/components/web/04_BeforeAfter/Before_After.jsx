@@ -12,22 +12,22 @@ const BeforeAfterComponent = () => {
     { 
       src: before_1, 
       type: 'before',
-      description: 'Old Kitchen Layout'
+      description: 'Weight before surgery: 140kg'
     },
     { 
       src: after_1, 
       type: 'after',
-      description: 'Modern Kitchen Renovation'
+      description: 'Weight after surgery: 70kg'
     },
     { 
       src: before_2, 
       type: 'before',
-      description: 'Outdated Bathroom'
+      description: 'Weight before surgery: 150kg'
     },
     { 
       src: after_2, 
       type: 'after',
-      description: 'Luxurious Bathroom Remodel'
+      description: 'Weight after surgery: 70kg'
     }
   ];
   
@@ -67,10 +67,10 @@ const BeforeAfterComponent = () => {
           alt={currentImage.description} 
           className="transition-image"
         />
-        <div className="image-description">
-          {currentImage.description}
-        </div>
       </div>
+      <div className="image-description">
+          {currentImage.description}
+              </div>
     </div>
   );
 };

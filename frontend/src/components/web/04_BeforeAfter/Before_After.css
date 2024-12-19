@@ -1,144 +1,248 @@
-/* Base Styles */
-.before-after-container {
-    position: relative;
-    overflow: hidden;
-    background-color: white;
-    border-radius: 1rem;
-    min-height: 300px;
-    padding: 4vh;
-    width: 95vw;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  .image-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 500px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .image-wrapper > img {
-    padding-top: 10vh;
-    border-radius: 1vh;
-    transition: opacity 1s;
-    order: 2;
-  }
-  
-  .image-label-container {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    padding-top: 4vh;
-    width: 100%;
-    order: 4;
-  }
-  
-  .image-label {
-    order: 1;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    font-size: 1.3rem;
-    text-align: center;
-    opacity: 1;
-    transition: opacity 1s;
-  }
-  
-  .transition-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 1rem;
-    position: absolute;
-    z-index: 1;
-  }
-  
-  .transition-overlay {
-    position: absolute;
-    top: 10vh;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.2); /* Start with translucent black */
+/* Styles applied when the screen is at least 800px wide (min-width: 800px) */
+@media (min-width: 800px) {
+    .before-after-container {
+        position: relative;
+        overflow: hidden;
+        background-color: white;
+        border-radius: 1rem;
+        min-height: 300px;
+        width: 800px; /* Fixed width for min-width */
+        padding: 4vh;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 500px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image-wrapper > img {
+        padding-top: 10vh;
+        border-radius: 1vh;
+        transition: opacity 1s;
+        width: 100%;
+        height: auto;
+    }
+
+    .image-label-container {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .image-label {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        font-size: 1.3rem;
+        text-align: center;
+        opacity: 1;
+        transition: opacity 1s;
+    }
+
+    .transition-overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.2); /* Default overlay */
+        animation-timing-function: ease-in-out;
+        border-radius: 1rem;
+        transition: right 0s, background 1s;
+    }
+
+    .slide-in {
+        animation: slideInFromRight 1s forwards;
+        background: rgba(61, 221, 242, 0.8); /* Final overlay color */
+    }
+
+    .slide-out {
+        animation: slideOutToLeft 1s forwards;
+        background: rgba(44, 193, 247, 0.2); /* Fade back */
+    }
+
+    @keyframes slideInFromRight {
+        0% {
+            right: -100%;
+            background: rgba(48, 159, 243, 0.2); /* Initial color */
+        }
+        100% {
+            right: 0;
+            background: rgba(48, 159, 243, 0.9); /* Final color */
+        }
+    }
+
+    @keyframes slideOutToLeft {
+        0% {
+            right: 0;
+            background: rgba(48, 159, 243, 0.9); /* Initial color */
+        }
+        100% {
+            right: 100%;
+            background: rgba(48, 159, 243, 0.2); /* Faded */
+        }
+    }
+
+    .hide-label .image-label {
+        opacity: 0.5;
+        transition: opacity 1s;
+    }
+
+    .image-description {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-top: 1rem;
+    }
+}
+
+/* Styles applied when the screen is at most 800px wide (max-width: 800px) */
+@media (max-width: 800px) {
+    .before-after-container {
+        position: relative;
+        overflow: hidden;
+        background-color: white;
+        border-radius: 1rem;
+        min-height: 300px;
+        width: 95vw; /* Relative width for smaller screens */
+        padding: 2vh;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 400px; /* Adjust height for smaller screens */
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image-wrapper > img {
+        padding-top: 5vh;
+        border-radius: 1vh;
+        transition: opacity 1s;
+        width: 100%;
+        height: 400px;
+    }
+
+    .image-label-container {
+        position: absolute;
+        top:0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .image-label {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        font-size: 1.1rem; /* Slightly smaller font size */
+        text-align: center;
+        opacity: 1;
+        transition: opacity 1s;
+    }
+
+    .transition-overlay {
+        position: absolute;
+        top: 5vh;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+      linear-gradient(
+        136.47deg,
+        rgba(48, 159, 243, 0.2) 15%,
+        rgba(255, 213, 192, 0.3) 50%,
+        rgba(61, 221, 242, 0.4) 85%
+      );
     padding-top: 10vh;
     z-index: 2;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: linear;
     border-radius: 1rem;
-    transition: right 0s, background 1s; /* Animate background color */
-  }
-  
-  .slide-in {
+    transition: none; /* Removes sudden blending issues */
+}
+
+.slide-in {
     animation: slideInFromRight 1s forwards;
-    background: rgb(61, 221, 242); /* Transition to pitch black */
-  }
-  
-  .slide-out {
+}
+
+.slide-out {
     animation: slideOutToLeft 1s forwards;
-    background: rgba(44, 193, 247, 0.2); /* Fade back to translucent black */
-  }
-  
-  /* Keyframes for Sliding */
-  @keyframes slideInFromRight {
+}
+
+@keyframes slideInFromRight {
     0% {
-      right: -100%;
-      background: rgba(48, 159, 243, 0.2); /* Start with translucent black */
+        right: -100%;
+        background: 
+          linear-gradient(
+            136.47deg,
+            rgba(48, 159, 243, 0.2) 15%,
+            rgba(255, 213, 192, 0.2) 50%,
+            rgba(61, 221, 242, 0.2) 85%
+          );
     }
     100% {
-      right: 0;
-      background: rgba(48, 159, 243, 0.9); /* Start with translucent black */
+        right: 0;
+        background: 
+          linear-gradient(
+            136.47deg,
+            rgba(48, 159, 243, 0.4) 15%,
+            rgba(255, 213, 192, 0.5) 50%,
+            rgba(61, 221, 242, 0.6) 85%
+          );
     }
-  }
-  
-  @keyframes slideOutToLeft {
+}
+
+@keyframes slideOutToLeft {
     0% {
-      right: 0;
-      background: rgba(48, 159, 243, 0.9); /* Start with translucent black */
+        right: 0;
+        background: 
+          linear-gradient(
+            136.47deg,
+            rgba(48, 159, 243, 0.4) 15%,
+            rgba(255, 213, 192, 0.5) 50%,
+            rgba(61, 221, 242, 0.6) 85%
+          );
     }
     100% {
-      right: 100%;
-      background: rgba(48, 159, 243, 0.2); /* Start with translucent black */
+        right: 100%;
+        background: 
+          linear-gradient(
+            136.47deg,
+            rgba(48, 159, 243, 0.2) 15%,
+            rgba(255, 213, 192, 0.2) 50%,
+            rgba(61, 221, 242, 0.2) 85%
+          );
     }
-  }
-  
-  /* Hide the label when the overlay is transitioning */
-  .hide-label .image-label {
-    opacity: 0.5;
-    transition: opacity 1s;
-  }
-  
-  .image-description {
-    order: 3;
-    text-align: center;
-    font-size: 1.2rem;
-    margin-top: 1rem;
-  }
-  
-  /* Media Queries */
-  @media (max-width: 800px) {
-    .before-after-container {
-      width: 98vw;
-      padding: 1rem;
-      min-height: 300px;
+}
+
+    .hide-label .image-label {
+        opacity: 0.5;
+        transition: opacity 1s;
     }
-  
-    .image-wrapper {
-      height: 200px;
+
+    .image-description {
+        text-align: center;
+        font-size: 1.1rem; /* Slightly smaller font size */
+        margin-top: 1rem;
     }
-  
-    .transition-image {
-      height: 100%;
-    }
-  
-    .transition-overlay {
-      height: 100%;
-    }
-  }
-  
+}

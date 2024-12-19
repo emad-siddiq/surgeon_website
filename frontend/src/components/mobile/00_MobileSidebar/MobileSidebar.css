@@ -41,7 +41,7 @@ body, html {
   
   /* Sidebar content */
   .sidebar-content {
-    width: 300px;
+    width: 50vw;
     height: 100%;
     background-color: #fff;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
