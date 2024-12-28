@@ -15,10 +15,12 @@ const Card = ({ title, description, image, link }) => {
         />
       </div>
       <div className="distinctions-card-content">
-        <h3 className="distinctions-card-title">{title}</h3>
-        <p className="distinctions-card-description">
-          {description}
-        </p>
+        <div>
+          <h3 className="distinctions-card-title">{title}</h3>
+          <p className="distinctions-card-description">
+            {description}
+          </p>
+        </div>
         {link && (
           <a href={link} className="distinctions-learn-more">
             Learn More
@@ -32,29 +34,25 @@ const Card = ({ title, description, image, link }) => {
 // Distinctions Component
 const Distinctions = () => {
   return (
-    
-      <div className="distinctions-container">
-        
-        <div className="distinctions-header">
-          <h2 className="distinctions-title">Professional Distinctions</h2>
-        </div>
-      <div className="distinctions-cards">
-          <Card
-            title="Presidential Award for Surgical Excellence"
-            description="Dr. Ghulam Siddiq has been honored with a Presidential Award, recognizing his exceptional skills and significant contributions to medical science. This prestigious acknowledgment reflects his unparalleled expertise, precision, and dedication to advancing surgical techniques in Pakistan."
-            image={award}
-            link="#"
-          />
-          <Card
-            title="Extensive Bariatric Surgery Expertise"
-            description="With an impressive record of 970 Bariatric surgery procedures, Dr. Siddiq stands as a pioneering figure in metabolic and weight-loss surgical interventions. His extensive experience demonstrates not just technical proficiency, but a commitment to transforming patient lives through advanced surgical solutions."
-            image={surgery}
-            link="#"
-          />
-        </div>
- 
+    <div className="distinctions-container">
+      <div className="distinctions-header">
+        <h2 className="distinctions-title">Professional Distinctions</h2>
       </div>
-
+      <div className="distinctions-cards">
+        <Card
+          title="Presidential Award for Surgical Excellence"
+          description="Dr. Ghulam Siddiq has been honored with a Presidential Award, recognizing his exceptional skills and significant contributions to medical science. This prestigious acknowledgment reflects his unparalleled expertise, precision, and dedication to advancing surgical techniques in Pakistan."
+          image={award}
+          link="#"
+        />
+        <Card
+          title="Extensive Bariatric Surgery Expertise"
+          description="With an impressive record of 970 Bariatric surgery procedures, Dr. Siddiq stands as a pioneering figure in metabolic and weight-loss surgical interventions. His extensive experience demonstrates not just technical proficiency, but a commitment to transforming patient lives through advanced surgical solutions."
+          image={surgery}
+          link="#"
+        />
+      </div>
+    </div>
   );
 };
 

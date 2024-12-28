@@ -70,7 +70,7 @@ const BeforeAfterComponent = () => {
       </div>
       <div className="image-description">
           {currentImage.description}
-              </div>
+      </div>
     </div>
   );
 };
