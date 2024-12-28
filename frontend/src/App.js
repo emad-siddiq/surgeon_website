@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 /* Mobile specific components */
-import MobileLogo from "./components/mobile/00_MobileLogo/MobileLogo"
-import MobileSidebar from "./components/mobile/00_MobileSidebar/MobileSidebar"
+import MobileLogo from "./components/mobile/00_MobileLogo/MobileLogo";
+import MobileSidebar from "./components/mobile/00_MobileSidebar/MobileSidebar";
 
 /* Web specific components */
-import HoverBar from "./components/web/00_HoverBar/HoverBar"
+import HoverBar from "./components/web/00_HoverBar/HoverBar";
 import NavBar from './components/web/00_NavBar/NavBar';
 import Heading from './components/web/01_Heading/Heading';
-import SlideShow from './components/web/02_Slideshow/Slideshow'
+import SlideShow from './components/web/02_Slideshow/Slideshow';
 import AboutSection1 from './components/web/03_AboutSection/AboutSection1';
 import AboutSection2 from './components/web/03_AboutSection/AboutSection2';
 import Consultation from './components/web/05_Consultation/Consultation';
@@ -63,48 +64,54 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      {isMobile ? (
-        // Mobile view
-        <>
-          <MobileLogo />
-          <MobileSidebar />
-          <Heading />
-          <SlideShow />
-          <AboutSection1 />
-          <Consultation />
-          <BeforeAfterComponent/>
-          <AboutSection2 />
+    <Router>
+      <div className="App">
+        {isMobile ? (
+          // Mobile view
+          <>
+            <MobileLogo />
+            <MobileSidebar />
+          </>
+        ) : (
+          // Desktop view
+          <>
+            <NavBar />
+            <HoverBar />
+          </>
+        )}
 
-          <ServiceOfferings />
-          <Distinctions />
-          <Location />
-          <Gallery />
-          <Footer />
-    
-        </>
-      ) : (
-        // Desktop view
-        <>
-          <NavBar />
-          <HoverBar />
-          <Heading />
-          <SlideShow />
-          <AboutSection1 />
-          <AboutSection2 />
-          <Consultation />
-          <ServiceOfferings />
-          <Distinctions />
-          <Location />
-          <Gallery />
-          <Footer />
-        </>
-      )}
-      
-      {/* Uncomment for debugging */}
-      {/* <p>Backend Health Status: {backendStatus}</p>
-      {error && <p style={{ color: 'red' }}>Error: {error}</p>} */}
-    </div>
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Heading />
+              <SlideShow />
+              <AboutSection1 />
+              <AboutSection2 />
+              <Consultation />
+              <ServiceOfferings />
+              <Distinctions />
+              <Location />
+              <Gallery />
+              <Footer />
+            </>
+          } />
+          <Route path="/consultation" element={<Consultation />} />
+          <Route path="/about" element={
+            <>
+            <AboutSection1 />
+            <Footer />
+            </>
+            } />
+          <Route path="/services" element={<ServiceOfferings />} />
+          <Route path="/location" element={<Location />} />
+          {/* Add more routes for other components */}
+        </Routes>
+
+        {/* Uncomment for debugging */}
+        {/* <p>Backend Health Status: {backendStatus}</p>
+        {error && <p style={{ color: 'red' }}>Error: {error}</p>} */}
+      </div>
+    </Router>
   );
 }
 
