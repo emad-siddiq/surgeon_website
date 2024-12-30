@@ -5,15 +5,16 @@ import "./MobileSidebar.css";
 const MobileSidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const sidebarRef = useRef(null); // Reference for the sidebar
+  const menuButtonRef = useRef(null); // Reference for the menu button
 
   const toggleSidebar = () => setIsOpen(!isOpen);
-  const closeSidebar = () => setIsOpen(false);
 
   // Close the sidebar when clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-        closeSidebar();
+      // Close sidebar if the click is outside the sidebar or menu button
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target) && !menuButtonRef.current.contains(event.target)) {
+        setIsOpen(false);
       }
     };
 
@@ -30,15 +31,19 @@ const MobileSidebar = () => {
 
   return (
     <div className="mobile-sidebar">
-      <button className="menu-button" onClick={toggleSidebar}>
+      <button
+        className="menu-button"
+        onClick={toggleSidebar} // Toggle sidebar when clicked
+        ref={menuButtonRef} // Attach the reference to the menu button
+      >
         ☰
       </button>
 
       {isOpen && (
         <div className="sidebar-overlay">
           <div className="sidebar-content" ref={sidebarRef}>
-            <TopNavItems closeSidebar={closeSidebar} />
-            <ServiceOfferings closeSidebar={closeSidebar} />
+            <TopNavItems closeSidebar={() => setIsOpen(false)} />
+            <ServiceOfferings closeSidebar={() => setIsOpen(false)} />
           </div>
         </div>
       )}
