@@ -19,6 +19,7 @@ import Location from './components/web/08_Location/Location';
 import Gallery from './components/web/09_Gallery/Gallery';
 import Footer from './components/web/10_Footer/Footer';
 import BeforeAfterComponent from './components/web/04_BeforeAfter/Before_After';
+import About from './pages/About/About';
 
 function App() {
   const [backendStatus, setBackendStatus] = useState('Checking...');
@@ -96,12 +97,7 @@ function App() {
             </>
           } />
           <Route path="/consultation" element={<Consultation />} />
-          <Route path="/about" element={
-            <>
-            <AboutSection1 />
-            <Footer />
-            </>
-            } />
+          <Route path="/about" element={<About />} />
           <Route path="/services" element={<ServiceOfferings />} />
           <Route path="/location" element={<Location />} />
           {/* Add more routes for other components */}

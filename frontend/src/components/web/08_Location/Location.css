@@ -39,7 +39,7 @@
   opacity: 0.8;
 }
 
-.hospital-image {
+.hospital-video {
   width: 80%;
   height: auto;
   object-fit: cover;
@@ -71,6 +71,10 @@
   .hospital-location-map-overlay {
     height: 600px;
   }
+
+  .video-container { 
+    padding: 0 2.5rem; 
+}
 }
 
 /* For screens narrower than 800px */

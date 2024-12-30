@@ -1,40 +1,66 @@
-.App {
-    text-align: center;
-  
+.about-page-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
   }
   
-  .App-logo {
-    height: 40vmin;
-    pointer-events: none;
+  .about-page-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
   }
   
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
+  .about-main-section {
+    margin-bottom: 4rem;
+  }
+  
+  .about-gallery-section {
+    margin-bottom: 4rem;
+  }
+  
+  .about-distinctions-section {
+    margin-bottom: 4rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .about-page-content {
+      padding: 1rem;
+    }
+  
+    .about-main-section,
+    .about-gallery-section,
+    .about-distinctions-section {
+      margin-bottom: 2rem;
     }
   }
   
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+  /* Optional: Add animations */
+  .about-page-content > div {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in forwards;
   }
   
-  .App-link {
-    color: #61dafb;
-  }
-  
-  @keyframes App-logo-spin {
+  @keyframes fadeIn {
     from {
-      transform: rotate(0deg);
+      opacity: 0;
+      transform: translateY(20px);
     }
     to {
-      transform: rotate(360deg);
+      opacity: 1;
+      transform: translateY(0);
     }
   }
   
+  /* Stagger the animations */
+  .about-main-section {
+    animation-delay: 0.2s;
+  }
+  
+  .about-gallery-section {
+    animation-delay: 0.4s;
+  }
+  
+  .about-distinctions-section {
+    animation-delay: 0.6s;
+  }
