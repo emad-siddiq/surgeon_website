@@ -1,59 +1,76 @@
+/* Main hover bar container */
 .hoverbar-menu {
-    display: flex;
-    justify-content: flex-start;
-    padding: 15px;
-    font-weight: 400;
-    font-size: 2vh;
-    margin-left: 10vw;
+  display: flex;
+  justify-content: flex-start;
+  padding: 15px;
+  font-weight: 400;
+  font-size: 2vh;
+  margin-left: 10vw;
+}
+
+/* Menu links (top-level) */
+.menu-link {
+  color: inherit; /* Use the parent color */
+  text-decoration: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* Hover effect for menu links */
+.menu-link:hover {
+  text-decoration: underline;
+  color: rgb(0, 0, 255); /* Maintain hover styling */
+}
+
+/* Individual menu items */
+.menu-item {
+  position: relative;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: color 0.3s ease;
+  text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1),
+               0px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Dropdown menu container */
+.dropdown-menu {
+  color: rgb(0, 0, 0);
+  font-size: 1.75vh;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 10;
+  padding: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Dropdown links */
+.dropdown-item {
+  display: block;
+  padding: 8px;
+  color: inherit; /* Use parent color */
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect for dropdown links */
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+  color: rgb(0, 0, 255);
+  text-decoration: underline;
+}
+
+/* Fade-in animation for dropdown */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  .menu-item {
-    position: relative;
-    cursor: pointer;
-    padding: 10px 20px;
-    transition: color 0.3s ease;
-    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), /* Key shadow */
-                 0px 2px 4px rgba(0, 0, 0, 0.05); /* Ambient shadow */
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .menu-item:hover {
-    
-    text-decoration: underline blue;
-    color: rgb(0,0,0, 0.2); /* Blue color with 80% transparency */
-  }
-  
-  .dropdown-menu {
-    color: rgb(0, 0, 0);
-    font-size: 1.75vh;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 200px;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    z-index: 10;
-    padding: 10px;
-    animation: fadeIn 0.3s ease;
-  }
-  
-  .dropdown-item {
-    padding: 8px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .dropdown-item:hover {
-    background-color: #f0f0f0;
-    color: blue;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+}

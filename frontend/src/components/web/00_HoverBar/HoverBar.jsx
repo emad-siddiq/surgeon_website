@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './HoverBar.css';
 
 const HoverBar = () => {
@@ -7,30 +8,34 @@ const HoverBar = () => {
   const menuItems = [
     {
       label: 'About',
+      path: '/about',
       dropdown: [
-        'Consultation',
-        'Follow-up',
-        'Specialized Services'
+        { label: 'Consultation', path: '/about/consultation' },
+        { label: 'Follow-up', path: '/about/follow-up' },
+        { label: 'Specialized Services', path: '/about/specialized-services' }
       ]
     },
     {
       label: 'Specialities',
+      path: '/specialities',
       dropdown: [
-        'Client Stories',
-        'Success Cases',
-        'Reviews'
+        { label: 'Client Stories', path: '/specialities/client-stories' },
+        { label: 'Success Cases', path: '/specialities/success-cases' },
+        { label: 'Reviews', path: '/specialities/reviews' }
       ]
     },
     {
       label: 'Contact',
+      path: '/contact',
       dropdown: [
-        'General Questions',
-        'Service-specific',
-        'Pricing Inquiries'
+        { label: 'General Questions', path: '/contact/general-questions' },
+        { label: 'Service-specific', path: '/contact/service-specific' },
+        { label: 'Pricing Inquiries', path: '/contact/pricing-inquiries' }
       ]
     },
     {
       label: 'Blog',
+      path: '/blog',
       dropdown: []
     }
   ];
@@ -38,19 +43,25 @@ const HoverBar = () => {
   return (
     <div className="hoverbar-menu">
       {menuItems.map((item, index) => (
-        <div 
-          key={index} 
+        <div
+          key={index}
           className="menu-item"
           onMouseEnter={() => setActiveMenu(index)}
           onMouseLeave={() => setActiveMenu(null)}
         >
-          {item.label}
-          {activeMenu === index && (
+          <Link to={item.path} className="menu-link">
+            {item.label}
+          </Link>
+          {activeMenu === index && item.dropdown.length > 0 && (
             <div className="dropdown-menu">
               {item.dropdown.map((dropdownItem, dropIndex) => (
-                <div key={dropIndex} className="dropdown-item">
-                  {dropdownItem}
-                </div>
+                <Link
+                  key={dropIndex}
+                  to={dropdownItem.path}
+                  className="dropdown-item"
+                >
+                  {dropdownItem.label}
+                </Link>
               ))}
             </div>
           )}

@@ -5,7 +5,14 @@
     margin-bottom: 20px; /* Adds space below the logo */
 }
 
-.logo-container > img {
+/* Ensure the Link doesn't disrupt styling */
+.logo-link {
+    display: inline-block; /* Allows the link to wrap the image properly */
+    text-decoration: none; /* Remove default underline styling */
+}
+
+/* Maintain original image styles */
+.logo-link > img {
     width: 150px;
     height: 60px;
 }
