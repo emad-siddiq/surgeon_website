@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../../web/03_AboutSection/Card";
+import Card from "../../web/AboutSection/Card";
 import experience from "../../../assets/images/experience.jpg";
 import "./AboutSection.css";
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import AboutSection1 from '../../components/web/03_AboutSection/AboutSection1';
-import AboutSection2 from '../../components/web/03_AboutSection/AboutSection2';
-import BeforeAfter from '../../components/web/04_BeforeAfter/Before_After';
-import Distinctions from '../../components/web/07_Distinctions/Distinctions';
-import Gallery from '../../components/web/09_Gallery/Gallery';
-import Footer from '../../components/web/10_Footer/Footer';
+import AboutSection1 from '../../components/web/AboutSection/AboutSection1';
+import AboutSection2 from '../../components/web/AboutSection/AboutSection2';
+import BeforeAfter from '../../components/web/BeforeAfter/Before_After';
+import Distinctions from '../../components/web/Distinctions/Distinctions';
+import Gallery from '../../components/web/Gallery/Gallery';
+import Footer from '../../components/web/Footer/Footer';
 import './About.css';
 
 const About = () => {

@@ -2,23 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 /* Mobile specific components */
-import MobileLogo from "./components/mobile/00_MobileLogo/MobileLogo";
-import MobileSidebar from "./components/mobile/00_MobileSidebar/MobileSidebar";
+import MobileLogo from "./components/mobile/MobileLogo/MobileLogo";
+import MobileSidebar from "./components/mobile/MobileSidebar/MobileSidebar";
 
 /* Web specific components */
-import HoverBar from "./components/web/00_HoverBar/HoverBar";
-import NavBar from './components/web/00_NavBar/NavBar';
-import Heading from './components/web/01_Heading/Heading';
-import SlideShow from './components/web/02_Slideshow/Slideshow';
-import AboutSection1 from './components/web/03_AboutSection/AboutSection1';
-import AboutSection2 from './components/web/03_AboutSection/AboutSection2';
-import Consultation from './components/web/05_Consultation/Consultation';
-import ServiceOfferings from './components/web/06_ServiceOfferings/ServiceOfferings';
-import Distinctions from './components/web/07_Distinctions/Distinctions';
-import Location from './components/web/08_Location/Location';
-import Gallery from './components/web/09_Gallery/Gallery';
-import Footer from './components/web/10_Footer/Footer';
-import BeforeAfter from './components/web/04_BeforeAfter/Before_After';
+import HoverBar from "./components/web/HoverBar/HoverBar";
+import NavBar from './components/web/NavBar/NavBar';
+import Heading from './components/web/Heading/Heading';
+import SlideShow from './components/web/Slideshow/Slideshow';
+import AboutSection1 from './components/web/AboutSection/AboutSection1';
+import AboutSection2 from './components/web/AboutSection/AboutSection2';
+import Consultation from './components/web/Consultation/Consultation';
+import ServiceOfferings from './components/web/ServiceOfferings/ServiceOfferings';
+import Distinctions from './components/web/Distinctions/Distinctions';
+import Location from './components/web/Location/Location';
+import Gallery from './components/web/Gallery/Gallery';
+import Footer from './components/web/Footer/Footer';
+import BeforeAfter from './components/web/BeforeAfter/Before_After';
 import About from './pages/About/About';
 
 function App() {
