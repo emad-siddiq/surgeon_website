@@ -18,7 +18,7 @@ import Distinctions from './components/web/Distinctions/Distinctions';
 import Location from './components/web/Location/Location';
 import Gallery from './components/web/Gallery/Gallery';
 import Footer from './components/web/Footer/Footer';
-import BeforeAfter from './components/web/BeforeAfter/Before_After';
+import Transformations from './components/web/Transformations/Transformations';
 import About from './pages/About/About';
 
 function App() {
@@ -87,10 +87,11 @@ function App() {
               <Heading />
               <SlideShow />
               <AboutSection1 />
-              <AboutSection2 />
               <Consultation />
+              <AboutSection2 />
+              <Transformations/>
+
               <ServiceOfferings />
-              <BeforeAfter/>
               <Distinctions />
               <Location />
               <Gallery />

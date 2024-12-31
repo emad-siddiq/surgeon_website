@@ -13,7 +13,7 @@ const AboutSection1 = () => (
       Fellow of the Royal College of Surgeons (FRCS)`}
       description={`Dr. Ghulam Siddiq is currently the Chief of Surgery at Shifa International Hospital in Islamabad, Pakistan, where he has been practicing for the last 25 years, specializing in Laparoscopic Bariatric Surgery, a state-of-the-art, minimally invasive surgical technique.`}
       actionLink="/about"
-      actionText="Learn more about Dr. Siddiq"
+      actionText="Explore Professional Journey"
     />
   </div>
 );

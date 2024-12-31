@@ -10,9 +10,9 @@ const AboutSection2 = () => (
       altText="Dr. Ghulam Siddiq Experience"
       title="Bariatric Surgery"
       credentials={`A novel solution for obesity`}
-      description={`With a career spanning 38 years, Dr. Ghulam Siddiq is currently the Chief of Surgery at Shifa International Hospital, Islamabad. He has established himself as a trailblazer in surgical medicine, particularly in the realm of Laparoscopic Bariatric Surgery. His groundbreaking work has advanced medical practices in Pakistan and significantly improved patient care and surgical outcomes.`}
+      description={`Laparoscopic Bariatric surgery, a transformative weight-loss procedure, has found a pioneering champion in Dr. Ghulam Siddiq at Shifa International Hospital, Islamabad. Since 2010, he has performed over 1,400 successful laparoscopic cases, establishing himself as Pakistan's leading authority in minimally invasive bariatric procedures.`}
       actionLink="/experience"
-      actionText="Explore Professional Journey"
+      actionText="Learn More About Bariatric Surgery"
     />
   </div>
 );
