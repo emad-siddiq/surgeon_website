@@ -26,7 +26,7 @@ const SlideShow = () => {
   }, []);
 
   return (
-    <div className="container text-center mt-5">
+    <div className="container">
       <swiper-container 
         ref={swiperElRef}
         autoplay="true"

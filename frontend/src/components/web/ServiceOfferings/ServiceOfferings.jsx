@@ -25,12 +25,19 @@ const ServiceOfferings = () => {
   const patientCareDescription = (
     <>
       <p>
-        With 38 years of surgical experience, Dr. Siddiq specializes in delivering personalized, state-of-the-art medical interventions. His holistic approach ensures comprehensive patient support throughout the entire treatment journey.
-      </p>
+      With 38 years of surgical experience, Dr. Siddiq delivers personalized, state-of-the-art care at Shifa International Hospitals, Pakistan’s first JCI-accredited facility. His patient-centered approach ensures comprehensive care, leveraging Shifa’s world-class resources and healthcare standards.
+
+</p>
       <p>
-        From initial consultation to post-operative care, Dr. Siddiq and his team provide unparalleled medical expertise, advanced diagnostic capabilities, and compassionate treatment strategies tailored to individual patient needs.
-      </p>
-      
+
+      From initial consultation to post-operative care, Dr. Siddiq and his team combine unparalleled expertise, advanced diagnostics, and compassionate strategies to meet each patient’s unique needs, all within a trusted environment of excellence.
+
+
+
+
+
+
+</p>
     </>
   );
 

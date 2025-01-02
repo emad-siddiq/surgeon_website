@@ -37,23 +37,23 @@ const Transformations = () => {
   }, []);
 
   return (
-    <div className="before-after-container">
-      <div className="before-after-header">
-        <h2 className="before-after-title">Transformations</h2>
+    <div className="transformations-container">
+      <div className="transformations-header">
+        <h2 className="transformations-title">Transformations</h2>
       </div>
       <swiper-container ref={swiperElRef} autoplay="true" loop="true">
         {images.map((image, index) => (
           <swiper-slide key={index}>
-            <div className="before-after-images">
+            <div className="transformations-images">
               <div className="before-image-container">
-                <div className="image-title">Before</div>
+                <div className="before-title">Before</div>
                 <div
                   className="image"
                   style={{ backgroundImage: `url(${image.before})` }}
                 />
               </div>
               <div className="after-image-container">
-                <div className="image-title">After</div>
+                <div className="after-title">After</div>
                 <div
                   className="image"
                   style={{ backgroundImage: `url(${image.after})` }}

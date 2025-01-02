@@ -1,39 +1,39 @@
-/* General styling */
-.before-after-container {
+.transformations-container {
   width: 70vw;
-  height: 70vh;
+  height: 85vh;
   margin: 0 auto;
   padding: 2rem;
-  margin-top: 5vh;
-
   background-color: rgb(255, 250, 248);
   border-radius: 1rem;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
-.before-after-header {
-  margin-bottom: 2rem;
+.transformations-header {
+
 }
 
-.before-after-title {
+.transformations-title {
   font-size: 2.2rem;
   font-weight: 600;
   text-align: center;
   color: #1f2937;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
 }
 
 swiper-container {
   height: calc(100% - 6rem);
   width: 100%;
+  padding-bottom: 1vh;
 }
 
-.before-after-images {
+.transformations-images {
   display: flex;
   justify-content: space-between;
   gap: 2rem;
   height: 100%;
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 .before-image-container,
@@ -41,64 +41,111 @@ swiper-container {
   width: 48%;
   position: relative;
   height: 100%;
-  padding-top: 2rem; /* Added padding to provide space for titles */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-.image-title {
-  position: absolute;
-  top: -1rem; /* Lowered slightly to prevent clipping */
-  left: 50%;
-  transform: translateX(-50%);
+.before-title {
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 500;
   color: white;
-  background-color: #007BFF;
+  background-color: #46b8ff;
   padding: 0.5rem 1rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   text-align: center;
-  z-index: 1;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional for better visibility */
+  padding: 1vh 3vh 1vh 3vh;
+  margin-bottom: 0.5vh;
+}
+
+.after-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: white;
+  background-color: #1ace62;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 1vh 3.5vh 1vh 3.5vh;
+  margin-bottom: 0.5vh;
+
+
 }
 
 .image {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 4rem);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   transition: opacity 0.5s ease-in-out;
 }
 
-/* Navigation arrows and dots */
-swiper-container::part(button-prev),
-swiper-container::part(button-next) {
-  color: #007BFF;
-  background-color: white;
+/* Navigation Buttons - Bold Outline */
+swiper-container::part(button-next),
+swiper-container::part(button-prev) {
+  background-color: transparent;
+  border: 3px solid #2196F3;
+  width: 5vh;
+  height: 5vh;
+  top: 48%;
   border-radius: 50%;
-  padding: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
+/* Arrow Icon Styling */
+swiper-container::part(button-next)::after,
+swiper-container::part(button-prev)::after {
+  color: #2196F3;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Position Adjustment for Navigation Arrows */
+swiper-container::part(button-next) {
+  right: 0px;
+}
+
+swiper-container::part(button-prev) {
+  left: 0px;
+}
+
+/* Hover Effect for Navigation Buttons */
+swiper-container::part(button-next):hover,
+swiper-container::part(button-prev):hover {
+  background-color: #2196F3;
+  color: white;
+  transform: scale(1.1);
+}
+
+
+/* Pagination Bullets */
 swiper-container::part(bullet) {
-  background-color: #999;
+  background-color: #000;
+  opacity: 0.5;
+  margin-top: 1.5vh;
 }
 
 swiper-container::part(bullet-active) {
-  background-color: #007BFF;
+  background-color: #2196F3;
+  opacity: 1;
+  margin-top: 1.5vh;
 }
 
-swiper-container::part(pagination) {
-  bottom: -0.1rem; /* Lowered the dots slightly */
+swiper-pagination-fraction {
+  margin-top: 1vh;
 }
+
 
 @media (max-width: 800px) {
-  .before-after-container {
+  .transformations-container {
     width: 95vw;
     height: 80vh;
     padding: 1rem;
   }
 
-  .before-after-images {
+  .transformations-images {
     flex-direction: column;
     gap: 1rem;
   }
@@ -107,9 +154,76 @@ swiper-container::part(pagination) {
   .after-image-container {
     width: 100%;
     height: 45%;
+    gap: 0.5rem;
   }
 
-  swiper-container::part(pagination) {
-    bottom: 1rem; /* Adjusted for smaller screens */
+  .image {
+    height: calc(100% - 6rem);
+  }
+
+  swiper-container::part(button-next),
+  swiper-container::part(button-prev) {
+    width: 2.8vh;
+    height: 2.8vh;
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 800px) {
+  .gallery-container {
+    width: 74vw;
+    margin: 1vw auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .gallery-slide-wrapper {
+    position: relative;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 
+      0 4px 6px rgba(0, 0, 0, 0.1),
+      0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .gallery-slide-wrapper:hover {
+    transform: scale(1.02);
+    box-shadow: 
+      0 10px 20px rgba(0, 0, 0, 0.12),
+      0 4px 8px rgba(0, 0, 0, 0.09);
+  }
+
+  .gallery-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+  
+
+  .swiper-pagination-bullet {
+    background-color: #000;
+    opacity: 0.5;
+    bottom: -0.5rem;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: #000;
+    opacity: 1;
   }
 }
