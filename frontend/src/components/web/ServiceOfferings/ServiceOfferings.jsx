@@ -43,20 +43,21 @@ const ServiceOfferings = () => {
 
   return (
     <div className="services-container">
-      <ServiceCard 
-        title="Surgical Expertise"
-        services={surgicalServices}
-        learnMoreLink="/services"
-        learnMoreText="Explore Full Service Range"
-      />
-      
-      <div className="separator"></div>
       
       <ServiceCard 
         title="Patient-Centered Surgical Care"
         description={patientCareDescription}
         learnMoreLink="/patient-care"
         learnMoreText="Learn About Our Approach"
+      />
+      <div className="separator"></div>
+      
+      
+      <ServiceCard 
+        title="Surgical Expertise"
+        services={surgicalServices}
+        learnMoreLink="/services"
+        learnMoreText="Explore All Surgeries"
       />
     </div>
   );

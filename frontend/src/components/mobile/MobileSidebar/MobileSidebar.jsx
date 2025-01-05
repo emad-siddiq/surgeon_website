@@ -1,29 +1,25 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./MobileSidebar.css";
 
 const MobileSidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const sidebarRef = useRef(null); // Reference for the sidebar
-  const menuButtonRef = useRef(null); // Reference for the menu button
 
   const toggleSidebar = () => setIsOpen(!isOpen);
+  const closeSidebar = () => setIsOpen(false);
 
   // Close the sidebar when clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Close sidebar if the click is outside the sidebar or menu button
-      if (sidebarRef.current && !sidebarRef.current.contains(event.target) && !menuButtonRef.current.contains(event.target)) {
-        setIsOpen(false);
+      if (isOpen && event.target.closest(".sidebar-content") == null) {
+        closeSidebar();
       }
     };
 
-    // Add event listener when sidebar is open
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
-    // Clean up the event listener
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -31,19 +27,28 @@ const MobileSidebar = () => {
 
   return (
     <div className="mobile-sidebar">
-      <button
-        className="menu-button"
-        onClick={toggleSidebar} // Toggle sidebar when clicked
-        ref={menuButtonRef} // Attach the reference to the menu button
-      >
-        ☰
-      </button>
+      {!isOpen && (
+        <button
+          className="menu-button"
+          onClick={toggleSidebar}
+          aria-label="Open Menu"
+        >
+          ☰
+        </button>
+      )}
 
       {isOpen && (
         <div className="sidebar-overlay">
-          <div className="sidebar-content" ref={sidebarRef}>
-            <TopNavItems closeSidebar={() => setIsOpen(false)} />
-            <ServiceOfferings closeSidebar={() => setIsOpen(false)} />
+          <div className="sidebar-content">
+            <button
+              className="close-button"
+              onClick={closeSidebar}
+              aria-label="Close Menu"
+            >
+              ✖
+            </button>
+            <TopNavItems closeSidebar={closeSidebar} />
+            <ServiceOfferings closeSidebar={closeSidebar} />
           </div>
         </div>
       )}

@@ -21,11 +21,7 @@ const Card = ({ title, description, image, link }) => {
             {description}
           </p>
         </div>
-        {link && (
-          <a href={link} className="distinctions-learn-more">
-            Learn More
-          </a>
-        )}
+        
       </div>
     </div>
   );
@@ -41,7 +37,9 @@ const Distinctions = () => {
       <div className="distinctions-cards">
         <Card
           title="Presidential Award for Surgical Excellence"
-          description="Dr. Ghulam Siddiq has been honored with a Presidential Award, recognizing his exceptional skills and significant contributions to medical science. This prestigious acknowledgment reflects his unparalleled expertise, precision, and dedication to advancing surgical techniques in Pakistan."
+          description=" Dr. Ghulam Siddiq has been honored with the highly prestigious Presidential Award for Surgical Excellence, a testament to his exceptional skills, dedication, and groundbreaking contributions to the field of medical science. 
+ 
+            His commitment to patient care and his ability to perform complex procedures with precision have earned him respect and admiration from colleagues and patients alike. The Presidential Award is a reflection of his tireless work ethic, dedication to excellence, and relentless pursuit of perfection in the operating room."
           image={award}
           link="#"
         />
