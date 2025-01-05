@@ -1,6 +1,8 @@
 /* Main sidebar container */
 .mobile-sidebar {
   position: relative;
+  overflow-x: hidden; /* Prevents horizontal overflow */
+
 }
 
 /* Hamburger menu button (☰) */

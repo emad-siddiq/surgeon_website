@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Before_After.css';
+import './Transformations.css';
 import before_1 from "./../../../assets/images/before_after/before_1.jpg"
 import before_2 from "./../../../assets/images/before_after/before_2.jpg"
 import before_3 from "./../../../assets/images/before_after/before_3.png"

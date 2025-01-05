@@ -1,54 +1,9 @@
-// Home.jsx
-import React from 'react';
-
-/* Mobile specific components */
-import MobileLogo from "./../../components/mobile/MobileLogo/MobileLogo";
-import MobileSidebar from "./../../components/mobile/MobileSidebar/MobileSidebar";
-
-/* Web specific components */
-import HoverBar from "./../../components/web/HoverBar/HoverBar";
-import NavBar from './../../components/web/NavBar/NavBar';
-import Heading from './../../components/web/Heading/Heading';
-import SlideShow from './../../components/web/Slideshow/Slideshow';
-import AboutSection1 from './../../components/web/AboutSection/AboutSection1';
-import AboutSection2 from './../../components/web/AboutSection/AboutSection2';
-import Consultation from './../../components/web/Consultation/Consultation';
-import ServiceOfferings from './../../components/web/ServiceOfferings/ServiceOfferings';
-import Distinctions from './../../components/web/Distinctions/Distinctions';
-import Location from './../../components/web/Location/Location';
-import Gallery from './../../components/web/Gallery/Gallery';
-import Footer from './../../components/web/Footer/Footer';
-import Transformations from './../../components/web/Transformations/Transformations';
+import React from "react";
+import HomeMobile from "./mobile/Home";
+import HomeDesktop from "./web/Home";
 
 const Home = ({ isMobile }) => {
-  return (
-    <div>
-      {isMobile ? (
-        // Mobile view
-        <>
-          <MobileLogo />
-          <MobileSidebar />
-        </>
-      ) : (
-        // Desktop view
-        <>
-          <NavBar />
-          <HoverBar />
-        </>
-      )}
-      <Heading />
-      <SlideShow />
-      <AboutSection1 />
-      <Consultation />
-      <AboutSection2 />
-      <Transformations />
-      <ServiceOfferings />
-      <Distinctions />
-      <Location />
-      <Gallery />
-      <Footer />
-    </div>
-  );
+  return isMobile ? <HomeMobile /> : <HomeDesktop />;
 };
 
 export default Home;

@@ -58,11 +58,11 @@ const MobileSidebar = () => {
 
 const TopNavItems = ({ closeSidebar }) => (
   <div className="nav-links">
-    <Link to="/book-appointment" className="nav-link" onClick={closeSidebar}>
-      Book Appointment
+    <Link to="/about" className="nav-link" onClick={closeSidebar}>
+      About
     </Link>
     <Link to="/testimonials" className="nav-link" onClick={closeSidebar}>
-      Testimonials
+      Book Appointment
     </Link>
     <Link to="/faqs" className="nav-link" onClick={closeSidebar}>
       FAQs
