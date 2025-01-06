@@ -6,7 +6,8 @@ html, body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Segoe UI", Roboto, system-ui, -apple-system, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, system-ui, -apple-system, "Segoe UI", "Liberation Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
   
   background: 
     linear-gradient(136.47deg, rgba(254, 248, 243, 0.8) 15.41%, rgba(251, 223, 209, 0.6) 38%, rgba(200,228,255,0.4) 60.14%),

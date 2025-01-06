@@ -1,31 +1,10 @@
 import React from 'react';
 import './Distinctions.css';
+import VerticalCard from '../../common/VeriticalCard/VerticalCard';
+
 import award from "../../../assets/images/distinctions/1.jpeg";
 import surgery from "../../../assets/images/distinctions/surgeries.jpg";
 
-// Card Component
-const Card = ({ title, description, image, link }) => {
-  return (
-    <div className="distinctions-card">
-      <div className="distinctions-image-container">
-        <img
-          src={image}
-          alt={title}
-          className="distinctions-card-image"
-        />
-      </div>
-      <div className="distinctions-card-content">
-        <div>
-          <h3 className="distinctions-card-title">{title}</h3>
-          <p className="distinctions-card-description">
-            {description}
-          </p>
-        </div>
-        
-      </div>
-    </div>
-  );
-};
 
 // Distinctions Component
 const Distinctions = () => {
@@ -35,7 +14,7 @@ const Distinctions = () => {
         <h2 className="distinctions-title">Professional Distinctions</h2>
       </div>
       <div className="distinctions-cards">
-        <Card
+        <VerticalCard
           title="Presidential Award for Surgical Excellence"
           description=" Dr. Ghulam Siddiq has been honored with the highly prestigious Presidential Award for Surgical Excellence, a testament to his exceptional skills, dedication, and groundbreaking contributions to the field of medical science. 
  
@@ -43,7 +22,7 @@ const Distinctions = () => {
           image={award}
           link="#"
         />
-        <Card
+        <VerticalCard
           title="Extensive Bariatric Surgery Expertise"
           description="With an impressive record of 970 Bariatric surgery procedures, Dr. Siddiq stands as a pioneering figure in metabolic and weight-loss surgical interventions. His extensive experience demonstrates not just technical proficiency, but a commitment to transforming patient lives through advanced surgical solutions."
           image={surgery}

@@ -39,7 +39,7 @@
 
 /* Navbar link */
 .navbar-link {
-  font-size: 2vh;
+  font-size: 1.3rem;
   color: #333; /* Default text color */
   text-decoration: none; /* Remove default underline */
   cursor: pointer;
