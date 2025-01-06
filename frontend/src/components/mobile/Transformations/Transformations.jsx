@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './Transformations.css';
-import before_1 from "./../../../assets/images/before_after/before_1.jpg"
-import before_2 from "./../../../assets/images/before_after/before_2.jpg"
-import before_3 from "./../../../assets/images/before_after/before_3.png"
-import after_1 from "./../../../assets/images/before_after/after_1.jpg"
-import after_2 from "./../../../assets/images/before_after/after_2.jpg"
-import after_3 from "./../../../assets/images/before_after/after_3.png"
+import before_1 from "./../../../assets/images/before_after/before_1.jpg";
+import before_2 from "./../../../assets/images/before_after/before_2.jpg";
+import after_1 from "./../../../assets/images/before_after/after_1.jpg";
+import after_2 from "./../../../assets/images/before_after/after_2.jpg";
 
-const BeforeAfterComponent = () => {
+const Transformations = () => {
   const images = [
     { 
       src: before_1, 
@@ -32,47 +30,57 @@ const BeforeAfterComponent = () => {
   ];
   
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [animationKey, setAnimationKey] = useState(0);
+  const [prevImageIndex, setPrevImageIndex] = useState(images.length - 1);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [slideDirection, setSlideDirection] = useState('left');
 
   useEffect(() => {
-    const transitionInterval = setInterval(() => {
+    const interval = setInterval(() => {
+      setPrevImageIndex(currentImageIndex);
       setIsTransitioning(true);
-      setAnimationKey((prev) => prev + 1);
-
+      setSlideDirection('left');
+      
       setTimeout(() => {
-        setCurrentImageIndex((prev) => (prev + 1) % images.length);
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
         setIsTransitioning(false);
-      }, 2000); // Match the animation duration
-    }, 5000); // Adjust the interval for better timing
-
-    return () => clearInterval(transitionInterval);
-  }, [images.length]);
+      }, 1000); // Increased from 600 to 1000ms to match slower CSS transition
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, [currentImageIndex, images.length]);
 
   const currentImage = images[currentImageIndex];
+  const prevImage = images[prevImageIndex];
 
   return (
     <div className="before-after-container">
-      <div className="image-wrapper" key={animationKey}>
-        <div className={`transition-overlay ${isTransitioning ? 'slide-in' : 'slide-out'}`}></div>
-
-        <div className={`image-label-container ${isTransitioning ? 'hide-label' : ''}`}>
-          <div className="image-label">
-            {currentImage.type === 'before' ? 'BEFORE' : 'AFTER'}
-          </div>
-        </div>
-
-        <img 
-          src={currentImage.src} 
-          alt={currentImage.description} 
-          className="transition-image"
-        />
+      <div className={`image-label ${isTransitioning ? 'transitioning' : ''}`}>
+        {currentImage.type.toUpperCase()}
       </div>
-      <div className="image-description">
-          {currentImage.description}
+      
+      <div className="image-wrapper">
+        <div className={`slide-container ${isTransitioning ? 'sliding-out-' + slideDirection : ''}`}>
+          <img 
+            src={prevImage.src} 
+            alt={prevImage.description} 
+            className="transition-image"
+          />
+        </div>
+        
+        <div className={`slide-container ${isTransitioning ? 'sliding-in-' + slideDirection : ''}`}>
+          <img 
+            src={currentImage.src} 
+            alt={currentImage.description} 
+            className="transition-image"
+          />
+        </div>
+      </div>
+      
+      <div className={`image-description ${isTransitioning ? 'transitioning' : ''}`}>
+        {currentImage.description}
       </div>
     </div>
   );
 };
 
-export default BeforeAfterComponent;
+export default Transformations;

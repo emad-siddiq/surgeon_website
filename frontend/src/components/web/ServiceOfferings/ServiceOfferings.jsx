@@ -11,7 +11,7 @@ const ServiceOfferings = () => {
   ];
 
   const surgicalServices = [
-    { name: 'Gall Bladder Surgery', count: serviceCounts[0], speed: 50 },
+    { name: '(Gall Bladder Surgery) Laparoscopic Cholecystectomy', count: serviceCounts[0], speed: 50 },
     { name: 'Appendix Surgery', count: serviceCounts[1], speed: 120 },
     { name: 'Laparoscopic Surgery', count: serviceCounts[2], speed: 80 },
     { name: 'Colon Surgery', count: serviceCounts[3], speed: 90 },

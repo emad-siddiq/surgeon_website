@@ -2,7 +2,7 @@
 .mobile-sidebar {
   position: relative;
   overflow-x: hidden; /* Prevents horizontal overflow */
-
+  margin: 0 auto;
 }
 
 /* Hamburger menu button (☰) */

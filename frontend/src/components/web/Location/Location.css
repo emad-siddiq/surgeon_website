@@ -29,7 +29,7 @@
 }
 
 .location-media {
-  flex: 0 0 55%; /* 35% width */
+  flex: 0 0 55%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -56,7 +56,7 @@
 }
 
 .location-info {
-  flex: 0 0 45%; /* 65% width */
+  flex: 0 0 45%;
   display: flex;
   flex-direction: column;
   padding: 1rem 2rem 2rem 2rem;
@@ -101,13 +101,17 @@
     gap: 1rem;
   }
 
-  .video-wrapper,
-  .map-wrapper {
+  .video-wrapper {
     height: 250px;
+  }
+
+  .map-wrapper {
+    height: 350px; /* Increased height for mobile */
   }
 
   .location-info {
     padding: 1rem;
+    display: none;
   }
 
   .location-title {

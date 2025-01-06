@@ -162,17 +162,19 @@
             background: rgb(255, 250, 248);
             margin: 0 auto;
             margin-top: 3vh;
-            padding: 1rem;
+            
             border-radius: 1rem;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
     
         .distinctions-header {
-            margin-bottom: 2.5rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+
         }
         
         .distinctions-title {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 600;
             text-align: center;
             color: #1f2937;
@@ -202,7 +204,7 @@
         }
         
         .distinctions-image-container {
-            height: 400px;
+            height: 300px;
             overflow: hidden;
         }
         
@@ -218,7 +220,7 @@
         }
         
         .distinctions-card-content {
-            padding: 2rem;
+            padding: 1rem 2rem 1rem 2rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
