@@ -38,9 +38,7 @@ const Transformations = () => {
 
   return (
     <div className="transformations-container">
-      <div className="transformations-header">
-        <h2 className="transformations-title">Transformations</h2>
-      </div>
+    
       <swiper-container ref={swiperElRef} autoplay="true" loop="true">
         {images.map((image, index) => (
           <swiper-slide key={index}>
