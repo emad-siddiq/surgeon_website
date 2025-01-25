@@ -185,9 +185,9 @@
   }
   
   .card-description {
-    font-size: 1.3rem;
-    color: #464646;
-    line-height: 1.5;
+    font-size: 20px;
+    color: rgb(51, 48, 46);
+    line-height: 1.6;
     margin-bottom: 15px;
     font-weight: 400;
     padding-right: 1vw;
