@@ -1,22 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import './Location.css';
+import VideoPlayer from './../../common/VideoPlayer/VideoPlayer';
 import video from "../../../assets/videos/shifa.mp4";
 
 const Location = () => {
-  const videoRef = useRef(null);
-  const [showControls, setShowControls] = useState(false);
-
-  const handleVideoInteraction = () => {
-    setShowControls(!showControls);
-  };
-
-  const handleVideoEnd = () => {
-    setShowControls(false);
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-    }
-  };
-
   return (
     <div className="location-container">
       <h2 className="location-heading">Visit Shifa International Hospital</h2>
@@ -34,21 +21,11 @@ const Location = () => {
         </div>
         <div className="location-media">
           <div className="video-wrapper">
-            <video 
-              className="location-video" 
-              ref={videoRef}
-              controls={showControls}
-              muted 
-              autoPlay
-              playsInline
-              webkit-playsinline="true"
-              onClick={handleVideoInteraction}
-              onEnded={handleVideoEnd}
-              style={{ cursor: 'pointer', outline: 'none' }}
-            >
-              <source src={video} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <VideoPlayer 
+              videoSrc={video} 
+              className="location-video-container"
+              controls={false}
+            />
           </div>
           <div className="map-wrapper">
             <iframe
