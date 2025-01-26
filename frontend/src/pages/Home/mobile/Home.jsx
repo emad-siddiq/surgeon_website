@@ -6,8 +6,8 @@ import MobileLogo from "./../../../components/mobile/MobileLogo/MobileLogo";
 import MobileSidebar from "./../../../components/mobile/MobileSidebar/MobileSidebar";
 
 /* Web specific components */
-import Heading from './../../../components/web/Heading/Heading';
-import SlideShow from './../../../components/web/Slideshow/Slideshow';
+import Hero from './../../../components/web/Hero/Hero';
+
 import AboutSection1 from './../../../components/web/AboutSection/AboutSection1';
 import AboutSection2 from './../../../components/web/AboutSection/AboutSection2';
 import Consultation from './../../../components/web/Consultation/Consultation';
@@ -27,8 +27,7 @@ const Home = ({ isMobile }) => {
 
       
 
-      <Heading />
-      <SlideShow />
+      <Hero />
       <AboutSection1 />
       <Consultation />
       <AboutSection2 />
