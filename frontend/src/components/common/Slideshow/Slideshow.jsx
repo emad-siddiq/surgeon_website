@@ -4,7 +4,7 @@ import './Slideshow.css';
 
 register();
 
-const Slideshow = ({ images }) => {
+const Slideshow = ({ className, images }) => {
   const swiperElRef = useRef(null);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Slideshow = ({ images }) => {
   }, []);
 
   return (
-    <div className="container">
+    <div className={`slideshow-container ${className}`}>
       <swiper-container 
         ref={swiperElRef}
         autoplay="true"

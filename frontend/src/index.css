@@ -10,7 +10,7 @@ html, body {
 
   
   background: 
-    linear-gradient(136.47deg, rgba(254, 248, 243, 0.8) 10.41%, rgba(204, 204, 228, 0.6) 43%, rgba(200,228,255,0.4) 60.14%),
+    linear-gradient(136.47deg, rgb(227, 227, 250) 10.41%, rgb(249, 228, 218) 43%, rgba(213, 232, 250, 0.4) 60.14%),
     linear-gradient(121.21deg, rgba(126,203,255,0.2) -17.31%, rgba(255,240,230,0.8) 26.37%, #ffffff 65.87%),
     linear-gradient(224.18deg, #ffffff 15.41%, rgba(255,213,192,0.2) 38%, rgba(180,220,250,0.3) 60.14%),
     linear-gradient(45deg, rgba(255,189,151,0.5), rgba(255,229,204,0.5));

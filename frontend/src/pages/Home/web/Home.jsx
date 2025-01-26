@@ -6,8 +6,7 @@ import MobileLogo from "./../../../components/mobile/MobileLogo/MobileLogo";
 import MobileSidebar from "./../../../components/mobile/MobileSidebar/MobileSidebar";
 
 /* Web specific components */
-import HoverBar from "./../../../components/web/HoverBar/HoverBar";
-import NavBar from './../../../components/web/NavBar/NavBar';
+import HoverNavBar from "../../../components/web/HoverNavBar/HoverNavBar";
 import Hero from './../../../components/web/Hero/Hero';
 import AboutSection1 from './../../../components/web/AboutSection/AboutSection1';
 import AboutSection2 from './../../../components/web/AboutSection/AboutSection2';
@@ -19,6 +18,8 @@ import Gallery from './../../../components/web/Gallery/Gallery';
 import Footer from './../../../components/web/Footer/Footer';
 import Transformations from './../../../components/web/Transformations/Transformations';
 
+import "./Home.css";
+
 const Home = ({ isMobile }) => {
   return (
     <div>
@@ -27,15 +28,16 @@ const Home = ({ isMobile }) => {
         <>
           <MobileLogo />
           <MobileSidebar />
+          <Hero />
         </>
       ) : (
         // Desktop view
-        <>
-          <NavBar />
-          <HoverBar />
-        </>
+        <div className="hero-nav">
+          <HoverNavBar />
+          <Hero />
+        </div>
       )}
-      <Hero />
+      
       <AboutSection1 />
       <Consultation />
       <AboutSection2 />

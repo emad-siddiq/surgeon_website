@@ -1,0 +1,8 @@
+.hero-nav {
+    background: linear-gradient(
+        to bottom,
+        rgb(253, 248, 246),
+        rgb(249, 228, 218),
+        rgb(227, 227, 250)
+      )
+}

@@ -1,22 +1,134 @@
-/* Since the specific container styling is now in the ServiceCard.css, 
-   this file can remain minimal or empty, or contain any additional 
-   specific styles for the ServiceOfferings component */
+.surgical-procedures-container {
+  max-width: 65vw;
+  margin: 0 auto;
+  margin-top: 10vh;
+  padding: 2rem;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
 
-   .services-container {
-    /* Any additional container-level styles can be added here */
-    width: 100%;
-    margin-top: 4vh;
+.surgical-procedures-container:hover {
+  transform: translateY(-5px);
+}
+
+.surgical-procedures-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.surgical-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+  color: #ffd700;
+}
+
+.surgical-procedures-header h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.surgical-procedures-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.surgical-procedure-card {
+  padding: 1.5rem;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.surgical-procedure-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.surgical-blue { border-left: 5px solid #3498db; }
+.surgical-red { border-left: 5px solid #e74c3c; }
+.surgical-green { border-left: 5px solid #2ecc71; }
+.surgical-purple { border-left: 5px solid #9b59b6; }
+.surgical-teal { border-left: 5px solid #1abc9c; }
+.surgical-orange { border-left: 5px solid #e67e22; }
+.surgical-indigo { border-left: 5px solid #6a5acd; }
+.surgical-pink { border-left: 5px solid #ff69b4; }
+.surgical-brown { border-left: 5px solid #8b4513; }
+.surgical-navy { border-left: 5px solid #000080; }
+
+.procedure-header h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+  color: #34495e;
+}
+
+.procedure-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.procedure-description {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.procedure-count {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2980b9;
+}
+
+.surgical-cta-container {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.surgical-cta-button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.surgical-cta-button:hover {
+  background-color: #2980b9;
+}
+
+.procedure-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.surgical-procedure-card {
+  padding: 1.5rem;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.surgical-procedure-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 768px) {
+  .surgical-procedures-container {
+    max-width: 99vw;
   }
-  
-  /* If you want to ensure the separation between cards is consistent */
-  .separator {
-    width: 1px;
-    background-color: #e5e7eb;
-    margin: 0 2rem;
+  .surgical-procedures-grid {
+    grid-template-columns: 1fr;
   }
-  
-  @media (min-width: 300px) and (max-width: 800px) {
-    .separator {
-      display: none;
-    }
-  }
+}

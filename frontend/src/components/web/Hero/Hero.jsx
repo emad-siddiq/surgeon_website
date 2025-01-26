@@ -16,7 +16,7 @@ const Hero = () => {
         <div className="heading">
           <h1>Pioneer of Laparoscopic Bariatric Surgery in Pakistan</h1>
         </div>
-        <SlideShow images={slideshowImages} />
+        <SlideShow className="hero-slideshow" images={slideshowImages} />
       </div>
     </div>
   );

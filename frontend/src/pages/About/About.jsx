@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Footer from '../../components/web/Footer/Footer';
 import MobileLogo from '../../components/mobile/MobileLogo/MobileLogo';
 import MobileSidebar from '../../components/mobile/MobileSidebar/MobileSidebar';
-import NavBar from '../../components/web/NavBar/NavBar';
-import HoverBar from '../../components/web/HoverBar/HoverBar';
+import HoverNavBar from '../../components/web/HoverNavBar/HoverNavBar';
 import hero_image from "../../assets/images/main-slider/1.jpeg";
 import video from '../../assets/videos/shifa-video.mp4';
 
@@ -31,8 +30,7 @@ const About = () => {
         </>
       ) : (
         <>
-          <NavBar />
-          <HoverBar />
+          <HoverNavBar />
         </>
       )}
 
