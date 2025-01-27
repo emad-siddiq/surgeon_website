@@ -125,7 +125,7 @@ const BackgroundAnimation = () => {
         
                 // Optional: Subtle vertical motion (toned down)
                 const originalY = positions[i + 1];
-                positions[i + 1] = originalY + wave * 0.2; // Very slight vertical motion
+                positions[i + 1] = originalY + wave * 0.1; // Very slight vertical motion
             }
         
             pointcloud.geometry.attributes.color.needsUpdate = true;
