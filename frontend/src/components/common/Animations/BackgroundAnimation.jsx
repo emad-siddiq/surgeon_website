@@ -98,36 +98,39 @@ const BackgroundAnimation = () => {
             renderer.setSize(width, height);
         };
 
-        // Animation loop
         const animate = () => {
             requestAnimationFrame(animate);
             const time = clock.getElapsedTime();
             const positions = pointcloud.geometry.attributes.position.array;
             const colors = pointcloud.geometry.attributes.color.array;
-
+        
+            // Directional wave speed and direction (negative for leftward movement)
+            const waveSpeed = 2; // Speed of the wave
+            const waveDirection = -1; // Negative value for leftward movement
+        
             for (let i = 0; i < positions.length; i += 3) {
                 const x = positions[i];
                 const z = positions[i + 2];
-
-                // Calculate wave effect based on position and time
-                const wave = Math.sin(x * 0.2 + z * 0.2 + time * 2) / 20; // Reduce wave height to 1/3
-
+        
+                // Calculate wave effect with directional movement
+                const wave = Math.sin((x * 0.2) + (time * waveSpeed * waveDirection)) / 20; // Wave moves leftward
+        
                 // Update particle color based on wave and position
                 const waveFactor = Math.sin(time + (i / positions.length) * Math.PI * 2); // Smooth color transition
-
+        
                 // Red, Green, Blue color fade depending on waveFactor
-                colors[i] = 0.5 + 5 * Math.sin(waveFactor ); // Red
-                colors[i + 1] = 0.5 - 0.5 * Math.sin(waveFactor ); // Green
-                colors[i + 2] = 5 + 0.5 * Math.sin(waveFactor ); // Blue
-
+                colors[i] = 0.5 + 5 * Math.sin(waveFactor); // Red
+                colors[i + 1] = 0.5 - 0.5 * Math.sin(waveFactor); // Green
+                colors[i + 2] = 5 + 0.5 * Math.sin(waveFactor); // Blue
+        
                 // Optional: Subtle vertical motion (toned down)
                 const originalY = positions[i + 1];
-                positions[i + 1] = originalY + wave * 0.1; // Very slight vertical motion
+                positions[i + 1] = originalY + wave * 0.2; // Very slight vertical motion
             }
-
+        
             pointcloud.geometry.attributes.color.needsUpdate = true;
             pointcloud.geometry.attributes.position.needsUpdate = true;
-
+        
             renderer.render(scene, camera);
         };
 
