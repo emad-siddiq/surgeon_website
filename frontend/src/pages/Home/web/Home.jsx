@@ -19,6 +19,7 @@ import Footer from './../../../components/web/Footer/Footer';
 import Transformations from './../../../components/web/Transformations/Transformations';
 
 import "./Home.css";
+import BackgroundAnimation from '../../../components/common/Animations/BackgroundAnimation';
 
 const Home = ({ isMobile }) => {
   return (
@@ -37,7 +38,7 @@ const Home = ({ isMobile }) => {
           <Hero />
         </div>
       )}
-      
+      <BackgroundAnimation/>
       <AboutSection1 />
       <Consultation />
       <AboutSection2 />
