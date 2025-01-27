@@ -49,21 +49,20 @@ const BackgroundAnimation = () => {
                 for (let j = 0; j < length; j++) {
                     const x = (i / width - 0.5) * 20;
                     const z = (j / length - 0.5) * 20;
-                    const y = (Math.cos(i * Math.PI * 4 / width) + Math.sin(j * Math.PI * 8 / length)) / 50 * 10; // Wave function
+                    const y = (Math.cos(i * Math.PI * 3 / width) + Math.sin(j * Math.PI * 3 / length)) / 30 * 50; // Wave function
             
                     // Set positions and colors
                     positions[3 * k] = x;
                     positions[3 * k + 1] = y;
                     positions[3 * k + 2] = z;
             
-                    colors[3 * k] = 1;
-                    colors[3 * k + 1] = 1;
-                    colors[3 * k + 2] = 1;
+                    colors[3 * k] = 1; // Default color
+                    colors[3 * k + 1] = 1; // Default color
+                    colors[3 * k + 2] = 1; // Default color
             
                     k++;
                 }
             }
-            
 
             geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
             geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
@@ -111,12 +110,15 @@ const BackgroundAnimation = () => {
                 const z = positions[i + 2];
 
                 // Calculate wave effect based on position and time
-                const wave = Math.sin(x * 0.2 + z * 0.2 + time * 2) / 5; // Reduce wave height to 1/3
+                const wave = Math.sin(x * 0.2 + z * 0.2 + time * 2) / 20; // Reduce wave height to 1/3
 
-                // Update particle color based on the wave
-                colors[i] = 0.8 + 0.5 * wave; // Red
-                colors[i + 1] = 0.3 - 0.5 * wave; // Green
-                colors[i + 2] = 0.8 + 1 * Math.cos(wave); // Blue
+                // Update particle color based on wave and position
+                const waveFactor = Math.sin(time + (i / positions.length) * Math.PI * 2); // Smooth color transition
+
+                // Red, Green, Blue color fade depending on waveFactor
+                colors[i] = 0.5 + 5 * Math.sin(waveFactor ); // Red
+                colors[i + 1] = 0.5 - 0.5 * Math.sin(waveFactor ); // Green
+                colors[i + 2] = 5 + 0.5 * Math.sin(waveFactor ); // Blue
 
                 // Optional: Subtle vertical motion (toned down)
                 const originalY = positions[i + 1];
@@ -148,8 +150,8 @@ const BackgroundAnimation = () => {
             ref={mountRef}
             style={{
                 position: 'absolute',
-                top: 300,
-                left: -200,
+                top: 0,
+                left: -300,
                 width: '100%',
                 height: '100%',
                 zIndex: 1,
