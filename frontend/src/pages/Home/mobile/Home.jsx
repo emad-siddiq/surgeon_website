@@ -24,9 +24,6 @@ const Home = ({ isMobile }) => {
       
       <MobileLogo />
       <MobileSidebar />
-
-      
-
       <Hero />
       <AboutSection1 />
       <Consultation />

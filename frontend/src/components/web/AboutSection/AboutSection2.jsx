@@ -1,11 +1,11 @@
 import React from "react";
-import Card from "../../web/AboutSection/Card";
+import HorizontalCard from "../../common/HorizontalCard/HorizontalCard";
 import about1 from "../../../assets/images/about1.jpg";
 import "./AboutSection.css";
 
 const AboutSection2 = () => (
   <div className="about-section-container">
-    <Card
+    <HorizontalCard
       image={about1}
       altText="Dr. Ghulam Siddiq Experience"
       title="Bariatric Surgery"

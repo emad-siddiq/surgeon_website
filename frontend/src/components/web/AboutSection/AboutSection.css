@@ -12,11 +12,12 @@
 
 @media (min-width: 800px) {
   .about-section-container{
-    max-width: 68vw;
+    max-width: 100vw;
     align-items: center;
   justify-content: center;
-  margin: 5vh auto;
+  margin: 2vh auto;
   background: rgb(253, 244, 240);
+  height: 50vh;
 
   }
   .experience-container {

@@ -1,7 +1,7 @@
 .hero-section {
   position: relative;
   width: 100%;
-  height: 90vh;
+  height: 75vh;
   overflow: hidden;
 
 }
@@ -40,13 +40,13 @@
   text-align: left;
   padding-left: 12vw;
   color: rgb(58, 57, 57);
-  margin-top: -20vh;
+  margin-top: -0vh;
 }
 
 .hero-slideshow {
   width: 45vw;
   padding-bottom: 0vh;
-  margin-top: -20vh;
+  margin-top: -0vh;
 }
 
 @media (max-width: 800px) {
