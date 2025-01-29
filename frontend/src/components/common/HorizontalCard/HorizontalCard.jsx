@@ -25,12 +25,12 @@ const HorizontalCard = ({
   };
 
   return (
-    <div className={`experience-card ${reverse ? "reverse" : ""} ${className}`}>
-      <div className="experience-card-content">
-        <div className="experience-card-image">
+    <div className={`horizontal-card ${reverse ? "reverse" : ""} ${className}`}>
+      <div className="card-content">
+        <div className="card-image">
           <img src={image} alt={altText} />
         </div>
-        <div className="experience-card-text">
+        <div className="card-text">
           <h2 className="card-title">
             {title}
             <div className="card-credentials">{credentials}</div>
@@ -55,7 +55,7 @@ const HorizontalCard = ({
           </div>
 
           <div className="card-action">
-            <a href={actionLink} className="learn-more-button">
+            <a href={actionLink} className="card-button">
               {actionText}
             </a>
           </div>
