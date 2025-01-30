@@ -1,19 +1,18 @@
 .horizontal-card {
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    border-radius: 20px;
+ 
+    /* background-color: #fff; */
+    border-radius: 10px;
     overflow: hidden;
     margin: 50px 0;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    height: 70vh;
-}
-
-.card-content {
+    height: 100%;
     display: flex;
     padding: 60px;
     gap: 100px;
+    flex-direction: row;
+    align-items: center;
 }
+
 
 .horizontal-card.reverse .card-content {
     flex-direction: row-reverse;
@@ -21,7 +20,7 @@
 
 .card-image {
     width: 420px;
-    height: 420px;
+    height: 100%;
     flex-shrink: 0;
     flex-basis: 40vw;
 

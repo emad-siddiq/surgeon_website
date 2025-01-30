@@ -1,0 +1,25 @@
+
+
+@media (min-width: 800px) {
+  .about-section-container{
+    max-width: 90vw;
+    align-items: center;
+  justify-content: center;
+  margin: 2vh auto;
+  height: 70vh;
+
+  }
+
+}
+
+@media (max-width: 800px) {
+  .about-section-container {
+    
+    margin: 0 auto;
+    padding: 10px 0px 0px 0px;
+    margin-top: 0vh;
+    font-weight: 300;
+  }
+  
+ 
+}

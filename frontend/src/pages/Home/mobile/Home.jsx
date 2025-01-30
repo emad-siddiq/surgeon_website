@@ -8,8 +8,8 @@ import MobileSidebar from "./../../../components/mobile/MobileSidebar/MobileSide
 /* Web specific components */
 import Hero from './../../../components/web/Hero/Hero';
 
-import AboutSection1 from './../../../components/web/AboutSection/AboutSection1';
-import AboutSection2 from './../../../components/web/AboutSection/AboutSection2';
+import AboutCard from '../../../components/web/AboutSection/AboutCard';
+import BariatricCard from '../../../components/web/BariatricCard/BariatricCard';
 import Consultation from './../../../components/web/Consultation/Consultation';
 import ServiceOfferings from './../../../components/web/ServiceOfferings/ServiceOfferings';
 import Distinctions from './../../../components/web/Distinctions/Distinctions';
@@ -25,9 +25,9 @@ const Home = ({ isMobile }) => {
       <MobileLogo />
       <MobileSidebar />
       <Hero />
-      <AboutSection1 />
+      <AboutCard />
       <Consultation />
-      <AboutSection2 />
+      <BariatricCard />
       <Transformations />
       <ServiceOfferings />
       <Distinctions />

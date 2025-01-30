@@ -2,13 +2,21 @@
 
 @media (min-width: 800px) {
   .about-section-container{
-    max-width: 100vw;
+    max-width: 70vw;
+    max-height: 70vh;
     align-items: center;
   justify-content: center;
   margin: 2vh auto;
-  background: rgb(253, 244, 240);
-  height: 70vh;
+  }
 
+ .about-section-container .card-description {
+    font-size: 22px;
+  }
+
+  .about-section-container .card-image {
+    max-height: 50vh;
+    align-items: center;
+    justify-content: center;
   }
 
 }

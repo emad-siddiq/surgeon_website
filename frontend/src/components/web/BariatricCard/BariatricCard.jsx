@@ -1,10 +1,10 @@
 import React from "react";
 import HorizontalCard from "../../common/HorizontalCard/HorizontalCard";
 import about1 from "../../../assets/images/about1.jpg";
-import "./AboutSection.css";
+import "./BariatricCard.css";
 
-const AboutSection2 = () => (
-  <div className="about-section-container">
+const BariatricCard = () => (
+  <div className="bariatric-card-container">
     <HorizontalCard
       image={about1}
       altText="Dr. Ghulam Siddiq Experience"
@@ -17,4 +17,4 @@ const AboutSection2 = () => (
   </div>
 );
 
-export default AboutSection2;
+export default BariatricCard;

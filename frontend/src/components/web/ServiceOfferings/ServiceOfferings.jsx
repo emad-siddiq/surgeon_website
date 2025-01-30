@@ -1,6 +1,7 @@
 import React from 'react';
 import AnimatedCounter from './../../common/Counters/AnimatedCounter';
 import './ServiceOfferings.css';
+import AnimationGrid from './../../common/Animations/AnimationGrid';
 
 const ServiceOfferings = () => {
   const procedureData = [
@@ -87,7 +88,11 @@ const ServiceOfferings = () => {
   ];
 
   return (
+   
+  <div className="service-offerings-wrapper">
+    <AnimationGrid/>
     <div className="surgical-procedures-container">
+      
       <div className="surgical-procedures-header">
         <div className="surgical-icon">🔬</div>
         <h2>Surgical Expertise & Experience</h2>
@@ -125,7 +130,9 @@ const ServiceOfferings = () => {
         </a>
       </div>
     </div>
-  );
+  </div>
+);
+    
 };
 
 export default ServiceOfferings;

@@ -2,33 +2,36 @@ import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-const BackgroundAnimation2 = () => {
-    const mountRef = useRef(null);
+const AnimationGrid = () => {
+  const mountRef = useRef(null);
 
-    useEffect(() => {
-        // Scene setup
-        const scene = new THREE.Scene();
-        scene.background = null; // Make background transparent
+  useEffect(() => {
+    // Scene setup
+    const scene = new THREE.Scene();
+    scene.background = null; // Transparent background
 
-        // Camera setup
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 100);
-        camera.position.set(0, 0, 4.5);
+    // Camera setup
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 100);
+    camera.position.set(0, 0, 4.5);
 
-        // Renderer setup
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // Enable alpha for transparency
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        mountRef.current.appendChild(renderer.domElement);
+    // Renderer setup
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(mountRef.current.offsetWidth, mountRef.current.offsetHeight);
+    mountRef.current.appendChild(renderer.domElement);
+
+
+   
 
         const uniforms = {
             u_time: { value: 0.0 },
-            u_pointsize: { value: 3.0 }, // Larger points to make the grid more visible
+            u_pointsize: { value: 2.5 }, // Larger points to make the grid more visible
             u_noise_freq_1: { value: 2.0 }, // Increase frequency for more detailed waves
             u_noise_amp_1: { value: 0.5 }, // Increase amplitude for larger waves
-            u_spd_modifier_1: { value: 1.0 },
+            u_spd_modifier_1: { value: 0.15 },
             u_noise_freq_2: { value: 5.0 }, // Increase frequency for the second noise
             u_noise_amp_2: { value: 0.8 }, // Increase amplitude for more noticeable waves
-            u_spd_modifier_2: { value: 0.8 },
+            u_spd_modifier_2: { value: 0.2 },
             u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
         };
 
@@ -86,70 +89,69 @@ const BackgroundAnimation2 = () => {
 
             void main() {
                 vec2 st = gl_FragCoord.xy / u_resolution.xy;
-                gl_FragColor = vec4(vec3(0.0, st), 1.0);
+                gl_FragColor = vec4(vec3(st.x * 0.9, 0.0, 1.0 - st.x * 0.2), 1.0);
+
+
             }
         `;
+ const geometry = new THREE.PlaneGeometry(4, 4, 128, 128);
+    const material = new THREE.ShaderMaterial({
+      uniforms: uniforms,
+      vertexShader: vertexShader,
+      fragmentShader: fragmentShader,
+    });
 
-        // Mesh
-        const geometry = new THREE.PlaneGeometry(4, 4, 128, 128);
-        const material = new THREE.ShaderMaterial({
-            uniforms: uniforms,
-            vertexShader: vertexShader,
-            fragmentShader: fragmentShader
-        });
-        const mesh = new THREE.Points(geometry, material);
-        scene.add(mesh);
+    const mesh = new THREE.Points(geometry, material);
+    scene.add(mesh);
 
-        // OrbitControls
-        const controls = new OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.autoRotate = false; // Disable auto-rotation
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
 
-        // Animation loop
-        const clock = new THREE.Clock();
-        const animate = () => {
-            requestAnimationFrame(animate);
-            const elapsedTime = clock.getElapsedTime();
-            uniforms.u_time.value = elapsedTime;
-            renderer.render(scene, camera);
-        };
+    const clock = new THREE.Clock();
+    const animate = () => {
+      requestAnimationFrame(animate);
+      uniforms.u_time.value = clock.getElapsedTime();
+      renderer.render(scene, camera);
+    };
 
-        // Handle resize
-        const onWindowResize = () => {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
-            renderer.setSize(width, height);
-            uniforms.u_resolution.value.set(width, height);
-        };
-        window.addEventListener('resize', onWindowResize);
+    // Handle resize
+    const onResize = () => {
+      const width = mountRef.current.offsetWidth;
+      const height = mountRef.current.offsetHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+      uniforms.u_resolution.value.set(width, height);
+    };
 
-        // Initial setup
-        animate();
+    window.addEventListener('resize', onResize);
 
-        // Cleanup
-        return () => {
-            window.removeEventListener('resize', onWindowResize);
-            mountRef.current?.removeChild(renderer.domElement);
-        };
-    }, []);
+    // Start animation
+    animate();
 
-    return (
-        <div
-            ref={mountRef}
-            style={{
-                position: 'absolute',
-                top: 0,
-                left: -400,
-                width: '100%',
-                height: '100%',
-                zIndex: 1,
-                pointerEvents: 'none',
-                overflow: 'hidden',
-            }}
-        />
-    );
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', onResize);
+      renderer.dispose();
+      scene.clear();
+      mountRef.current.removeChild(renderer.domElement);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={mountRef}
+      style={{
+        position: 'absolute',
+        top: 150,
+        left: 100,
+        width: '90%',
+        height: '80%',
+        overflow: 'hidden',
+        pointerEvents: 'none',
+      }}
+    />
+  );
 };
 
-export default BackgroundAnimation2;
+export default AnimationGrid;

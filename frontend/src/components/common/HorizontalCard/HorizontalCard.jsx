@@ -26,7 +26,6 @@ const HorizontalCard = ({
 
   return (
     <div className={`horizontal-card ${reverse ? "reverse" : ""} ${className}`}>
-      <div className="card-content">
         <div className="card-image">
           <img src={image} alt={altText} />
         </div>
@@ -60,7 +59,6 @@ const HorizontalCard = ({
             </a>
           </div>
         </div>
-      </div>
     </div>
   );
 };

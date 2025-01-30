@@ -1,9 +1,9 @@
 import React from "react";
 import HorizontalCard from "../../common/HorizontalCard/HorizontalCard";
 import experience from "../../../assets/images/experience.jpg";
-import "./AboutSection.css";
+import "./AboutCard.css";
 
-const AboutSection1 = () => (
+const AboutCard = () => (
   <div className="about-section-container">
     <HorizontalCard
       image={experience}
@@ -23,5 +23,5 @@ const AboutSection1 = () => (
   </div>
 );
 
-export default AboutSection1;
+export default AboutCard;
 
