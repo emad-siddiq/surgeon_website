@@ -20,12 +20,13 @@
 }
 
 .animation-grid {
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  z-index: 0; /* Behind content */
+  position: absolute;
+  top: 150px; /* Previously inline style */
+  left: 100px; /* Previously inline style */
+  width: 90%; /* Previously inline style */
+  height: 80%; /* Previously inline style */
+  pointer-events: none; /* Previously inline style */
+  z-index: 0; /* Ensure it stays behind the content */
 }
 
 /* Add background to content elements */
@@ -59,7 +60,7 @@
 }
 
 .surgical-procedures-header h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #2c3e50;
   font-weight: 600;
 }

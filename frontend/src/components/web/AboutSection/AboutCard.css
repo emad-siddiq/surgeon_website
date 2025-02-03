@@ -1,34 +1,54 @@
+.about-section-container {
+  position: relative;
+  min-height: 100vh;
+  padding: 2rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: none;
+  max-width: 60vw;
+}
 
+.about-section-container .animation-grid {
+  position: absolute;
+  top: 50px;
+  left: -300px;
+  width: 90%;
+  height: 90%;
+  z-index: 0; /* Ensure the grid is behind the content */
+}
+
+.about-section-container .horizontal-card {
+  position: relative;
+  z-index: 1; /* Ensure the card is above the animation grid */
+  background-color: rgba(255, 255, 255, 0.65); 
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
 
 @media (min-width: 800px) {
-  .about-section-container{
-    max-width: 70vw;
+  .about-section-container {
+    max-width: 60vw;
     max-height: 70vh;
-    align-items: center;
-  justify-content: center;
-  margin: 2vh auto;
+    margin: 2vh auto;
   }
 
- .about-section-container .card-description {
+  .about-section-container .card-description {
     font-size: 22px;
   }
 
   .about-section-container .card-image {
     max-height: 50vh;
-    align-items: center;
-    justify-content: center;
   }
-
 }
 
 @media (max-width: 800px) {
   .about-section-container {
-    
     margin: 0 auto;
-    padding: 10px 0px 0px 0px;
-    margin-top: 0vh;
+    padding: 10px 0;
+    margin-top: 0;
     font-weight: 300;
   }
-  
- 
 }

@@ -1,10 +1,12 @@
 import React from "react";
 import HorizontalCard from "../../common/HorizontalCard/HorizontalCard";
 import experience from "../../../assets/images/experience.jpg";
+import AnimationGrid from "../../common/Animations/AnimationGrid";
 import "./AboutCard.css";
 
 const AboutCard = () => (
   <div className="about-section-container">
+     <AnimationGrid/>
     <HorizontalCard
       image={experience}
       altText="Dr. Ghulam Siddiq"
