@@ -3,10 +3,11 @@ import HorizontalCard from "../../common/HorizontalCard/HorizontalCard";
 import experience from "../../../assets/images/experience.jpg";
 import AnimationGrid from "../../common/Animations/AnimationGrid";
 import "./AboutCard.css";
+import LineGrid from "../../common/Animations/LineGrid";
 
 const AboutCard = () => (
   <div className="about-section-container">
-     <AnimationGrid/>
+     <LineGrid/>
     <HorizontalCard
       image={experience}
       altText="Dr. Ghulam Siddiq"

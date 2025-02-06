@@ -22,13 +22,13 @@ const AnimationGrid = () => {
 
     const uniforms = {
       u_time: { value: 0.0 },
-      u_pointsize: { value: 2.5 },
-      u_noise_freq_1: { value: 2.0 },
+      u_pointsize: { value: 3.5 },
+      u_noise_freq_1: { value: 5.0 },
       u_noise_amp_1: { value: 0.5 },
       u_spd_modifier_1: { value: 0.15 },
       u_noise_freq_2: { value: 5.0 },
       u_noise_amp_2: { value: 0.8 },
-      u_spd_modifier_2: { value: 0.2 },
+      u_spd_modifier_2: { value: 0.5 },
       u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
     };
 
@@ -86,7 +86,7 @@ const AnimationGrid = () => {
 
       void main() {
         vec2 st = gl_FragCoord.xy / u_resolution.xy;
-        gl_FragColor = vec4(vec3(st.x * 0.9, 0.0, 1.0 - st.x * 0.2), 1.0);
+        gl_FragColor = vec4(vec3(st.x * 1.5, 0.0, 4.0 - st.x * 0.2), 1.0);
       }
     `;
 
