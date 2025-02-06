@@ -1,13 +1,21 @@
 
 
 @media (min-width: 800px) {
-  .bariatric-section-container{
-    max-width: 90vw;
+  .bariatric-card-container{
+    max-width: 80vw;
     align-items: center;
   justify-content: center;
   margin: 2vh auto;
   height: 70vh;
 
+  }
+
+  .bariatric-card-container .card-description {
+    font-size: 22px;
+  }
+
+  .bariatric-card-container .card-image {
+    max-height: 50vh;
   }
 
 }
