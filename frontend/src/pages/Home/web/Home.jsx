@@ -17,7 +17,7 @@ import Location from './../../../components/web/Location/Location';
 import Gallery from './../../../components/web/Gallery/Gallery';
 import Footer from './../../../components/web/Footer/Footer';
 import Transformations from './../../../components/web/Transformations/Transformations';
-
+import LineGrid from '../../../components/common/Animations/LineGrid';
 import "./Home.css";
 
 
@@ -38,6 +38,7 @@ const Home = ({ isMobile }) => {
           <Hero />
         </div>
       )}
+      <LineGrid/>
       <AboutCard />
       <Consultation />
       <ServiceOfferings />

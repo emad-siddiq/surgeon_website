@@ -7,18 +7,20 @@
   align-items: center;
   justify-content: center;
   background-color: none;
+  background-color: #fff;
+
   max-width: 85vw;
 }
 
-.about-section-container .line-grid {
+/* .about-section-container .line-grid {
   position: absolute;
   top: -100px;
   left: 150px;
   width: 100%;
   height: 100%;
-  z-index: 0; /* Ensure the grid is behind the content */
-  pointer-events: none;
-}
+  z-index: 0; 
+  pointer-events: none;}
+  */
 
 .about-section-container .horizontal-card {
   position: relative;

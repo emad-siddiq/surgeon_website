@@ -7,7 +7,7 @@ import LineGrid from "../../common/Animations/LineGrid";
 
 const AboutCard = () => (
   <div className="about-section-container">
-     <LineGrid/>
+     {/* <LineGrid/> */}
     <HorizontalCard
       image={experience}
       altText="Dr. Ghulam Siddiq"

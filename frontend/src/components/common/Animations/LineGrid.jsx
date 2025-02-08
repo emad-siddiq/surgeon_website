@@ -1,68 +1,73 @@
 import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { LineSegments2 } from 'three/examples/jsm/lines/LineSegments2';
+import { LineMaterial } from 'three/examples/jsm/lines/LineMaterial';
+import { LineGeometry } from 'three/examples/jsm/lines/LineGeometry';
 
 const LineGrid = () => {
   const mountRef = useRef(null);
 
   useEffect(() => {
+    const container = mountRef.current;
+
     // Scene setup
     const scene = new THREE.Scene();
-    scene.background = null; // Transparent background
+    scene.background = null;
 
+    const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 1, 10000);
+    camera.position.z = 1000;
 
-    // Camera setup
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 4000);
-    camera.position.z = 1750;
-
-    // Renderer setup
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    mountRef.current.appendChild(renderer.domElement);
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
 
-    // OrbitControls setup
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.minDistance = 5000;
-    controls.maxDistance = 5000;
+    controls.minDistance = 100;
+    controls.maxDistance = 2000;
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
 
-    // Group for particles and lines
     const group = new THREE.Group();
     scene.add(group);
 
     // Particle setup
     const maxParticleCount = 1000;
-    let particleCount = 500;
-    const r = 800;
-    const rHalf = r / 2;
-    // Helper box
-    
 
+    const r = 1000;
+    const rHalf = r / 2;
     const particlesData = [];
     const particlePositions = new Float32Array(maxParticleCount * 3);
     const particles = new THREE.BufferGeometry();
+
+    // ANIMATION SPEED: Adjust the velocity multiplier to change animation speed
+    // Lower values = slower animation, Higher values = faster animation
+    const velocityMultiplier = 0.04; // Reduced for slower animation
 
     for (let i = 0; i < maxParticleCount; i++) {
       const x = Math.random() * r - r / 2;
       const y = Math.random() * r - r / 2;
       const z = Math.random() * r - r / 2;
-
       particlePositions[i * 3] = x;
       particlePositions[i * 3 + 1] = y;
       particlePositions[i * 3 + 2] = z;
 
       particlesData.push({
-        velocity: new THREE.Vector3(-1 + Math.random() * 2, -1 + Math.random() * 2, -1 + Math.random() * 2),
+        velocity: new THREE.Vector3(
+          (-1 + Math.random() * 2) * velocityMultiplier,
+          (-1 + Math.random() * 2) * velocityMultiplier,
+          (-1 + Math.random() * 2) * velocityMultiplier
+        ),
         numConnections: 0,
       });
     }
 
-    particles.setDrawRange(0, particleCount);
     particles.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3).setUsage(THREE.DynamicDrawUsage));
 
     const pMaterial = new THREE.PointsMaterial({
-      color: 0xFFFFFF,
-      size: 3,
+      color: 0x000000,
+      size: 0.2,
       blending: THREE.AdditiveBlending,
       transparent: true,
       sizeAttenuation: false,
@@ -71,43 +76,45 @@ const LineGrid = () => {
     const pointCloud = new THREE.Points(particles, pMaterial);
     group.add(pointCloud);
 
-    // Lines setup
-    const segments = maxParticleCount * maxParticleCount;
-    const positions = new Float32Array(segments * 3);
-    const colors = new Float32Array(segments * 3);
+    // LINE SETUP using LineSegments2
+    const lineGeometry = new LineGeometry();
+    const positions = [];
+    const colors = [];
 
-    const lineGeometry = new THREE.BufferGeometry();
-    lineGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3).setUsage(THREE.DynamicDrawUsage));
-    lineGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3).setUsage(THREE.DynamicDrawUsage));
-    lineGeometry.setDrawRange(0, 0);
-
-    const lineMaterial = new THREE.LineBasicMaterial({
-      vertexColors: true,
-      blending: THREE.AdditiveBlending,
+    // LINE COLOR AND WIDTH: Adjust these values to change line appearance
+    const lineMaterial = new LineMaterial({
+      color: 0x0066ff,         // Bright blue color
+      linewidth: 2,            // Adjust this value for thicker/thinner lines
+      vertexColors: false,     // Using uniform color instead of vertex colors
+      dashed: false,
+      alphaToCoverage: true,   // Improves line appearance
       transparent: true,
+      opacity: 0.2,
+      antialias: true,
     });
 
-    const linesMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
+    // Important: Set resolution for proper line width scaling
+    lineMaterial.resolution.set(container.clientWidth, container.clientHeight);
+
+    const linesMesh = new LineSegments2(lineGeometry, lineMaterial);
     group.add(linesMesh);
 
-    // GUI setup
     const effectController = {
       showDots: true,
       showLines: true,
-      minDistance: 150,
+      maxDistance: 1000,
       limitConnections: false,
-      maxConnections: 20,
-      particleCount: 1000,
+      maxConnections: 10,
+      particleCount: 100,
     };
 
-
-    // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
+      controls.update();
+      let particleCount = effectController.particleCount;
 
-      let vertexpos = 0;
-      let colorpos = 0;
       let numConnected = 0;
+      positions.length = 0;
 
       for (let i = 0; i < particleCount; i++) {
         particlesData[i].numConnections = 0;
@@ -123,11 +130,9 @@ const LineGrid = () => {
         if (particlePositions[i * 3 + 1] < -rHalf || particlePositions[i * 3 + 1] > rHalf) {
           particleData.velocity.y = -particleData.velocity.y;
         }
-
         if (particlePositions[i * 3] < -rHalf || particlePositions[i * 3] > rHalf) {
           particleData.velocity.x = -particleData.velocity.x;
         }
-
         if (particlePositions[i * 3 + 2] < -rHalf || particlePositions[i * 3 + 2] > rHalf) {
           particleData.velocity.z = -particleData.velocity.z;
         }
@@ -148,66 +153,54 @@ const LineGrid = () => {
           const dz = particlePositions[i * 3 + 2] - particlePositions[j * 3 + 2];
           const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
-          if (dist < effectController.minDistance) {
+          if (dist > effectController.maxDistance) {
             particleData.numConnections++;
             particleDataB.numConnections++;
 
-            const alpha = 1.0 - dist / effectController.minDistance;
-
-            positions[vertexpos++] = particlePositions[i * 3];
-            positions[vertexpos++] = particlePositions[i * 3 + 1];
-            positions[vertexpos++] = particlePositions[i * 3 + 2];
-
-            positions[vertexpos++] = particlePositions[j * 3];
-            positions[vertexpos++] = particlePositions[j * 3 + 1];
-            positions[vertexpos++] = particlePositions[j * 3 + 2];
-
-            colors[colorpos++] = 1.0;
-            colors[colorpos++] = 1.0;
-            colors[colorpos++] = 1.0;
-
-            colors[colorpos++] = 1.0;
-            colors[colorpos++] = 1.0;
-            colors[colorpos++] = 1.0;
+            positions.push(
+              particlePositions[i * 3], particlePositions[i * 3 + 1], particlePositions[i * 3 + 2],
+              particlePositions[j * 3], particlePositions[j * 3 + 1], particlePositions[j * 3 + 2]
+            );
 
             numConnected++;
           }
         }
       }
 
-      linesMesh.geometry.setDrawRange(0, numConnected * 2);
-      linesMesh.geometry.attributes.position.needsUpdate = true;
-      linesMesh.geometry.attributes.color.needsUpdate = true;
-
+      // Update line positions
+      lineGeometry.setPositions(positions);
+      
       pointCloud.geometry.attributes.position.needsUpdate = true;
 
       renderer.render(scene, camera);
     };
 
-    // Handle resize
     const onResize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      if (!container) return;
+      const width = container.clientWidth;
+      const height = container.clientHeight;
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
+      lineMaterial.resolution.set(width, height);
     };
 
-    window.addEventListener('resize', onResize);
+    const resizeObserver = new ResizeObserver(onResize);
+    resizeObserver.observe(container);
 
-    // Start animation
     animate();
 
-    // Cleanup
     return () => {
-      window.removeEventListener('resize', onResize);
+      resizeObserver.disconnect();
       renderer.dispose();
       scene.clear();
-      mountRef.current.removeChild(renderer.domElement);
+      if (container && renderer.domElement) {
+        container.removeChild(renderer.domElement);
+      }
     };
   }, []);
 
-  return <div className="line-grid" ref={mountRef} />;
+  return <div className="line-grid h-full w-full" ref={mountRef} />;
 };
 
 export default LineGrid;
