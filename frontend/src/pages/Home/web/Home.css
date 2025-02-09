@@ -9,8 +9,8 @@
 
 .line-grid {
   position: absolute;
-  width: 100vw;
-  height: 740vh;
+  width: 100%;
+  height: 700%;
   z-index: -2; /* Ensure the grid is behind the content */
   pointer-events: none;
   top: 100vh;

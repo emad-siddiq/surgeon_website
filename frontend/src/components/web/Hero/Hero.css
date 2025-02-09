@@ -1,7 +1,7 @@
 .hero-section {
   position: relative;
   width: 100%;
-  height: 75vh;
+  height: 80vh;
   overflow: hidden;
 
 }
@@ -9,7 +9,7 @@
 /* Animation container - middle layer */
 .animation-container {
   position: absolute;
-  top: 0;
+  top: 200px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -40,13 +40,23 @@
   text-align: left;
   padding-left: 12vw;
   color: rgb(58, 57, 57);
-  margin-top: -0vh;
+  font-weight: 200;
+  margin-top: -10vh;
+}
+
+
+
+.hero-content h1 {
+  font-size: 4rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .hero-slideshow {
   width: 45vw;
   padding-bottom: 0vh;
-  margin-top: -0vh;
+  margin-top: -10vh;
 }
 
 @media (max-width: 800px) {

@@ -15,7 +15,7 @@ const LineGrid = () => {
     const scene = new THREE.Scene();
     scene.background = null;
 
-    const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 1, 10000);
+    const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 1, 1000);
     camera.position.z = 1000;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -25,7 +25,7 @@ const LineGrid = () => {
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.minDistance = 100;
-    controls.maxDistance = 2000;
+    controls.maxDistance = 200;
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
 
@@ -43,7 +43,7 @@ const LineGrid = () => {
 
     // ANIMATION SPEED: Adjust the velocity multiplier to change animation speed
     // Lower values = slower animation, Higher values = faster animation
-    const velocityMultiplier = 0.04; // Reduced for slower animation
+    const velocityMultiplier = 0.01; // Reduced for slower animation
 
     for (let i = 0; i < maxParticleCount; i++) {
       const x = Math.random() * r - r / 2;
