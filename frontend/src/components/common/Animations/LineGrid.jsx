@@ -84,7 +84,7 @@ const LineGrid = () => {
     // LINE COLOR AND WIDTH: Adjust these values to change line appearance
     const lineMaterial = new LineMaterial({
       color: 0x0066ff,         // Bright blue color
-      linewidth: 2,            // Adjust this value for thicker/thinner lines
+      linewidth: 4,            // Adjust this value for thicker/thinner lines
       vertexColors: false,     // Using uniform color instead of vertex colors
       dashed: false,
       alphaToCoverage: true,   // Improves line appearance
@@ -104,8 +104,8 @@ const LineGrid = () => {
       showLines: true,
       maxDistance: 1000,
       limitConnections: false,
-      maxConnections: 3,
-      particleCount: 30,
+      maxConnections: 5,
+      particleCount: 50,
     };
 
     const animate = () => {

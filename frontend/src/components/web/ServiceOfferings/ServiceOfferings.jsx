@@ -17,7 +17,7 @@ const ServiceOfferings = () => {
       name: 'Appendix Surgery', 
       count: 8000, 
       speed: 120,
-      color: 'red',
+      color: 'blue',
       description: 'Minimally Invasive',
       link: '/about'
     },
@@ -25,7 +25,7 @@ const ServiceOfferings = () => {
       name: 'Laparoscopic Surgery', 
       count: 1500, 
       speed: 80,
-      color: 'green',
+      color: 'blue',
       description: 'Advanced Techniques',
       link: '/about'
     },
@@ -33,7 +33,7 @@ const ServiceOfferings = () => {
       name: 'Colon Surgery', 
       count: 65, 
       speed: 90,
-      color: 'purple',
+      color: 'blue',
       description: 'Complex Procedures',
       link: '/about'
     },
@@ -41,7 +41,7 @@ const ServiceOfferings = () => {
       name: 'Anterior Resection', 
       count: 88, 
       speed: 110,
-      color: 'teal',
+      color: 'blue',
       description: 'Precise Surgical Approach',
       link: '/about'
     },
@@ -49,7 +49,7 @@ const ServiceOfferings = () => {
       name: 'Low Anterior Resection', 
       count: 79, 
       speed: 100,
-      color: 'orange',
+      color: 'blue',
       description: 'Specialized Technique',
       link: '/about'
     },
@@ -57,7 +57,7 @@ const ServiceOfferings = () => {
       name: 'Right Hemicolectomy', 
       count: 63, 
       speed: 70,
-      color: 'indigo',
+      color: 'blue',
       description: 'Right-Side Colon Surgery',
       link: '/about'
     },
@@ -65,7 +65,7 @@ const ServiceOfferings = () => {
       name: 'Left Hemicolectomy', 
       count: 71, 
       speed: 75,
-      color: 'pink',
+      color: 'blue',
       description: 'Left-Side Colon Surgery',
       link: '/about'
     },
@@ -73,7 +73,7 @@ const ServiceOfferings = () => {
       name: 'Partial Gastrectomy', 
       count: 59, 
       speed: 95,
-      color: 'brown',
+      color: 'blue',
       description: 'Stomach Partial Removal',
       link: '/about'
     },
@@ -81,7 +81,7 @@ const ServiceOfferings = () => {
       name: 'Esophagectomy', 
       count: 82, 
       speed: 105,
-      color: 'navy',
+      color: 'blue',
       description: 'Esophagus Surgical Removal',
       link: '/about'
     }
@@ -90,7 +90,7 @@ const ServiceOfferings = () => {
   return (
    
   <div className="service-offerings-wrapper">
-    <AnimationGrid/>
+    
     <div className="surgical-procedures-container">
       
       <div className="surgical-procedures-header">

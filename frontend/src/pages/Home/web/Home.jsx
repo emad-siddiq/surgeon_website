@@ -40,7 +40,6 @@ const Home = ({ isMobile }) => {
           <Hero />
         </div>
       )}
-      <AnimationGrid/>
       <LineGrid/>
       <AboutCard />
       <Consultation />
