@@ -19,6 +19,8 @@ import Footer from './../../../components/web/Footer/Footer';
 import Transformations from './../../../components/web/Transformations/Transformations';
 import LineGrid from '../../../components/common/Animations/LineGrid';
 import "./Home.css";
+import AnimationGrid from '../../../components/common/Animations/AnimationGrid';
+import { Line } from 'three';
 
 
 const Home = ({ isMobile }) => {
@@ -38,6 +40,7 @@ const Home = ({ isMobile }) => {
           <Hero />
         </div>
       )}
+      <AnimationGrid/>
       <LineGrid/>
       <AboutCard />
       <Consultation />

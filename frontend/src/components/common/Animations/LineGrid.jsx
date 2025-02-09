@@ -104,8 +104,8 @@ const LineGrid = () => {
       showLines: true,
       maxDistance: 1000,
       limitConnections: false,
-      maxConnections: 10,
-      particleCount: 100,
+      maxConnections: 3,
+      particleCount: 30,
     };
 
     const animate = () => {
