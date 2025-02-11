@@ -17,10 +17,11 @@ import Location from './../../../components/web/Location/Location';
 import Gallery from './../../../components/web/Gallery/Gallery';
 import Footer from './../../../components/web/Footer/Footer';
 import Transformations from './../../../components/web/Transformations/Transformations';
-import LineGrid from '../../../components/common/Animations/LineGrid';
+import LineGrid from '../../../components/common/Animations/NetworkGraph';
 import "./Home.css";
 import AnimationGrid from '../../../components/common/Animations/AnimationGrid';
 import { Line } from 'three';
+import NetworkVisualization from '../../../components/common/Animations/NetworkGraph';
 
 
 const Home = ({ isMobile }) => {
@@ -40,7 +41,7 @@ const Home = ({ isMobile }) => {
           <Hero />
         </div>
       )}
-      <LineGrid/>
+      <NetworkVisualization/>
       <AboutCard />
       <Consultation />
       <ServiceOfferings />

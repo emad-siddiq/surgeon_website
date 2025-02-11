@@ -3,7 +3,7 @@ import HorizontalCard from "../../common/HorizontalCard/HorizontalCard";
 import experience from "../../../assets/images/experience.jpg";
 import AnimationGrid from "../../common/Animations/AnimationGrid";
 import "./AboutCard.css";
-import LineGrid from "../../common/Animations/LineGrid";
+import LineGrid from "../../common/Animations/NetworkGraph";
 
 const AboutCard = () => (
   <div className="about-section-container">
