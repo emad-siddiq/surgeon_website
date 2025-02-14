@@ -7,7 +7,7 @@
 }
 
 .surgical-procedures-container {
-  max-width: 70vw;
+  max-width: 75vw;
   margin: 0 auto;
   position: relative; /* Creates new stacking context */
   z-index: 1; /* Ensures content stays above grid */
@@ -16,7 +16,7 @@
   border-radius: 12px;
   /* Add subtle shadow for depth */
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  background-color: rgb(255, 255, 255, 1.0);
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .animation-grid {
@@ -49,26 +49,27 @@
 .surgical-procedures-header {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 2rem;
-  width: 35vw;
+  width: 100%;
 }
 
 .surgical-icon {
-  font-size: 3rem;
+  font-size: 5rem;
   margin-right: 1rem;
   color: #ffd700;
 }
 
 .surgical-procedures-header h2 {
-  font-size: 1.5rem;
-  color: #2c3e50;
+  font-size: 2.5rem;
+  color: #384a5c;
   font-weight: 600;
 }
 
 .surgical-procedures-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 3rem;
+  gap: 2.5rem;
 }
 
 .surgical-procedure-card {

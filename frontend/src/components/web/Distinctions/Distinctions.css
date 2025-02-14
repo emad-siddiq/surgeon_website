@@ -1,9 +1,9 @@
 @media (min-width: 800px) {
     .distinctions-container {
-        max-width: 70vw;
+        max-width: 75vw;
         margin: 0 auto;
         padding: 0 1rem;
-        background: rgb(255, 250, 248);
+        background: rgb(255, 255, 255, 0.6);
         margin: 0 auto;
         margin-top: 5vh;
         padding: 2rem;
@@ -26,13 +26,14 @@
 
     .distinctions-header {
         margin-bottom: 2.5rem;
+        
     }
 
     .distinctions-title {
-        font-size: 2.2rem;
-        font-weight: 600;
+        font-size: 3rem;
+        font-weight: 400;
         text-align: center;
-        color: #1f2937;
+        color: #303a49;
     }
 
     .distinctions-learn-more {

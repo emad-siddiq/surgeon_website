@@ -62,7 +62,7 @@ const ServiceOfferings = () => {
       link: '/about'
     },
     { 
-      name: 'Left Hemicolectomy', 
+      name: 'Hemicolectomy', 
       count: 71, 
       speed: 75,
       color: 'blue',

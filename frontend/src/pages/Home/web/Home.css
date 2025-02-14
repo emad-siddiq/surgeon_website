@@ -10,7 +10,7 @@
 .animation-grid {
   position: absolute;
   width: 100vw;
-  height: 700vh;
+  height: 100%;
   z-index: -2; /* Ensure the grid is behind the content */
   pointer-events: none;
   top: 100vh;
@@ -21,7 +21,7 @@
 .line-grid {
   position: absolute;
   width: 100vw;
-  height: 700vh;
+  height: 650vh;
   z-index: -2; /* Ensure the grid is behind the content */
   pointer-events: none;
   top: 100vh;

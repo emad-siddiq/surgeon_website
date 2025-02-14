@@ -8,13 +8,13 @@ const NetworkGraph = () => {
   
   // Add controls with state
   const [settings, setSettings] = useState({
-    minDistance: 50,
-    maxDistance: 100,
+    minDistance: 70,
+    maxDistance: 150,
     lineOpacity: 0.2,
-    dotOpacity: 0.5,
+    dotOpacity: 0.3,
   });
   
-  const NODE_COUNT = 2000;
+  const NODE_COUNT = 1000;
   const PARTICLE_RADIUS = 2;
   const SPEED = 0.8;
 
