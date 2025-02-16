@@ -14,6 +14,8 @@
 .logo {
   display: flex;
   align-items: center;
+  position: relative;
+  left: 3vw;
 }
 
 /* Logo link wrapper */
@@ -23,7 +25,12 @@
 
 /* Logo image */
 .logo-img {
-  width: 120px;
+  width: 250px;
+  height: auto;
+}
+
+.logo-link img{
+  width: 200px;
   height: auto;
 }
 
@@ -51,7 +58,7 @@
   padding: 15px;
   font-weight: 400;
   font-size: 2.4vh;
-  margin-left: 10vw;
+  margin-left: 16vw;
 }
 
 /* Menu links (top-level) */

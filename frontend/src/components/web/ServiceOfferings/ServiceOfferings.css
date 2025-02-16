@@ -17,17 +17,12 @@
   /* Add subtle shadow for depth */
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.animation-grid {
-  position: absolute;
-  top: 150px; /* Previously inline style */
-  left: 100px; /* Previously inline style */
-  width: 90%; /* Previously inline style */
-  height: 80%; /* Previously inline style */
-  pointer-events: none; /* Previously inline style */
-  z-index: 0; /* Ensure it stays behind the content */
-}
 
 /* Add background to content elements */
 .surgical-procedures-header,
@@ -69,11 +64,12 @@
 .surgical-procedures-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
+  gap: 5.5rem;
+  width: 700px;
 }
 
 .surgical-procedure-card {
-  padding: 1.5rem;
+  width: 500px;
   border-radius: 10px;
   background-color: rgb(255, 255, 255, 1);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);

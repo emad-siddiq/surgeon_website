@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "Roboto Flex";
+  src: url("../assets/fonts/RobotoFlex-VariableFont.ttf") format("truetype");
+  font-weight: 100 1000; /* Variable font supports a range */
+  font-stretch: 40% 200%; /* Controls width */
+  font-style: normal;
+}
+
+  
+  /* body {
+    font-family: "Roboto Flex", sans-serif;
+  }
+   */

@@ -18,7 +18,7 @@ const Slideshow = ({ className, images }) => {
       swiperContainer.loop = true;
       swiperContainer.pagination = true;
       swiperContainer.slidesPerView = 1;
-      swiperContainer.speed = 1500;
+      swiperContainer.speed = 3000;
     }
   }, []);
 

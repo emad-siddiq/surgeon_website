@@ -7,6 +7,11 @@
       )
 }
 
+.content {
+ 
+  z-index: 1;
+}
+
 .animation-grid {
   position: absolute;
   width: 100vw;
@@ -26,4 +31,10 @@
   pointer-events: none;
   top: 100vh;
   left: 0;
+  background: linear-gradient(
+    to bottom,
+    rgb(253, 248, 246),
+    rgb(249, 228, 218),
+    rgb(227, 227, 250)
+  );
 }

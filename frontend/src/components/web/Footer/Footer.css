@@ -1,9 +1,12 @@
 .site-footer {
+    height: 50vh;
+
     background: linear-gradient(
         to bottom right,
         rgb(252, 252, 252),
-        rgb(247, 241, 241),
-        rgb(204, 204, 228)
+        rgb(244, 248, 250),
+        rgb(245, 231, 231),
+        rgb(184, 184, 219)
       )
 }
 

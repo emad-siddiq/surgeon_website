@@ -42,6 +42,8 @@ const Home = ({ isMobile }) => {
         </div>
       )}
       <NetworkVisualization/>
+
+      <div className="content">
       <AboutCard />
       <Consultation />
       <ServiceOfferings />
@@ -50,6 +52,7 @@ const Home = ({ isMobile }) => {
       <Distinctions />
       <Location />
       <Gallery />
+      </div>
       <Footer />
     </div>
   );
