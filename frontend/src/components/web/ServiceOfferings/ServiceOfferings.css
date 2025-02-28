@@ -4,10 +4,11 @@
   min-height: 100vh;
   padding: 2rem;
   overflow: hidden;
+  width: 80vw;
 }
 
 .surgical-procedures-container {
-  max-width: 75vw;
+  max-width: 80vw;
   margin: 0 auto;
   position: relative; /* Creates new stacking context */
   z-index: 1; /* Ensures content stays above grid */
@@ -29,6 +30,12 @@
 .surgical-procedure-card,
 .surgical-cta-container {
   /* backdrop-filter: blur(1.5px); Adds glass effect */
+  font-size: 20px;
+}
+
+.surgical-cta-container {
+  /* backdrop-filter: blur(1.5px); Adds glass effect */
+  margin-top: 2vh;
 }
 
 .surgical-procedure-card {
@@ -65,11 +72,10 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 5.5rem;
-  width: 700px;
 }
 
 .surgical-procedure-card {
-  width: 500px;
+  width: 450px;
   border-radius: 10px;
   background-color: rgb(255, 255, 255, 1);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -112,18 +118,19 @@
 .procedure-count {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #11d2f4;
+  color: #39a7f1;
 }
 
 .surgical-cta-container {
-  margin-top: 2rem;
+  margin-top: 3rem;
   text-align: center;
+  font-size: 20px;
 }
 
 .surgical-cta-button {
   display: inline-block;
   padding: 0.8rem 1.5rem;
-  background-color: #3498db;
+  background-color: #39a7f1;
   color: white;
   text-decoration: none;
   border-radius: 6px;

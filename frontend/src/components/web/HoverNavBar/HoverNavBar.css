@@ -56,9 +56,9 @@
   display: flex;
   justify-content: flex-start;
   padding: 15px;
-  font-weight: 400;
-  font-size: 2.4vh;
-  margin-left: 16vw;
+  font-weight: 300;
+  font-size: 2.9vh;
+  margin-left: 10vw;
 }
 
 /* Menu links (top-level) */

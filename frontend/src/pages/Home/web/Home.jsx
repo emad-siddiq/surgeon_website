@@ -46,10 +46,11 @@ const Home = ({ isMobile }) => {
       <div className="content">
       <AboutCard />
       <Consultation />
+      <Distinctions />
+
       <ServiceOfferings />
       <BariatricCard />
       <Transformations />
-      <Distinctions />
       <Location />
       <Gallery />
       </div>

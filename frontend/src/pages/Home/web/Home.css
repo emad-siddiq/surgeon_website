@@ -15,24 +15,14 @@
   z-index: 1;
 }
 
-.animation-grid {
-  position: absolute;
-  width: 100vw;
-  height: 100%;
-  z-index: -2; /* Ensure the grid is behind the content */
-  pointer-events: none;
-  top: 100vh;
-  left: 0;
-}
-
 
 .line-grid {
   position: absolute;
   width: 100vw;
-  height: 650vh;
+  height: 750vh;
   z-index: -2; /* Ensure the grid is behind the content */
   pointer-events: none;
-  top: 100vh;
+  top: 80vh;
   left: 0;
   background: linear-gradient(
     to bottom,

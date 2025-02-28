@@ -9,7 +9,7 @@ const ServiceOfferings = () => {
       name: 'Laparoscopic Cholecystectomy', 
       count: 9000, 
       speed: 50,
-      color: 'blue',
+      color: 'navy',
       description: 'Gall Bladder Surgery',
       link: '/about'
     },
@@ -17,7 +17,7 @@ const ServiceOfferings = () => {
       name: 'Appendix Surgery', 
       count: 8000, 
       speed: 120,
-      color: 'blue',
+      color: 'navy',
       description: 'Minimally Invasive',
       link: '/about'
     },
@@ -25,7 +25,7 @@ const ServiceOfferings = () => {
       name: 'Laparoscopic Surgery', 
       count: 1500, 
       speed: 80,
-      color: 'blue',
+      color: 'navy',
       description: 'Advanced Techniques',
       link: '/about'
     },
@@ -33,7 +33,7 @@ const ServiceOfferings = () => {
       name: 'Colon Surgery', 
       count: 65, 
       speed: 90,
-      color: 'blue',
+      color: 'navy',
       description: 'Complex Procedures',
       link: '/about'
     },
@@ -41,7 +41,7 @@ const ServiceOfferings = () => {
       name: 'Anterior Resection', 
       count: 88, 
       speed: 110,
-      color: 'blue',
+      color: 'navy',
       description: 'Precise Surgical Approach',
       link: '/about'
     },
@@ -49,7 +49,7 @@ const ServiceOfferings = () => {
       name: 'Low Anterior Resection', 
       count: 79, 
       speed: 100,
-      color: 'blue',
+      color: 'navy',
       description: 'Specialized Technique',
       link: '/about'
     },
@@ -57,7 +57,7 @@ const ServiceOfferings = () => {
       name: 'Right Hemicolectomy', 
       count: 63, 
       speed: 70,
-      color: 'blue',
+      color: 'navy',
       description: 'Right-Side Colon Surgery',
       link: '/about'
     },
@@ -65,7 +65,7 @@ const ServiceOfferings = () => {
       name: 'Hemicolectomy', 
       count: 71, 
       speed: 75,
-      color: 'blue',
+      color: 'navy',
       description: 'Left-Side Colon Surgery',
       link: '/about'
     },
@@ -73,7 +73,7 @@ const ServiceOfferings = () => {
       name: 'Partial Gastrectomy', 
       count: 59, 
       speed: 95,
-      color: 'blue',
+      color: 'navy',
       description: 'Stomach Partial Removal',
       link: '/about'
     },
@@ -81,7 +81,7 @@ const ServiceOfferings = () => {
       name: 'Esophagectomy', 
       count: 82, 
       speed: 105,
-      color: 'blue',
+      color: 'navy',
       description: 'Esophagus Surgical Removal',
       link: '/about'
     }

@@ -153,8 +153,9 @@ const BackgroundAnimation = () => {
             ref={mountRef}
             style={{
                 position: 'absolute',
-                top: 0,
+                top:0,
                 left: -300,
+                opacity: 0.5,
                 width: '100%',
                 height: '100%',
                 zIndex: 1,
