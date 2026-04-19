@@ -58,8 +58,8 @@ const About = () => {
             <h2>About Dr. Siddiq</h2>
             <p className="about-text">
               Dr. Ghulam Siddiq is a renowned bariatric surgeon with over 25 years of experience
-              in weight loss surgery. Gis approach combines cutting-edge surgical techniques with
-              comprehensive patient care, ensuring the best possible outcomes for her patients.
+              in weight loss surgery. His approach combines cutting-edge surgical techniques with
+              comprehensive patient care, ensuring the best possible outcomes for his patients.
               He is passionate about helping individuals achieve their health goals through
               surgical and non-surgical weight loss solutions.
             </p>
@@ -82,7 +82,7 @@ const About = () => {
             <h2>Patient Success Stories</h2>
             <div className="testimonial-container">
               <p className="testimonial-text">
-                "Dr. Johnson changed my life. Her expertise and caring approach made my weight loss journey successful."
+                "Dr. Siddiq changed my life. His expertise and caring approach made my weight loss journey successful."
               </p>
               <span className="testimonial-author">- Mary S.</span>
               <p className="testimonial-text">
