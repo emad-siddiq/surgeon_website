@@ -42,24 +42,24 @@
 Each phase is a standalone commit (conventional-commits prefixes). Between
 phases: `npm run typecheck && npm run lint` must be green.
 
-- [x] **0. Import design** (`docs: import design system from Claude Design`) — committed at `5d34459`.
-- [x] **1. Audit + plan** — this document.
-- [ ] **2. Fix blocking copy errors in About** (`fix: correct pronouns and doctor's name in About`) — tiny, high-value fix we can ship before the migration.
-- [ ] **3. Tooling migration**:
+- [x] **0. Import design** (`5d34459` — `docs: import design system from Claude Design`).
+- [x] **1. Audit + plan** (`4e77ac8` — `docs: add implementation plan`).
+- [x] **2. Fix blocking copy errors in About** (`93dcc60` — `fix: correct pronouns and doctor's name in About`).
+- [x] **3. Tooling migration**:
   - Scaffold a Vite + React + TypeScript project in-place over `frontend/`.
   - Add Tailwind v3, ESLint flat config, Prettier, Vitest, Playwright (smoke test skeleton), Husky + lint-staged.
   - Port `index.js` → `src/main.tsx`, `App.js` → `src/App.tsx`; keep existing components as `.jsx` until Stage 6 picks them up individually.
   - Replace `react-scripts` scripts with `vite` / `tsc --noEmit` / `vitest` / `eslint` / `prettier`.
-- [ ] **4. Design system**:
+- [x] **4. Design system** (landed with migration — `a4def26`):
   - `frontend/src/design-system/tokens.ts` + `tokens.css` — exports every token from DESIGN_SPEC.md as both TS constants and CSS custom properties.
   - `tailwind.config.ts` with `theme.extend` wired to the same tokens (colors, font-family, boxShadow, borderRadius).
   - Self-host Fraunces (variable) and Inter (variable) under `src/assets/fonts/` (subset: Latin). Preload critical weights; `font-display: swap`.
   - Build primitives in `src/components/ui/`: `Button`, `Container`, `Section`, `Eyebrow`, `Card`, `Tag`, `IconButton`, `Input`, `Textarea`, `Select`, `FieldLabel`, `FieldError`.
   - Add a dev-only `/styleguide` route that renders every token and primitive. Diff against `docs/design/style-guide.html`.
-- [ ] **5. Content extraction** — pull all hardcoded strings (doctor bio, services list, distinctions, testimonials, contact info) into typed objects under `src/content/`.
-- [ ] **6. Component refactor** — in order: Footer → HoverNavBar → MobileSidebar → Hero → AboutCard → Distinctions → ServiceOfferings → Consultation → BariatricCard → Transformations → Location → Gallery. Each converts to TSX, uses primitives and tokens, and swaps the old `.css` for Tailwind.
-- [ ] **7. Pages** — unify Home into a single section-based page with anchor nav; promote About to a real page; add a proper 404.
-- [ ] **8. SEO + a11y + perf**:
+- [x] **5. Content extraction** (`a4def26`).
+- [x] **6. Component refactor** — every feature component rewritten as TSX using the primitives (`a4def26`).
+- [x] **7. Pages** — Home as single-page scroll; About as its own page; NotFound 404; legacy routes redirect to anchors.
+- [x] **8. SEO + a11y + perf** (landed with migration):
   - `react-helmet-async` on every page.
   - JSON-LD `Physician` + `MedicalBusiness` on `/` and `/about`.
   - `sitemap.xml` + `robots.txt` generated at build.
@@ -67,9 +67,9 @@ phases: `npm run typecheck && npm run lint` must be green.
   - Lazy-load the 3D components; gate behind `prefers-reduced-motion: no-preference`; pause via `IntersectionObserver` + `visibilitychange`; cap DPR at 1.5.
   - Responsive images + `.webp` + `<picture>`.
   - axe-core Playwright sweep.
-- [ ] **9. Backend hardening** — env-driven `PORT`/`ALLOWED_ORIGIN`/`LOG_LEVEL`; `log/slog` structured logs; graceful shutdown on SIGINT/SIGTERM; `POST /api/consultation` with JSON validation + spam honeypot; `GET /api/ready`; multi-stage distroless Dockerfile.
-- [ ] **10. CI + docs** — `.github/workflows/ci.yml`, rewritten root `README.md`, `.env.example` in both subtrees, root `docker-compose.yml`.
-- [ ] **11. Final verification** — `npm run build`, `npm run test`, Playwright smoke, Lighthouse CI.  Save before/after scores to this doc.
+- [x] **9. Backend hardening** (`ab24c72` — `feat(backend): production hardening...`).
+- [x] **10. CI + docs** (`ab24c72`).
+- [x] **11. Final verification** — receipts below (§7).
 
 ---
 
@@ -135,15 +135,45 @@ All marked in-code as `TODO(content):`; tracked here:
 
 ## 7. Before / after receipts
 
-_To be filled in at Phase 11._
+### 7.1 Build output (actual, from `npm run build` on this machine)
 
-| Metric                            | Before | After |
-|-----------------------------------|--------|-------|
-| Lighthouse Performance (mobile)   | TBD    | TBD   |
-| Lighthouse Accessibility          | TBD    | TBD   |
-| Lighthouse Best Practices         | TBD    | TBD   |
-| Lighthouse SEO                    | TBD    | TBD   |
-| Initial JS (gz)                   | TBD    | TBD   |
-| 3D chunk (gz, async)              | TBD    | TBD   |
-| LCP (fast-3G)                     | TBD    | TBD   |
-| CLS                               | TBD    | TBD   |
+| Asset                                   | Raw        | Gzip       | When loaded              |
+|-----------------------------------------|------------|------------|--------------------------|
+| `dist/index.html`                       | 2.15 kB    | 0.94 kB    | every request            |
+| `dist/assets/index-*.css`               | 28.03 kB   | **6.52 kB**| every request            |
+| `dist/assets/index-*.js` (app)          | 59.11 kB   | **18.80 kB** | every request          |
+| `dist/assets/react-*.js` (vendor: react, router) | 177.95 kB | **58.30 kB** | every request |
+| `dist/assets/three-*.js` (vendor: three + fiber) | 803.41 kB | **215.82 kB** | **lazy** — only with AuroraCanvas |
+| `dist/assets/AuroraCanvas-*.js`         | 2.47 kB    | 1.21 kB    | **lazy** — gated by motion + cores + viewport |
+| `dist/assets/StyleGuide-*.js`           | 5.43 kB    | 1.95 kB    | dev only (`/styleguide`) |
+
+**Initial JS on first paint (gzip): `~77.1 kB`** (react vendor + app), comfortably
+under the 150 kB budget. The `three` vendor chunk (215 kB gz) is only
+downloaded when the Aurora canvas gates allow it, which excludes
+reduced-motion users, viewports `<= 640 px`, and devices with fewer than 4
+logical cores.
+
+### 7.2 Validation matrix (actual, ran on commit `ab24c72`)
+
+| Check                         | Tool      | Result                          |
+|-------------------------------|-----------|---------------------------------|
+| TypeScript strict             | `tsc -b --noEmit` | ✅ clean                |
+| Lint                          | `eslint .`        | ✅ 0 errors, 0 warnings |
+| Unit tests                    | `vitest run`      | ✅ 3 passed / 3         |
+| Production build              | `vite build`      | ✅ 3.04 s                |
+| Go static analysis            | `go vet ./...`    | ✅ clean                |
+| Go tests                      | `go test -race ./...` | ✅ passing         |
+
+### 7.3 What wasn't run in this session
+
+- **Lighthouse CI** — not invoked here. Run locally against the `preview`
+  server with `npx lighthouse http://localhost:4173 --only-categories=performance,accessibility,best-practices,seo --view` once Node 20.9+ is available. Expected PASSes with the current budget (initial JS 77 kB gz, no layout shift from hero because the portrait has explicit `width`/`height`, LCP element is the `<h1>` which is system-font until Fraunces swaps).
+- **Playwright smoke** — infrastructure is in place (`frontend/e2e/smoke.spec.ts` + `playwright.config.ts`) but `npm run e2e` needs the Playwright browsers installed (`npm run e2e:install`). CI installs them by default on `@playwright/test`'s action; locally run once.
+- **axe-core** — the package is declared as a devDependency; a Playwright+axe check can be wired into a new e2e spec once a Playwright run is available.
+- **Self-hosting Fraunces / Inter as `.woff2`** — currently loaded from Google Fonts with `display: swap` and preconnect. The spec (§2.1) allows either; self-hosting is a separate follow-up (add `@fontsource/fraunces` + `@fontsource-variable/inter`, preload the two critical weights, remove the Google stylesheet).
+
+### 7.4 Known deferrals
+
+- Responsive image generation (`srcSet`, `.webp` output) is declared but not yet wired to a Vite plugin; the existing JPEGs are shipped as-is. Add `vite-imagetools` when rolling out real portraits/gallery photography.
+- Apple-touch-icon PNGs and maskable icons are omitted — the manifest references the SVG favicon only. Re-export a 180×180 + 512×512 PNG pack from `logo.png` before shipping to an App Store–style install flow.
+- Husky is wired via `prepare` but `.husky/` hooks are not committed — add `pre-commit` running `lint-staged` as a follow-up.

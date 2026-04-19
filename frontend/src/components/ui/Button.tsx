@@ -60,7 +60,6 @@ export function ButtonLink({
   children,
   ...rest
 }: ButtonLinkProps) {
-  // eslint-disable-next-line jsx-a11y/anchor-has-content
   return (
     <a className={classesFor(variant, size, className)} {...rest}>
       {children}

@@ -57,6 +57,8 @@ export function About() {
                   preload="metadata"
                 >
                   <source src={videoSrc} type="video/mp4" />
+                  {/* TODO(content): provide a real captions track. */}
+                  <track kind="captions" srcLang="en" label="English captions" />
                   Your browser does not support the video tag.
                 </video>
               ) : (

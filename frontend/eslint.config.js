@@ -29,8 +29,19 @@ export default [
       ...reactHooks.configs.recommended.rules,
       ...jsxA11y.flatConfigs?.recommended?.rules,
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
       'no-console': ['warn', { allow: ['warn', 'error'] }],
+      // We intentionally set role="list" on styled <ul>s because Tailwind's
+      // Preflight strips list-style, which can drop the implicit list role
+      // in VoiceOver. See github.com/tailwindlabs/tailwindcss/discussions/1232.
+      'jsx-a11y/no-redundant-roles': 'off',
     },
   },
 ];
