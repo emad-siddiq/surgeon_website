@@ -6,21 +6,19 @@ export function NotFound() {
   return (
     <>
       <Seo title="Not found" path="/404" />
-      <Section tone="cream" size="lg">
-        <p className="t-eyebrow text-ink3">404</p>
-        <h1 className="font-display-tight t-display mt-6 max-w-[18ch]">
-          We couldn’t find that page.
-        </h1>
-        <p className="t-body-lg mt-5 max-w-[52ch] text-ink2">
-          The link may be out of date, or we may have moved the content. The main site is a
-          single page — you’ll find everything from the top.
+      <Section tone="base" size="lg">
+        <p className="t-eyebrow text-textMuted">404</p>
+        <h1 className="t-display mt-6 max-w-[18ch]">We couldn’t find that page.</h1>
+        <p className="t-body-lg mt-5 max-w-[52ch] text-textSecondary">
+          The link may be out of date or the content may have moved. The main site is a single
+          page — you’ll find everything from the top.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <ButtonRouterLink to="/" variant="primary">
             Return home
           </ButtonRouterLink>
           <ButtonRouterLink to="/#consultation" variant="secondary">
-            Book a consultation
+            Book an appointment
           </ButtonRouterLink>
         </div>
       </Section>

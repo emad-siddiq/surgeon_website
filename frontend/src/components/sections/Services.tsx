@@ -1,60 +1,51 @@
 import { Section } from '@/components/ui/Section';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Card } from '@/components/ui/Card';
-import { Tag } from '@/components/ui/Tag';
-import { ButtonRouterLink } from '@/components/ui/Button';
-import { services } from '@/content/services';
-import { cn } from '@/lib/cn';
+import { Tag, type TagTone } from '@/components/ui/Tag';
+import { services, type ServiceEntry } from '@/content/services';
 
-const warmMat =
-  'bg-[repeating-linear-gradient(135deg,rgba(31,27,23,.05)_0_1px,transparent_1px_10px)],' +
-  'bg-[linear-gradient(180deg,#F3D4C1,#F9E7DA)]';
+const categoryTone: Record<ServiceEntry['category'], TagTone> = {
+  General: 'primary',
+  Bariatric: 'accent',
+  Colorectal: 'accent',
+  'Upper GI': 'neutral',
+};
 
-const coolMat =
-  'bg-[repeating-linear-gradient(135deg,rgba(31,27,23,.04)_0_1px,transparent_1px_10px)],' +
-  'bg-[linear-gradient(180deg,#DAD5EA,#ECEAF5)]';
+function formatVolume(n: number): string {
+  if (n >= 1000) {
+    const thousands = n / 1000;
+    return `${thousands % 1 === 0 ? thousands.toFixed(0) : thousands.toFixed(1)}k+`;
+  }
+  return `${n}+`;
+}
 
 export function Services() {
   return (
-    <Section id="services" tone="cream" size="md" aria-labelledby="services-heading">
+    <Section id="services" tone="surface" size="lg" aria-labelledby="services-heading">
       <div className="flex flex-wrap items-end justify-between gap-8">
         <div>
-          <Eyebrow rule>Service offerings</Eyebrow>
-          <h2
-            id="services-heading"
-            className="font-display t-h1 mt-4 max-w-[22ch]"
-          >
-            What we do, plainly.
+          <Eyebrow>Surgical Expertise &amp; Experience</Eyebrow>
+          <h2 id="services-heading" className="t-h1 mt-3 max-w-[22ch]">
+            Procedures performed by Dr. Siddiq.
           </h2>
+          <p className="t-body mt-4 max-w-[60ch] text-textSecondary">
+            Case volumes below are approximate, across 25 years of practice at Shifa International
+            Hospital.
+          </p>
         </div>
-        <ButtonRouterLink to="/#consultation" variant="ghost">
-          Book a consult →
-        </ButtonRouterLink>
       </div>
-      <ul
-        role="list"
-        className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3"
-      >
+      <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => (
           <li key={service.slug}>
-            <Card as="article" padding="md" interactive>
-              <div
-                aria-hidden="true"
-                className={cn(
-                  'aspect-[5/4] rounded-lg border border-border1',
-                  service.imageTone === 'warm' ? warmMat : coolMat,
-                )}
-              />
-              <div className="mt-6">
-                <Tag tone={service.tagTone}>{service.tag}</Tag>
-                <h3
-                  className="font-display mt-4 text-[26px]"
-                  style={{ fontWeight: 500, lineHeight: 1.15 }}
-                >
-                  {service.title}
-                </h3>
-                <p className="t-body mt-3 text-ink2">{service.summary}</p>
+            <Card as="article" padding="md" interactive className="h-full">
+              <div className="flex items-start justify-between gap-4">
+                <Tag tone={categoryTone[service.category]}>{service.category}</Tag>
+                <span className="text-sm font-medium text-primary">
+                  {formatVolume(service.volume)}
+                </span>
               </div>
+              <h3 className="mt-4 text-[20px] font-medium leading-snug">{service.title}</h3>
+              <p className="t-body mt-2 text-textSecondary">{service.subtitle}</p>
             </Card>
           </li>
         ))}

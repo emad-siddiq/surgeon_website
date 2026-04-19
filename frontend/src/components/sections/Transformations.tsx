@@ -1,9 +1,23 @@
 import { useState, useRef } from 'react';
 import { Section } from '@/components/ui/Section';
 import { Eyebrow } from '@/components/ui/Eyebrow';
-import { transformations } from '@/content/gallery';
+import before1 from '@/assets/images/before_after/before_1.jpg';
+import after1 from '@/assets/images/before_after/after_1.jpg';
+import before2 from '@/assets/images/before_after/before_2.jpg';
+import after2 from '@/assets/images/before_after/after_2.jpg';
 
-function BeforeAfter({ story }: { story: (typeof transformations)[number] }) {
+interface Story {
+  before: string;
+  after: string;
+  alt: string;
+}
+
+const stories: Story[] = [
+  { before: before1, after: after1, alt: 'Patient, before and after bariatric surgery' },
+  { before: before2, after: after2, alt: 'Patient, before and after bariatric surgery' },
+];
+
+function BeforeAfter({ story }: { story: Story }) {
   const [pct, setPct] = useState(50);
   const frameRef = useRef<HTMLDivElement>(null);
 
@@ -18,7 +32,7 @@ function BeforeAfter({ story }: { story: (typeof transformations)[number] }) {
   return (
     <div
       ref={frameRef}
-      className="relative mt-5 aspect-[4/5] select-none overflow-hidden rounded-lg"
+      className="relative aspect-[4/5] select-none overflow-hidden rounded-lg border border-border1 shadow-card"
       onPointerDown={(e) => {
         (e.target as HTMLElement).setPointerCapture(e.pointerId);
         move(e.clientX);
@@ -27,7 +41,7 @@ function BeforeAfter({ story }: { story: (typeof transformations)[number] }) {
         if (e.pressure > 0 || e.buttons === 1) move(e.clientX);
       }}
       role="slider"
-      aria-label="Before and after comparison"
+      aria-label="Before and after comparison — drag to compare"
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={Math.round(pct)}
@@ -38,28 +52,28 @@ function BeforeAfter({ story }: { story: (typeof transformations)[number] }) {
       }}
     >
       <img
-        src={story.before.src}
-        alt={story.before.alt}
+        src={story.before}
+        alt={`${story.alt} (before)`}
         loading="lazy"
         decoding="async"
         className="absolute inset-0 h-full w-full object-cover"
       />
       <img
-        src={story.after.src}
-        alt={story.after.alt}
+        src={story.after}
+        alt={`${story.alt} (after)`}
         loading="lazy"
         decoding="async"
         className="absolute inset-0 h-full w-full object-cover"
         style={{ clipPath: `inset(0 0 0 ${pct}%)` }}
       />
       <div
-        className="absolute top-0 bottom-0 w-[2px] bg-paper"
-        style={{ left: `${pct}%`, boxShadow: '0 0 0 1px rgba(31,27,23,.15)' }}
+        className="absolute top-0 bottom-0 w-[2px] bg-white"
+        style={{ left: `${pct}%`, boxShadow: '0 0 0 1px rgba(0,0,0,.18)' }}
         aria-hidden="true"
       >
         <span
-          className="absolute top-1/2 left-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-paper text-ink"
-          style={{ boxShadow: '0 2px 10px rgba(0,0,0,.18)', fontSize: 12, fontWeight: 600 }}
+          className="absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-white shadow-raised"
+          style={{ fontSize: 14, fontWeight: 600 }}
         >
           ↔
         </span>
@@ -69,32 +83,29 @@ function BeforeAfter({ story }: { story: (typeof transformations)[number] }) {
 }
 
 export function Transformations() {
-  const story = transformations[0];
   return (
     <Section
       id="transformations"
-      tone="cream"
-      size="md"
+      tone="base"
+      size="lg"
       aria-labelledby="transformations-heading"
     >
-      <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12">
-        <div className="md:col-span-7">
-          <Eyebrow rule>Transformations</Eyebrow>
-          <h2
-            id="transformations-heading"
-            className="font-display t-h1 mt-4 max-w-[20ch]"
-          >
-            Twelve months.
+      <div className="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <Eyebrow>Transformations</Eyebrow>
+          <h2 id="transformations-heading" className="t-h1 mt-3 max-w-[22ch]">
+            Real patient outcomes.
           </h2>
-          <p className="t-body mt-4 max-w-[48ch] text-ink2">
-            Drag the handle to compare. Every photograph on this page is shared with written
+          <p className="t-body mt-4 max-w-[56ch] text-textSecondary">
+            Drag the handle to compare before and after. Every photograph is shared with written
             consent from the patient.
           </p>
-          <p className="t-caption mt-6 font-serif italic text-ink2">{story.caption}</p>
         </div>
-        <div className="md:col-span-5">
-          <BeforeAfter story={story} />
-        </div>
+      </div>
+      <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+        {stories.map((story, i) => (
+          <BeforeAfter key={i} story={story} />
+        ))}
       </div>
     </Section>
   );

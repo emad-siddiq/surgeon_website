@@ -19,8 +19,8 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(functio
       className={cn(
         'inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-[180ms] ease-breathe',
         variant === 'default'
-          ? 'bg-paper border-border1 text-ink hover:bg-peach50 hover:border-border2'
-          : 'bg-clay border-transparent text-paper hover:bg-clayDark',
+          ? 'bg-white border-border1 text-textPrimary hover:border-primary hover:text-primary'
+          : 'bg-primary border-transparent text-white hover:bg-primaryHover',
         className,
       )}
       {...rest}

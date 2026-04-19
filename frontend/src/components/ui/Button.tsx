@@ -1,4 +1,9 @@
-import { forwardRef, type ButtonHTMLAttributes, type AnchorHTMLAttributes, type ReactNode } from 'react';
+import {
+  forwardRef,
+  type ButtonHTMLAttributes,
+  type AnchorHTMLAttributes,
+  type ReactNode,
+} from 'react';
 import { Link, type LinkProps } from 'react-router-dom';
 import { cn } from '@/lib/cn';
 
@@ -13,23 +18,24 @@ interface BaseProps {
 }
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-full font-sans font-medium leading-none ' +
+  'inline-flex items-center justify-center gap-2 rounded-md font-sans font-medium leading-none ' +
   'transition-[transform,background-color,box-shadow,color,border-color] duration-[180ms] ease-breathe ' +
   'border border-transparent disabled:cursor-not-allowed disabled:transform-none';
 
 const sizing: Record<ButtonSize, string> = {
-  sm: 'text-sm px-4 py-2.5',
-  md: 'text-[15px] px-[22px] py-[14px]',
+  sm: 'text-sm px-4 py-2',
+  md: 'text-[15px] px-5 py-2.5',
 };
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    'bg-clay text-paper hover:bg-clayDark hover:-translate-y-px active:translate-y-0 ' +
-    'disabled:bg-border2 disabled:text-paper',
+    'bg-primary text-white hover:bg-primaryHover hover:-translate-y-0.5 ' +
+    'active:translate-y-0 disabled:bg-border2 disabled:text-white',
   secondary:
-    'bg-transparent text-ink border-border2 hover:bg-paper hover:border-ink2 ' +
+    'bg-white text-textPrimary border-border2 hover:border-primary hover:text-primary ' +
     'disabled:opacity-60',
-  ghost: 'bg-transparent text-ink hover:text-clayDark px-3.5 py-2.5 disabled:opacity-60',
+  ghost:
+    'bg-transparent text-primary hover:text-primaryHover px-3 py-2 disabled:opacity-60',
 };
 
 function classesFor(variant: ButtonVariant, size: ButtonSize, className?: string) {

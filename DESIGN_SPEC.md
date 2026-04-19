@@ -1,114 +1,106 @@
 # Design Spec — Dr. Ghulam Siddiq Surgical Practice
 
-> **Source of truth.** Every value in this document is traceable to
-> [`docs/design/style-guide.html`](docs/design/style-guide.html) (a verbatim copy
-> of the artifact Claude Design produced in its handoff bundle at
-> `docs/design/drsiddiq/project/Dr Siddiq Style Guide.html`). If this spec and
-> the style-guide HTML disagree, the HTML wins and this document is updated to
-> match.
+> **This is the authoritative design spec.** It documents the live site's
+> original theme (as it stood at git commit `0fb3280`, last commit before the
+> Vite migration) — the look the practice wants to keep.
 >
-> **Design north star**
->
-> > *"Cream paper, peach plaster, one clay accent. Fraunces for voice, Inter for
-> > work. Motion like breathing. The premium signal is restraint."*
+> The Claude Design artifact in [`docs/design/style-guide.html`](docs/design/style-guide.html)
+> is retained purely as a reference; **the spec below supersedes it**. Do not
+> re-introduce the cream / peach / lilac palette, Fraunces / Inter fonts, or
+> the WebGL aurora from that artifact without an explicit sign-off from the
+> practice.
 
 ---
 
 ## 1. Palette
 
-All colors are sRGB hex. Token names match the CSS custom properties in the
-style guide (`:root`) and the Tailwind config.
+All colors are sRGB hex. Token names match the CSS custom properties in
+[`frontend/src/design-system/tokens.css`](frontend/src/design-system/tokens.css)
+and the Tailwind keys in [`frontend/tailwind.config.ts`](frontend/tailwind.config.ts).
 
 ### 1.1 Surfaces
 
-| Token       | Hex       | CSS var        | Tailwind key | Use                                              |
-|-------------|-----------|----------------|--------------|--------------------------------------------------|
-| `cream`     | `#FBF6F1` | `--cream`      | `cream`      | Page base. Warm, low-saturation white.           |
-| `paper`    | `#FFFDFA` | `--paper`      | `paper`      | Cards, inputs, lifted surfaces.                  |
-| `peach-50`  | `#F9E7DA` | `--peach-50`   | `peach50`    | Warm secondary surface; section bands.           |
-| `peach-100` | `#F3D4C1` | `--peach-100`  | `peach100`   | Tag fills, image mats, highlight strokes.        |
-| `lilac-50`  | `#ECEAF5` | `--lilac-50`   | `lilac50`    | Cool counter-surface; quotes, info blocks.       |
-| `lilac-100` | `#DAD5EA` | `--lilac-100`  | `lilac100`   | Distinction chip, contrast bands.                |
-| `border-1`  | `#E8DFD5` | `--border-1`   | `border1`    | Hairlines, card edges, input rest border.        |
-| `border-2`  | `#D9CEC2` | `--border-2`   | `border2`    | Hover edges, secondary-button rest.              |
+| Token           | Hex       | CSS var                 | Tailwind key    | Use                                    |
+|-----------------|-----------|-------------------------|-----------------|----------------------------------------|
+| `base`          | `#FFFFFF` | `--color-base`          | `base`          | Page base; cards on white.             |
+| `surface`       | `#F9FAFB` | `--color-surface`       | `surface`       | Section bands when we want a lift.     |
+| `gradient-from` | `#FDF8F6` | `--color-gradient-from` | `gradientFrom`  | First stop of hero / consultation gradient. |
+| `gradient-via`  | `#F9E4DA` | `--color-gradient-via`  | `gradientVia`   | Middle stop — soft peach.              |
+| `gradient-to`   | `#E3E3FA` | `--color-gradient-to`   | `gradientTo`    | Final stop — pale lavender.            |
 
-### 1.2 Ink
+The signature hero/consultation treatment is **not** a flat color; it's the
+top-to-bottom gradient `#FDF8F6 → #F9E4DA → #E3E3FA`. The footer uses a
+richer four-stop gradient (`--gradient-footer`), same spirit but more
+saturated at the bottom-right corner.
 
-| Token   | Hex       | CSS var   | Tailwind | Use                                  |
-|---------|-----------|-----------|----------|--------------------------------------|
-| `ink`   | `#1F1B17` | `--ink`   | `ink`    | Headlines & body. Warm near-black.   |
-| `ink-2` | `#4A423B` | `--ink-2` | `ink2`   | Secondary prose, nav at rest.        |
-| `ink-3` | `#857A70` | `--ink-3` | `ink3`   | Captions, metadata, placeholder.     |
+### 1.2 Text
+
+| Token            | Hex       | CSS var           | Tailwind          | Use                                  |
+|------------------|-----------|-------------------|-------------------|--------------------------------------|
+| `text`           | `#1F2937` | `--color-text`    | `textPrimary`     | Headlines and body default.          |
+| `text-2`         | `#34495E` | `--color-text-2`  | `textSecondary`   | Secondary prose, nav at rest.        |
+| `text-3`         | `#6C757D` | `--color-text-3`  | `textMuted`       | Captions, metadata, placeholder.     |
 
 ### 1.3 Accents
 
-| Token       | Hex       | CSS var       | Tailwind   | Use                                               |
-|-------------|-----------|---------------|------------|---------------------------------------------------|
-| `clay`      | `#B2553A` | `--clay`      | `clay`     | Primary accent — CTAs, link hover, focus ring.    |
-| `clay-dark` | `#8E3F28` | `--clay-dark` | `clayDark` | Hover/active state for primary accent.            |
-| `sage`      | `#6B7A5A` | `--sage`      | `sage`     | Support accent — success, tags, quiet notes.      |
+| Token           | Hex       | CSS var                 | Tailwind       | Use                                        |
+|-----------------|-----------|-------------------------|----------------|--------------------------------------------|
+| `primary`       | `#0D6EFD` | `--color-primary`       | `primary`      | Primary CTA button, link hover, focus ring.|
+| `primary-hover` | `#0B5ED7` | `--color-primary-hover` | `primaryHover` | Hover/active state for primary accent.     |
+| `accent`        | `#39A7F1` | `--color-accent`        | `accent`       | Second-tier chips, ghost-link color.       |
 
-### 1.4 Contrast (WCAG AA verified)
+### 1.4 Structural
 
-Body text ≥ 4.5:1, large text (18 px or 14 px bold) ≥ 3:1. Ratios quoted from
-the style guide's contrast matrix.
+| Token      | Hex       | CSS var          | Tailwind  | Use                                  |
+|------------|-----------|------------------|-----------|--------------------------------------|
+| `border-1` | `#E5E7EB` | `--color-border-1` | `border1` | Card edges, hairlines, input rest.   |
+| `border-2` | `#D1D5DB` | `--color-border-2` | `border2` | Hover edges, secondary button rest.  |
+| `success`  | `#198754` | `--color-success`  | `success` | Success microcopy, success tag.      |
+| `warn`     | `#F59F00` | `--color-warn`     | `warn`    | Warning microcopy.                   |
 
-| Foreground            | Background         | Ratio       | Grade     |
-|-----------------------|--------------------|-------------|-----------|
-| `ink` `#1F1B17`       | `cream` `#FBF6F1`  | **14.9:1**  | AAA       |
-| `ink` `#1F1B17`       | `paper` `#FFFDFA`  | **15.6:1**  | AAA       |
-| `ink` `#1F1B17`       | `peach-50`         | **12.8:1**  | AAA       |
-| `ink` `#1F1B17`       | `lilac-50`         | **13.9:1**  | AAA       |
-| `ink-2` `#4A423B`     | `cream`            | **8.6:1**   | AAA       |
-| `ink-3` `#857A70`     | `cream`            | **3.5:1**   | AA Large (caption / ≥18 px only) |
-| `paper` `#FFFDFA`     | `clay` `#B2553A`   | **4.7:1**   | AA (button text) |
-| `clay-dark` `#8E3F28` | `cream` `#FBF6F1`  | **6.3:1**   | AAA (inline link text) |
+### 1.5 Contrast (WCAG AA target)
 
-Pairings outside this table must be re-verified before use; `ink-3` is never
-used for standard body copy, only captions/metadata ≥13 px or ≥18 px.
+Body text ≥ 4.5:1. Large text (≥ 18 px or ≥ 14 px bold) ≥ 3:1.
+
+| Foreground           | Background | Ratio  | Grade |
+|----------------------|------------|--------|-------|
+| `text` `#1F2937`     | `#FFFFFF`  | 14.1:1 | AAA   |
+| `text` `#1F2937`     | `#F9FAFB`  | 13.8:1 | AAA   |
+| `text-2` `#34495E`   | `#FFFFFF`  | 8.9:1  | AAA   |
+| `text-3` `#6C757D`   | `#FFFFFF`  | 4.7:1  | AA    |
+| `#FFFFFF`            | `primary`  | 4.6:1  | AA (button text) |
+| `primary` `#0D6EFD`  | `#FFFFFF`  | 4.6:1  | AA (inline link) |
 
 ---
 
 ## 2. Typography
 
-### 2.1 Families
+| Role  | Family              | Fallbacks                                |
+|-------|---------------------|------------------------------------------|
+| All text | **Roboto Flex** (variable) | `"Roboto", "Helvetica Neue", Arial, sans-serif` |
+| Mono  | system stack        | `ui-monospace, SFMono-Regular, Menlo, monospace` |
 
-| Role    | Family                                  | Axes used            | Fallbacks                                |
-|---------|-----------------------------------------|----------------------|------------------------------------------|
-| Display | **Fraunces** (variable serif)           | `opsz`, `SOFT`, `wght` (italic avail.) | `Georgia, serif`              |
-| Body/UI | **Inter** (variable sans)               | `wght`               | `Helvetica Neue, Arial, sans-serif`      |
-| Mono    | system-ui stack                         | —                    | `ui-monospace, SFMono-Regular, Menlo, monospace` |
+The variable `.ttf` is self-hosted at
+`frontend/src/assets/fonts/RobotoFlex-VariableFont.ttf` and declared in
+`tokens.css` with `font-display: swap`. **No third-party font hosts are
+loaded at runtime.**
 
-Body enables OpenType features `"ss01"` and `"cv11"` (from Inter). Self-host
-both fonts as Latin-subset `.woff2` under `frontend/src/assets/fonts/`;
-preload the two critical weights (Fraunces ≈430 and Inter 400) with
-`font-display: swap`.
+Weights used on the site: 300 (display), 400 (body default), 500
+(headings + buttons), 600 (occasional emphasis). The variable font supports
+the full 100–1000 range if we need to tweak.
 
-### 2.2 Display helper classes
+### 2.1 Type scale (fluid via `clamp()`)
 
-| Class                | `font-variation-settings`      | Rationale                                  |
-|----------------------|--------------------------------|--------------------------------------------|
-| `.font-display`      | `"opsz" 96, "SOFT" 40`         | Default editorial serif treatment.         |
-| `.font-display-tight`| `"opsz" 144, "SOFT" 20`        | For the hero/`.t-display` headline.        |
-| `.font-display-soft` | `"opsz" 72, "SOFT" 90`         | For h3 — softer, less authoritative.       |
-
-### 2.3 Type scale (fluid via `clamp()`)
-
-| Class         | Family    | `font-size`                   | `line-height` | `letter-spacing` | `font-weight` | `text-transform` | Notes              |
-|---------------|-----------|-------------------------------|---------------|------------------|---------------|------------------|--------------------|
-| `.t-display`  | Fraunces  | `clamp(44px, 6.5vw, 92px)`    | `1.02`        | `-0.02em`        | `420`         | —                | Use `display-tight`|
-| `.t-h1`       | Fraunces  | `clamp(34px, 4.2vw, 58px)`    | `1.06`        | `-0.018em`       | `430`         | —                | `display`          |
-| `.t-h2`       | Fraunces  | `clamp(26px, 2.8vw, 38px)`    | `1.15`        | `-0.012em`       | `450`         | —                | `display`          |
-| `.t-h3`       | Fraunces  | `clamp(20px, 1.6vw, 24px)`    | `1.25`        | `-0.005em`       | `500`         | —                | `display-soft`     |
-| `.t-body-lg`  | Inter     | `clamp(17px, 1.2vw, 19px)`    | `1.55`        | `0`              | `380`         | —                | Lead paragraphs    |
-| `.t-body`     | Inter     | `16px`                        | `1.6`         | `0`              | `400`         | —                | Default body       |
-| `.t-caption`  | Inter     | `13px`                        | `1.45`        | `0.01em`         | `450`         | —                | Captions/metadata  |
-| `.t-eyebrow`  | Inter     | `12px`                        | `1`           | `0.18em`         | `500`         | uppercase        | Eyebrow labels     |
-
-Rationale (quoted from §02 of the style guide): *"Fraunces' warm opsz and SOFT
-axes give headlines a hand-set editorial feeling while Inter's neutral rhythm
-keeps dense body copy effortless — they share a similar x-height, so weight
-transitions feel honest, not theatrical."*
+| Class        | Size                                 | Line  | Tracking | Weight |
+|--------------|--------------------------------------|-------|----------|--------|
+| `.t-display` | `clamp(2.25rem, 4.5vw, 3.5rem)`      | 1.10  | -0.01em  | 400    |
+| `.t-h1`      | `clamp(2rem, 3.2vw, 3rem)`           | 1.15  | -0.01em  | 500    |
+| `.t-h2`      | `clamp(1.5rem, 2.2vw, 2rem)`         | 1.20  | -0.005em | 500    |
+| `.t-h3`      | `clamp(1.125rem, 1.4vw, 1.375rem)`   | 1.30  | 0        | 500    |
+| `.t-body-lg` | `1.125rem`                           | 1.60  | 0        | 400    |
+| `.t-body`    | `1rem`                               | 1.60  | 0        | 400    |
+| `.t-caption` | `0.875rem`                           | 1.50  | 0        | 400    |
+| `.t-eyebrow` | `0.75rem`                            | 1.00  | 0.12em   | 500 uppercase |
 
 ---
 
@@ -116,290 +108,171 @@ transitions feel honest, not theatrical."*
 
 ### 3.1 Border radii
 
-| Token | Value   | Use                                              |
-|-------|---------|--------------------------------------------------|
-| `xs`  | `4px`   | Internal pills inside chips.                     |
-| `sm`  | `8px`   | Small inline controls.                           |
-| `md`  | `12px`  | Inputs.                                          |
-| `lg`  | `18px`  | Cards, placeholder images, before/after frames.  |
-| `xl`  | `28px`  | Large hero/consultation cards, north-star band.  |
-| `pill`| `999px` | Buttons, tags, icon buttons.                     |
+| Token | Value      | Use                                          |
+|-------|------------|----------------------------------------------|
+| `xs`  | `0.25rem`  | Small chips.                                 |
+| `sm`  | `0.5rem`   | Buttons and inline controls.                 |
+| `md`  | `0.75rem`  | Inputs.                                      |
+| `lg`  | `1rem`     | Cards, portraits, map container.             |
+| `xl`  | `1.5rem`   | Large media blocks (rarely).                 |
+| `pill`| `9999px`   | Tags only.                                   |
+
+(Larger and softer than the old Claude spec: `lg = 1rem` not `18px`,
+matching the old site's `1rem` / `0.75rem` / `0.5rem` convention.)
 
 ### 3.2 Shadows
 
-| Token   | Value                                                                                     |
-|---------|-------------------------------------------------------------------------------------------|
-| `card`  | `0 1px 2px rgba(31,27,23,0.04), 0 8px 24px -12px rgba(31,27,23,0.10)`                     |
-| `raised`| `0 2px 4px rgba(31,27,23,0.05), 0 18px 40px -18px rgba(31,27,23,0.18)` (card hover)       |
-| `focus` | `0 0 0 3px rgba(178,85,58,0.28)`  (focus ring — `clay` @ 28 % α)                          |
+| Token   | Value                                       |
+|---------|---------------------------------------------|
+| `card`  | `0 10px 20px rgba(0, 0, 0, 0.08)`           |
+| `raised`| `0 15px 30px rgba(0, 0, 0, 0.10)` (on hover)|
+| `focus` | `0 0 0 3px rgba(13, 110, 253, 0.25)`        |
 
-### 3.3 Spacing / rhythm
+Cards lift on hover: `translateY(-4px)` + `border-color → primary` + shadow
+bumps from `card` to `raised`. Transition 250 ms `ease-breathe`
+(`cubic-bezier(.2, .7, .2, 1)`).
 
-- Container max-width: **1280 px** with 24 px gutter on mobile, 40 px on ≥ md.
-- Section vertical rhythm: `pt-16` cover → `pt-20` → `pt-24` → `pt-32` pb.
-- Eyebrow → headline gap: `mt-3` to `mt-6` depending on rank.
-- Headline → lead gap: `mt-6`.
-- Lead → CTA gap: `mt-8`.
+### 3.3 Layout
+
+- Container max-width: **1280 px**, horizontal padding 24 px (`px-6`) on
+  mobile / 40 px (`md:px-10`).
+- Section vertical rhythm via `<Section size>` prop: `sm` = `py-12`,
+  `md` = `py-16 md:py-20`, `lg` = `py-20 md:py-28`.
 
 ---
 
 ## 4. Motion
 
-| Layer    | Duration | Easing                              | Rule                                                                 |
-|----------|----------|-------------------------------------|----------------------------------------------------------------------|
-| Micro    | `180ms`  | `cubic-bezier(.2,.7,.2,1)`          | Hover/focus/tap. Buttons lift 1 px, color eases to `clay-dark`, focus ring blooms to 3 px. |
-| Reveal   | `500ms`  | `cubic-bezier(.2,.7,.2,1)` + 80 ms stagger | Section entry. Text rises 12 px and fades in, image mat fades 0→1. One pass per scroll — no looping. |
-| Ambient  | `26–34s` | `ease-in-out infinite alternate`    | 3D aurora field. Drifts like weather. Never cursor-synced. Respects `prefers-reduced-motion`. |
+Two speeds:
 
-### 4.1 Reduced motion
+| Layer   | Duration | Easing            | Use                                       |
+|---------|----------|-------------------|-------------------------------------------|
+| Micro   | 180 ms   | `cubic-bezier(.2,.7,.2,1)` | Hover, focus, tap, link underlines.|
+| Reveal  | 400 ms   | same              | Section entries (`@keyframes rise`).      |
 
-Under `@media (prefers-reduced-motion: reduce)` the aurora animations are
-disabled (static gradient) and reveal entrances collapse to `opacity` only (no
-translateY). Buttons still hover-color — color changes are not "motion".
-
-### 4.2 3D aurora placement
-
-**Hero + Consultation only.** Quoted from §07 of the style guide:
-*"Hero + Consult only. Elsewhere the aurora becomes wallpaper; scarcity keeps
-it precious."*
+**Motion rule:** no ambient/autoplay loops. Nothing pulses, drifts, or
+orbits. Under `prefers-reduced-motion: reduce` all animations and
+transitions collapse to `0s`.
 
 ---
 
 ## 5. Components (primitives)
 
-All primitives live in `frontend/src/components/ui/` as TypeScript components.
-Radii, padding, shadow, and transitions are tokenized — never one-off.
+Primitives live in [`frontend/src/components/ui/`](frontend/src/components/ui/):
 
-### 5.1 `Button`
-
-- Shape: pill (`radius: 999px`), inline-flex, 0.6 rem gap for leading icon.
-- Base padding: `14px 22px`. Font: Inter 500 / 15 px / letter-spacing 0.005 em /
-  `line-height: 1`.
-- Transition: `180ms ease` on transform, background, box-shadow, color,
-  border-color.
-- Focus-visible: `box-shadow: 0 0 0 3px rgba(178,85,58,0.28)`, outline none.
-
-| Variant     | Rest                                                    | Hover                                                | Active           | Disabled                                |
-|-------------|---------------------------------------------------------|------------------------------------------------------|------------------|-----------------------------------------|
-| `primary`   | bg `clay`, text `paper`                                 | bg `clay-dark`, `translateY(-1px)`                   | `translateY(0)`  | bg `border-2` `#D9CEC2`, text `paper`, `cursor: not-allowed`, no transform |
-| `secondary` | transparent, text `ink`, border `border-2`              | bg `paper`, border `ink-2`                           | —                | opacity .6                              |
-| `ghost`     | transparent, text `ink`, padding `10px 14px`            | text `clay-dark`                                     | —                | opacity .6                              |
-
-Sizes: default as above. `sm` → padding `10px 16px` / 14 px text. `lg` →
-`16px 28px` / 16 px text. Keep sizes minimal — there are only two legitimate
-sizes on the site (default, sm for nav / card-footers).
-
-### 5.2 `Container`
-
-`max-width: 1280px`, horizontal padding `24px` (`md:40px`), centered with
-`margin-inline: auto`.
-
-### 5.3 `Section`
-
-Vertical-rhythm wrapper with `scroll-margin-top: 80px`. Props:
-
-- `tone` — one of `cream` (default), `paper`, `peach`, `lilac`, `ink`.
-- `size` — `sm` (pt-12 pb-16), `md` (pt-20 pb-24 — default), `lg` (pt-24 pb-32).
-
-### 5.4 `Eyebrow`
-
-Applies `.t-eyebrow`. Two visual modes:
-
-1. Plain (used above section headlines): text-only, `text-ink3`.
-2. Rule (inline leading rule): `.eyebrow-rule` → `inline-flex; gap:12px;
-   color: ink-2;` with a `::before` rule `width:28px; height:1px; background:
-   ink-2; opacity:.5`.
-
-### 5.5 `Card`
-
-- `background: paper`, border `1px solid border-1`, `border-radius: 18px`.
-- Hover: `translateY(-2px)`, shadow → `raised`, border → `border-2`.
-- Transition: `250ms ease`.
-- Default padding `p-7` (≈ 28 px) with variants: `sm` (`p-5`), `md` (`p-7`),
-  `lg` (`p-8 md:p-10`).
-- `tone` prop swaps the background: `paper` (default), `peach-50`, `lilac-50`,
-  `ink` (inverse — reserved for the north-star band only).
-
-### 5.6 `Tag`
-
-Pill; `padding: 5px 10px`; `font-size: 12px`; weight 500; letter-spacing
-`0.02em`. Three tones (all with matching borders at low alpha):
-
-| Tone    | Background | Text color      | Border                      |
-|---------|------------|-----------------|-----------------------------|
-| `peach` (default) | `peach-50` | `clay-dark`     | `rgba(178,85,58,.12)`       |
-| `sage`  | `#E7ECDF`  | `#485640`       | `rgba(107,122,90,.18)`      |
-| `lilac` | `lilac-50` | `#4B4566`       | `rgba(75,69,102,.12)`       |
-
-### 5.7 `IconButton`
-
-`40px × 40px`, `radius 999px`, `background: paper`, border `border-1`, text
-`ink`. Hover: `background: peach-50`, border `border-2`. Focus-visible: standard
-focus ring. A solid `clay` variant exists for the hero Play affordance:
-`background: clay`, `color: paper`, `border: transparent`.
-
-### 5.8 Inputs (`Input`, `Textarea`, `Select`)
-
-Wrapper: `FieldLabel` renders a `.t-caption` in `ink-2`; `FieldError` renders
-`.t-caption` in `clay-dark`.
-
-- `.field` base: `width: 100%`; `background: paper`; border `1px solid
-  border-1`; `border-radius: 12px`; padding `14px 16px`; Inter 400 15 px /
-  line-height 1.3.
-- Placeholder: `ink-3`.
-- Hover: border → `border-2`.
-- Focus: outline none; border `clay`; `box-shadow: 0 0 0 3px rgba(178,85,58,0.20)`.
-- Invalid (`aria-invalid="true"`): border `clay-dark`; error text `clay-dark`.
-- Disabled: `opacity: .6`; `background: #F5EEE6`.
-- `Select` inherits `.field` plus a small inline SVG chevron at right 14 px.
-- `Textarea` inherits `.field`; min rows 4.
-
-### 5.9 Nav link
-
-`.navlink`: `color: ink-2; font-size:14px; font-weight:450; padding:6px 2px`.
-Hover: `color: ink`, animated underline (1 px, `ink`, `transform-origin: left`,
-`scaleX(0)` → `scaleX(1)`, 280 ms `cubic-bezier(.2,.7,.2,1)`).
-
-### 5.10 Swatch (style-guide only)
-
-`aspect-ratio: 1/1; border-radius: 14px; border: 1px solid border-1`.
-
-### 5.11 Before/After slider
-
-- Frame: `border-radius: 18px; overflow: hidden; aspect-ratio: 4/5`.
-- Handle: 2 px `paper` with 1 px `rgba(31,27,23,.15)` shadow outline.
-- Knob: 36 px circle, `background: paper`, shadow
-  `0 2px 10px rgba(0,0,0,.18)`, glyph `↔` (or ‹›) 12 px 600 weight.
-- Default at **50 %**, static. On first scroll-into-view, a subtle bounce
-  nudge (translateX ±4 px over 600 ms, easing settled). Auto-animation is
-  disallowed elsewhere (§07).
-- Consent microcopy is **required** directly beneath: *"All photos used with
-  written consent."*
+- `Button` / `ButtonLink` / `ButtonRouterLink` — `primary | secondary | ghost` × `sm | md`.
+- `Container` — `max-w-container` + gutters.
+- `Section` — tones `base | surface | gradient | dark`; sizes `sm | md | lg`.
+- `Eyebrow` — `t-eyebrow` label; `tone: primary | muted`.
+- `Card` — tones `base | surface | primary`; paddings `sm | md | lg`; `interactive` prop toggles hover lift.
+- `Tag` — tones `primary | accent | neutral | success`.
+- `IconButton` — `default` (white + border) / `solid` (primary blue).
+- `Input` / `Textarea` / `Select` / `FieldLabel` / `FieldError` — with ARIA wiring.
 
 ---
 
-## 6. Section-by-section art direction
+## 6. Section art direction
 
-Paraphrased from §06 of the style guide; full wording in the HTML.
+### 6.1 Hero (`/`)
 
-| Section                  | Layout                                                                                     | Premium move                                     |
-|--------------------------|--------------------------------------------------------------------------------------------|--------------------------------------------------|
-| **Hero**                 | 7/5 split. Left: eyebrow rule + `t-display` headline + lead + primary+secondary CTA + proof row. Right: 4:5 portrait with floating "Today's openings" `Card` overlapping bottom-left. Aurora behind. | The aurora.                                      |
-| **About**                | Two-column: editorial Fraunces pull-quote beside video thumbnail with custom `IconButton` play overlay. | First-person voice in the pull-quote.            |
-| **Consultation**         | Peach-50 band with aurora @ 55 % opacity. 5/7 split. Left: eyebrow + headline + lead + When/Where/Fee/Insurance DL. Right: form on paper `Card`. | The definition list.                             |
-| **Distinctions**         | Horizontal row of lilac `Tag`s with years. Auto-marquee pauses on hover.                   | Unhurried pacing.                                |
-| **Services**             | 3-column `Card` grid, tones alternating warm / cool / warm. Image mat on top, tag + serif title + sans paragraph + ghost link. | Alternating tone.                                |
-| **Bariatric procedures** | Editorial two-up: oversized serif number `01`, `02` beside plain-language explanation.     | Numbers as type, not chips.                      |
-| **Transformations**      | Single before/after drag slider with serif-italic caption below and consent microcopy.      | Restraint — one story, not a grid of ten.        |
-| **Location**             | Muted map tile with cream overlay + pin in `clay`. Address block as DL.                     | Custom cream map palette.                        |
-| **Gallery**              | Asymmetric 3-row grid, peach and lilac mats alternating, click-to-lightbox.                 | Coloured mats instead of white frames.           |
-| **Footer**               | On `cream` (not `ink`). 4 thin columns, generous leading, one `clay`-underlined email link, single serif sign-off. | The serif sign-off: *"A careful hand, a quiet room."* |
+- Full-bleed **peach→lavender gradient** band (no WebGL canvas).
+- 7/5 split: left column with `Eyebrow` + display headline (*"Pioneer of
+  Laparoscopic Bariatric Surgery in Pakistan"*) + lead paragraph + primary
+  + secondary CTA + three-point proof row. Right column: full-height
+  portrait (`aspect-[4/5]`), rounded `lg`, card shadow.
+- Proof row: *"25 years in practice"* · *"1,400+ laparoscopic cases"* · *"Shifa International Hospital, Islamabad"*.
 
-### 6.1 Nav (HoverNavBar)
+### 6.2 About teaser
 
-- Sticky, `top:0`, `z-30`.
-- `background: rgba(251,246,241,0.80)` + `backdrop-filter: blur(10px)` +
-  `border-bottom: 1px solid border-1`.
-- Height `64 px` (`h-16`), horizontal padding `24 px` (`md:40px`).
-- Logo: 24 px warm radial-gradient dot + *"Ghulam Siddiq"* `font-display` 17 px
-  500 weight, followed by `", MD"` in `ink-3`.
-- Link row (hidden `<md`): `.navlink`s with 32 px gap.
-- Right: `btn-ghost` phone number (hidden `<sm`) + `btn-primary` *"Book
-  consultation"* (copy may shorten to *"Book"* at `<md`).
-- Keyboard: Tab order logo → links → CTA. Escape closes any open sub-menu.
-  Mobile trigger uses `aria-expanded`, panel uses `aria-modal="true"`.
+- `base` tone section. 5/7 split: name + role block on the left, bio on
+  the right, "Read the full bio" secondary CTA.
 
-### 6.2 Footer
+### 6.3 Distinctions
 
-On `cream`. Four columns: brand + tagline; *Practice* links; *Visit* details;
-*Reach* contacts. Email is underlined with `text-decoration-color: clay`,
-`underline-offset: 4px`. Divider: `hr-soft` (1 px `border-1`). Sign-off line:
-`font-display italic` 15 px `ink-2`, left; copyright `.t-caption ink-3`, right.
+- `base` tone section. Heading: *"A shining legacy in endoscopic surgery"*.
+- **Exactly two** editorial cards:
+  1. *Presidential Award for Surgical Excellence* (narrative only).
+  2. *Internationally renowned in Endoscopic Surgery* — with the big stat
+     `970` + *"Bariatric procedures"* caption above the title.
 
-### 6.3 North-star band (optional, not in production shipping by default)
+### 6.4 Services
 
-Dark band on `ink`. Eyebrow in `peach-100`. Large Fraunces quote, `weight 380`,
-`font-size: clamp(30px,3.8vw,54px)`, `line-height: 1.08`.
+- `surface` tone section. Heading: *"Surgical Expertise & Experience"*.
+- Grid of `Card`s — **ten** procedures from `src/content/services.ts`
+  (Laparoscopic Cholecystectomy, Appendix, Laparoscopic Surgery, Colon,
+  Anterior Resection, Low Anterior Resection, Right Hemicolectomy,
+  Hemicolectomy, Partial Gastrectomy, Esophagectomy).
+- Card layout: category `Tag` top-left, case-volume chip top-right
+  (`9k+`, `8k+`, `1.5k+`, etc.), procedure title + one-line subtitle.
 
----
+### 6.5 Bariatric Procedures
 
-## 7. Placeholder images
+- `surface` tone section. 5/7 split.
+- Left column: *"A novel solution for obesity"* headline + two bio
+  paragraphs from `src/content/services.ts` (`bariatricIntro`).
+- Right column: 2×2 grid of numbered cards — **01** Roux-en-Y, **02**
+  Sleeve gastrectomy, **03** Mini gastric bypass (OAGB), **04** Revision
+  bariatric surgery.
 
-Warm variant:
-```
-repeating-linear-gradient(135deg, rgba(31,27,23,.05) 0 1px, transparent 1px 10px),
-linear-gradient(180deg, #F3D4C1, #F9E7DA)
-```
-Cool variant: same but `linear-gradient(180deg, #DAD5EA, #ECEAF5)` with
-`rgba(31,27,23,.04)` stripe.
+### 6.6 Transformations
 
-Caption rendered in `ui-monospace` 12 px `letter-spacing: 0.06em`
-`color: ink-2`.
+- `base` tone. Heading: *"Real patient outcomes."*.
+- Two before/after drag sliders side by side, same pointer + keyboard
+  behavior as the old site. Consent microcopy required.
 
-These are dev/design placeholders only — production replaces them with real
-`<picture>` elements with `.webp` primary / `.jpg` fallback and proper
-`width`/`height`.
+### 6.7 Consultation (`#consultation`)
 
----
+- **Gradient band** (same hero gradient).
+- 5/7 split. Left column: info + definition list (Where, When, Phone,
+  Email). Right column: paper `Card` form posting to
+  `POST /api/consultation` with client-side validation, honeypot, and
+  success/error states.
+- Primary CTA label: *"Book an Appointment"*.
 
-## 8. Aurora (3D stand-in)
+### 6.8 Location (`#location`)
 
-Retained as a visible "signature" of the practice (see §5 of the codebase
-prompt). Production implementation uses three.js / `@react-three/fiber` with
-the CSS fallback below. The CSS stand-in in the style guide is:
+- `base` tone. Heading: *"Visit Shifa International Hospital."*.
+- 5/7 split. Left column: intro paragraph + definition list (Hospital,
+  Address, Hours, Phone). Right column: Google Maps `<iframe>` embed,
+  `aspect-[4/3]`, rounded `lg`, card shadow.
+- Map embed URL lives in `src/content/contact.ts` (`contact.clinic.mapEmbed`)
+  and uses the Maps Embed API key the practice already ships on the live
+  site. Rotate on the Google console before launch and update there.
 
-```css
-.aurora { position:absolute; inset:0; overflow:hidden; z-index:0; pointer-events:none; }
-.aurora::before, .aurora::after { content:""; position:absolute; border-radius:50%; filter: blur(60px); opacity:.85; }
-.aurora::before { width:62%; height:90%; left:-10%; top:-20%;
-  background: radial-gradient(closest-side, #F3D4C1 0%, #F9E7DA 40%, transparent 72%);
-  animation: drift1 26s ease-in-out infinite alternate; }
-.aurora::after  { width:58%; height:85%; right:-12%; top:10%;
-  background: radial-gradient(closest-side, #DAD5EA 0%, #ECEAF5 45%, transparent 75%);
-  animation: drift2 34s ease-in-out infinite alternate; }
-@keyframes drift1 { to { transform: translate3d(6%, 4%, 0) scale(1.05); } }
-@keyframes drift2 { to { transform: translate3d(-4%,-3%, 0) scale(1.08); } }
-```
+### 6.9 Nav
 
-The three.js variant ports the same two-blob drift to a low-density particle
-field / shader gradient and must preserve the *"breathing, not performing"*
-character (no fast orbit, no cursor-reactive parallax).
+- Sticky, `h-16`. Unscrolled: `bg-white/70` + subtle blur. Scrolled
+  (past 8 px): `bg-white/90` + `backdrop-blur-md` + hairline border + soft
+  bottom shadow.
+- Logo (self-hosted `src/assets/logo.png`) + primary nav (*About*,
+  *Procedures*, *Bariatric*, *Distinctions*, *Location*, *Consultation*)
+  + phone chip (`ghost` link) + primary *"Book Appointment"* CTA.
+
+### 6.10 Footer
+
+- **Footer gradient** band (corner-biased four-stop).
+- Four columns: brand + role + social; Quick Links; Visit (phone/email);
+  legal row with copyright + medical disclaimer.
+- Social icons: Facebook, Instagram, YouTube — all `dr.ghulamsiddiq`.
 
 ---
 
-## 9. Iconography
+## 7. What we removed from the Claude Design artifact
 
-No icon set; use plain inline SVGs sized to 14–16 px with `stroke-width: 1.5`,
-`stroke-linecap: round`, `stroke-linejoin: round`, `currentColor`. Examples in
-the style guide: chevron-left/right, play-triangle (solid).
+For anyone cross-referencing the imported style guide: these elements are
+**intentionally not in the production build**.
 
----
-
-## 10. Grain overlay (optional)
-
-Retained for hero/consult. Very subtle: `radial-gradient(rgba(31,27,23,.035) 1px,
-transparent 1px) 3px 3px`, `mix-blend-mode: multiply`, `opacity: .6`,
-`pointer-events: none`.
-
----
-
-## 11. Open decisions resolved
-
-From §07 of the style guide, I'm taking the author's recommendation in each case
-unless noted:
-
-| # | Decision                                                    | Choice               |
-|---|-------------------------------------------------------------|----------------------|
-| 1 | Serif in eyebrow labels?                                    | **No** — sans.       |
-| 2 | Nav: cream/80 blur or paper + hairline?                     | **cream/80 + blur**. |
-| 3 | CTA copy — *Book* or *Request*?                             | **Book consultation**.|
-| 4 | Before/After default state.                                 | **50 %, static**, one-shot scroll-in nudge. |
-| 5 | Aurora everywhere or only Hero + Consult?                   | **Hero + Consult only**. |
-
----
-
-## 12. Non-goals (what the design explicitly is not)
-
-From the moodboard: avoid clinical blue/teal, wellness pastel, luxury gold,
-fast gradients, oversaturated CTAs, emoji, icon stickers, and glassmorphism.
-Stock photos with blue gowns and gloves are out.
+- The cream `#FBF6F1` + peach `#F9E7DA/#F3D4C1` + lilac `#ECEAF5/#DAD5EA`
+  palette — replaced with the blue/white/gradient system above.
+- Fraunces display + Inter body — replaced with Roboto Flex.
+- The WebGL aurora component (`components/aurora/Aurora*.tsx`) — deleted.
+  Its role is taken by the static CSS gradient (`.bg-gradient-hero`). The
+  `three` and `@react-three/fiber` dependencies have been removed from
+  `package.json`.
+- The imported testimonial and gallery placeholders — the old site had
+  none, so we removed those sections. Reintroduce once the practice
+  provides real consented testimonials and gallery photography.
+- Cream/peach band tones on `Section` and `Card` (`tone="peach"`,
+  `tone="lilac"`) — not valid tones; the current API is
+  `base | surface | gradient | dark` for sections and
+  `base | surface | primary` for cards.

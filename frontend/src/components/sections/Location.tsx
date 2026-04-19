@@ -4,35 +4,37 @@ import { contact } from '@/content/contact';
 
 export function Location() {
   return (
-    <Section id="location" tone="cream" size="md" aria-labelledby="location-heading">
+    <Section id="location" tone="base" size="lg" aria-labelledby="location-heading">
       <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12">
         <div className="md:col-span-5">
-          <Eyebrow rule>Location</Eyebrow>
-          <h2
-            id="location-heading"
-            className="font-display t-h1 mt-4 max-w-[16ch]"
-          >
-            A quiet room in Clifton.
+          <Eyebrow>Location</Eyebrow>
+          <h2 id="location-heading" className="t-h1 mt-3 max-w-[18ch]">
+            Visit Shifa International Hospital.
           </h2>
-          <dl className="t-body mt-8 grid grid-cols-2 gap-6">
+          <p className="t-body-lg mt-5 max-w-[48ch] text-textSecondary">
+            A state-of-the-art facility in the heart of Islamabad combining modern medical
+            technology with experienced healthcare professionals — Dr. Siddiq has operated here
+            for over two decades.
+          </p>
+          <dl className="mt-8 grid grid-cols-1 gap-6 text-sm sm:grid-cols-2">
             <div>
-              <dt className="t-caption text-ink3">Clinic</dt>
-              <dd className="mt-1 text-ink">{contact.clinic.name}</dd>
+              <dt className="text-textMuted">Hospital</dt>
+              <dd className="mt-1 font-medium text-textPrimary">{contact.clinic.name}</dd>
             </div>
             <div>
-              <dt className="t-caption text-ink3">Area</dt>
-              <dd className="mt-1 text-ink">{contact.clinic.area}</dd>
+              <dt className="text-textMuted">Address</dt>
+              <dd className="mt-1 font-medium text-textPrimary">{contact.clinic.fullAddress}</dd>
             </div>
             <div>
-              <dt className="t-caption text-ink3">Hours</dt>
-              <dd className="mt-1 text-ink">
+              <dt className="text-textMuted">Hours</dt>
+              <dd className="mt-1 font-medium text-textPrimary">
                 {contact.hours.days} · {contact.hours.time}
               </dd>
             </div>
             <div>
-              <dt className="t-caption text-ink3">Phone</dt>
-              <dd className="mt-1 text-ink">
-                <a className="hover:text-clayDark" href={`tel:${contact.phone.tel}`}>
+              <dt className="text-textMuted">Phone</dt>
+              <dd className="mt-1 font-medium text-textPrimary">
+                <a className="hover:text-primary" href={`tel:${contact.phone.tel}`}>
                   {contact.phone.display}
                 </a>
               </dd>
@@ -40,16 +42,14 @@ export function Location() {
           </dl>
         </div>
         <div className="md:col-span-7">
-          <div
-            className="aspect-[4/3] overflow-hidden rounded-lg border border-border1"
-            style={{ filter: 'grayscale(0.35) contrast(0.95) brightness(1.05)' }}
-          >
+          <div className="aspect-[4/3] overflow-hidden rounded-lg border border-border1 shadow-card">
             <iframe
               title={`Map of ${contact.clinic.name}`}
               src={contact.clinic.mapEmbed}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className="h-full w-full border-0"
+              allowFullScreen
             />
           </div>
         </div>

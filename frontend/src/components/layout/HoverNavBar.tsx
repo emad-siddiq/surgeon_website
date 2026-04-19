@@ -12,7 +12,7 @@ import { cn } from '@/lib/cn';
 
 function DesktopNav() {
   return (
-    <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
+    <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
       {primaryNav.map((item) => (
         <NavLinkItem key={item.to} to={item.to} label={item.label} />
       ))}
@@ -23,9 +23,9 @@ function DesktopNav() {
 function NavLinkItem({ to, label }: { to: string; label: string }) {
   const isAnchor = to.startsWith('/#');
   const className =
-    'navlink relative text-sm font-medium text-ink2 transition-colors duration-200 hover:text-ink ' +
-    'py-1.5 after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-left after:scale-x-0 ' +
-    'after:bg-ink after:transition-transform after:duration-300 after:ease-breathe hover:after:scale-x-100';
+    'relative text-sm font-medium text-textSecondary transition-colors duration-200 hover:text-primary py-1.5 ' +
+    "after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:scale-x-0 " +
+    'after:bg-primary after:transition-transform after:duration-300 after:ease-breathe hover:after:scale-x-100';
 
   if (isAnchor) {
     return (
@@ -56,10 +56,10 @@ export function HoverNavBar() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-40 transition-[background-color,backdrop-filter,box-shadow] duration-200',
+        'sticky top-0 z-40 transition-[background-color,backdrop-filter,box-shadow,border-color] duration-200',
         scrolled
-          ? 'border-b border-border1 bg-cream/80 backdrop-blur-md'
-          : 'bg-cream/60 backdrop-blur-sm',
+          ? 'border-b border-border1 bg-white/90 backdrop-blur-md shadow-sm'
+          : 'bg-white/70 backdrop-blur-sm border-b border-transparent',
       )}
     >
       <Container className="flex h-16 items-center justify-between">
@@ -76,7 +76,7 @@ export function HoverNavBar() {
               aria-controls="mobile-nav"
               aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
               onClick={() => setMenuOpen((v) => !v)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border1 bg-paper"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border1 bg-white text-textPrimary hover:border-primary hover:text-primary"
             >
               <svg
                 width="18"
@@ -103,7 +103,7 @@ export function HoverNavBar() {
                 {contact.phone.display}
               </ButtonLink>
               <ButtonRouterLink to="/#consultation" variant="primary">
-                Book consultation
+                Book Appointment
               </ButtonRouterLink>
             </div>
           </>

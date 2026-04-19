@@ -1,42 +1,41 @@
 import { Section } from '@/components/ui/Section';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Card } from '@/components/ui/Card';
-import { Tag } from '@/components/ui/Tag';
-import { distinctions } from '@/content/distinctions';
+import { distinctions, distinctionsHeading } from '@/content/distinctions';
 
 export function Distinctions() {
   return (
-    <Section id="distinctions" tone="cream" size="md" aria-labelledby="distinctions-heading">
-      <div className="flex flex-wrap items-end justify-between gap-8">
-        <div>
-          <Eyebrow rule>Distinctions</Eyebrow>
-          <h2
-            id="distinctions-heading"
-            className="font-display t-h1 mt-4 max-w-[22ch]"
+    <Section id="distinctions" tone="base" size="md" aria-labelledby="distinctions-heading">
+      <Eyebrow>Distinctions</Eyebrow>
+      <h2 id="distinctions-heading" className="t-h1 mt-3 max-w-[22ch]">
+        {distinctionsHeading}
+      </h2>
+
+      <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+        {distinctions.map((d) => (
+          <Card
+            key={d.title}
+            as="article"
+            tone="surface"
+            padding="lg"
+            interactive
+            className="relative overflow-hidden"
           >
-            Training, board certification, and long follow-through.
-          </h2>
-        </div>
-      </div>
-      <ul
-        role="list"
-        className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
-      >
-        {distinctions.map((item) => (
-          <li key={item.title}>
-            <Card padding="md" interactive>
-              <Tag tone="lilac">{item.year}</Tag>
-              <h3
-                className="font-display mt-4 text-[22px]"
-                style={{ fontWeight: 500, lineHeight: 1.2 }}
-              >
-                {item.title}
-              </h3>
-              <p className="t-body mt-2 text-ink2">{item.body}</p>
-            </Card>
-          </li>
+            {d.stat ? (
+              <div className="mb-4 flex items-baseline gap-3">
+                <span className="text-4xl font-medium tracking-tight text-primary">
+                  {d.stat.value}
+                </span>
+                <span className="t-caption uppercase tracking-widest text-textMuted">
+                  {d.stat.label}
+                </span>
+              </div>
+            ) : null}
+            <h3 className="t-h3 font-medium">{d.title}</h3>
+            <p className="t-body mt-3 text-textSecondary">{d.body}</p>
+          </Card>
         ))}
-      </ul>
+      </div>
     </Section>
   );
 }

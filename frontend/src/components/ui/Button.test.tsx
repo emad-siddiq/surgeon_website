@@ -8,7 +8,7 @@ describe('Button', () => {
     render(<Button>Book</Button>);
     const button = screen.getByRole('button', { name: 'Book' });
     expect(button).toBeInTheDocument();
-    expect(button.className).toMatch(/bg-clay/);
+    expect(button.className).toMatch(/bg-primary\b/);
   });
 
   it('supports disabled prop', () => {

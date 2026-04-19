@@ -16,10 +16,9 @@
   }
 
   body {
-    background: var(--color-cream);
-    color: var(--color-ink);
+    background: var(--color-base);
+    color: var(--color-text);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -31,16 +30,17 @@
   }
 
   ::selection {
-    background: var(--color-peach-100);
-    color: var(--color-ink);
+    background: rgba(13, 110, 253, 0.18);
+    color: var(--color-text);
   }
 
   h1,
   h2,
-  h3 {
-    font-family: var(--font-serif);
-    font-variation-settings: "opsz" 96, "SOFT" 40;
-    color: var(--color-ink);
+  h3,
+  h4 {
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-weight: 500;
   }
 
   section {

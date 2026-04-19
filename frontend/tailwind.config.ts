@@ -1,45 +1,50 @@
 import type { Config } from 'tailwindcss';
 
 /**
- * Tokens here mirror DESIGN_SPEC.md exactly. Do not invent new colors or
- * spacings without updating the spec first.
+ * Tokens mirror src/design-system/tokens.ts and the live site's theme at
+ * commit 0fb3280 (blue primary, Roboto, peach/lavender gradient bands).
+ * Update tokens.ts + tokens.css + this file together — never in isolation.
  */
 const config: Config = {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        cream: '#FBF6F1',
-        paper: '#FFFDFA',
-        peach50: '#F9E7DA',
-        peach100: '#F3D4C1',
-        lilac50: '#ECEAF5',
-        lilac100: '#DAD5EA',
-        ink: '#1F1B17',
-        ink2: '#4A423B',
-        ink3: '#857A70',
-        border1: '#E8DFD5',
-        border2: '#D9CEC2',
-        clay: '#B2553A',
-        clayDark: '#8E3F28',
-        sage: '#6B7A5A',
+        base: '#FFFFFF',
+        surface: '#F9FAFB',
+        gradientFrom: '#FDF8F6',
+        gradientVia: '#F9E4DA',
+        gradientTo: '#E3E3FA',
+
+        primary: '#0D6EFD',
+        primaryHover: '#0B5ED7',
+        accent: '#39A7F1',
+
+        textPrimary: '#1F2937',
+        textSecondary: '#34495E',
+        textMuted: '#6C757D',
+
+        border1: '#E5E7EB',
+        border2: '#D1D5DB',
+
+        success: '#198754',
+        warn: '#F59F00',
       },
       fontFamily: {
-        serif: ['"Fraunces"', 'Georgia', 'serif'],
-        sans: ['"Inter"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+        sans: ['"Roboto Flex"', '"Roboto"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       borderRadius: {
-        xs: '4px',
-        sm: '8px',
-        md: '12px',
-        lg: '18px',
-        xl: '28px',
+        xs: '0.25rem',
+        sm: '0.5rem',
+        md: '0.75rem',
+        lg: '1rem',
+        xl: '1.5rem',
       },
       boxShadow: {
-        card: '0 1px 2px rgba(31,27,23,0.04), 0 8px 24px -12px rgba(31,27,23,0.10)',
-        raised: '0 2px 4px rgba(31,27,23,0.05), 0 18px 40px -18px rgba(31,27,23,0.18)',
-        focus: '0 0 0 3px rgba(178,85,58,0.28)',
+        card: '0 10px 20px rgba(0, 0, 0, 0.08)',
+        raised: '0 15px 30px rgba(0, 0, 0, 0.10)',
+        focus: '0 0 0 3px rgba(13, 110, 253, 0.25)',
       },
       maxWidth: {
         container: '1280px',
@@ -48,22 +53,20 @@ const config: Config = {
       transitionTimingFunction: {
         breathe: 'cubic-bezier(.2,.7,.2,1)',
       },
+      backgroundImage: {
+        'gradient-hero':
+          'linear-gradient(to bottom, #FDF8F6, #F9E4DA, #E3E3FA)',
+        'gradient-footer':
+          'linear-gradient(to bottom right, #FCFCFC, #F4F8FA, #F5E7E7, #B8B8DB)',
+      },
       keyframes: {
-        drift1: {
-          to: { transform: 'translate3d(6%, 4%, 0) scale(1.05)' },
-        },
-        drift2: {
-          to: { transform: 'translate3d(-4%, -3%, 0) scale(1.08)' },
-        },
         rise: {
           from: { opacity: '0', transform: 'translateY(12px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
       },
       animation: {
-        drift1: 'drift1 26s ease-in-out infinite alternate',
-        drift2: 'drift2 34s ease-in-out infinite alternate',
-        rise: 'rise 500ms cubic-bezier(.2,.7,.2,1) both',
+        rise: 'rise 400ms cubic-bezier(.2,.7,.2,1) both',
       },
     },
   },

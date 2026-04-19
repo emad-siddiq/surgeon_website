@@ -1,40 +1,39 @@
 /**
- * Authoritative copy for the doctor. Non-technical edits happen here.
- * All fields marked `TODO(content):` need verification against the real
- * practice before launch.
+ * Authoritative copy for the doctor. Sourced from the live site as it stood
+ * at commit 0fb3280; edit freely as the practice provides fresh material.
  */
 export const doctor = {
   fullName: 'Dr. Ghulam Siddiq',
   short: 'Dr. Siddiq',
-  credentials: 'Board-Certified Laparoscopic & Bariatric Surgeon',
+  role: 'Chief of Surgery, Shifa International Hospital, Islamabad',
+  credentials: 'M.B.B.S. · FRCS (Fellow, Royal College of Surgeons)',
   pronouns: 'he/him',
 
-  tagline: 'A careful hand, a quiet room.',
-  heroEyebrow: 'Board-certified · Laparoscopic & Bariatric',
-  heroHeadline: 'Careful surgery. A long, quiet recovery.',
+  heroHeadline: 'Pioneer of Laparoscopic Bariatric Surgery in Pakistan',
   heroLead:
-    'Dr. Ghulam Siddiq has spent a decade helping patients through the decision, the operation, and the year that follows. Start with an unhurried conversation.',
+    'Twenty-five years of minimally invasive surgery at Shifa International Hospital — over 1,400 successful laparoscopic cases and counting.',
 
+  tagline: 'Minimally invasive surgery. Compassionate care.',
+
+  /** Short bio used on Home + SEO description. */
   bioShort:
-    'Dr. Ghulam Siddiq is a board-certified laparoscopic and bariatric surgeon with a decade of minimally invasive practice. He operates out of Shifa Specialty Hospital and consults by appointment on weekday mornings.',
+    'Dr. Ghulam Siddiq is Chief of Surgery at Shifa International Hospital, Islamabad, specialising in laparoscopic bariatric surgery — a state-of-the-art, minimally invasive technique.',
 
-  // TODO(content): confirm with the practice.
+  /** Long bio used on About. */
   bioLong: [
-    'Dr. Siddiq\u2019s first appointments are unhurried. Most patients come in having researched for months; the questions behind the questions \u2014 what will recovery look like, who will help me, how will this affect the year ahead \u2014 take time to answer properly.',
-    'He trained in general surgery before specializing in minimally invasive abdominal procedures, and has performed more than 1,200 laparoscopic operations to date. He believes surgery is only one stage of care, not the whole of it \u2014 post-operative follow-ups are scheduled at one week, six weeks, and twelve months, and he sees patients himself at each visit.',
+    'Dr. Ghulam Siddiq is currently the Chief of Surgery at Shifa International Hospital in Islamabad, Pakistan, where he has been practicing for the last 25 years, specialising in Laparoscopic Bariatric Surgery, a state-of-the-art, minimally invasive surgical technique.',
+    'He routinely performs laparoscopic Roux-en-Y gastric bypasses, Sleeve Gastrectomies, Mini gastric bypasses (OAGB) and revision bariatric procedures. Since 2010 he has performed over 1,400 successful laparoscopic cases, establishing himself as Pakistan’s leading authority in minimally invasive bariatric procedures.',
   ],
 
   proofPoints: [
-    '1,200+ laparoscopic procedures',
-    'Shifa Specialty Hospital',
-    'Same-day discharge, typically',
+    '25 years in practice',
+    '1,400+ laparoscopic cases',
+    'Shifa International Hospital, Islamabad',
   ],
 
-  // TODO(content): confirm exact fellowships and years with the practice.
   education: [
-    { title: 'Medical Degree', detail: 'Khyber Medical College' },
-    { title: 'Residency', detail: 'Lady Reading Hospital' },
-    { title: 'Fellowship', detail: 'Royal College of Surgeons, Edinburgh' },
-    { title: 'Certification', detail: 'PMDC — General Surgery' },
+    { title: 'M.B.B.S.', detail: 'Khyber Medical College' },
+    { title: 'FRCS', detail: 'Fellow, Royal College of Surgeons' },
+    { title: 'Chief of Surgery', detail: 'Shifa International Hospital, Islamabad' },
   ],
 } as const;

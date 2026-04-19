@@ -41,7 +41,6 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [open, onClose]);
 
-  // Lock body scroll while the panel is open.
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
@@ -51,7 +50,6 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
     };
   }, [open]);
 
-  // Focus the first link when the panel opens.
   useEffect(() => {
     if (!open) return;
     const first = panelRef.current?.querySelector<HTMLElement>('a[href]');
@@ -70,7 +68,7 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
       )}
     >
       <div
-        className="absolute inset-0 bg-ink/40"
+        className="absolute inset-0 bg-textPrimary/40"
         onClick={onClose}
         role="presentation"
         aria-hidden="true"
@@ -79,40 +77,51 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
         ref={panelRef}
         id="mobile-nav"
         className={cn(
-          'absolute right-0 top-0 flex h-full w-full max-w-xs flex-col bg-paper p-8 shadow-raised transition-transform duration-200',
+          'absolute right-0 top-0 flex h-full w-full max-w-xs flex-col bg-white p-8 shadow-raised transition-transform duration-200',
           open ? 'translate-x-0' : 'translate-x-full',
         )}
       >
         <div className="flex items-center justify-between">
-          <span
-            className="font-serif text-lg font-medium"
-            style={{ fontVariationSettings: '"opsz" 36, "SOFT" 40' }}
-          >
-            Menu
-          </span>
+          <span className="text-lg font-medium text-textPrimary">Menu</span>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close navigation"
             className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border1"
           >
-            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              aria-hidden="true"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            >
               <path d="M1 1l12 12M13 1L1 13" />
             </svg>
           </button>
         </div>
         <nav aria-label="Primary" className="mt-10">
-          <ul className="flex flex-col gap-6">
+          <ul className="flex flex-col gap-5">
             {primaryNav.map((item) =>
               item.to.startsWith('/#') ? (
                 <li key={item.to}>
-                  <a href={item.to.replace('/', '')} className="font-serif text-2xl text-ink" onClick={onClose}>
+                  <a
+                    href={item.to.replace('/', '')}
+                    className="text-xl text-textPrimary hover:text-primary"
+                    onClick={onClose}
+                  >
                     {item.label}
                   </a>
                 </li>
               ) : (
                 <li key={item.to}>
-                  <Link to={item.to} className="font-serif text-2xl text-ink" onClick={onClose}>
+                  <Link
+                    to={item.to}
+                    className="text-xl text-textPrimary hover:text-primary"
+                    onClick={onClose}
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -125,7 +134,7 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
             {contact.phone.display}
           </ButtonLink>
           <ButtonRouterLink to="/#consultation" variant="primary" onClick={onClose}>
-            Book consultation
+            Book Appointment
           </ButtonRouterLink>
         </div>
       </div>

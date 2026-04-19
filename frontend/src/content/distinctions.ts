@@ -1,32 +1,22 @@
 /**
- * Credentials / distinctions. TODO(content): verify every entry with the
- * practice before launch.
+ * Distinctions — sourced verbatim from Distinctions.jsx at commit 0fb3280.
  */
 export interface Distinction {
-  year: string;
   title: string;
   body: string;
+  stat?: { value: string; label: string };
 }
+
+export const distinctionsHeading = 'A shining legacy in endoscopic surgery';
 
 export const distinctions: Distinction[] = [
   {
-    year: '2015',
-    title: 'Fellowship — Royal College of Surgeons',
-    body: 'Completed advanced training in laparoscopic and bariatric surgery.',
+    title: 'Presidential Award for Surgical Excellence',
+    body: 'Dr. Ghulam Siddiq has been honoured with the highly prestigious Presidential Award for Surgical Excellence — a testament to his exceptional skill, dedication and groundbreaking contributions to surgical practice in Pakistan. The award reflects his commitment to patient care and his ability to perform complex procedures with precision.',
   },
   {
-    year: '2018',
-    title: 'Consultant Surgeon',
-    body: 'Appointed consultant at Shifa Specialty Hospital\u2019s minimally invasive unit.',
-  },
-  {
-    year: '2021',
-    title: '1,000+ Laparoscopic Procedures',
-    body: 'Passed one thousand minimally invasive abdominal procedures with a same-day discharge rate above 90 percent.',
-  },
-  {
-    year: '2024',
-    title: 'Bariatric Center of Excellence',
-    body: 'Practice recognized for long-term follow-up and outcomes in weight-loss surgery.',
+    title: 'Internationally renowned in Endoscopic Surgery',
+    body: 'With an impressive record of 970 bariatric surgery procedures, Dr. Siddiq stands as a pioneering figure in metabolic and weight-loss surgical interventions. His extensive experience demonstrates not just technical proficiency but a commitment to transforming patient lives through advanced surgical solutions.',
+    stat: { value: '970', label: 'Bariatric procedures' },
   },
 ];

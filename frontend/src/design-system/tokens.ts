@@ -1,103 +1,107 @@
 /**
  * Design tokens — single source of truth for TypeScript code.
  *
- * Values are mirrored in:
- *   - `tailwind.config.ts` (for utility classes)
- *   - `src/design-system/tokens.css` (CSS custom properties on :root)
- *   - `DESIGN_SPEC.md` (human-readable spec, authoritative over all)
- *
- * If you add/change a token here, update those three places too.
+ * This palette matches the live site as it stood at commit 0fb3280 (the
+ * last state before the Vite migration). The brief from the doctor's team
+ * was to stay with that look rather than adopt the Claude Design cream /
+ * peach / lilac alternative. Values are mirrored in `tokens.css` and in
+ * `tailwind.config.ts`; update all three when changing a token.
  */
 
 export const color = {
-  cream: '#FBF6F1',
-  paper: '#FFFDFA',
-  peach50: '#F9E7DA',
-  peach100: '#F3D4C1',
-  lilac50: '#ECEAF5',
-  lilac100: '#DAD5EA',
-  ink: '#1F1B17',
-  ink2: '#4A423B',
-  ink3: '#857A70',
-  border1: '#E8DFD5',
-  border2: '#D9CEC2',
-  clay: '#B2553A',
-  clayDark: '#8E3F28',
-  sage: '#6B7A5A',
+  /** Page base. */
+  base: '#FFFFFF',
+  /** Soft surface; cards on white. */
+  surface: '#F9FAFB',
+  /** Peach/lavender three-stop gradient used on hero + footer bands. */
+  gradientFrom: '#FDF8F6',
+  gradientVia: '#F9E4DA',
+  gradientTo: '#E3E3FA',
+
+  /** Primary action / link color (blue). */
+  primary: '#0D6EFD',
+  primaryHover: '#0B5ED7',
+  /** Second-tier accent used for chips, ghost buttons. */
+  accent: '#39A7F1',
+
+  /** Text ramp. */
+  text: '#1F2937',
+  text2: '#34495E',
+  text3: '#6C757D',
+
+  /** Lines. */
+  border1: '#E5E7EB',
+  border2: '#D1D5DB',
+
+  /** Success + warn (used lightly in distinctions + tags). */
+  success: '#198754',
+  warn: '#F59F00',
 } as const;
 
 export type ColorToken = keyof typeof color;
 
 export const radius = {
-  xs: '4px',
-  sm: '8px',
-  md: '12px',
-  lg: '18px',
-  xl: '28px',
+  xs: '0.25rem', //  4px
+  sm: '0.5rem',  //  8px
+  md: '0.75rem', // 12px
+  lg: '1rem',    // 16px
+  xl: '1.5rem',  // 24px
   pill: '9999px',
 } as const;
 
 export const shadow = {
-  card: '0 1px 2px rgba(31,27,23,0.04), 0 8px 24px -12px rgba(31,27,23,0.10)',
-  raised: '0 2px 4px rgba(31,27,23,0.05), 0 18px 40px -18px rgba(31,27,23,0.18)',
-  focus: '0 0 0 3px rgba(178,85,58,0.28)',
+  card: '0 10px 20px rgba(0, 0, 0, 0.08)',
+  raised: '0 15px 30px rgba(0, 0, 0, 0.10)',
+  focus: '0 0 0 3px rgba(13, 110, 253, 0.25)',
 } as const;
 
 export const motion = {
   micro: '180ms',
-  reveal: '500ms',
-  ambientShort: '26s',
-  ambientLong: '34s',
+  reveal: '400ms',
   ease: 'cubic-bezier(.2,.7,.2,1)',
 } as const;
 
 export const fontFamily = {
-  serif: '"Fraunces", Georgia, serif',
-  sans: '"Inter", "Helvetica Neue", Arial, sans-serif',
+  sans: '"Roboto Flex", "Roboto", "Helvetica Neue", Arial, sans-serif',
   mono: 'ui-monospace, SFMono-Regular, Menlo, monospace',
 } as const;
 
 /**
- * Fluid type scale. Each entry is suitable for inline style or CSS-in-JS use;
- * the same values are expressed as utility classes in `tokens.css`.
+ * Type scale — matches the old Home/About sizes, recast as fluid clamp()s
+ * so breakpoints behave on mobile.
  */
 export const typeScale = {
   display: {
-    fontSize: 'clamp(44px, 6.5vw, 92px)',
-    lineHeight: 1.02,
-    letterSpacing: '-0.02em',
-    fontWeight: 420,
+    fontSize: 'clamp(2.25rem, 4.5vw, 3.5rem)', // hero, distinctions headline
+    lineHeight: 1.1,
+    letterSpacing: '-0.01em',
+    fontWeight: 400,
   },
   h1: {
-    fontSize: 'clamp(34px, 4.2vw, 58px)',
-    lineHeight: 1.06,
-    letterSpacing: '-0.018em',
-    fontWeight: 430,
+    fontSize: 'clamp(2rem, 3.2vw, 3rem)',
+    lineHeight: 1.15,
+    letterSpacing: '-0.01em',
+    fontWeight: 500,
   },
   h2: {
-    fontSize: 'clamp(26px, 2.8vw, 38px)',
-    lineHeight: 1.15,
-    letterSpacing: '-0.012em',
-    fontWeight: 450,
-  },
-  h3: {
-    fontSize: 'clamp(20px, 1.6vw, 24px)',
-    lineHeight: 1.25,
+    fontSize: 'clamp(1.5rem, 2.2vw, 2rem)',
+    lineHeight: 1.2,
     letterSpacing: '-0.005em',
     fontWeight: 500,
   },
-  bodyLg: {
-    fontSize: 'clamp(17px, 1.2vw, 19px)',
-    lineHeight: 1.55,
+  h3: {
+    fontSize: 'clamp(1.125rem, 1.4vw, 1.375rem)',
+    lineHeight: 1.3,
     letterSpacing: '0',
-    fontWeight: 380,
+    fontWeight: 500,
   },
-  body: { fontSize: '16px', lineHeight: 1.6, letterSpacing: '0', fontWeight: 400 },
-  caption: { fontSize: '13px', lineHeight: 1.45, letterSpacing: '0.01em', fontWeight: 450 },
+  bodyLg: { fontSize: '1.125rem', lineHeight: 1.6, letterSpacing: '0', fontWeight: 400 },
+  body: { fontSize: '1rem', lineHeight: 1.6, letterSpacing: '0', fontWeight: 400 },
+  caption: { fontSize: '0.875rem', lineHeight: 1.5, letterSpacing: '0', fontWeight: 400 },
   eyebrow: {
-    fontSize: '12px',
+    fontSize: '0.75rem',
     lineHeight: 1,
-    letterSpacing: '0.18em',
+    letterSpacing: '0.12em',
     fontWeight: 500,
     textTransform: 'uppercase' as const,
   },
