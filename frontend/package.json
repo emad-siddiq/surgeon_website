@@ -1,46 +1,75 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
+  "name": "dr-siddiq-frontend",
   "private": true,
-  "dependencies": {
-    "@react-three/drei": "^9.121.3",
-    "@react-three/fiber": "^8.17.12",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^18.3.1",
-    "react-before-after-slider-component": "^1.1.8",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^7.1.1",
-    "react-scripts": "5.0.1",
-    "swiper": "^11.1.15",
-    "web-vitals": "^2.1.4"
-  },
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Frontend for Dr. Ghulam Siddiq's surgical practice website.",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --port 4173",
+    "typecheck": "tsc -b --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "e2e": "playwright test",
+    "e2e:install": "playwright install --with-deps chromium",
+    "prepare": "cd .. && husky frontend/.husky || true"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "@react-three/fiber": "^8.17.12",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
+    "react-router-dom": "^7.1.1",
+    "swiper": "^11.1.15",
+    "three": "^0.161.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+  "devDependencies": {
+    "@playwright/test": "^1.47.0",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^20.14.11",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/three": "^0.161.2",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
+    "axe-core": "^4.10.0",
+    "eslint": "^9.8.0",
+    "eslint-plugin-jsx-a11y": "^6.9.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc-a26e90dec5-20240815",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "globals": "^15.9.0",
+    "husky": "^9.1.4",
+    "jsdom": "^25.0.0",
+    "lint-staged": "^15.2.8",
+    "postcss": "^8.4.40",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.5",
+    "tailwindcss": "^3.4.7",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.0",
+    "vite-plugin-sitemap": "^0.7.1",
+    "vitest": "^2.0.5"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+    "*.{json,css,md}": [
+      "prettier --write"
     ]
   },
-  "resolutions": {
-    "zustand": "3.7.2"
+  "engines": {
+    "node": ">=20"
   }
 }

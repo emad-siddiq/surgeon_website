@@ -1,0 +1,10 @@
+{
+  "name": "Dr. Ghulam Siddiq — Laparoscopic & Bariatric Surgery",
+  "short_name": "Dr. Siddiq",
+  "description": "Boutique laparoscopic and bariatric surgical practice in Karachi.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBF6F1",
+  "theme_color": "#FBF6F1",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

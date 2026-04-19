@@ -1,0 +1,201 @@
+/*
+ * Design tokens — mirrored from src/design-system/tokens.ts.
+ * These are the runtime values consumed by base styles and utility classes.
+ */
+
+:root {
+  /* ---------- Color ---------- */
+  --color-cream: #FBF6F1;
+  --color-paper: #FFFDFA;
+  --color-peach-50: #F9E7DA;
+  --color-peach-100: #F3D4C1;
+  --color-lilac-50: #ECEAF5;
+  --color-lilac-100: #DAD5EA;
+  --color-ink: #1F1B17;
+  --color-ink-2: #4A423B;
+  --color-ink-3: #857A70;
+  --color-border-1: #E8DFD5;
+  --color-border-2: #D9CEC2;
+  --color-clay: #B2553A;
+  --color-clay-dark: #8E3F28;
+  --color-sage: #6B7A5A;
+
+  /* ---------- Radii ---------- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+  --radius-pill: 9999px;
+
+  /* ---------- Shadow ---------- */
+  --shadow-card: 0 1px 2px rgba(31, 27, 23, 0.04), 0 8px 24px -12px rgba(31, 27, 23, 0.10);
+  --shadow-raised: 0 2px 4px rgba(31, 27, 23, 0.05), 0 18px 40px -18px rgba(31, 27, 23, 0.18);
+  --shadow-focus: 0 0 0 3px rgba(178, 85, 58, 0.28);
+
+  /* ---------- Motion ---------- */
+  --motion-micro: 180ms;
+  --motion-reveal: 500ms;
+  --motion-ease: cubic-bezier(.2, .7, .2, 1);
+
+  /* ---------- Typography ---------- */
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  color-scheme: light;
+}
+
+/* ---------- Display helpers ---------- */
+.font-display {
+  font-family: var(--font-serif);
+  font-variation-settings: "opsz" 96, "SOFT" 40;
+}
+.font-display-tight {
+  font-family: var(--font-serif);
+  font-variation-settings: "opsz" 144, "SOFT" 20;
+}
+.font-display-soft {
+  font-family: var(--font-serif);
+  font-variation-settings: "opsz" 72, "SOFT" 90;
+}
+
+/* ---------- Type scale ---------- */
+.t-display {
+  font-size: clamp(44px, 6.5vw, 92px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-weight: 420;
+}
+.t-h1 {
+  font-size: clamp(34px, 4.2vw, 58px);
+  line-height: 1.06;
+  letter-spacing: -0.018em;
+  font-weight: 430;
+}
+.t-h2 {
+  font-size: clamp(26px, 2.8vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  font-weight: 450;
+}
+.t-h3 {
+  font-size: clamp(20px, 1.6vw, 24px);
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  font-weight: 500;
+}
+.t-body-lg {
+  font-size: clamp(17px, 1.2vw, 19px);
+  line-height: 1.55;
+  letter-spacing: 0;
+  font-weight: 380;
+}
+.t-body {
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+.t-caption {
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  font-weight: 450;
+}
+.t-eyebrow {
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* ---------- Eyebrow-with-rule (composable) ---------- */
+.eyebrow-rule {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-ink-2);
+}
+.eyebrow-rule::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--color-ink-2);
+  opacity: 0.5;
+}
+
+/* ---------- Soft rule ---------- */
+.hr-soft {
+  height: 1px;
+  background: var(--color-border-1);
+  border: 0;
+}
+
+/* ---------- Grain overlay ---------- */
+.grain {
+  position: relative;
+}
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: radial-gradient(rgba(31, 27, 23, 0.035) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+}
+
+/* ---------- Aurora (CSS fallback; see Aurora.tsx) ---------- */
+.aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.85;
+}
+.aurora::before {
+  width: 62%;
+  height: 90%;
+  left: -10%;
+  top: -20%;
+  background: radial-gradient(closest-side, #F3D4C1 0%, #F9E7DA 40%, transparent 72%);
+  animation: drift1 26s ease-in-out infinite alternate;
+}
+.aurora::after {
+  width: 58%;
+  height: 85%;
+  right: -12%;
+  top: 10%;
+  background: radial-gradient(closest-side, #DAD5EA 0%, #ECEAF5 45%, transparent 75%);
+  animation: drift2 34s ease-in-out infinite alternate;
+}
+@keyframes drift1 {
+  to {
+    transform: translate3d(6%, 4%, 0) scale(1.05);
+  }
+}
+@keyframes drift2 {
+  to {
+    transform: translate3d(-4%, -3%, 0) scale(1.08);
+  }
+}
+
+/* ---------- Reduced-motion: stop drift, keep gradient ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .aurora::before,
+  .aurora::after {
+    animation: none;
+  }
+}
