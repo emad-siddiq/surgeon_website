@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dr. Siddiq — Style Guide</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..800,0..100;1,9..144,300..800,0..100&family=Inter:wght@300..700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream:    '#FBF6F1',
+          paper:    '#FFFDFA',
+          peach50:  '#F9E7DA',
+          peach100: '#F3D4C1',
+          lilac50:  '#ECEAF5',
+          lilac100: '#DAD5EA',
+          ink:      '#1F1B17',
+          ink2:     '#4A423B',
+          ink3:     '#857A70',
+          border1:  '#E8DFD5',
+          border2:  '#D9CEC2',
+          clay:     '#B2553A',
+          clayDark: '#8E3F28',
+          sage:     '#6B7A5A',
+        },
+        fontFamily: {
+          serif: ['Fraunces', 'Georgia', 'serif'],
+          sans:  ['Inter', 'Helvetica Neue', 'Arial', 'sans-serif'],
+          mono:  ['ui-monospace','SFMono-Regular','Menlo','monospace'],
+        },
+        boxShadow: {
+          card:   '0 1px 2px rgba(31,27,23,0.04), 0 8px 24px -12px rgba(31,27,23,0.10)',
+          raised: '0 2px 4px rgba(31,27,23,0.05), 0 18px 40px -18px rgba(31,27,23,0.18)',
+          focus:  '0 0 0 3px rgba(178,85,58,0.28)',
+        },
+        borderRadius: { xs:'4px', sm:'8px', md:'12px', lg:'18px', xl:'28px' }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root{
+    --cream:#FBF6F1; --paper:#FFFDFA;
+    --peach-50:#F9E7DA; --peach-100:#F3D4C1;
+    --lilac-50:#ECEAF5; --lilac-100:#DAD5EA;
+    --ink:#1F1B17; --ink-2:#4A423B; --ink-3:#857A70;
+    --border-1:#E8DFD5; --border-2:#D9CEC2;
+    --clay:#B2553A; --clay-dark:#8E3F28;
+    --sage:#6B7A5A;
+  }
+  html,body{ background:var(--cream); color:var(--ink); }
+  body{ font-family:'Inter', sans-serif; font-feature-settings:"ss01","cv11"; }
+  .font-display{ font-family:'Fraunces', Georgia, serif; font-variation-settings:"opsz" 96, "SOFT" 40; }
+  .font-display-tight{ font-family:'Fraunces', Georgia, serif; font-variation-settings:"opsz" 144, "SOFT" 20; }
+  .font-display-soft{ font-family:'Fraunces', Georgia, serif; font-variation-settings:"opsz" 72, "SOFT" 90; }
+
+  /* Fluid type scale */
+  .t-display  { font-size: clamp(44px, 6.5vw, 92px);  line-height: 1.02; letter-spacing:-0.02em; font-weight:420; }
+  .t-h1       { font-size: clamp(34px, 4.2vw, 58px);  line-height: 1.06; letter-spacing:-0.018em; font-weight:430; }
+  .t-h2       { font-size: clamp(26px, 2.8vw, 38px);  line-height: 1.15; letter-spacing:-0.012em; font-weight:450; }
+  .t-h3       { font-size: clamp(20px, 1.6vw, 24px);  line-height: 1.25; letter-spacing:-0.005em; font-weight:500; }
+  .t-body-lg  { font-size: clamp(17px, 1.2vw, 19px);  line-height: 1.55; letter-spacing: 0;       font-weight:380; }
+  .t-body     { font-size: 16px; line-height: 1.6; letter-spacing: 0; font-weight:400; }
+  .t-caption  { font-size: 13px; line-height: 1.45; letter-spacing: 0.01em; font-weight:450; }
+  .t-eyebrow  { font-size: 12px; line-height: 1; letter-spacing: 0.18em; font-weight:500; text-transform: uppercase; }
+
+  /* 3D background stand-in — a slow aurora of cream/peach/lilac */
+  .aurora{
+    position:absolute; inset:0; overflow:hidden; z-index:0; pointer-events:none;
+  }
+  .aurora::before, .aurora::after{
+    content:""; position:absolute; border-radius:50%;
+    filter: blur(60px); opacity:.85;
+  }
+  .aurora::before{
+    width:62%; height:90%; left:-10%; top:-20%;
+    background: radial-gradient(closest-side, #F3D4C1 0%, #F9E7DA 40%, transparent 72%);
+    animation: drift1 26s ease-in-out infinite alternate;
+  }
+  .aurora::after{
+    width:58%; height:85%; right:-12%; top:10%;
+    background: radial-gradient(closest-side, #DAD5EA 0%, #ECEAF5 45%, transparent 75%);
+    animation: drift2 34s ease-in-out infinite alternate;
+  }
+  @keyframes drift1 { to { transform: translate3d(6%, 4%, 0) scale(1.05); } }
+  @keyframes drift2 { to { transform: translate3d(-4%, -3%, 0) scale(1.08); } }
+  @media (prefers-reduced-motion: reduce){
+    .aurora::before, .aurora::after { animation: none; }
+  }
+
+  /* Buttons — design-system spec */
+  .btn{
+    display:inline-flex; align-items:center; gap:.6rem;
+    padding: 14px 22px; border-radius:999px;
+    font-family:'Inter',sans-serif; font-weight:500; font-size:15px; letter-spacing:.005em;
+    transition: transform .18s ease, background .18s ease, box-shadow .18s ease, color .18s ease, border-color .18s ease;
+    cursor:pointer; border:1px solid transparent; line-height:1;
+  }
+  .btn:focus-visible{ outline:none; box-shadow: 0 0 0 3px rgba(178,85,58,.28); }
+  .btn-primary{ background:var(--clay); color:#FFFDFA; }
+  .btn-primary:hover{ background:var(--clay-dark); transform: translateY(-1px); }
+  .btn-primary:active{ transform: translateY(0); }
+  .btn-primary[disabled]{ background:#D9CEC2; color:#FFFDFA; cursor:not-allowed; transform:none; }
+  .btn-secondary{ background:transparent; color:var(--ink); border-color:var(--border-2); }
+  .btn-secondary:hover{ background:var(--paper); border-color:var(--ink2); }
+  .btn-ghost{ background:transparent; color:var(--ink); padding: 10px 14px; }
+  .btn-ghost:hover{ color:var(--clay-dark); }
+
+  /* Input */
+  .field{
+    width:100%; background:var(--paper); border:1px solid var(--border-1);
+    border-radius:12px; padding:14px 16px; color:var(--ink);
+    font-family:'Inter',sans-serif; font-size:15px; line-height:1.3;
+    transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .field::placeholder{ color:var(--ink-3); }
+  .field:hover{ border-color:var(--border-2); }
+  .field:focus{ outline:none; border-color:var(--clay); box-shadow: 0 0 0 3px rgba(178,85,58,.20); }
+  .field[aria-invalid="true"]{ border-color:#8E3F28; }
+
+  /* Eyebrow with rule */
+  .eyebrow-rule{ display:inline-flex; align-items:center; gap:12px; color:var(--ink-2); }
+  .eyebrow-rule::before{ content:""; width:28px; height:1px; background:var(--ink-2); opacity:.5; }
+
+  /* Card */
+  .card{
+    background:var(--paper); border:1px solid var(--border-1); border-radius:18px;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card:hover{ transform: translateY(-2px); box-shadow: 0 2px 4px rgba(31,27,23,.05), 0 18px 40px -18px rgba(31,27,23,.18); border-color:var(--border-2); }
+
+  /* Tag */
+  .tag{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:5px 10px; border-radius:999px;
+    font-size:12px; font-weight:500; letter-spacing:.02em;
+    background:var(--peach-50); color:var(--clay-dark);
+    border:1px solid rgba(178,85,58,.12);
+  }
+  .tag.sage{ background:#E7ECDF; color:#485640; border-color: rgba(107,122,90,.18); }
+  .tag.lilac{ background:var(--lilac-50); color:#4B4566; border-color: rgba(75,69,102,.12); }
+
+  /* Icon button */
+  .iconbtn{
+    width:40px; height:40px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
+    background:var(--paper); border:1px solid var(--border-1); color:var(--ink);
+    transition: all .18s ease;
+  }
+  .iconbtn:hover{ background:var(--peach-50); border-color:var(--border-2); }
+  .iconbtn:focus-visible{ outline:none; box-shadow:0 0 0 3px rgba(178,85,58,.28); }
+
+  /* Rule between sections inside swatch card */
+  .hr-soft{ height:1px; background:var(--border-1); border:0; }
+
+  /* Nav link underline hover */
+  .navlink{ position:relative; color:var(--ink2); font-size:14px; font-weight:450; padding:6px 2px; transition: color .2s ease; }
+  .navlink:hover{ color:var(--ink); }
+  .navlink::after{
+    content:""; position:absolute; left:0; right:0; bottom:0;
+    height:1px; background:var(--ink); transform: scaleX(0); transform-origin: left;
+    transition: transform .28s cubic-bezier(.2,.7,.2,1);
+  }
+  .navlink:hover::after{ transform: scaleX(1); }
+
+  /* Swatch */
+  .swatch{ aspect-ratio: 1 / 1; border-radius:14px; border:1px solid var(--border-1); }
+
+  /* Before/After slider (demo) */
+  .ba{ position:relative; overflow:hidden; border-radius:18px; }
+  .ba img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .ba .after{ position:absolute; inset:0; clip-path: inset(0 0 0 50%); }
+  .ba .handle{ position:absolute; top:0; bottom:0; left:50%; width:2px; background:#FFFDFA; box-shadow: 0 0 0 1px rgba(31,27,23,.15); }
+  .ba .knob{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:36px; height:36px; border-radius:999px; background:#FFFDFA; color:var(--ink);
+    display:flex; align-items:center; justify-content:center; box-shadow: 0 2px 10px rgba(0,0,0,.18);
+    font-size:12px; font-weight:600;
+  }
+
+  /* Placeholder image: subtle stripes + mono caption */
+  .ph{
+    background:
+      repeating-linear-gradient(135deg, rgba(31,27,23,.05) 0 1px, transparent 1px 10px),
+      linear-gradient(180deg, #F3D4C1, #F9E7DA);
+    color: var(--ink-2);
+    display:flex; align-items:center; justify-content:center;
+    font-family: ui-monospace, monospace; font-size:12px; letter-spacing:.06em;
+    border-radius:18px; border:1px solid var(--border-1);
+  }
+  .ph.cool{ background:
+      repeating-linear-gradient(135deg, rgba(31,27,23,.04) 0 1px, transparent 1px 10px),
+      linear-gradient(180deg, #DAD5EA, #ECEAF5);
+  }
+
+  /* subtle grain */
+  .grain::before{
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
+    background-image: radial-gradient(rgba(31,27,23,.035) 1px, transparent 1px);
+    background-size: 3px 3px; mix-blend-mode: multiply; opacity:.6;
+  }
+
+  /* Contrast chip */
+  .chip{ display:inline-flex; align-items:center; gap:6px; padding:3px 8px; border-radius:999px; font-size:11px; font-weight:500; letter-spacing:.04em; }
+  .chip.pass{ background:#E7ECDF; color:#3C4A33; }
+  .chip.warn{ background:#F7E6C8; color:#6E4E12; }
+  .chip.fail{ background:#F3D4C1; color:#8E3F28; }
+
+  /* section anchors */
+  section{ scroll-margin-top: 80px; }
+</style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- ============ TOP NAV (as a mock of the real HoverNavBar treatment) ============ -->
+<header class="sticky top-0 z-30 backdrop-blur bg-cream/80 border-b border-border1">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2">
+      <span class="inline-block w-6 h-6 rounded-full" style="background: radial-gradient(circle at 35% 35%, #F3D4C1, #B2553A 75%);"></span>
+      <span class="font-display text-[17px] tracking-tight text-ink" style="font-variation-settings:'opsz' 36,'SOFT' 40; font-weight:500;">Ghulam&nbsp;Siddiq<span class="text-ink3">,&nbsp;MD</span></span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8">
+      <a class="navlink" href="#type">Style Guide</a>
+      <a class="navlink" href="#components">Components</a>
+      <a class="navlink" href="#hero">Sections</a>
+      <a class="navlink" href="#consult">Consultation</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a class="btn btn-ghost hidden sm:inline-flex" href="#consult">+92 21 3555 0199</a>
+      <a class="btn btn-primary" href="#consult">Book consultation</a>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-[1280px] mx-auto px-6 md:px-10 pb-32">
+
+  <!-- ============ COVER ============ -->
+  <section class="relative pt-16 pb-10">
+    <div class="relative">
+      <p class="eyebrow-rule t-eyebrow">Design system · v1.0 · April 2026</p>
+      <h1 class="font-display-tight t-display mt-6 max-w-[16ch]">A quiet, warm system for a careful practice.</h1>
+      <p class="t-body-lg text-ink2 mt-6 max-w-[58ch]">
+        The visual north star for <span class="text-ink">Dr. Ghulam Siddiq</span> &mdash; a boutique bariatric
+        and laparoscopic surgery practice. Cream paper, soft peach plaster, a single clay accent for action.
+        Serif for voice, sans for work, motion that breathes rather than performs.
+      </p>
+      <div class="flex items-center gap-3 mt-8">
+        <span class="tag">warm · calm · authoritative</span>
+        <span class="tag sage">WCAG AA verified</span>
+        <span class="tag lilac">Fraunces × Inter</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COLOR ============ -->
+  <section id="color" class="pt-20">
+    <div class="flex items-end justify-between gap-8 flex-wrap">
+      <div>
+        <p class="t-eyebrow text-ink3">01 &nbsp;·&nbsp; Color</p>
+        <h2 class="font-display t-h1 mt-3 max-w-[22ch]">Cream paper, peach plaster, clay for the quiet action.</h2>
+      </div>
+      <p class="t-body text-ink2 max-w-[42ch]">Every token here earns its place. Clay &mdash; a single restrained accent &mdash; carries all primary calls-to-action so it keeps its meaning. Lilac is a cool counter-surface for contrast, never a second CTA.</p>
+    </div>
+
+    <!-- Surfaces -->
+    <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-5">
+      <!-- swatch card -->
+      <div class="card p-5">
+        <div class="swatch" style="background:#FBF6F1"></div>
+        <div class="mt-4 flex items-center justify-between">
+          <span class="font-display text-[15px]" style="font-weight:500">cream</span>
+          <span class="font-mono text-[12px] text-ink3">#FBF6F1</span>
+        </div>
+        <p class="t-caption text-ink3 mt-1">Page base. Warm, low-saturation white.</p>
+      </div>
+      <div class="card p-5">
+        <div class="swatch" style="background:#FFFDFA; border-color:#E8DFD5"></div>
+        <div class="mt-4 flex items-center justify-between">
+          <span class="font-display text-[15px]" style="font-weight:500">paper</span>
+          <span class="font-mono text-[12px] text-ink3">#FFFDFA</span>
+        </div>
+        <p class="t-caption text-ink3 mt-1">Cards, inputs, lifted surfaces.</p>
+      </div>
+      <div class="card p-5">
+        <div class="swatch" style="background:#F9E7DA"></div>
+        <div class="mt-4 flex items-center justify-between">
+          <span class="font-display text-[15px]" style="font-weight:500">peach&#8209;50</span>
+          <span class="font-mono text-[12px] text-ink3">#F9E7DA</span>
+        </div>
+        <p class="t-caption text-ink3 mt-1">Warm secondary surface. Section bands.</p>
+      </div>
+      <div class="card p-5">
+        <div class="swatch" style="background:#F3D4C1"></div>
+        <div class="mt-4 flex items-center justify-between">
+          <span class="font-display text-[15px]" style="font-weight:500">peach&#8209;100</span>
+          <span class="font-mono text-[12px] text-ink3">#F3D4C1</span>
+        </div>
+        <p class="t-caption text-ink3 mt-1">Tag fills, image mat, highlight stroke.</p>
+      </div>
+      <div class="card p-5">
+        <div class="swatch" style="background:#ECEAF5"></div>
+        <div class="mt-4 flex items-center justify-between">
+          <span class="font-display text-[15px]" style="font-weight:500">lilac&#8209;50</span>
+          <span class="font-mono text-[12px] text-ink3">#ECEAF5</span>
+        </div>
+        <p class="t-caption text-ink3 mt-1">Cool counter-surface. Quotes, info blocks.</p>
+      </div>
+      <div class="card p-5">
+        <div class="swatch" style="background:#DAD5EA"></div>
+        <div class="mt-4 flex items-center justify-between">
+          <span class="font-display text-[15px]" style="font-weight:500">lilac&#8209;100</span>
+          <span class="font-mono text-[12px] text-ink3">#DAD5EA</span>
+        </div>
+        <p class="t-caption text-ink3 mt-1">Distinction chip, contrast band.</p>
+      </div>
+      <div class="card p-5">
+        <div class="swatch" style="background:#E8DFD5"></div>
+        <div class="mt-4 flex items-center justify-between">
+          <span class="font-display text-[15px]" style="font-weight:500">border&#8209;1</span>
+          <span class="font-mono text-[12px] text-ink3">#E8DFD5</span>
+        </div>
+        <p class="t-caption text-ink3 mt-1">Hairlines, card edges, input rest.</p>
+      </div>
+      <div class="card p-5">
+        <div class="swatch" style="background:#D9CEC2"></div>
+        <div class="mt-4 flex items-center justify-between">
+          <span class="font-display text-[15px]" style="font-weight:500">border&#8209;2</span>
+          <span class="font-mono text-[12px] text-ink3">#D9CEC2</span>
+        </div>
+        <p class="t-caption text-ink3 mt-1">Hover edges, secondary button rest.</p>
+      </div>
+    </div>
+
+    <!-- Ink + accents -->
+    <div class="mt-6 grid grid-cols-2 md:grid-cols-5 gap-5">
+      <div class="card p-5">
+        <div class="swatch" style="background:#1F1B17"></div>
+        <div class="mt-4 flex items-center justify-between"><span class="font-display text-[15px]" style="font-weight:500">ink</span><span class="font-mono text-[12px] text-ink3">#1F1B17</span></div>
+        <p class="t-caption text-ink3 mt-1">Headlines &amp; body. Warm near-black.</p>
+      </div>
+      <div class="card p-5">
+        <div class="swatch" style="background:#4A423B"></div>
+        <div class="mt-4 flex items-center justify-between"><span class="font-display text-[15px]" style="font-weight:500">ink&#8209;2</span><span class="font-mono text-[12px] text-ink3">#4A423B</span></div>
+        <p class="t-caption text-ink3 mt-1">Secondary prose, nav at rest.</p>
+      </div>
+      <div class="card p-5">
+        <div class="swatch" style="background:#857A70"></div>
+        <div class="mt-4 flex items-center justify-between"><span class="font-display text-[15px]" style="font-weight:500">ink&#8209;3</span><span class="font-mono text-[12px] text-ink3">#857A70</span></div>
+        <p class="t-caption text-ink3 mt-1">Captions, metadata, placeholder.</p>
+      </div>
+      <div class="card p-5">
+        <div class="swatch" style="background:#B2553A"></div>
+        <div class="mt-4 flex items-center justify-between"><span class="font-display text-[15px]" style="font-weight:500">clay</span><span class="font-mono text-[12px] text-ink3">#B2553A</span></div>
+        <p class="t-caption text-ink3 mt-1">Primary accent. CTAs, link hover, focus.</p>
+      </div>
+      <div class="card p-5">
+        <div class="swatch" style="background:#6B7A5A"></div>
+        <div class="mt-4 flex items-center justify-between"><span class="font-display text-[15px]" style="font-weight:500">sage</span><span class="font-mono text-[12px] text-ink3">#6B7A5A</span></div>
+        <p class="t-caption text-ink3 mt-1">Support accent. Success, tags, quiet notes.</p>
+      </div>
+    </div>
+
+    <!-- Contrast matrix -->
+    <div class="mt-10 card p-6 md:p-8">
+      <div class="flex items-end justify-between gap-6 flex-wrap">
+        <h3 class="font-display t-h3">Contrast — WCAG AA verified pairings</h3>
+        <p class="t-caption text-ink3">Body text ≥ 4.5:1 · Large text (18px/14px bold) ≥ 3:1</p>
+      </div>
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- pair -->
+        <div class="flex items-center justify-between gap-4 p-4 rounded-md" style="background:#FBF6F1;">
+          <div><div class="text-ink" style="font-weight:500;">ink on cream</div><div class="text-ink3 t-caption">#1F1B17 · #FBF6F1</div></div>
+          <span class="chip pass">14.9 : 1 · AAA</span>
+        </div>
+        <div class="flex items-center justify-between gap-4 p-4 rounded-md" style="background:#FFFDFA;">
+          <div><div class="text-ink" style="font-weight:500;">ink on paper</div><div class="text-ink3 t-caption">#1F1B17 · #FFFDFA</div></div>
+          <span class="chip pass">15.6 : 1 · AAA</span>
+        </div>
+        <div class="flex items-center justify-between gap-4 p-4 rounded-md" style="background:#F9E7DA;">
+          <div><div class="text-ink" style="font-weight:500;">ink on peach-50</div><div class="text-ink3 t-caption">#1F1B17 · #F9E7DA</div></div>
+          <span class="chip pass">12.8 : 1 · AAA</span>
+        </div>
+        <div class="flex items-center justify-between gap-4 p-4 rounded-md" style="background:#ECEAF5;">
+          <div><div class="text-ink" style="font-weight:500;">ink on lilac-50</div><div class="text-ink3 t-caption">#1F1B17 · #ECEAF5</div></div>
+          <span class="chip pass">13.9 : 1 · AAA</span>
+        </div>
+        <div class="flex items-center justify-between gap-4 p-4 rounded-md" style="background:#FBF6F1;">
+          <div><div style="color:#4A423B; font-weight:500;">ink-2 on cream</div><div class="text-ink3 t-caption">#4A423B · #FBF6F1</div></div>
+          <span class="chip pass">8.6 : 1 · AAA</span>
+        </div>
+        <div class="flex items-center justify-between gap-4 p-4 rounded-md" style="background:#FBF6F1;">
+          <div><div style="color:#857A70; font-weight:500;">ink-3 on cream (captions only)</div><div class="text-ink3 t-caption">#857A70 · #FBF6F1 — large / caption use</div></div>
+          <span class="chip warn">3.5 : 1 · AA Large</span>
+        </div>
+        <div class="flex items-center justify-between gap-4 p-4 rounded-md" style="background:#B2553A;">
+          <div><div style="color:#FFFDFA; font-weight:500;">paper on clay (button text)</div><div style="color:#F9E7DA;" class="t-caption">#FFFDFA · #B2553A</div></div>
+          <span class="chip pass">4.7 : 1 · AA</span>
+        </div>
+        <div class="flex items-center justify-between gap-4 p-4 rounded-md" style="background:#FBF6F1;">
+          <div><div style="color:#8E3F28; font-weight:500;">clay-dark on cream (link)</div><div class="text-ink3 t-caption">#8E3F28 · #FBF6F1</div></div>
+          <span class="chip pass">6.3 : 1 · AAA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TYPE ============ -->
+  <section id="type" class="pt-24">
+    <div class="flex items-end justify-between gap-8 flex-wrap">
+      <div>
+        <p class="t-eyebrow text-ink3">02 &nbsp;·&nbsp; Typography</p>
+        <h2 class="font-display t-h1 mt-3 max-w-[22ch]">Fraunces carries voice. Inter carries work.</h2>
+      </div>
+      <p class="t-body text-ink2 max-w-[44ch]">A warm, literary serif (Fraunces, variable <span class="font-mono text-[12.5px]">opsz</span> &amp; <span class="font-mono text-[12.5px]">SOFT</span> axes) for headlines and section labels; a neutral variable sans (Inter) for everything else. Fluid sizing via <span class="font-mono text-[12.5px]">clamp()</span>.</p>
+    </div>
+
+    <div class="card mt-10 p-8 md:p-12 divide-y divide-border1">
+      <!-- display -->
+      <div class="pb-10">
+        <div class="flex items-center gap-3 text-ink3">
+          <span class="t-eyebrow">display</span>
+          <span class="font-mono text-[12px]">Fraunces · opsz 144 · SOFT 20 · weight 420 · clamp(44,6.5vw,92)px · lh 1.02 · ls -0.02em</span>
+        </div>
+        <p class="font-display-tight t-display mt-4 max-w-[18ch]">A careful hand, a quiet room.</p>
+      </div>
+      <!-- h1 -->
+      <div class="py-8">
+        <div class="flex items-center gap-3 text-ink3"><span class="t-eyebrow">h1</span><span class="font-mono text-[12px]">Fraunces · opsz 96 · SOFT 40 · 430 · clamp(34,4.2vw,58)px · lh 1.06</span></div>
+        <p class="font-display t-h1 mt-4 max-w-[26ch]">Minimally invasive surgery for the long arc of a life.</p>
+      </div>
+      <!-- h2 -->
+      <div class="py-8">
+        <div class="flex items-center gap-3 text-ink3"><span class="t-eyebrow">h2</span><span class="font-mono text-[12px]">Fraunces · opsz 96 · SOFT 40 · 450 · clamp(26,2.8vw,38)px · lh 1.15</span></div>
+        <p class="font-display t-h2 mt-3 max-w-[32ch]">The procedures we perform, explained without jargon.</p>
+      </div>
+      <!-- h3 -->
+      <div class="py-8">
+        <div class="flex items-center gap-3 text-ink3"><span class="t-eyebrow">h3</span><span class="font-mono text-[12px]">Fraunces · opsz 72 · SOFT 90 · 500 · clamp(20,1.6vw,24)px · lh 1.25</span></div>
+        <p class="font-display-soft t-h3 mt-3">Laparoscopic sleeve gastrectomy</p>
+      </div>
+      <!-- body lg -->
+      <div class="py-8">
+        <div class="flex items-center gap-3 text-ink3"><span class="t-eyebrow">body-lg</span><span class="font-mono text-[12px]">Inter · 380 · clamp(17,1.2vw,19)px · lh 1.55</span></div>
+        <p class="t-body-lg mt-3 text-ink2 max-w-[62ch]">Most patients who visit us have been researching for months. Our first appointment is unhurried: we explain the options, talk through risk honestly, and answer the question behind the question &mdash; what would recovery look like for <em>your</em> life?</p>
+      </div>
+      <!-- body -->
+      <div class="py-8">
+        <div class="flex items-center gap-3 text-ink3"><span class="t-eyebrow">body</span><span class="font-mono text-[12px]">Inter · 400 · 16px · lh 1.6</span></div>
+        <p class="t-body mt-3 text-ink max-w-[64ch]">Dr. Siddiq is a board-certified laparoscopic and bariatric surgeon with a decade of minimally invasive practice. He operates out of Shifa Specialty Hospital and consults by appointment on weekday mornings.</p>
+      </div>
+      <!-- caption -->
+      <div class="py-8">
+        <div class="flex items-center gap-3 text-ink3"><span class="t-eyebrow">caption</span><span class="font-mono text-[12px]">Inter · 450 · 13px · lh 1.45 · ls 0.01em</span></div>
+        <p class="t-caption mt-3 text-ink3">Post-operative check-ins are scheduled at one week, six weeks, and twelve months. Most patients return home the same day.</p>
+      </div>
+      <!-- eyebrow -->
+      <div class="pt-8">
+        <div class="flex items-center gap-3 text-ink3"><span class="t-eyebrow">eyebrow</span><span class="font-mono text-[12px]">Inter · 500 · 12px · ls 0.18em · uppercase</span></div>
+        <p class="t-eyebrow text-ink2 mt-3">Consultation · By appointment</p>
+      </div>
+    </div>
+
+    <p class="t-caption text-ink3 mt-6">Serif/sans contrast rationale: Fraunces’ warm opsz and SOFT axes give headlines a hand-set editorial feeling while Inter’s neutral rhythm keeps dense body copy effortless &mdash; they share a similar x-height, so weight transitions feel honest, not theatrical.</p>
+  </section>
+
+  <!-- ============ COMPONENTS ============ -->
+  <section id="components" class="pt-24">
+    <div class="flex items-end justify-between gap-8 flex-wrap">
+      <div>
+        <p class="t-eyebrow text-ink3">03 &nbsp;·&nbsp; Components</p>
+        <h2 class="font-display t-h1 mt-3 max-w-[22ch]">Primitives in every state.</h2>
+      </div>
+      <p class="t-body text-ink2 max-w-[44ch]">Seven primitives compose the whole product: <em>Button</em>, <em>Section</em>, <em>Eyebrow</em>, <em>Card</em>, <em>Tag</em>, <em>IconButton</em>, <em>Input</em>. Radii, padding, shadow and motion are tokenized &mdash; never one-off.</p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="card mt-10 p-8">
+      <div class="flex items-baseline justify-between">
+        <h3 class="font-display t-h3">Button</h3>
+        <span class="font-mono text-[12px] text-ink3">pill · 14/22 · radius 999 · transition 180ms ease</span>
+      </div>
+      <hr class="hr-soft my-6" />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- primary -->
+        <div>
+          <p class="t-eyebrow text-ink3 mb-3">Primary</p>
+          <div class="flex flex-col items-start gap-3">
+            <button class="btn btn-primary">Book consultation</button>
+            <button class="btn btn-primary" style="background:#8E3F28; transform:translateY(-1px)">Book consultation <span class="text-[11px] opacity-70">hover</span></button>
+            <button class="btn btn-primary" style="box-shadow:0 0 0 3px rgba(178,85,58,.28)">Book consultation <span class="text-[11px] opacity-70">focus</span></button>
+            <button class="btn btn-primary" disabled>Unavailable</button>
+          </div>
+        </div>
+        <!-- secondary -->
+        <div>
+          <p class="t-eyebrow text-ink3 mb-3">Secondary</p>
+          <div class="flex flex-col items-start gap-3">
+            <button class="btn btn-secondary">Read the bio</button>
+            <button class="btn btn-secondary" style="background:#FFFDFA; border-color:#4A423B">Read the bio <span class="text-[11px] text-ink3">hover</span></button>
+            <button class="btn btn-secondary" style="box-shadow:0 0 0 3px rgba(178,85,58,.28)">Read the bio <span class="text-[11px] text-ink3">focus</span></button>
+          </div>
+        </div>
+        <!-- ghost -->
+        <div>
+          <p class="t-eyebrow text-ink3 mb-3">Ghost / Inline link</p>
+          <div class="flex flex-col items-start gap-3">
+            <button class="btn btn-ghost">See all procedures &rarr;</button>
+            <button class="btn btn-ghost" style="color:#8E3F28">See all procedures &rarr; <span class="text-[11px] text-ink3">hover</span></button>
+            <a class="text-[15px] underline decoration-border2 underline-offset-4 hover:decoration-clay text-ink" href="#">Inline link treatment</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards + Tags + IconButton -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-5 mt-5">
+      <!-- Card -->
+      <div class="card p-8 md:col-span-7">
+        <div class="flex items-baseline justify-between">
+          <h3 class="font-display t-h3">Card</h3>
+          <span class="font-mono text-[12px] text-ink3">paper · border-1 · r-18 · shadow-card on hover</span>
+        </div>
+        <hr class="hr-soft my-6" />
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <article class="card p-6">
+            <span class="tag">Procedure</span>
+            <h4 class="font-display text-[22px] mt-4" style="font-weight:500; line-height:1.2">Gastric sleeve</h4>
+            <p class="t-body text-ink2 mt-2">A one-hour laparoscopic procedure with same-day discharge for most patients.</p>
+            <a class="btn btn-ghost mt-3 -ml-3" href="#">Details &rarr;</a>
+          </article>
+          <article class="card p-6" style="background:#F9E7DA; border-color:rgba(178,85,58,.12)">
+            <span class="tag sage">Featured</span>
+            <h4 class="font-display text-[22px] mt-4" style="font-weight:500; line-height:1.2">Gastric bypass</h4>
+            <p class="t-body text-ink2 mt-2">A longer-term solution for patients with significant comorbidities.</p>
+            <a class="btn btn-ghost mt-3 -ml-3" href="#">Details &rarr;</a>
+          </article>
+        </div>
+      </div>
+
+      <!-- Tag + IconButton + Eyebrow -->
+      <div class="md:col-span-5 grid grid-cols-1 gap-5">
+        <div class="card p-8">
+          <div class="flex items-baseline justify-between">
+            <h3 class="font-display t-h3">Tag</h3>
+            <span class="font-mono text-[12px] text-ink3">pill · 12px · 3 tones</span>
+          </div>
+          <hr class="hr-soft my-6" />
+          <div class="flex flex-wrap gap-2">
+            <span class="tag">Procedure</span>
+            <span class="tag sage">Success</span>
+            <span class="tag lilac">Credential</span>
+            <span class="tag">Board-certified</span>
+            <span class="tag sage">Same-day</span>
+          </div>
+        </div>
+        <div class="card p-8">
+          <div class="flex items-baseline justify-between">
+            <h3 class="font-display t-h3">IconButton &amp; Eyebrow</h3>
+            <span class="font-mono text-[12px] text-ink3">40px · r-999</span>
+          </div>
+          <hr class="hr-soft my-6" />
+          <div class="flex items-center gap-3">
+            <button class="iconbtn" aria-label="Previous">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="iconbtn" aria-label="Next">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+            <button class="iconbtn" aria-label="Play" style="background:#B2553A; color:#FFFDFA; border-color:transparent">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          </div>
+          <hr class="hr-soft my-6" />
+          <p class="eyebrow-rule t-eyebrow">Distinctions · 01</p>
+          <p class="eyebrow-rule t-eyebrow mt-3">Consultation · By appointment</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inputs -->
+    <div class="card p-8 mt-5">
+      <div class="flex items-baseline justify-between">
+        <h3 class="font-display t-h3">Input</h3>
+        <span class="font-mono text-[12px] text-ink3">paper · border-1 · r-12 · focus ring clay/28</span>
+      </div>
+      <hr class="hr-soft my-6" />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <label class="block">
+          <span class="t-caption text-ink2">Full name</span>
+          <input class="field mt-2" placeholder="e.g. Ayesha Khan" />
+        </label>
+        <label class="block">
+          <span class="t-caption text-ink2">Phone</span>
+          <input class="field mt-2" value="+92 300 4567 890" />
+        </label>
+        <label class="block">
+          <span class="t-caption text-ink2">Reason for consultation</span>
+          <select class="field mt-2" style="appearance:none; background-image: url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%23857A70' fill='none' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>&quot;); background-repeat:no-repeat; background-position: right 14px center;">
+            <option>Gastric sleeve</option>
+            <option>Gastric bypass</option>
+            <option>General laparoscopic</option>
+          </select>
+        </label>
+        <label class="block">
+          <span class="t-caption text-ink2">Focus state</span>
+          <input class="field mt-2" value="Focused input" style="border-color:#B2553A; box-shadow:0 0 0 3px rgba(178,85,58,.20)" />
+        </label>
+        <label class="block">
+          <span class="t-caption" style="color:#8E3F28">Invalid state</span>
+          <input class="field mt-2" aria-invalid="true" value="ayesha@incomplete" />
+          <span class="t-caption mt-2 block" style="color:#8E3F28">Please enter a full email address.</span>
+        </label>
+        <label class="block">
+          <span class="t-caption text-ink2">Disabled</span>
+          <input class="field mt-2" value="Awaiting selection" disabled style="opacity:.6; background:#F5EEE6" />
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HERO (MOCK) ============ -->
+  <section id="hero" class="pt-24">
+    <p class="t-eyebrow text-ink3">04 &nbsp;·&nbsp; Section art direction</p>
+    <h2 class="font-display t-h1 mt-3 max-w-[22ch]">Hero, as it should land.</h2>
+
+    <div class="relative mt-10 rounded-[28px] overflow-hidden border border-border1 bg-cream grain">
+      <div class="aurora"></div>
+      <div class="relative z-[2] px-8 md:px-14 py-16 md:py-24 grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+        <div class="md:col-span-7">
+          <p class="eyebrow-rule t-eyebrow">Board-certified · Laparoscopic &amp; Bariatric</p>
+          <h1 class="font-display-tight t-display mt-6 max-w-[14ch]">Careful surgery. A long, quiet recovery.</h1>
+          <p class="t-body-lg text-ink2 mt-6 max-w-[48ch]">Dr. Ghulam Siddiq has spent a decade helping patients through the decision, the operation, and the year that follows. Start with an unhurried conversation.</p>
+          <div class="flex items-center gap-3 mt-8">
+            <a class="btn btn-primary" href="#consult">Book a consultation</a>
+            <a class="btn btn-secondary" href="#">Watch the 2&#8209;min intro</a>
+          </div>
+          <div class="flex items-center gap-6 mt-10 text-ink3 t-caption">
+            <span>1,200+ laparoscopic procedures</span>
+            <span class="w-1 h-1 rounded-full bg-border2"></span>
+            <span>Shifa Specialty Hospital</span>
+            <span class="w-1 h-1 rounded-full bg-border2 hidden md:inline-block"></span>
+            <span class="hidden md:inline">Same-day discharge, typically</span>
+          </div>
+        </div>
+        <div class="md:col-span-5">
+          <div class="relative">
+            <div class="ph aspect-[4/5]">portrait · natural light · half-profile</div>
+            <div class="absolute -bottom-5 -left-5 card p-4 w-[240px] hidden md:block">
+              <p class="eyebrow-rule t-eyebrow">Today</p>
+              <p class="font-display text-[18px] mt-2" style="font-weight:500; line-height:1.2">Three consultation slots open</p>
+              <p class="t-caption text-ink3 mt-1">Tue · Wed · Fri mornings</p>
+              <a class="btn btn-ghost mt-2 -ml-3" href="#">Reserve &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="t-caption text-ink3 mt-4">The one premium thing: <em>the aurora</em> — a slow, almost-still gradient field behind the headline. It breathes but never performs. Reduced-motion users see it static.</p>
+  </section>
+
+  <!-- ============ SERVICES CARD MOCK ============ -->
+  <section class="pt-16">
+    <div class="flex items-end justify-between gap-8 flex-wrap">
+      <div>
+        <p class="eyebrow-rule t-eyebrow">Service offerings</p>
+        <h2 class="font-display t-h1 mt-4 max-w-[22ch]">What we do, plainly.</h2>
+      </div>
+      <a class="btn btn-ghost" href="#">All procedures &rarr;</a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
+      <article class="card p-7">
+        <div class="ph aspect-[5/4] mb-6">procedure still · warm / close crop</div>
+        <span class="tag">Bariatric</span>
+        <h3 class="font-display text-[26px] mt-4" style="font-weight:500; line-height:1.15">Gastric sleeve</h3>
+        <p class="t-body text-ink2 mt-3">Laparoscopic sleeve gastrectomy. ~60&nbsp;minutes, same-day discharge, 4–6 weeks to everyday movement.</p>
+        <a class="btn btn-ghost -ml-3 mt-3" href="#">Read more &rarr;</a>
+      </article>
+      <article class="card p-7">
+        <div class="ph cool aspect-[5/4] mb-6">clinic detail · cool / soft focus</div>
+        <span class="tag lilac">Bariatric</span>
+        <h3 class="font-display text-[26px] mt-4" style="font-weight:500; line-height:1.15">Gastric bypass</h3>
+        <p class="t-body text-ink2 mt-3">For patients with significant comorbidities. Longer operative time, longer clinical follow-up, durable results.</p>
+        <a class="btn btn-ghost -ml-3 mt-3" href="#">Read more &rarr;</a>
+      </article>
+      <article class="card p-7">
+        <div class="ph aspect-[5/4] mb-6">hands · careful · warm mid-tone</div>
+        <span class="tag sage">General</span>
+        <h3 class="font-display text-[26px] mt-4" style="font-weight:500; line-height:1.15">Laparoscopic surgery</h3>
+        <p class="t-body text-ink2 mt-3">Cholecystectomy, hernia repair, and other minimally invasive abdominal procedures, on demand.</p>
+        <a class="btn btn-ghost -ml-3 mt-3" href="#">Read more &rarr;</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIAL + BEFORE/AFTER ============ -->
+  <section class="pt-20 grid grid-cols-1 md:grid-cols-12 gap-6">
+    <!-- testimonial -->
+    <figure class="md:col-span-7 rounded-[28px] p-10 md:p-14 relative" style="background:#ECEAF5; border:1px solid rgba(75,69,102,.10);">
+      <p class="eyebrow-rule t-eyebrow" style="color:#4B4566">A patient, twelve months later</p>
+      <blockquote class="font-display mt-6" style="font-size:clamp(26px,2.4vw,34px); line-height:1.22; font-weight:420; color:#1F1B17;">
+        &ldquo;I came in expecting a sales pitch and left with a quiet plan. A year on, I walk my daughter to school every morning. The plan held.&rdquo;
+      </blockquote>
+      <figcaption class="mt-8 flex items-center gap-4">
+        <span class="w-10 h-10 rounded-full" style="background: radial-gradient(circle at 35% 30%, #F3D4C1, #B2553A)"></span>
+        <div>
+          <div class="text-ink" style="font-weight:500">Saima R.</div>
+          <div class="t-caption text-ink3">Sleeve gastrectomy · Apr 2025</div>
+        </div>
+      </figcaption>
+    </figure>
+    <!-- before/after -->
+    <div class="md:col-span-5">
+      <p class="eyebrow-rule t-eyebrow">Transformations</p>
+      <h3 class="font-display t-h2 mt-3">Twelve months.</h3>
+      <p class="t-body text-ink2 mt-2 max-w-[40ch]">Drag the handle. All photos used with written consent.</p>
+      <div class="ba mt-5 aspect-[4/5]" id="ba">
+        <div class="ph" style="position:absolute; inset:0; border-radius:18px;">before · warm tone</div>
+        <div class="after">
+          <div class="ph cool" style="position:absolute; inset:0; border-radius:18px;">after · cool tone</div>
+        </div>
+        <div class="handle" id="ba-handle"><div class="knob">↔</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONSULTATION ============ -->
+  <section id="consult" class="pt-24">
+    <div class="rounded-[28px] p-8 md:p-14 relative overflow-hidden" style="background:#F9E7DA; border:1px solid rgba(178,85,58,.12);">
+      <div class="aurora" style="opacity:.55"></div>
+      <div class="relative z-[2] grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <p class="eyebrow-rule t-eyebrow">Consultation</p>
+          <h2 class="font-display t-h1 mt-4 max-w-[18ch]">Start with a conversation, not a procedure.</h2>
+          <p class="t-body-lg text-ink2 mt-5 max-w-[40ch]">First consultations are 45&nbsp;minutes. We talk through your history, goals, and the honest trade-offs before we discuss anything operative.</p>
+          <dl class="mt-8 grid grid-cols-2 gap-6 t-caption text-ink2">
+            <div><dt class="text-ink3">When</dt><dd class="mt-1 text-ink" style="font-weight:500">Tue · Wed · Fri — mornings</dd></div>
+            <div><dt class="text-ink3">Where</dt><dd class="mt-1 text-ink" style="font-weight:500">Shifa Specialty Hospital</dd></div>
+            <div><dt class="text-ink3">Fee</dt><dd class="mt-1 text-ink" style="font-weight:500">PKR 6,000 · billed at visit</dd></div>
+            <div><dt class="text-ink3">Insurance</dt><dd class="mt-1 text-ink" style="font-weight:500">Most major providers</dd></div>
+          </dl>
+        </div>
+        <form class="md:col-span-7 card p-7 md:p-10">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <label class="block"><span class="t-caption text-ink2">Full name</span><input class="field mt-2" placeholder="e.g. Ayesha Khan" /></label>
+            <label class="block"><span class="t-caption text-ink2">Phone</span><input class="field mt-2" placeholder="+92 300 0000 000" /></label>
+            <label class="block md:col-span-2"><span class="t-caption text-ink2">Email</span><input class="field mt-2" placeholder="you@domain.com" /></label>
+            <label class="block"><span class="t-caption text-ink2">Preferred day</span>
+              <select class="field mt-2"><option>Tuesday</option><option>Wednesday</option><option>Friday</option></select>
+            </label>
+            <label class="block"><span class="t-caption text-ink2">Reason for visit</span>
+              <select class="field mt-2"><option>Bariatric consult</option><option>General laparoscopic</option><option>Second opinion</option></select>
+            </label>
+            <label class="block md:col-span-2"><span class="t-caption text-ink2">Anything we should know in advance?</span>
+              <textarea class="field mt-2" rows="4" placeholder="History, medications, questions you’d like addressed."></textarea>
+            </label>
+          </div>
+          <div class="flex items-center justify-between mt-6 flex-wrap gap-4">
+            <label class="flex items-start gap-3 t-caption text-ink2 max-w-[48ch]">
+              <input type="checkbox" class="mt-1 accent-clay" checked /> I understand my information will be used only to schedule and prepare for this consultation.
+            </label>
+            <button type="button" class="btn btn-primary">Request consultation</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MOTION ============ -->
+  <section class="pt-24">
+    <p class="t-eyebrow text-ink3">05 &nbsp;·&nbsp; Motion</p>
+    <h2 class="font-display t-h1 mt-3 max-w-[22ch]">It should feel like breathing.</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
+      <div class="card p-7">
+        <p class="eyebrow-rule t-eyebrow">Micro · 180ms</p>
+        <p class="font-display t-h3 mt-3">Hover, focus, tap</p>
+        <p class="t-body text-ink2 mt-2">Buttons lift 1px, color eases to <span class="font-mono text-[12.5px]">clay-dark</span>, focus ring blooms to 3px. Easing <span class="font-mono text-[12.5px]">cubic-bezier(.2,.7,.2,1)</span>.</p>
+      </div>
+      <div class="card p-7">
+        <p class="eyebrow-rule t-eyebrow">Reveal · 500ms</p>
+        <p class="font-display t-h3 mt-3">Section entry</p>
+        <p class="t-body text-ink2 mt-2">Text rises 12px and fades in, image mat fades from 0 to 1, staggered 80ms. One pass per scroll — no looping.</p>
+      </div>
+      <div class="card p-7">
+        <p class="eyebrow-rule t-eyebrow">Ambient · 26–34s</p>
+        <p class="font-display t-h3 mt-3">3D aurora</p>
+        <p class="t-body text-ink2 mt-2">The webGL field drifts like weather. Never syncs with the cursor. Respects <span class="font-mono text-[12.5px]">prefers-reduced-motion: reduce</span> → static gradient.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION ART DIRECTION ============ -->
+  <section class="pt-24">
+    <p class="t-eyebrow text-ink3">06 &nbsp;·&nbsp; Section-by-section</p>
+    <h2 class="font-display t-h1 mt-3 max-w-[24ch]">One thing per section, done well.</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-10">
+      <div class="card p-7"><h3 class="font-display t-h3">Hero</h3><p class="t-body text-ink2 mt-2">Left: display headline + two-line promise, one primary CTA, one secondary. Right: warm portrait with a floating “today’s openings” card. Aurora behind. <b>Premium move:</b> the aurora.</p></div>
+      <div class="card p-7"><h3 class="font-display t-h3">About</h3><p class="t-body text-ink2 mt-2">Two-column: a large editorial pull-quote in Fraunces beside a video thumbnail with custom play IconButton. <b>Premium move:</b> first-person voice in the pull-quote.</p></div>
+      <div class="card p-7"><h3 class="font-display t-h3">Consultation</h3><p class="t-body text-ink2 mt-2">Peach band. Conversation-first copy, form on paper card, trust microcopy beneath the submit. <b>Premium move:</b> the definition-list (When / Where / Fee / Insurance).</p></div>
+      <div class="card p-7"><h3 class="font-display t-h3">Distinctions</h3><p class="t-body text-ink2 mt-2">Horizontal row of lilac chips w/ years, pausing auto-marquee on hover. No logos rendered garishly — treat as quiet attribution. <b>Premium move:</b> unhurried pacing.</p></div>
+      <div class="card p-7"><h3 class="font-display t-h3">Services</h3><p class="t-body text-ink2 mt-2">Three-column cards, one warm / one cool / one warm. Image mat on top, tag + serif title + sans paragraph + ghost link. <b>Premium move:</b> alternating tone.</p></div>
+      <div class="card p-7"><h3 class="font-display t-h3">Bariatric procedures</h3><p class="t-body text-ink2 mt-2">Editorial two-up: big serif number (01, 02) beside plain-language explanation. No stock icons. <b>Premium move:</b> the numbers as type, not chips.</p></div>
+      <div class="card p-7"><h3 class="font-display t-h3">Transformations</h3><p class="t-body text-ink2 mt-2">Before/after drag slider with consent microcopy. Caption below in serif italic. <b>Premium move:</b> restraint &mdash; one story, not a grid of ten.</p></div>
+      <div class="card p-7"><h3 class="font-display t-h3">Location</h3><p class="t-body text-ink2 mt-2">Muted map tile with cream overlay + pin in clay. Address block as a definition-list. <b>Premium move:</b> the custom cream map palette.</p></div>
+      <div class="card p-7"><h3 class="font-display t-h3">Gallery</h3><p class="t-body text-ink2 mt-2">Asymmetric 3-row grid, peach and lilac mats alternating, click-to-lightbox. <b>Premium move:</b> the mat colors instead of white frames.</p></div>
+      <div class="card p-7"><h3 class="font-display t-h3">Footer</h3><p class="t-body text-ink2 mt-2">On cream, not ink. Four thin columns, generous leading, one clay-underlined email link, single serif sign-off.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ OPEN DECISIONS ============ -->
+  <section class="pt-24">
+    <p class="t-eyebrow text-ink3">07 &nbsp;·&nbsp; Open decisions</p>
+    <h2 class="font-display t-h1 mt-3 max-w-[22ch]">Five calls I’d like your ear on.</h2>
+    <ol class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 list-none">
+      <li class="card p-7"><div class="font-mono text-[12px] text-ink3">01</div><p class="font-display t-h3 mt-1">Serif in eyebrow labels?</p><p class="t-body text-ink2 mt-2">My take: no — sans eyebrow keeps the serif moments special. Say if you want eyebrows to feel more editorial.</p></li>
+      <li class="card p-7"><div class="font-mono text-[12px] text-ink3">02</div><p class="font-display t-h3 mt-1">Nav: HoverNavBar on cream vs. paper.</p><p class="t-body text-ink2 mt-2">I went cream/80 with blur so hero feels continuous. Alternative: paper bar with a 1px border. Slightly more corporate.</p></li>
+      <li class="card p-7"><div class="font-mono text-[12px] text-ink3">03</div><p class="font-display t-h3 mt-1">CTA copy &mdash; “Book” or “Request”?</p><p class="t-body text-ink2 mt-2">“Request consultation” sets expectation that it’s reviewed, not instant. “Book” reads easier. I’d default to “Book”.</p></li>
+      <li class="card p-7"><div class="font-mono text-[12px] text-ink3">04</div><p class="font-display t-h3 mt-1">Before/After: default open or closed?</p><p class="t-body text-ink2 mt-2">Default at 50%, static, with a subtle “drag” nudge on first scroll-into-view. Auto-animation feels gimmicky.</p></li>
+      <li class="card p-7"><div class="font-mono text-[12px] text-ink3">05</div><p class="font-display t-h3 mt-1">3D aurora everywhere, or only Hero + Consult?</p><p class="t-body text-ink2 mt-2">Hero + Consult only. Elsewhere the aurora becomes wallpaper; scarcity keeps it precious.</p></li>
+    </ol>
+  </section>
+
+  <!-- ============ NAV + FOOTER SPEC ============ -->
+  <section class="pt-24">
+    <p class="t-eyebrow text-ink3">08 &nbsp;·&nbsp; Nav &amp; Footer</p>
+    <h2 class="font-display t-h1 mt-3 max-w-[22ch]">Quiet chrome.</h2>
+
+    <!-- Nav preview -->
+    <div class="mt-10 rounded-[24px] border border-border1 overflow-hidden">
+      <div class="h-16 px-8 flex items-center justify-between" style="background:rgba(251,246,241,0.8); backdrop-filter:blur(10px); border-bottom:1px solid var(--border-1);">
+        <div class="flex items-center gap-2">
+          <span class="inline-block w-6 h-6 rounded-full" style="background: radial-gradient(circle at 35% 35%, #F3D4C1, #B2553A 75%);"></span>
+          <span class="font-display" style="font-size:17px; font-weight:500;">Ghulam Siddiq<span class="text-ink3">, MD</span></span>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+          <span class="navlink">About</span>
+          <span class="navlink">Procedures</span>
+          <span class="navlink">Consultation</span>
+          <span class="navlink">Location</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="btn btn-ghost">+92 21 3555 0199</span>
+          <span class="btn btn-primary">Book</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer preview -->
+    <footer class="mt-6 rounded-[24px] border border-border1 p-10 md:p-14" style="background:var(--cream);">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="inline-block w-6 h-6 rounded-full" style="background: radial-gradient(circle at 35% 35%, #F3D4C1, #B2553A 75%);"></span>
+            <span class="font-display" style="font-size:17px; font-weight:500;">Siddiq, MD</span>
+          </div>
+          <p class="t-caption text-ink3 mt-4 max-w-[30ch]">Bariatric &amp; laparoscopic surgery. Karachi, by appointment.</p>
+        </div>
+        <div>
+          <p class="t-eyebrow text-ink3">Practice</p>
+          <ul class="mt-3 space-y-2 t-body text-ink2">
+            <li><a class="hover:text-clayDark" href="#">About</a></li>
+            <li><a class="hover:text-clayDark" href="#">Procedures</a></li>
+            <li><a class="hover:text-clayDark" href="#">Consultation</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="t-eyebrow text-ink3">Visit</p>
+          <ul class="mt-3 space-y-2 t-body text-ink2">
+            <li>Shifa Specialty Hospital</li>
+            <li>Clifton, Karachi</li>
+            <li>Tue · Wed · Fri · AM</li>
+          </ul>
+        </div>
+        <div>
+          <p class="t-eyebrow text-ink3">Reach</p>
+          <ul class="mt-3 space-y-2 t-body text-ink2">
+            <li>+92 21 3555 0199</li>
+            <li><a class="text-ink" style="text-decoration: underline; text-decoration-color:#B2553A; text-underline-offset:4px;" href="#">hello@drsiddiq.pk</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="hr-soft my-10" />
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <p class="font-display italic text-ink2" style="font-size:15px;">A careful hand, a quiet room.</p>
+        <p class="t-caption text-ink3">© 2026 Ghulam Siddiq, MD · All rights reserved</p>
+      </div>
+    </footer>
+  </section>
+
+  <!-- ============ NORTH STAR ============ -->
+  <section class="pt-24">
+    <div class="rounded-[28px] p-10 md:p-16 relative overflow-hidden" style="background:#1F1B17; color:#FBF6F1;">
+      <p class="t-eyebrow" style="color:#F3D4C1;">Design north star</p>
+      <p class="font-display-tight mt-6" style="font-size:clamp(30px,3.8vw,54px); line-height:1.08; letter-spacing:-0.02em; font-weight:380; max-width:28ch;">
+        &ldquo;Cream paper, peach plaster, one clay accent. Fraunces for voice, Inter for work. Motion like breathing. The premium signal is restraint.&rdquo;
+      </p>
+      <p class="t-caption mt-8" style="color:#D9CEC2;">Paste this as the guiding quote in the implementation prompt.</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Before/After drag handle
+  (function(){
+    const ba = document.getElementById('ba');
+    const handle = document.getElementById('ba-handle');
+    if (!ba || !handle) return;
+    const after = ba.querySelector('.after');
+    let dragging = false;
+    const move = (clientX) => {
+      const rect = ba.getBoundingClientRect();
+      let pct = ((clientX - rect.left) / rect.width) * 100;
+      pct = Math.max(4, Math.min(96, pct));
+      handle.style.left = pct + '%';
+      after.style.clipPath = `inset(0 0 0 ${pct}%)`;
+    };
+    ba.addEventListener('pointerdown', e => { dragging = true; ba.setPointerCapture(e.pointerId); move(e.clientX); });
+    ba.addEventListener('pointermove', e => { if (dragging) move(e.clientX); });
+    ba.addEventListener('pointerup', e => { dragging = false; });
+    ba.addEventListener('pointercancel', () => dragging = false);
+  })();
+</script>
+
+</body>
+</html>
