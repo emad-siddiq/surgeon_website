@@ -1,0 +1,149 @@
+# Implementation Plan — Dr. Ghulam Siddiq Surgical Practice
+
+> Authoritative design source: [`DESIGN_SPEC.md`](./DESIGN_SPEC.md) /
+> [`docs/design/style-guide.html`](./docs/design/style-guide.html).
+>
+> Design decisions to respect (verbatim tokens):
+> - **Palette**: `cream #FBF6F1`, `paper #FFFDFA`, `peach-50 #F9E7DA`, `peach-100 #F3D4C1`, `lilac-50 #ECEAF5`, `lilac-100 #DAD5EA`, `ink #1F1B17`, `ink-2 #4A423B`, `ink-3 #857A70`, `border-1 #E8DFD5`, `border-2 #D9CEC2`, `clay #B2553A`, `clay-dark #8E3F28`, `sage #6B7A5A`.
+> - **Type**: Fraunces (display; `opsz`, `SOFT` axes) + Inter (body). Fluid scale via `clamp()`.
+> - **Radii**: `xs 4 / sm 8 / md 12 / lg 18 / xl 28 / pill 999`.
+> - **Shadows**: card, raised (on hover), focus ring `0 0 0 3px rgba(178,85,58,.28)`.
+> - **Motion**: micro 180ms, reveal 500ms + 80ms stagger, ambient 26–34s; aurora on **Hero + Consult only**.
+> - **North star**: *"Cream paper, peach plaster, one clay accent. Fraunces for voice, Inter for work. Motion like breathing. The premium signal is restraint."*
+
+---
+
+## 1. Audit findings (before)
+
+### Frontend (`frontend/`, CRA)
+
+- **Stack**: CRA 5 + React 18.3 + `react-router-dom` v7 + raw **three.js** (not `@react-three/fiber`, despite `package.json` listing it — fiber/drei are currently unused).
+- **Structure**: split into `components/web/*` + `components/mobile/*` + `components/common/*`; desktop vs mobile are separate component trees, wired via an `isMobile` prop from `App.js`.
+- **Routing**: 5 routes in `App.js` (`/`, `/consultation`, `/about`, `/services`, `/location`), but `Home.jsx` *already* renders `<Consultation/>`, `<ServiceOfferings/>`, `<Location/>` as sections — so the standalone routes show the same component stripped of page chrome. `HoverNavBar` and `MobileSidebar` link to paths that don't exist (`/about/consultation`, `/specialities/*`, `/blog`, …) — will 404.
+- **`isMobile` duplicated** in `App.js` (`<768`) and `About.jsx` (`<800`), with **different breakpoints**.
+- **Copy errors** in `pages/About/About.jsx`:
+  - line 61: `"Gis approach"` → `"His approach"`
+  - line 62: `"her patients"` → `"his patients"`
+  - line 85: `"Dr. Johnson"` and `"Her expertise"` → `"Dr. Siddiq"` + `"His expertise"`
+- **Meta / SEO**: `public/index.html` still has the CRA placeholder `<meta name="description" content="Web site created using create-react-app" />` and a generic `<title>Dr. Siddiq</title>`.
+- **3D components** (raw three.js): `BackgroundAnimation`, `AnimationGrid` (hardcoded `700vh` height, `z-index:-2`), `NetworkGraph`. No lazy-loading, no `prefers-reduced-motion` gating, no IntersectionObserver pause.
+- **Assets already present**: `src/assets/fonts/RobotoFlex-VariableFont.ttf` (not used in design), `logo.png`, images under `about/`, `before_after/`, `distinctions/`, `gallery/`, `main-slider/`, and two MP4s under `videos/`.
+- **Styles**: 22+ hand-rolled `.css` files, one per component.
+
+### Backend (`backend/`, Go)
+
+- Module `laparascopic_surgeon_website/backend`, Go 1.22.4, deps `gorilla/mux` + `rs/cors`.
+- `src/main.go` registers a single route `GET /api/health`. Port `8080` and CORS origin `http://localhost:3000` are hardcoded. No graceful shutdown, no env-var config, no structured logging, no consultation endpoint.
+
+---
+
+## 2. Execution stages
+
+Each phase is a standalone commit (conventional-commits prefixes). Between
+phases: `npm run typecheck && npm run lint` must be green.
+
+- [x] **0. Import design** (`docs: import design system from Claude Design`) — committed at `5d34459`.
+- [x] **1. Audit + plan** — this document.
+- [ ] **2. Fix blocking copy errors in About** (`fix: correct pronouns and doctor's name in About`) — tiny, high-value fix we can ship before the migration.
+- [ ] **3. Tooling migration**:
+  - Scaffold a Vite + React + TypeScript project in-place over `frontend/`.
+  - Add Tailwind v3, ESLint flat config, Prettier, Vitest, Playwright (smoke test skeleton), Husky + lint-staged.
+  - Port `index.js` → `src/main.tsx`, `App.js` → `src/App.tsx`; keep existing components as `.jsx` until Stage 6 picks them up individually.
+  - Replace `react-scripts` scripts with `vite` / `tsc --noEmit` / `vitest` / `eslint` / `prettier`.
+- [ ] **4. Design system**:
+  - `frontend/src/design-system/tokens.ts` + `tokens.css` — exports every token from DESIGN_SPEC.md as both TS constants and CSS custom properties.
+  - `tailwind.config.ts` with `theme.extend` wired to the same tokens (colors, font-family, boxShadow, borderRadius).
+  - Self-host Fraunces (variable) and Inter (variable) under `src/assets/fonts/` (subset: Latin). Preload critical weights; `font-display: swap`.
+  - Build primitives in `src/components/ui/`: `Button`, `Container`, `Section`, `Eyebrow`, `Card`, `Tag`, `IconButton`, `Input`, `Textarea`, `Select`, `FieldLabel`, `FieldError`.
+  - Add a dev-only `/styleguide` route that renders every token and primitive. Diff against `docs/design/style-guide.html`.
+- [ ] **5. Content extraction** — pull all hardcoded strings (doctor bio, services list, distinctions, testimonials, contact info) into typed objects under `src/content/`.
+- [ ] **6. Component refactor** — in order: Footer → HoverNavBar → MobileSidebar → Hero → AboutCard → Distinctions → ServiceOfferings → Consultation → BariatricCard → Transformations → Location → Gallery. Each converts to TSX, uses primitives and tokens, and swaps the old `.css` for Tailwind.
+- [ ] **7. Pages** — unify Home into a single section-based page with anchor nav; promote About to a real page; add a proper 404.
+- [ ] **8. SEO + a11y + perf**:
+  - `react-helmet-async` on every page.
+  - JSON-LD `Physician` + `MedicalBusiness` on `/` and `/about`.
+  - `sitemap.xml` + `robots.txt` generated at build.
+  - Favicon pack regenerated from `logo.png` (16/32/180/512/maskable).
+  - Lazy-load the 3D components; gate behind `prefers-reduced-motion: no-preference`; pause via `IntersectionObserver` + `visibilitychange`; cap DPR at 1.5.
+  - Responsive images + `.webp` + `<picture>`.
+  - axe-core Playwright sweep.
+- [ ] **9. Backend hardening** — env-driven `PORT`/`ALLOWED_ORIGIN`/`LOG_LEVEL`; `log/slog` structured logs; graceful shutdown on SIGINT/SIGTERM; `POST /api/consultation` with JSON validation + spam honeypot; `GET /api/ready`; multi-stage distroless Dockerfile.
+- [ ] **10. CI + docs** — `.github/workflows/ci.yml`, rewritten root `README.md`, `.env.example` in both subtrees, root `docker-compose.yml`.
+- [ ] **11. Final verification** — `npm run build`, `npm run test`, Playwright smoke, Lighthouse CI.  Save before/after scores to this doc.
+
+---
+
+## 3. Routing decision
+
+The site is functionally a one-page marketing site with a real About page. Plan:
+
+- `/` — single scrolling home. Section order: Hero → About teaser → Distinctions → Services → Bariatric procedures → Transformations → Consultation → Location → Gallery → Footer.
+- `/about` — full editorial About page (longer bio, video, credentials).
+- `/consultation`, `/services`, `/location` — **redirect to the matching anchors on `/`** (these used to render bare component islands with no page chrome). This eliminates the duplication but preserves any external inbound links.
+- `/404` — real not-found page on cream background with a one-sentence apology and two `Button`s (`Home`, `Book a consultation`).
+- `/styleguide` — dev-only; not in production sitemap or nav.
+
+`HoverNavBar` / `MobileSidebar` link sets will be trimmed to: *About* (`/about`), *Procedures* (`/#services`), *Consultation* (`/#consultation`), *Location* (`/#location`). Any previous "blog / FAQ / specialities" links that point nowhere are removed.
+
+---
+
+## 4. 3D strategy
+
+Keep three.js. Consolidate to **one** hero-area animation (the aurora per
+DESIGN_SPEC §8) and retire the stacked `AnimationGrid` + `BackgroundAnimation` +
+`NetworkGraph` trio — redundant and expensive. The kept visualization:
+
+- Sits in its own async chunk (`React.lazy` + `Suspense`).
+- Renders only when `prefers-reduced-motion: no-preference` and viewport
+  `> 640 px` and `navigator.hardwareConcurrency >= 4`.
+- `canvas` has `aria-hidden="true"` and `pointer-events: none`.
+- Paused via `IntersectionObserver` when off-screen and
+  `document.visibilitychange` when tab is hidden.
+- DPR capped at 1.5.
+- If any gate fails, a static CSS `.aurora` gradient (verbatim from
+  DESIGN_SPEC §8) renders instead.
+
+Tree-shake `@react-three/drei` — currently unused in the codebase, so it can be
+removed outright unless the new aurora implementation imports specific helpers.
+`three` and `@react-three/fiber` stay.
+
+---
+
+## 5. Open questions / judgement calls
+
+1. **Phone number and email** on the site are placeholders (`+92 21 3555 0199`, `hello@drsiddiq.pk`) from the style guide. Not verified. Marked as `TODO(content):` in `src/content/contact.ts`.
+2. **Clinic address** is "Shifa Specialty Hospital, Clifton, Karachi" per the style guide. Not verified against real business info. Marked as `TODO(content):`.
+3. **Consultation fee** `PKR 6,000` is per the style guide. `TODO(content):`.
+4. **Testimonials** are placeholder; the bogus "Dr. Johnson" one will be replaced with a clearly-marked placeholder ("Saima R.") rather than invented medical claims. Flag for the practice to supply real consented testimonials.
+5. **Before/After photos** — the existing `assets/images/before_after/*` are already in the repo; retaining them. Consent line kept.
+6. **Credentials / fellowship years** — the style-guide copy is intentionally generic ("a decade of minimally invasive practice"). We will keep it non-specific until verified.
+
+---
+
+## 6. Content TODO list
+
+All marked in-code as `TODO(content):`; tracked here:
+
+- [ ] Verify clinic phone, email, and full street address.
+- [ ] Replace the style-guide placeholder testimonial with a real consented quote.
+- [ ] Confirm consultation fee, accepted insurance providers, consultation days/times.
+- [ ] Confirm exact fellowships / board certifications and years (Distinctions section).
+- [ ] Supply alt text for each gallery image, before/after image, and the hero portrait.
+- [ ] Confirm Google Maps pin coordinates for the Location section.
+
+---
+
+## 7. Before / after receipts
+
+_To be filled in at Phase 11._
+
+| Metric                            | Before | After |
+|-----------------------------------|--------|-------|
+| Lighthouse Performance (mobile)   | TBD    | TBD   |
+| Lighthouse Accessibility          | TBD    | TBD   |
+| Lighthouse Best Practices         | TBD    | TBD   |
+| Lighthouse SEO                    | TBD    | TBD   |
+| Initial JS (gz)                   | TBD    | TBD   |
+| 3D chunk (gz, async)              | TBD    | TBD   |
+| LCP (fast-3G)                     | TBD    | TBD   |
+| CLS                               | TBD    | TBD   |
