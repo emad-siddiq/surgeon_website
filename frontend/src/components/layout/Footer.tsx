@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
 import { Container } from '@/components/ui/Container';
 import { Logo } from './Logo';
 import { contact } from '@/content/contact';
 import { doctor } from '@/content/doctor';
-import { primaryNav } from '@/content/nav';
+import { primaryNav, secondaryNav } from '@/content/nav';
 
 function SocialIcon({ kind }: { kind: 'facebook' | 'instagram' | 'youtube' }) {
   const paths = {
@@ -28,7 +29,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
             <Logo />
-            <p className="mt-4 max-w-[38ch] text-textSecondary">
+            <p className="mt-4 max-w-[42ch] text-textSecondary">
               {doctor.role}. {doctor.tagline}
             </p>
             <div className="mt-5 flex items-center gap-3">
@@ -62,13 +63,13 @@ export function Footer() {
             </div>
           </div>
           <nav aria-label="Footer sitemap" className="min-w-0">
-            <p className="t-eyebrow text-textMuted">Quick Links</p>
+            <p className="t-eyebrow text-textMuted">Explore</p>
             <ul className="mt-3 space-y-2 text-textSecondary">
-              {primaryNav.map((item) => (
+              {[...primaryNav, ...secondaryNav].map((item) => (
                 <li key={item.to}>
-                  <a className="hover:text-primary" href={item.to}>
+                  <Link className="hover:text-primary" to={item.to}>
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -92,13 +93,14 @@ export function Footer() {
           </div>
         </div>
         <hr className="hr-soft my-10" />
-        <div className="flex flex-wrap items-center justify-between gap-4 text-sm text-textMuted">
-          <p>
+        <div className="grid grid-cols-1 gap-4 text-sm text-textMuted md:grid-cols-[auto,1fr] md:items-start">
+          <p className="md:whitespace-nowrap">
             © {year} {doctor.fullName}. All rights reserved.
           </p>
-          <p>
-            Medical information on this site is for general reference only and does not substitute
-            advice from a licensed clinician.
+          <p className="md:text-right">
+            This website contains information targeted to a wide range of audiences and could
+            contain product details not accessible or valid in your country. Nothing on this site
+            substitutes advice from a licensed clinician.
           </p>
         </div>
       </Container>

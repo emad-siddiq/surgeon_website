@@ -1,21 +1,20 @@
 export interface NavLink {
   label: string;
-  /** React Router path or in-page anchor. */
   to: string;
 }
 
-/**
- * Single source of truth for the primary nav. Used by both the desktop
- * HoverNavBar and the MobileSidebar. The original site linked many
- * additional sub-paths (blog, FAQs, testimonials, specialities) that were
- * never actually routed; they are intentionally omitted here until real
- * content exists.
- */
+/** The desktop + mobile primary nav — every entry is a real page. */
 export const primaryNav: NavLink[] = [
   { label: 'About', to: '/about' },
-  { label: 'Procedures', to: '/#services' },
-  { label: 'Bariatric', to: '/#bariatric' },
-  { label: 'Distinctions', to: '/#distinctions' },
-  { label: 'Location', to: '/#location' },
-  { label: 'Consultation', to: '/#consultation' },
+  { label: 'Procedures', to: '/procedures' },
+  { label: 'Bariatric', to: '/bariatric' },
+  { label: 'Distinctions', to: '/distinctions' },
+  { label: 'Transformations', to: '/transformations' },
+  { label: 'Location', to: '/location' },
+];
+
+/** Secondary links shown in the footer. */
+export const secondaryNav: NavLink[] = [
+  { label: 'Gallery', to: '/gallery' },
+  { label: 'Consultation', to: '/consultation' },
 ];

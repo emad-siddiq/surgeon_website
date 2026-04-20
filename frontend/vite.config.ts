@@ -10,8 +10,17 @@ export default defineConfig({
     react(),
     sitemap({
       hostname: process.env.SITE_URL ?? 'https://drsiddiq.example',
-      dynamicRoutes: ['/', '/about'],
-      exclude: ['/styleguide'],
+      dynamicRoutes: [
+        '/',
+        '/about',
+        '/procedures',
+        '/bariatric',
+        '/distinctions',
+        '/transformations',
+        '/location',
+        '/consultation',
+        '/gallery',
+      ],
     }),
   ],
   resolve: {

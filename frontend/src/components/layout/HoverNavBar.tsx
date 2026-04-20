@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { ButtonLink, ButtonRouterLink } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { useIsMobile } from '@/hooks/useMediaQuery';
@@ -12,32 +12,27 @@ import { cn } from '@/lib/cn';
 
 function DesktopNav() {
   return (
-    <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
+    <nav aria-label="Primary" className="hidden items-center gap-6 lg:flex">
       {primaryNav.map((item) => (
-        <NavLinkItem key={item.to} to={item.to} label={item.label} />
+        <NavLink
+          key={item.to}
+          to={item.to}
+          end
+          className={({ isActive }) =>
+            cn(
+              'relative py-1.5 text-sm font-medium transition-colors duration-200',
+              'after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:bg-primary',
+              'after:transition-transform after:duration-300 after:ease-breathe',
+              isActive
+                ? 'text-primary after:scale-x-100'
+                : 'text-textSecondary after:scale-x-0 hover:text-primary hover:after:scale-x-100',
+            )
+          }
+        >
+          {item.label}
+        </NavLink>
       ))}
     </nav>
-  );
-}
-
-function NavLinkItem({ to, label }: { to: string; label: string }) {
-  const isAnchor = to.startsWith('/#');
-  const className =
-    'relative text-sm font-medium text-textSecondary transition-colors duration-200 hover:text-primary py-1.5 ' +
-    "after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:scale-x-0 " +
-    'after:bg-primary after:transition-transform after:duration-300 after:ease-breathe hover:after:scale-x-100';
-
-  if (isAnchor) {
-    return (
-      <a href={to.replace('/', '')} className={className}>
-        {label}
-      </a>
-    );
-  }
-  return (
-    <Link to={to} className={className}>
-      {label}
-    </Link>
   );
 }
 
@@ -48,10 +43,9 @@ export function HoverNavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
-  // Close the mobile menu whenever the route changes.
   useEffect(() => {
     setMenuOpen(false);
-  }, [location.pathname, location.hash]);
+  }, [location.pathname]);
 
   return (
     <header
@@ -62,7 +56,7 @@ export function HoverNavBar() {
           : 'bg-white/70 backdrop-blur-sm border-b border-transparent',
       )}
     >
-      <Container className="flex h-16 items-center justify-between">
+      <Container className="flex h-16 items-center justify-between gap-4">
         <Logo />
         {isMobile ? (
           <div className="flex items-center gap-2">
@@ -98,11 +92,11 @@ export function HoverNavBar() {
               <ButtonLink
                 href={`tel:${contact.phone.tel}`}
                 variant="ghost"
-                className="hidden sm:inline-flex"
+                className="hidden xl:inline-flex"
               >
                 {contact.phone.display}
               </ButtonLink>
-              <ButtonRouterLink to="/#consultation" variant="primary">
+              <ButtonRouterLink to="/consultation" variant="primary" size="sm">
                 Book Appointment
               </ButtonRouterLink>
             </div>

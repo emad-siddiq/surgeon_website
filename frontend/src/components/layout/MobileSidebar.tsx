@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { ButtonLink, ButtonRouterLink } from '@/components/ui/Button';
-import { primaryNav } from '@/content/nav';
+import { primaryNav, secondaryNav } from '@/content/nav';
 import { contact } from '@/content/contact';
 import { cn } from '@/lib/cn';
 
@@ -13,7 +13,7 @@ interface MobileSidebarProps {
 export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
   const panelRef = useRef<HTMLDivElement>(null);
 
-  // Trap focus within the panel, close on Escape.
+  // Trap focus; close on Escape.
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (e: KeyboardEvent) => {
@@ -103,37 +103,31 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
           </button>
         </div>
         <nav aria-label="Primary" className="mt-10">
-          <ul className="flex flex-col gap-5">
-            {primaryNav.map((item) =>
-              item.to.startsWith('/#') ? (
-                <li key={item.to}>
-                  <a
-                    href={item.to.replace('/', '')}
-                    className="text-xl text-textPrimary hover:text-primary"
-                    onClick={onClose}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ) : (
-                <li key={item.to}>
-                  <Link
-                    to={item.to}
-                    className="text-xl text-textPrimary hover:text-primary"
-                    onClick={onClose}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ),
-            )}
+          <ul className="flex flex-col gap-4">
+            {[...primaryNav, ...secondaryNav].map((item) => (
+              <li key={item.to}>
+                <NavLink
+                  to={item.to}
+                  end
+                  onClick={onClose}
+                  className={({ isActive }) =>
+                    cn(
+                      'block text-xl transition-colors',
+                      isActive ? 'text-primary font-medium' : 'text-textPrimary hover:text-primary',
+                    )
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </nav>
         <div className="mt-auto flex flex-col gap-3 pt-10">
           <ButtonLink href={`tel:${contact.phone.tel}`} variant="secondary">
             {contact.phone.display}
           </ButtonLink>
-          <ButtonRouterLink to="/#consultation" variant="primary" onClick={onClose}>
+          <ButtonRouterLink to="/consultation" variant="primary" onClick={onClose}>
             Book Appointment
           </ButtonRouterLink>
         </div>

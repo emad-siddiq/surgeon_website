@@ -42,6 +42,11 @@ export default [
       // Preflight strips list-style, which can drop the implicit list role
       // in VoiceOver. See github.com/tailwindlabs/tailwindcss/discussions/1232.
       'jsx-a11y/no-redundant-roles': 'off',
+      // TypeScript already does undeclared-name checking (and knows DOM
+      // lib types like IntersectionObserverInit, ScrollBehavior). ESLint
+      // core's no-undef duplicates that work and doesn't know about those
+      // DOM libs, so we defer to tsc here.
+      'no-undef': 'off',
     },
   },
 ];

@@ -3,10 +3,9 @@ import { Seo } from '@/components/seo/Seo';
 import { Section } from '@/components/ui/Section';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Card } from '@/components/ui/Card';
-import { ButtonLink, ButtonRouterLink } from '@/components/ui/Button';
+import { ButtonRouterLink } from '@/components/ui/Button';
 import { doctor } from '@/content/doctor';
-import heroImage from '@/assets/images/main-slider/1.jpeg';
-import videoSrc from '@/assets/videos/shifa-video.mp4';
+import { aboutPortrait, videos } from '@/content/media';
 
 export function About() {
   const [playing, setPlaying] = useState(false);
@@ -16,7 +15,7 @@ export function About() {
       <Seo title="About" description={doctor.bioShort} path="/about" schema="home" />
 
       <section className="bg-gradient-hero">
-        <div className="mx-auto w-full max-w-container px-6 py-20 md:px-10 md:py-28">
+        <div className="mx-auto w-full max-w-container px-6 py-16 md:px-10 md:py-24">
           <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-12">
             <div className="md:col-span-6">
               <Eyebrow>{doctor.credentials}</Eyebrow>
@@ -26,17 +25,20 @@ export function About() {
                 {doctor.bioShort}
               </p>
               {doctor.bioLong.map((paragraph) => (
-                <p key={paragraph.slice(0, 24)} className="t-body mt-5 max-w-[64ch] text-textSecondary">
+                <p
+                  key={paragraph.slice(0, 24)}
+                  className="t-body mt-5 max-w-[64ch] text-textSecondary"
+                >
                   {paragraph}
                 </p>
               ))}
               <div className="mt-8 flex flex-wrap gap-3">
-                <ButtonRouterLink to="/#consultation" variant="primary">
+                <ButtonRouterLink to="/consultation" variant="primary">
                   Book an Appointment
                 </ButtonRouterLink>
-                <ButtonLink href="#credentials" variant="secondary">
-                  See credentials
-                </ButtonLink>
+                <ButtonRouterLink to="/procedures" variant="secondary">
+                  See all procedures
+                </ButtonRouterLink>
               </div>
             </div>
             <div className="md:col-span-6">
@@ -49,7 +51,7 @@ export function About() {
                     playsInline
                     preload="metadata"
                   >
-                    <source src={videoSrc} type="video/mp4" />
+                    <source src={videos.intro} type="video/mp4" />
                     {/* TODO(content): provide a real captions track. */}
                     <track kind="captions" srcLang="en" label="English captions" />
                     Your browser does not support the video tag.
@@ -62,7 +64,7 @@ export function About() {
                     className="relative block aspect-video w-full overflow-hidden bg-textPrimary"
                   >
                     <img
-                      src={heroImage}
+                      src={aboutPortrait.src}
                       alt=""
                       className="h-full w-full object-cover opacity-85"
                       loading="eager"
@@ -86,7 +88,7 @@ export function About() {
         </div>
       </section>
 
-      <Section id="credentials" tone="base" size="md">
+      <Section tone="base" size="md">
         <Eyebrow>Credentials</Eyebrow>
         <h2 className="t-h1 mt-3 max-w-[22ch]">Education &amp; training.</h2>
         <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -99,6 +101,28 @@ export function About() {
             </li>
           ))}
         </ul>
+      </Section>
+
+      <Section tone="surface" size="md">
+        <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[1fr,auto]">
+          <div>
+            <Eyebrow>Expertise</Eyebrow>
+            <h2 className="t-h2 mt-3 max-w-[24ch]">
+              Minimally invasive surgery, end to end.
+            </h2>
+            <ul className="mt-6 grid grid-cols-1 gap-2 text-textSecondary sm:grid-cols-2">
+              <li>• Laparoscopic bariatric surgery</li>
+              <li>• General laparoscopic surgery</li>
+              <li>• Colorectal procedures</li>
+              <li>• Upper GI surgery</li>
+              <li>• Revision bariatric surgery</li>
+              <li>• Long-term post-operative follow-up</li>
+            </ul>
+          </div>
+          <ButtonRouterLink to="/distinctions" variant="secondary">
+            Distinctions & awards →
+          </ButtonRouterLink>
+        </div>
       </Section>
     </>
   );
