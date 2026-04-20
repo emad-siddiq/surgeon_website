@@ -12,7 +12,7 @@ interface SeoProps {
 }
 
 const SITE_URL = import.meta.env.SITE_URL ?? 'https://drsiddiq.example';
-const DEFAULT_TITLE = `${doctor.fullName} \u2014 Laparoscopic & Bariatric Surgery, Karachi`;
+const DEFAULT_TITLE = `${doctor.fullName} \u2014 Laparoscopic & Bariatric Surgery, Islamabad`;
 const DEFAULT_DESCRIPTION = doctor.bioShort;
 
 function jsonLdHome() {
@@ -24,11 +24,10 @@ function jsonLdHome() {
     description: doctor.bioShort,
     url: SITE_URL,
     telephone: contact.phone.tel,
-    email: contact.email,
     address: {
       '@type': 'PostalAddress',
       streetAddress: contact.clinic.name,
-      addressLocality: 'Karachi',
+      addressLocality: 'Islamabad',
       addressCountry: 'PK',
     },
     geo: {

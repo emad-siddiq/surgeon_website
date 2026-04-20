@@ -1,16 +1,23 @@
 /**
- * Contact information. Phone number and direct email are not published on
- * the original site — mark as TODO(content) until the practice supplies them.
+ * Practice contact details. There are TWO and only two ways a patient
+ * should reach the practice — WhatsApp and a phone call to the hospital
+ * switchboard. Keep this file as the single source of truth for those
+ * touchpoints.
  */
 export const contact = {
   phone: {
-    // TODO(content): confirm a public phone number with the practice.
     display: '+92 51 846 4646',
     tel: '+92518464646',
   },
-  // TODO(content): confirm an external contact email (Shifa IH's general line
-  // is currently the only verified public contact point).
-  email: 'contact@drghulamsiddiq.com',
+  /**
+   * Deep-link opens WhatsApp web/app with the hospital number prefilled.
+   * Intentionally contains no prefilled text so the user composes their
+   * own opening message.
+   */
+  whatsapp: {
+    url: 'https://api.whatsapp.com/send/?phone=92518464646&text&type=phone_number&app_absent=0',
+    display: 'WhatsApp +92 51 846 4646',
+  },
 
   clinic: {
     name: 'Shifa International Hospital',
@@ -19,9 +26,8 @@ export const contact = {
     /**
      * Google Maps embed URL copied verbatim from the original site
      * (frontend/src/components/web/Location/Location.jsx at 0fb3280).
-     * The API key shown here is the same key that was already shipping in
-     * the public HTML — it is domain-restricted on the Maps console.
-     * Rotate it on the Maps console and update this constant before launch.
+     * Rotate the key on the Google Cloud console and update here before
+     * launch.
      */
     mapEmbed:
       'https://www.google.com/maps/embed/v1/place?key=AIzaSyAWsBN5V049bS1UtF1_H7QONaL7kyhPMZU&q=Shifa+International+Hospital,+Islamabad',
@@ -32,14 +38,19 @@ export const contact = {
     days: 'Mon – Sat',
     time: 'By appointment',
   },
-  consultation: {
-    // TODO(content): confirm the published fee and accepted insurance list.
-    fee: 'Fee quoted at booking',
-    insurance: 'Most major providers',
-  },
   social: {
     facebook: 'https://facebook.com/dr.ghulamsiddiq',
     instagram: 'https://instagram.com/dr.ghulamsiddiq',
     youtube: 'https://youtube.com/@dr.ghulamsiddiq4770',
   },
 } as const;
+
+/**
+ * Canonical ask patients should make when booking. The hospital
+ * switchboard books for many consultants; we want Dr. Siddiq to be
+ * named explicitly, without being pushy about it. Copy is reused from
+ * the consultation page and the "you're booking with Dr. Siddiq" hint
+ * cards.
+ */
+export const bookingLine =
+  "When you reach the hospital, request a consultation with Dr. Ghulam Siddiq, Chief of Surgery.";

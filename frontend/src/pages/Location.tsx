@@ -2,7 +2,7 @@ import { Seo } from '@/components/seo/Seo';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';
 import { Eyebrow } from '@/components/ui/Eyebrow';
-import { ButtonLink, ButtonRouterLink } from '@/components/ui/Button';
+import { BookingActions } from '@/components/ui/BookingActions';
 import { contact } from '@/content/contact';
 import { videos } from '@/content/media';
 
@@ -20,16 +20,7 @@ export function Location() {
         eyebrow="Location"
         title={<>Shifa International Hospitals: setting standards in healthcare excellence.</>}
         lead="Visit Shifa International Hospital, where excellence meets compassion in healthcare. Our state-of-the-art facility combines modern medical technology with experienced healthcare professionals — Dr. Siddiq has operated here for over two decades."
-        actions={
-          <>
-            <ButtonLink href={`tel:${contact.phone.tel}`} variant="primary">
-              Call {contact.phone.display}
-            </ButtonLink>
-            <ButtonRouterLink to="/consultation" variant="secondary">
-              Book an Appointment
-            </ButtonRouterLink>
-          </>
-        }
+        actions={<BookingActions />}
       />
 
       {/* Video first — sets the scene before the practical directions. */}
