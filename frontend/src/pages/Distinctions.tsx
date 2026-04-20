@@ -1,4 +1,5 @@
 import { Seo } from '@/components/seo/Seo';
+import { Container } from '@/components/ui/Container';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';
 import { Eyebrow } from '@/components/ui/Eyebrow';
@@ -64,17 +65,21 @@ export function Distinctions() {
       ))}
 
       <section className="bg-gradient-hero">
-        <div className="mx-auto w-full max-w-container px-6 py-14 md:px-10 md:py-20">
+        <Container className="py-12 sm:py-14 md:py-20">
           <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[1fr,auto]">
             <div>
               <Eyebrow>Want to discuss your case?</Eyebrow>
               <h2 className="t-h1 mt-3 max-w-[22ch]">Book a consultation.</h2>
             </div>
-            <ButtonRouterLink to="/consultation" variant="primary">
+            <ButtonRouterLink
+              to="/consultation"
+              variant="primary"
+              className="w-full md:w-auto"
+            >
               Book an Appointment
             </ButtonRouterLink>
           </div>
-        </div>
+        </Container>
       </section>
     </>
   );

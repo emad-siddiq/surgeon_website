@@ -38,7 +38,8 @@ export function HeroSlideshow({ images, interval = 5000, className }: HeroSlides
   return (
     <div
       className={cn(
-        'relative aspect-[4/5] w-full overflow-hidden rounded-lg border border-border1 shadow-card',
+        // Landscape on phones (less vertical drag), portrait from md up.
+        'relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-border1 shadow-card sm:aspect-[5/4] md:aspect-[4/5]',
         className,
       )}
     >

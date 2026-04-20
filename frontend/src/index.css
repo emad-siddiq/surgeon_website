@@ -26,6 +26,35 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Honour iOS / Android notches and safe areas at the body edge so
+       fixed elements and backgrounds reach the hardware edge cleanly. */
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
+    /* Stop text from ballooning on iOS Safari after rotate. */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Inputs on iOS auto-zoom when the user focuses a field with a
+     font-size below 16px. Forcing ≥16px on form controls prevents that
+     without affecting desktop visual scale. */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  /* Prevent the iOS "tap highlight" grey flash — we already have proper
+     hover / focus-visible styles. */
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
   }
 
   :focus-visible {

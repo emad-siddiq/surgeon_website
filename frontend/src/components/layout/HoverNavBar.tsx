@@ -51,18 +51,38 @@ export function HoverNavBar() {
     <header
       className={cn(
         'sticky top-0 z-40 transition-[background-color,backdrop-filter,box-shadow,border-color] duration-200',
+        // Respect iOS/Android status bar + notch when the header is
+        // pinned to the top — otherwise the backdrop-blur bar slides
+        // under the status bar on iPhone.
+        'pt-[env(safe-area-inset-top,0)]',
         scrolled
           ? 'border-b border-border1 bg-white/90 backdrop-blur-md shadow-sm'
           : 'bg-white/70 backdrop-blur-sm border-b border-transparent',
       )}
     >
-      <Container className="flex h-16 items-center justify-between gap-4">
+      <Container className="flex h-14 items-center justify-between gap-3 sm:h-16 sm:gap-4">
         <Logo />
         {isMobile ? (
-          <div className="flex items-center gap-2">
-            <ButtonLink href={`tel:${contact.phone.tel}`} variant="ghost" size="sm">
-              Call
-            </ButtonLink>
+          <div className="flex items-center gap-1.5">
+            <a
+              href={`tel:${contact.phone.tel}`}
+              aria-label={`Call ${contact.phone.display}`}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-md text-textPrimary hover:text-primary"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.88.32 1.74.57 2.58a2 2 0 0 1-.45 2.11L8 9.67a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.84.25 1.7.44 2.58.57A2 2 0 0 1 22 16.92Z" />
+              </svg>
+            </a>
             <button
               ref={triggerRef}
               type="button"

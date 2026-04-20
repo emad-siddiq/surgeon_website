@@ -89,14 +89,14 @@ export function Consultation() {
       />
 
       <section className="bg-gradient-hero">
-        <Container className="py-16 md:py-20 lg:py-24">
-          <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12">
+        <Container className="py-12 sm:py-16 md:py-20 lg:py-24">
+          <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-12 md:gap-10">
             <div className="md:col-span-5">
               <Eyebrow>Consultation</Eyebrow>
-              <h1 className="t-display mt-4 max-w-[18ch]">
+              <h1 className="t-display mt-3 max-w-[18ch] sm:mt-4">
                 Looking for a consultation?
               </h1>
-              <p className="t-body-lg mt-6 max-w-[44ch] text-textSecondary">
+              <p className="t-body-lg mt-4 max-w-[44ch] text-textSecondary sm:mt-6">
                 Tell us a little about your case and we’ll come back with an appointment slot.
                 First consultations are unhurried — we talk through your history, goals and the
                 honest trade-offs before we discuss anything operative.
@@ -214,18 +214,23 @@ export function Consultation() {
                       />
                     </div>
                   </div>
-                  <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+                  <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <label className="flex max-w-[48ch] items-start gap-3 text-sm text-textSecondary">
                       <input
                         type="checkbox"
                         checked={form.consent}
                         onChange={(e) => update('consent')(e.target.checked)}
-                        className="mt-1 accent-primary"
+                        className="mt-1 h-5 w-5 shrink-0 accent-primary"
                       />
                       I understand my information will be used only to schedule and prepare for
                       this consultation.
                     </label>
-                    <Button type="submit" variant="primary" disabled={status === 'submitting'}>
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      disabled={status === 'submitting'}
+                      className="w-full sm:w-auto"
+                    >
                       {status === 'submitting' ? 'Sending…' : 'Book an Appointment'}
                     </Button>
                   </div>

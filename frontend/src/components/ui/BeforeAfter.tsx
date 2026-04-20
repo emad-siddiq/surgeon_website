@@ -10,16 +10,19 @@ export interface BeforeAfterProps {
 }
 
 /**
- * Before/after drag slider — a single clean frame with a soft vertical
- * divider. Supports pointer drag, arrow-key nudges, touch, and
- * keyboard-only operation via `role="slider"`.
+ * Before/after drag slider that sizes itself to the *before* image's
+ * natural dimensions — no hardcoded aspect ratio. Each image can be
+ * portrait, landscape, square; the container grows to match.
  *
- * Layout:
- *   - Fixed 3/4 aspect, rounded-lg, border, soft shadow.
- *   - BEFORE / AFTER labels sit quietly in the bottom corners so they
- *     never overlap the patient's face.
- *   - A centered pill handle (vertical bar + centered knob with two
- *     chevrons) replaces the loud colored knob from v1.
+ * Implementation:
+ *   - The `before` image renders in normal flow with `height: auto` and
+ *     `width: 100%`. It therefore defines the container's height and
+ *     aspect ratio organically.
+ *   - The `after` image is absolutely positioned on top and object-cover
+ *     clipped from the left with `clipPath: inset(0 0 0 X%)`.
+ *
+ * This avoids fragile `aspect-[...]` classes that cropped images or
+ * letterboxed them into a fixed frame.
  */
 export function BeforeAfter({
   before,
@@ -85,31 +88,42 @@ export function BeforeAfter({
         onPointerCancel={onPointerUp}
         onKeyDown={onKeyDown}
         className={cn(
-          'group relative aspect-[3/4] w-full cursor-ew-resize select-none overflow-hidden',
-          'rounded-lg bg-textPrimary shadow-card ring-1 ring-border1',
+          'group relative w-full cursor-ew-resize select-none overflow-hidden',
+          'rounded-lg bg-surface shadow-card ring-1 ring-border1',
           'touch-pan-y',
         )}
       >
+        {/*
+          `before` renders in normal flow with `h-auto` + `w-full` so it
+          determines the container's height and aspect ratio. Width /
+          height attributes prevent layout shift while loading.
+        */}
         <img
           src={before.src}
           alt={before.alt}
           loading="lazy"
           decoding="async"
           draggable={false}
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+          className="block h-auto w-full select-none"
         />
+        {/*
+          `after` is overlaid with the exact container bounds. object-cover
+          ensures it fills the container even if the after image has a
+          slightly different intrinsic aspect ratio (patient photography
+          is usually matched pairs, but pairs are not always pixel-perfect).
+          clipPath reveals only the right-hand portion past the handle.
+        */}
         <img
           src={after.src}
           alt={after.alt}
           loading="lazy"
           decoding="async"
           draggable={false}
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+          className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover"
           style={{ clipPath: `inset(0 0 0 ${pct}%)` }}
         />
 
-        {/* Corner labels — subtle, bottom of the frame so they don't
-            cover faces. Fade while dragging so the image reads cleanly. */}
+        {/* Corner labels — quiet chips, bottom of the frame. */}
         <span
           aria-hidden="true"
           className={cn(
@@ -129,13 +143,14 @@ export function BeforeAfter({
           After
         </span>
 
-        {/* Divider + handle. Line is 1px with a soft shadow; knob is a
-            white pill with two subtle chevrons. Whole thing scales up
-            slightly on hover/focus for discoverability. */}
+        {/* Divider + centered white pill handle. */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute top-0 bottom-0 w-px bg-white/90"
-          style={{ left: `${pct}%`, boxShadow: '0 0 0 1px rgba(0,0,0,0.15), 0 4px 16px rgba(0,0,0,0.25)' }}
+          style={{
+            left: `${pct}%`,
+            boxShadow: '0 0 0 1px rgba(0,0,0,0.15), 0 4px 16px rgba(0,0,0,0.25)',
+          }}
         >
           <span
             className={cn(

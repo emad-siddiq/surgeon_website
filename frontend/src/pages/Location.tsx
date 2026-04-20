@@ -18,9 +18,7 @@ export function Location() {
 
       <PageHeader
         eyebrow="Location"
-        title={
-          <>Shifa International Hospitals: setting standards in healthcare excellence.</>
-        }
+        title={<>Shifa International Hospitals: setting standards in healthcare excellence.</>}
         lead="Visit Shifa International Hospital, where excellence meets compassion in healthcare. Our state-of-the-art facility combines modern medical technology with experienced healthcare professionals — Dr. Siddiq has operated here for over two decades."
         actions={
           <>
@@ -34,7 +32,26 @@ export function Location() {
         }
       />
 
+      {/* Video first — sets the scene before the practical directions. */}
       <Section tone="base" size="md">
+        <Eyebrow>Inside the hospital</Eyebrow>
+        <h2 className="t-h2 mt-3 max-w-[24ch]">A brief look at the facility.</h2>
+        <div className="mt-8 overflow-hidden rounded-lg border border-border1 shadow-card">
+          <video
+            className="aspect-video w-full bg-textPrimary"
+            src={videos.clinicLoop}
+            muted
+            autoPlay
+            loop
+            playsInline
+            preload="metadata"
+            aria-label="Ambient loop of Shifa International Hospital interiors"
+          />
+        </div>
+      </Section>
+
+      {/* Directions — address and map together. */}
+      <Section tone="surface" size="md">
         <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
             <Eyebrow>Visit</Eyebrow>
@@ -80,23 +97,6 @@ export function Location() {
               />
             </div>
           </div>
-        </div>
-      </Section>
-
-      <Section tone="surface" size="md">
-        <Eyebrow>Inside the hospital</Eyebrow>
-        <h2 className="t-h2 mt-3 max-w-[24ch]">A brief look at the facility.</h2>
-        <div className="mt-8 overflow-hidden rounded-lg border border-border1 shadow-card">
-          <video
-            className="aspect-video w-full bg-textPrimary"
-            src={videos.clinicLoop}
-            muted
-            autoPlay
-            loop
-            playsInline
-            preload="metadata"
-            aria-label="Ambient loop of Shifa International Hospital interiors"
-          />
         </div>
       </Section>
     </>

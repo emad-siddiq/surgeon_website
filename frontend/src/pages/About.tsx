@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Seo } from '@/components/seo/Seo';
+import { Container } from '@/components/ui/Container';
 import { Section } from '@/components/ui/Section';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Card } from '@/components/ui/Card';
@@ -15,8 +16,8 @@ export function About() {
       <Seo title="About" description={doctor.bioShort} path="/about" schema="home" />
 
       <section className="bg-gradient-hero">
-        <div className="mx-auto w-full max-w-container px-6 py-16 md:px-10 md:py-24">
-          <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-12">
+        <Container className="py-12 sm:py-16 md:py-24">
+          <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12 md:gap-12">
             <div className="md:col-span-6">
               <Eyebrow>{doctor.credentials}</Eyebrow>
               <h1 className="t-display mt-4 max-w-[16ch]">{doctor.fullName}</h1>
@@ -85,7 +86,7 @@ export function About() {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       <Section tone="base" size="md">
@@ -119,7 +120,11 @@ export function About() {
               <li>• Long-term post-operative follow-up</li>
             </ul>
           </div>
-          <ButtonRouterLink to="/distinctions" variant="secondary">
+          <ButtonRouterLink
+            to="/distinctions"
+            variant="secondary"
+            className="w-full md:w-auto"
+          >
             Distinctions & awards →
           </ButtonRouterLink>
         </div>

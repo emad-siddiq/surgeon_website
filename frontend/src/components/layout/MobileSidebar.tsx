@@ -76,8 +76,12 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
       <div
         ref={panelRef}
         id="mobile-nav"
+        style={{
+          paddingTop: 'calc(1.5rem + env(safe-area-inset-top, 0px))',
+          paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))',
+        }}
         className={cn(
-          'absolute right-0 top-0 flex h-full w-full max-w-xs flex-col bg-white p-8 shadow-raised transition-transform duration-200',
+          'absolute right-0 top-0 flex h-full w-[min(20rem,100vw-2.5rem)] flex-col bg-white px-6 shadow-raised transition-transform duration-200',
           open ? 'translate-x-0' : 'translate-x-full',
         )}
       >
