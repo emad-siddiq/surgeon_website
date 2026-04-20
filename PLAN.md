@@ -177,3 +177,126 @@ logical cores.
 - Responsive image generation (`srcSet`, `.webp` output) is declared but not yet wired to a Vite plugin; the existing JPEGs are shipped as-is. Add `vite-imagetools` when rolling out real portraits/gallery photography.
 - Apple-touch-icon PNGs and maskable icons are omitted — the manifest references the SVG favicon only. Re-export a 180×180 + 512×512 PNG pack from `logo.png` before shipping to an App Store–style install flow.
 - Husky is wired via `prepare` but `.husky/` hooks are not committed — add `pre-commit` running `lint-staged` as a follow-up.
+
+---
+
+## 8. Post-migration course corrections
+
+After the initial migration landed, several decisions from §3 above and the
+Claude Design artifact were reversed or extended. The live tree reflects the
+state below — where this contradicts earlier sections of this document, this
+section wins.
+
+### 8.1 Theme reverted to the original (`7f3b573`)
+
+The Claude Design cream/peach/lilac + Fraunces+Inter direction was replaced
+with the site's original theme (the state at commit `0fb3280`):
+
+- Palette is now **blue primary `#0D6EFD` on white** with a three-stop
+  peach→lavender gradient (`#FDF8F6 → #F9E4DA → #E3E3FA`) on hero and
+  consultation bands, and a four-stop gradient on the footer.
+- Typography is **self-hosted Roboto Flex** (variable TTF under
+  `src/assets/fonts/`), no Google Fonts host.
+- The WebGL aurora (`components/aurora/*`), the Gallery placeholder
+  testimonials, and three/fiber/drei dependencies were all removed.
+- `DESIGN_SPEC.md` was rewritten to document this theme as the authoritative
+  spec; the Claude Design artifact remains in `docs/design/` as a reference
+  only.
+
+### 8.2 Multi-page routing (`d17d002`)
+
+Replaced the one-page-with-anchors design with real pages:
+
+```
+/                  Home (slim landing + teasers)
+/about             Doctor bio + credentials + expertise
+/procedures        All 10 procedures grouped by category
+/bariatric         Bariatric specialty deep-dive
+/distinctions      Presidential Award + 970-stat editorial
+/transformations   Before/after drag sliders
+/location          Hospital video + address + Google Maps iframe
+/consultation      Form page
+/gallery           15-image responsive grid
+```
+
+Legacy aliases redirect: `/services → /procedures`, `/contact` and
+`/book-appointment → /consultation`, `/experience → /bariatric`. The
+`HoverNavBar` uses React Router `NavLink` so the active page is highlighted.
+
+### 8.3 Home scroll rail (`0232970`)
+
+Desktop-only (`lg+`) vertical scroll-progress rail pinned to the right edge.
+Shows a dot per home section with the active one filled in the primary
+color, a growing blue fill reflecting overall scroll progress, and labels
+that fade in on active/hover. Hidden on mobile (would crowd the viewport).
+
+### 8.4 Procedure detail modals (`f56b0b1`)
+
+Every procedure (10 general/colorectal/upper-GI + 4 bariatric) now carries
+a short patient-facing `summary` on its card and a longer
+`details.sections[]` array rendered in a modal on click. Sections typically
+cover *When it's recommended · How the operation is performed · Recovery ·
+Long-term considerations*, written in plain language for readers who are
+actually considering the operation.
+
+The `Modal` primitive (`components/ui/Modal.tsx`) has focus trap, focus
+restoration, Escape/backdrop close, scroll lock, and portals to
+`document.body`. On phones it renders as a full-width bottom sheet using
+`100dvh` (survives iOS Safari's collapsing address bar); on `sm+` it
+centers as a card.
+
+### 8.5 Type scale is rem + Tailwind (`0232970`)
+
+Dropped `clamp(px, vw, px)` in favor of Tailwind's responsive text
+utilities (`text-3xl sm:text-4xl lg:text-5xl`). `html { font-size: 100% }`
+anchors everything to the browser's root size so zoom and OS
+"larger text" settings work predictably.
+
+### 8.6 BeforeAfter uses natural image dimensions (`f56b0b1`)
+
+The slider no longer enforces a hard aspect ratio. The `before` image
+renders in normal flow with `height: auto` (defining the container
+bounds), and the `after` image overlays with a left-anchored `clip-path`.
+Each story now sizes to its own photograph.
+
+### 8.7 Mobile pass (`f56b0b1`)
+
+Targeted: iPhone SE (375×667) through Pro Max / Galaxy S24 Ultra / iPad.
+
+- `viewport-fit=cover`; `env(safe-area-inset-*)` on body, nav, modal, sidebar.
+- Container gutters step `px-4 → px-6 sm → px-10 md`.
+- Every button hits the **44 px** WCAG/iOS touch-target minimum.
+- CTAs stack full-width below `sm` and wrap inline above.
+- Form inputs pinned to `font-size: 16px` to disable iOS focus-zoom.
+- Modal is a bottom-anchored sheet on phones, centered card on `sm+`.
+- `-webkit-tap-highlight-color: transparent`, `text-size-adjust: 100%`.
+
+### 8.8 Final route / content summary
+
+| Route               | Notes                                                                |
+|---------------------|----------------------------------------------------------------------|
+| `/`                 | Slideshow hero (3 images) · 4-stat band · About teaser · Featured procedures · Distinction teaser · Consult CTA · SectionProgress rail on desktop |
+| `/about`            | Full bio (2 paragraphs) · play-on-click intro video · education grid · expertise list |
+| `/procedures`       | 10 procedures grouped into 4 categories · animated case counters · detail modal per card |
+| `/bariatric`        | 25-year intro · portrait + stats · 4 sub-procedures with detail modal each |
+| `/distinctions`     | 2 editorial sections with imagery · 970 animated stat block         |
+| `/transformations`  | 3 before/after sliders at natural dimensions with weight captions   |
+| `/location`         | Ambient hospital video · definition list · Google Maps iframe        |
+| `/consultation`     | Form (name, phone, email, reason, message) wired to `POST /api/consultation` with honeypot + success/error states |
+| `/gallery`          | 15-image responsive grid                                             |
+| `/404`              | Recovery links to every primary nav item                            |
+
+### 8.9 Final build receipts
+
+From `npm run build` at commit `f56b0b1`:
+
+| Asset                        | Raw        | Gzip       |
+|------------------------------|------------|------------|
+| `dist/index.html`            | 1.44 kB    | 0.72 kB    |
+| App CSS                      | 35.02 kB   | **6.83 kB**|
+| App JS                       | 111.22 kB  | **32.98 kB** |
+| React + router vendor        | 177.96 kB  | **58.31 kB** |
+| **Initial JS (gzip, total)** |            | **~91 kB** |
+
+CI matrix still green: `tsc --noEmit`, `eslint .`, `vitest run` (3/3),
+`vite build`, `go vet ./...`, `go test -race ./...`.

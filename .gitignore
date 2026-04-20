@@ -8,3 +8,6 @@ coverage
 *.log
 *.tsbuildinfo
 /tmp
+
+# Per-machine tool state (Claude Code etc.)
+.claude/
