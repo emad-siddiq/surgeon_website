@@ -102,16 +102,29 @@ renders every design token + primitive for visual diffs against
 
 ## Privacy
 
-The site does not include analytics, tracking pixels, or third-party scripts
-by default. The only third-party resource loaded in production is Google
-Fonts (Fraunces + Inter) from `fonts.gstatic.com`. If you need to remove
-Google as a third party, self-host the fonts under
-`frontend/src/assets/fonts/` and update `index.html` / `tokens.css`
-accordingly.
+The site does not include analytics, tracking pixels, or third-party
+scripts. Fonts are self-hosted (`Roboto Flex` under
+`frontend/src/assets/fonts/`). Two external resources are loaded at
+runtime — both first-party to the user's decision to engage:
 
-Consultation submissions go directly to your backend — there is no third
-party in the submission path. Review and adjust the retention policy for your
-server logs before going live.
+- A Google Maps Embed iframe on `/location`, loaded lazily.
+- WhatsApp's `api.whatsapp.com` deep-link, opened only when the user
+  explicitly clicks the WhatsApp booking button.
+
+### Booking feedback
+
+After a patient clicks the WhatsApp or Call booking button, the site
+stores a small record in `localStorage` (channel + timestamp, under the
+key `ds.booking-feedback.v1`, TTL 24 h). About 90 seconds later, or on
+their next visit within the TTL window, a toast asks whether they were
+able to book. If they respond, the answer (one of `booked`,
+`not_booked`, `trying`) plus an optional free-text note is posted to
+`POST /api/feedback` on this project's own backend — no third party.
+
+The record is cleared as soon as the patient responds, dismisses the
+prompt, or 24 h elapses. Before launch, review and adjust the retention
+policy for backend request logs (all feedback is logged via `slog` at
+INFO level by default).
 
 ## Editing content without touching code
 

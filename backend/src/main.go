@@ -133,6 +133,94 @@ func consultationHandler(logger *slog.Logger) http.HandlerFunc {
 	}
 }
 
+// ---- booking feedback endpoint ---------------------------------------------
+
+// feedback is the payload patients submit after they've tried to book an
+// appointment via WhatsApp or a phone call to the Shifa switchboard. The
+// practice uses this to measure whether the hospital's reception is
+// successfully routing patients to Dr. Siddiq.
+type feedback struct {
+	// Channel is the button they clicked: "whatsapp" or "phone".
+	Channel string `json:"channel"`
+	// Outcome is one of "booked", "not_booked", "trying".
+	Outcome string `json:"outcome"`
+	// Note is an optional free-text message (<= 1000 chars).
+	Note string `json:"note"`
+	// ElapsedMs is how long after the click the user submitted feedback,
+	// in milliseconds. Useful for distinguishing quick "trying" replies
+	// from eventual "booked" / "not_booked" replies.
+	ElapsedMs int64 `json:"elapsed_ms"`
+}
+
+var (
+	validChannels = map[string]struct{}{
+		"whatsapp": {},
+		"phone":    {},
+	}
+	validOutcomes = map[string]struct{}{
+		"booked":     {},
+		"not_booked": {},
+		"trying":     {},
+	}
+)
+
+func (f feedback) validate() error {
+	if _, ok := validChannels[f.Channel]; !ok {
+		return errors.New("invalid channel")
+	}
+	if _, ok := validOutcomes[f.Outcome]; !ok {
+		return errors.New("invalid outcome")
+	}
+	if len(f.Note) > 1000 {
+		return errors.New("note exceeds maximum length")
+	}
+	if f.ElapsedMs < 0 {
+		return errors.New("elapsed_ms must be non-negative")
+	}
+	return nil
+}
+
+func feedbackHandler(logger *slog.Logger) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		r.Body = http.MaxBytesReader(w, r.Body, 16<<10)
+		defer r.Body.Close()
+
+		var req feedback
+		dec := json.NewDecoder(r.Body)
+		dec.DisallowUnknownFields()
+		if err := dec.Decode(&req); err != nil {
+			logger.Warn("feedback: invalid body", "error", err)
+			writeJSON(w, http.StatusBadRequest, map[string]string{
+				"status":  "error",
+				"message": "invalid request body",
+			})
+			return
+		}
+		if err := req.validate(); err != nil {
+			writeJSON(w, http.StatusUnprocessableEntity, map[string]string{
+				"status":  "error",
+				"message": err.Error(),
+			})
+			return
+		}
+
+		// v1: log to stdout so operators can grep the access log. A
+		// future iteration may pipe this into a spreadsheet or DB.
+		logger.Info("booking.feedback",
+			"channel", req.Channel,
+			"outcome", req.Outcome,
+			"elapsed_ms", req.ElapsedMs,
+			"note_length", len(req.Note),
+			"note", req.Note,
+		)
+
+		writeJSON(w, http.StatusOK, map[string]string{
+			"status":  "ok",
+			"message": "thanks",
+		})
+	}
+}
+
 // ---- middleware ------------------------------------------------------------
 
 type statusRecorder struct {
@@ -186,6 +274,7 @@ func main() {
 	}).Methods(http.MethodGet)
 
 	router.HandleFunc("/api/consultation", consultationHandler(logger)).Methods(http.MethodPost)
+	router.HandleFunc("/api/feedback", feedbackHandler(logger)).Methods(http.MethodPost)
 
 	corsMiddleware := cors.New(cors.Options{
 		AllowedOrigins:   cfg.allowedOrigins,

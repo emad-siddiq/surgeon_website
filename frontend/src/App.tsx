@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { HoverNavBar } from './components/layout/HoverNavBar';
 import { Footer } from './components/layout/Footer';
+import { BookingFeedbackPrompt } from './components/ui/BookingFeedbackPrompt';
 import { useRouteScrollReset } from './hooks/useRouteScrollReset';
 
 import { Home } from './pages/Home';
@@ -41,6 +42,12 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      {/*
+        Post-click booking feedback. Renders nothing until the patient
+        has clicked WhatsApp / Call and the cool-off window has
+        elapsed. Mounted once at the app shell.
+      */}
+      <BookingFeedbackPrompt />
     </>
   );
 }

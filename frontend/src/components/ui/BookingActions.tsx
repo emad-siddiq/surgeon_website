@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { ButtonLink } from './Button';
 import { contact } from '@/content/contact';
+import { recordBookingClick } from '@/hooks/useBookingFeedback';
 import { cn } from '@/lib/cn';
 
 interface BookingActionsProps {
@@ -39,6 +40,10 @@ export function BookingActions({
         rel="noopener noreferrer"
         variant="primary"
         size={size}
+        // Record the click BEFORE the browser hands off to the OS /
+        // new tab — `onClick` fires synchronously, so localStorage is
+        // written before the navigation.
+        onClick={() => recordBookingClick('whatsapp')}
         className={cn(widthClass, 'bg-[#25D366] hover:bg-[#1fb655]')}
       >
         <svg
@@ -56,6 +61,7 @@ export function BookingActions({
         href={`tel:${contact.phone.tel}`}
         variant="secondary"
         size={size}
+        onClick={() => recordBookingClick('phone')}
         className={widthClass}
       >
         <svg
