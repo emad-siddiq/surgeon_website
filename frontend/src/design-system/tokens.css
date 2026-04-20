@@ -3,8 +3,12 @@
  *
  * Matches the live site's original theme (commit 0fb3280): Roboto type,
  * blue primary accent (#0D6EFD), white base, soft peach/lavender gradient
- * bands on hero and footer. Do not reintroduce the cream/peach/lilac
- * "Claude Design" palette here without re-aligning the spec.
+ * bands on hero and footer.
+ *
+ * Type scale is rem-based and uses standard breakpoint-driven step-ups
+ * (not clamp()/vw) so it responds predictably to the user's base font
+ * size (browser zoom, a11y "large text" settings) and to standard Tailwind
+ * breakpoints.
  */
 
 /* Self-host Roboto Flex (variable font); no third-party Google Fonts dependency. */
@@ -60,7 +64,7 @@
   --font-sans: "Roboto Flex", "Roboto", "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Signature soft peach→lavender gradient used on hero + footer bands. */
+  /* Gradient bands */
   --gradient-hero: linear-gradient(
     to bottom,
     var(--color-gradient-from),
@@ -76,57 +80,6 @@
   );
 
   color-scheme: light;
-}
-
-/* ---------- Type scale ---------- */
-.t-display {
-  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  font-weight: 400;
-}
-.t-h1 {
-  font-size: clamp(2rem, 3.2vw, 3rem);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  font-weight: 500;
-}
-.t-h2 {
-  font-size: clamp(1.5rem, 2.2vw, 2rem);
-  line-height: 1.2;
-  letter-spacing: -0.005em;
-  font-weight: 500;
-}
-.t-h3 {
-  font-size: clamp(1.125rem, 1.4vw, 1.375rem);
-  line-height: 1.3;
-  letter-spacing: 0;
-  font-weight: 500;
-}
-.t-body-lg {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  letter-spacing: 0;
-  font-weight: 400;
-}
-.t-body {
-  font-size: 1rem;
-  line-height: 1.6;
-  letter-spacing: 0;
-  font-weight: 400;
-}
-.t-caption {
-  font-size: 0.875rem;
-  line-height: 1.5;
-  letter-spacing: 0;
-  font-weight: 400;
-}
-.t-eyebrow {
-  font-size: 0.75rem;
-  line-height: 1;
-  letter-spacing: 0.12em;
-  font-weight: 500;
-  text-transform: uppercase;
 }
 
 /* ---------- Soft rule ---------- */

@@ -12,6 +12,9 @@
   }
 
   html {
+    /* Anchors the rem scale. Respect the user's browser / accessibility
+       font-size setting by scaling off the default rather than pinning px. */
+    font-size: 100%;
     scroll-behavior: smooth;
   }
 
@@ -19,6 +22,8 @@
     background: var(--color-base);
     color: var(--color-text);
     font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -44,7 +49,7 @@
   }
 
   section {
-    scroll-margin-top: 96px;
+    scroll-margin-top: 6rem;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -57,5 +62,43 @@
     html {
       scroll-behavior: auto;
     }
+  }
+}
+
+/*
+ * Type scale — expressed as responsive rem utilities via Tailwind's native
+ * scale rather than clamp()/vw, so headings step up predictably at
+ * breakpoints instead of drifting with viewport width. All sizes are rem,
+ * so they inherit from the browser's root font-size.
+ *
+ * Scale reference (Tailwind defaults):
+ *   text-xs 0.75rem · text-sm 0.875rem · text-base 1rem · text-lg 1.125rem
+ *   text-xl 1.25rem · text-2xl 1.5rem · text-3xl 1.875rem · text-4xl 2.25rem
+ *   text-5xl 3rem · text-6xl 3.75rem
+ */
+@layer components {
+  .t-display {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-tight;
+  }
+  .t-h1 {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-medium leading-[1.15] tracking-tight;
+  }
+  .t-h2 {
+    @apply text-2xl md:text-3xl font-medium leading-tight;
+  }
+  .t-h3 {
+    @apply text-lg md:text-xl font-medium leading-snug;
+  }
+  .t-body-lg {
+    @apply text-lg leading-relaxed;
+  }
+  .t-body {
+    @apply text-base leading-relaxed;
+  }
+  .t-caption {
+    @apply text-sm leading-normal;
+  }
+  .t-eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.12em];
   }
 }

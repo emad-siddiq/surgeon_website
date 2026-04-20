@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/Card';
 import { Section } from '@/components/ui/Section';
 import { HeroSlideshow } from '@/components/ui/HeroSlideshow';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
+import { SectionProgress } from '@/components/ui/SectionProgress';
 import { Seo } from '@/components/seo/Seo';
 import { doctor } from '@/content/doctor';
 import { heroImages, aboutPortrait } from '@/content/media';
@@ -12,9 +13,24 @@ import { services } from '@/content/services';
 import { distinctions } from '@/content/distinctions';
 import { Tag } from '@/components/ui/Tag';
 
+// Anchor ids used by SectionProgress; each page section below wires the
+// same id as its DOM `id` attribute so the rail can observe them.
+const sections = [
+  { id: 'home-top', label: 'Introduction' },
+  { id: 'home-stats', label: 'At a glance' },
+  { id: 'home-about', label: 'About the surgeon' },
+  { id: 'home-procedures', label: 'Procedures' },
+  { id: 'home-distinctions', label: 'Distinctions' },
+  { id: 'home-consult', label: 'Consultation' },
+];
+
 function Hero() {
   return (
-    <section aria-labelledby="hero-headline" className="relative bg-gradient-hero">
+    <section
+      id="home-top"
+      aria-labelledby="hero-headline"
+      className="relative bg-gradient-hero"
+    >
       <Container className="py-16 md:py-24 lg:py-28">
         <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12">
           <div className="md:col-span-7">
@@ -53,7 +69,7 @@ function Hero() {
 
 function Stats() {
   return (
-    <Section tone="surface" size="sm" aria-labelledby="stats-heading">
+    <Section id="home-stats" tone="surface" size="sm" aria-labelledby="stats-heading">
       <h2 id="stats-heading" className="sr-only">
         Practice at a glance
       </h2>
@@ -78,7 +94,7 @@ function Stats() {
 
 function AboutTeaser() {
   return (
-    <Section tone="base" size="md">
+    <Section id="home-about" tone="base" size="md">
       <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12">
         <div className="md:col-span-5">
           <img
@@ -111,7 +127,12 @@ function AboutTeaser() {
 function FeaturedProcedures() {
   const featured = services.slice(0, 3);
   return (
-    <Section tone="surface" size="md" aria-labelledby="featured-proc-heading">
+    <Section
+      id="home-procedures"
+      tone="surface"
+      size="md"
+      aria-labelledby="featured-proc-heading"
+    >
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
           <Eyebrow>Surgical expertise</Eyebrow>
@@ -123,17 +144,18 @@ function FeaturedProcedures() {
           Explore All Surgical Services →
         </ButtonRouterLink>
       </div>
+      {/* Informational cards, consistent with /procedures — no pseudo-hover. */}
       <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {featured.map((service) => (
           <li key={service.slug}>
-            <Card as="article" padding="md" interactive className="h-full">
+            <Card as="article" padding="md" className="h-full">
               <div className="flex items-start justify-between gap-4">
                 <Tag>{service.category}</Tag>
                 <span className="text-lg font-medium text-primary">
                   <AnimatedCounter to={service.volume} suffix="+" />
                 </span>
               </div>
-              <h3 className="mt-4 text-[20px] font-medium leading-snug">{service.title}</h3>
+              <h3 className="mt-4 text-xl font-medium leading-snug">{service.title}</h3>
               <p className="t-body mt-2 text-textSecondary">{service.subtitle}</p>
             </Card>
           </li>
@@ -146,7 +168,7 @@ function FeaturedProcedures() {
 function DistinctionTeaser() {
   const lead = distinctions[0];
   return (
-    <Section tone="base" size="md">
+    <Section id="home-distinctions" tone="base" size="md">
       <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12">
         <div className="md:col-span-5">
           <img
@@ -174,7 +196,7 @@ function DistinctionTeaser() {
 
 function ConsultCta() {
   return (
-    <section className="bg-gradient-hero">
+    <section id="home-consult" className="bg-gradient-hero">
       <Container className="py-16 md:py-20">
         <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[1fr,auto]">
           <div>
@@ -198,6 +220,7 @@ export function Home() {
   return (
     <>
       <Seo path="/" schema="home" />
+      <SectionProgress sections={sections} />
       <Hero />
       <Stats />
       <AboutTeaser />
