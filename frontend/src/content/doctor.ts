@@ -11,22 +11,23 @@ export const doctor = {
 
   heroHeadline: 'Pioneer of Laparoscopic Bariatric Surgery in Pakistan',
   heroLead:
-    'Twenty-five years of minimally invasive surgery at Shifa International Hospital — over 1,400 successful laparoscopic cases and counting.',
+    'A quarter-century of minimally invasive surgery at Shifa International Hospital — more than 1,400 successful laparoscopic cases, each treated with the same careful precision.',
 
-  tagline: 'Minimally invasive surgery. Compassionate care.',
+  tagline: 'Minimally invasive surgery. Thoughtful, compassionate care.',
 
   /** Short bio used on Home + SEO description. */
   bioShort:
-    'Dr. Ghulam Siddiq is Chief of Surgery at Shifa International Hospital, Islamabad, specialising in laparoscopic bariatric surgery — a state-of-the-art, minimally invasive technique.',
+    'Dr. Ghulam Siddiq is Chief of Surgery at Shifa International Hospital, Islamabad, specialising in laparoscopic bariatric surgery — a modern, minimally invasive technique that helps patients recover faster with smaller scars and less discomfort.',
 
   /** Long bio used on About. */
   bioLong: [
-    'Dr. Ghulam Siddiq is currently the Chief of Surgery at Shifa International Hospital in Islamabad, Pakistan, where he has been practicing for the last 25 years, specialising in Laparoscopic Bariatric Surgery, a state-of-the-art, minimally invasive surgical technique.',
-    'He routinely performs laparoscopic Roux-en-Y gastric bypasses, Sleeve Gastrectomies, Mini gastric bypasses (OAGB) and revision bariatric procedures. Since 2010 he has performed over 1,400 successful laparoscopic cases, establishing himself as Pakistan’s leading authority in minimally invasive bariatric procedures.',
+    'Dr. Ghulam Siddiq is Chief of Surgery at Shifa International Hospital in Islamabad, Pakistan, where he has practised for over 25 years. His focus is Laparoscopic Bariatric Surgery — a state-of-the-art, minimally invasive approach that is transforming how weight-loss operations are performed in the region.',
+    'He routinely performs laparoscopic Roux-en-Y gastric bypasses, Sleeve Gastrectomies, Mini gastric bypasses (OAGB) and revision bariatric procedures. Since 2010 he has completed over 1,400 successful laparoscopic cases, building a reputation as Pakistan’s leading authority in minimally invasive bariatric surgery.',
+    'Beyond the operating theatre, Dr. Siddiq is known for unhurried consultations, plain-language explanations, and long-term follow-through. Each patient is guided through the decision, the surgery and the months of recovery that follow — a partnership rather than a transaction.',
   ],
 
   proofPoints: [
-    '25 years in practice',
+    '25+ years in practice',
     '1,400+ laparoscopic cases',
     'Shifa International Hospital, Islamabad',
   ],

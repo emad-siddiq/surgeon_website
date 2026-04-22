@@ -61,7 +61,7 @@ export function HoverNavBar() {
       )}
     >
       <Container className="flex h-14 items-center justify-between gap-3 sm:h-16 sm:gap-4">
-        <Logo />
+        <Logo compact={isMobile} />
         {isMobile ? (
           <div className="flex items-center gap-1.5">
             <a

@@ -6,7 +6,7 @@ export type SectionTone = 'base' | 'surface' | 'gradient' | 'dark';
 export type SectionSize = 'sm' | 'md' | 'lg';
 
 const toneClass: Record<SectionTone, string> = {
-  base: 'bg-base text-textPrimary',
+  base: 'bg-canvas text-textPrimary',
   surface: 'bg-surface text-textPrimary',
   gradient: 'bg-gradient-hero text-textPrimary',
   dark: 'bg-textPrimary text-white',

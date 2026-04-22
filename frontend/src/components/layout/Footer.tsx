@@ -25,20 +25,20 @@ export function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="bg-gradient-footer">
-      <Container className="py-14 md:py-20">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
-          <div className="md:col-span-2">
+      <Container className="py-10 md:py-20">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 md:gap-10">
+          <div className="col-span-2 md:col-span-2">
             <Logo />
-            <p className="mt-4 max-w-[42ch] text-textSecondary">
+            <p className="mt-3 max-w-[42ch] text-sm leading-relaxed text-textPrimary md:mt-4 md:text-base">
               {doctor.role}. {doctor.tagline}
             </p>
-            <div className="mt-5 flex items-center gap-3">
+            <div className="mt-4 flex items-center gap-3 md:mt-5">
               <a
                 href={contact.social.facebook}
                 aria-label="Dr. Ghulam Siddiq on Facebook"
                 target="_blank"
                 rel="noreferrer"
-                className="text-textSecondary hover:text-primary"
+                className="text-textPrimary hover:text-primary"
               >
                 <SocialIcon kind="facebook" />
               </a>
@@ -47,7 +47,7 @@ export function Footer() {
                 aria-label="Dr. Ghulam Siddiq on Instagram"
                 target="_blank"
                 rel="noreferrer"
-                className="text-textSecondary hover:text-primary"
+                className="text-textPrimary hover:text-primary"
               >
                 <SocialIcon kind="instagram" />
               </a>
@@ -56,15 +56,16 @@ export function Footer() {
                 aria-label="Dr. Ghulam Siddiq on YouTube"
                 target="_blank"
                 rel="noreferrer"
-                className="text-textSecondary hover:text-primary"
+                className="text-textPrimary hover:text-primary"
               >
                 <SocialIcon kind="youtube" />
               </a>
             </div>
           </div>
           <nav aria-label="Footer sitemap" className="min-w-0">
-            <p className="t-eyebrow text-textMuted">Explore</p>
-            <ul className="mt-3 space-y-2 text-textSecondary">
+            <p className="t-eyebrow text-textSecondary">Explore</p>
+            <ul className="mt-3 space-y-1.5 text-sm text-textPrimary md:space-y-2 md:text-base">
+              {/* intentional — nav list reads as textPrimary for contrast */}
               {[...primaryNav, ...secondaryNav].map((item) => (
                 <li key={item.to}>
                   <Link className="hover:text-primary" to={item.to}>
@@ -75,8 +76,8 @@ export function Footer() {
             </ul>
           </nav>
           <div className="min-w-0">
-            <p className="t-eyebrow text-textMuted">Visit</p>
-            <ul className="mt-3 space-y-2 text-textSecondary">
+            <p className="t-eyebrow text-textSecondary">Visit</p>
+            <ul className="mt-3 space-y-1.5 text-sm text-textPrimary md:space-y-2 md:text-base">
               <li>{contact.clinic.name}</li>
               <li>{contact.clinic.area}</li>
               <li>
@@ -97,8 +98,8 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <hr className="hr-soft my-10" />
-        <div className="grid grid-cols-1 gap-4 text-sm text-textMuted md:grid-cols-[auto,1fr] md:items-start">
+        <hr className="hr-soft my-6 md:my-10" />
+        <div className="grid grid-cols-1 gap-2 text-xs leading-relaxed text-textSecondary md:grid-cols-[auto,1fr] md:items-start md:gap-4 md:text-sm">
           <p className="md:whitespace-nowrap">
             © {year} {doctor.fullName}. All rights reserved.
           </p>

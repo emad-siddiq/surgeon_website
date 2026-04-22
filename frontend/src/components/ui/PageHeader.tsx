@@ -31,7 +31,7 @@ export function PageHeader({
       ? 'bg-gradient-hero'
       : tone === 'surface'
         ? 'bg-surface'
-        : 'bg-base';
+        : 'bg-canvas';
   return (
     <section className={cn(toneClass, className)}>
       <Container className="py-12 sm:py-16 md:py-20 lg:py-24">

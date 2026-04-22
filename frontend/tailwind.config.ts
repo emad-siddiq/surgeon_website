@@ -10,7 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        base: '#FFFFFF',
+        // `canvas`, not `base` — `text-base` is a Tailwind font-size utility;
+        // naming the color `base` creates `text-base` / `bg-base` color utilities
+        // that collide with the type-scale utility and paint text white at runtime.
+        canvas: '#FFFFFF',
         surface: '#F9FAFB',
         gradientFrom: '#FDF8F6',
         gradientVia: '#F9E4DA',

@@ -24,6 +24,10 @@ export function useMediaQuery(query: string): boolean {
   return matches;
 }
 
-export const useIsMobile = () => useMediaQuery('(max-width: 767px)');
+// Mobile covers everything below Tailwind's `lg` breakpoint so the
+// hamburger menu appears whenever the desktop inline nav would not fit.
+// Previously this was `767px`, which left a dead zone at 768–1023px
+// where neither the mobile trigger nor the desktop links rendered.
+export const useIsMobile = () => useMediaQuery('(max-width: 1023px)');
 export const usePrefersReducedMotion = () =>
   useMediaQuery('(prefers-reduced-motion: reduce)');
