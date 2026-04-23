@@ -22,7 +22,7 @@ and the Tailwind keys in [`frontend/tailwind.config.ts`](frontend/tailwind.confi
 
 | Token           | Hex       | CSS var                 | Tailwind key    | Use                                    |
 |-----------------|-----------|-------------------------|-----------------|----------------------------------------|
-| `base`          | `#FFFFFF` | `--color-base`          | `base`          | Page base; cards on white.             |
+| `base`          | `#FFFFFF` | `--color-base`          | `canvas`        | Page base; cards on white. (Tailwind key renamed from `base` → `canvas` on 2026-04-23; the CSS custom property name is retained.) |
 | `surface`       | `#F9FAFB` | `--color-surface`       | `surface`       | Section bands when we want a lift.     |
 | `gradient-from` | `#FDF8F6` | `--color-gradient-from` | `gradientFrom`  | First stop of hero / consultation gradient. |
 | `gradient-via`  | `#F9E4DA` | `--color-gradient-via`  | `gradientVia`   | Middle stop — soft peach.              |

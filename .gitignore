@@ -9,5 +9,12 @@ coverage
 *.tsbuildinfo
 /tmp
 
-# Per-machine tool state (Claude Code etc.)
-.claude/
+# Claude Code: track shared agent scaffolding, ignore per-machine state.
+.claude/settings.local.json
+.claude/worktrees/
+.claude/cache/
+.claude/shell-snapshots/
+
+# Visual QA output: we keep the capture harness + the JSON summary so the
+# optimizer can read it next iteration; discard the PNGs (~megabytes per run).
+visual-tests/*/*.png

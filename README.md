@@ -1,10 +1,14 @@
 # Dr. Ghulam Siddiq — Surgical Practice Website
 
 A production website for **Dr. Ghulam Siddiq**, board-certified laparoscopic &
-bariatric surgeon in Karachi. The design is a warm, boutique "quiet
-consulting-room" system — see [`DESIGN_SPEC.md`](./DESIGN_SPEC.md) for the
-authoritative tokens and [`docs/design/style-guide.html`](./docs/design/style-guide.html)
-for the original Claude Design artifact.
+bariatric surgeon in Karachi.
+
+**For AI agents** — entry point is [`CLAUDE.md`](./CLAUDE.md). It points at
+the canonical agent docs under [`.claude/docs/`](./.claude/docs/) (design
+tokens, architecture, testing, quality bar, history).
+
+Design source of truth: [`DESIGN_SPEC.md`](./DESIGN_SPEC.md) (and the
+condensed quick-reference in `.claude/docs/design-tokens.md`).
 
 ## Architecture
 
@@ -140,11 +144,11 @@ in `frontend/src/content/*.ts` as typed TypeScript objects:
 - `nav.ts`           — primary navigation
 
 Every `TODO(content):` comment in these files flags a value that was copied
-from the design-system placeholder and needs verification before launch. A
-running list of these is maintained in [`PLAN.md`](./PLAN.md) § 6.
+from the design-system placeholder and needs verification before launch. The
+running list is in [`.claude/docs/history.md`](./.claude/docs/history.md).
 
 ## Related docs
 
-- [`DESIGN_SPEC.md`](./DESIGN_SPEC.md) — authoritative design tokens and art direction.
-- [`PLAN.md`](./PLAN.md) — implementation plan, before/after receipts, open questions.
-- [`docs/design/style-guide.html`](./docs/design/style-guide.html) — imported Claude Design artifact.
+- [`CLAUDE.md`](./CLAUDE.md) — agent entry point.
+- [`.claude/docs/`](./.claude/docs/) — canonical agent references (architecture, tokens, testing, quality bar, history).
+- [`DESIGN_SPEC.md`](./DESIGN_SPEC.md) — full design spec (authoritative; the tokens doc is a condensed quick-reference).
