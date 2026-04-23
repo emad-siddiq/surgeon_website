@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { NavLink } from 'react-router-dom';
 import { ButtonLink, ButtonRouterLink } from '@/components/ui/Button';
 import { primaryNav, secondaryNav } from '@/content/nav';
@@ -56,7 +57,13 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
     first?.focus();
   }, [open]);
 
-  return (
+  if (typeof document === 'undefined') return null;
+
+  // Rendered into document.body via a portal so it escapes the header's
+  // `backdrop-filter` containing block — otherwise `fixed inset-0` is
+  // clipped to the ~56px-tall sticky header and the drawer panel appears
+  // transparent below its own header row on mobile.
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
@@ -136,6 +143,7 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
           </ButtonRouterLink>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
