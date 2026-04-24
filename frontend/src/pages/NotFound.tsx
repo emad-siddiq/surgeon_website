@@ -12,7 +12,8 @@ export function NotFound() {
         <p className="t-eyebrow text-textMuted">404</p>
         <h1 className="t-display mt-6 max-w-[18ch]">We couldn’t find that page.</h1>
         <p className="t-body-lg mt-5 max-w-[52ch] text-textSecondary">
-          The link may be out of date or the content may have moved. Try one of these instead:
+          The link may be out of date, or the content may have moved somewhere else on the site.
+          Try one of these instead:
         </p>
         <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
           {primaryNav.map((item) => (

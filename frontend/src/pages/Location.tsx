@@ -19,7 +19,7 @@ export function Location() {
       <PageHeader
         eyebrow="Location"
         title={<>Shifa International Hospitals: setting standards in healthcare excellence.</>}
-        lead="Visit Shifa International Hospital, where excellence meets compassion in healthcare. Our state-of-the-art facility combines modern medical technology with experienced healthcare professionals — Dr. Siddiq has operated here for over two decades."
+        lead="Visit Shifa International Hospital in Islamabad, where clinical excellence meets compassionate, patient-first care. The facility pairs modern medical technology with a seasoned team of healthcare professionals — and Dr. Siddiq has operated here for over two decades."
         actions={<BookingActions />}
       />
 

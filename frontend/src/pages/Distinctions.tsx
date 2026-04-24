@@ -19,7 +19,7 @@ export function Distinctions() {
       <PageHeader
         eyebrow="Recognition"
         title={<>{distinctionsHeading}.</>}
-        lead="Two decades of laparoscopic and bariatric practice in Pakistan — recognised nationally and internationally."
+        lead="More than two decades of laparoscopic and bariatric practice in Pakistan — recognised at the highest level nationally and in international endoscopic surgery circles."
       />
 
       {distinctions.map((d, i) => (

@@ -111,6 +111,10 @@ export function About() {
             <h2 className="t-h2 mt-3 max-w-[24ch]">
               Minimally invasive surgery, end to end.
             </h2>
+            <p className="t-body mt-4 max-w-[56ch] text-textSecondary">
+              From first consultation through operation and long-term follow-up, care is delivered
+              by the same surgeon — and the same standard — across the following areas:
+            </p>
             <ul className="mt-6 grid grid-cols-1 gap-2 text-textSecondary sm:grid-cols-2">
               <li>• Laparoscopic bariatric surgery</li>
               <li>• General laparoscopic surgery</li>

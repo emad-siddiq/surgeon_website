@@ -102,7 +102,7 @@ export function Procedures() {
       <PageHeader
         eyebrow="Surgical Expertise & Experience"
         title={<>Procedures performed by Dr. Siddiq.</>}
-        lead="Ten core operations across 25 years of practice at Shifa International Hospital. Click any procedure for a plain-language explanation of what it treats, how it’s performed, and what recovery looks like."
+        lead="Ten core operations, refined across 25 years of practice at Shifa International Hospital. Click any procedure for a plain-language explanation of what it treats, how it is performed, and what recovery looks like — written for patients, not clinicians."
         actions={
           <>
             <ButtonRouterLink to="/consultation" variant="primary">
@@ -151,8 +151,9 @@ export function Procedures() {
               <Eyebrow>Not sure which procedure applies?</Eyebrow>
               <h2 className="t-h1 mt-3 max-w-[22ch]">Start with a consultation.</h2>
               <p className="t-body mt-3 max-w-[60ch] text-textSecondary">
-                A consultation is the right first step — we review your case, imaging and goals
-                before recommending anything operative.
+                A consultation is always the right first step. We review your medical history,
+                imaging and personal goals carefully together before any operative plan is put
+                on the table — so the path forward makes sense for your life, not just your chart.
               </p>
             </div>
             <ButtonRouterLink

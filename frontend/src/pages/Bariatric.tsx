@@ -141,9 +141,9 @@ export function Bariatric() {
           Procedures Dr. Siddiq routinely performs.
         </h2>
         <p className="t-body mt-4 max-w-[64ch] text-textSecondary">
-          Click any operation below for a patient-oriented explanation — who it is for, how the
-          operation is performed, typical recovery, and the long-term commitments that come with
-          each.
+          Click any operation below for a patient-oriented explanation written in plain
+          language — who it is for, how the operation is performed, what recovery typically
+          looks like, and the long-term commitments that come with each choice.
         </p>
         <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
           {bariatricProcedures.map((proc) => (
@@ -161,9 +161,10 @@ export function Bariatric() {
               <Eyebrow>Next step</Eyebrow>
               <h2 className="t-h1 mt-3 max-w-[22ch]">A careful first conversation.</h2>
               <p className="t-body mt-3 max-w-[56ch] text-textSecondary">
-                Bariatric surgery is a long-term partnership. Book an unhurried first visit and
-                we’ll walk through your history, goals, and the honest trade-offs of each
-                procedure.
+                Bariatric surgery is a long-term partnership rather than a one-off event. Book
+                an unhurried first visit and we’ll walk through your medical history, your
+                goals, and the honest trade-offs of each procedure — together — before any
+                decision is made.
               </p>
             </div>
             <ButtonRouterLink

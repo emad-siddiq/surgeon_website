@@ -41,7 +41,7 @@ export const services: ServiceEntry[] = [
     title: 'Laparoscopic Cholecystectomy',
     subtitle: 'Gall bladder removal, minimally invasive',
     summary:
-      'Keyhole removal of the gall bladder for patients with symptomatic gallstones or cholecystitis. Same-day discharge is the norm.',
+      'Keyhole removal of the gall bladder for patients with symptomatic gallstones or cholecystitis. Small incisions, a short operation, and same-day discharge for most patients.',
     volume: 9000,
     category: 'General',
     details: {
@@ -74,7 +74,7 @@ export const services: ServiceEntry[] = [
     title: 'Appendix Surgery',
     subtitle: 'Laparoscopic appendicectomy',
     summary:
-      'Emergency keyhole removal of the appendix for appendicitis. Early surgery before rupture has the smoothest recovery.',
+      'Emergency keyhole removal of the appendix for acute appendicitis. Operating early — before the appendix ruptures — gives the smoothest, fastest recovery.',
     volume: 8000,
     category: 'General',
     details: {
@@ -107,7 +107,7 @@ export const services: ServiceEntry[] = [
     title: 'Laparoscopic Surgery',
     subtitle: 'Advanced minimally invasive techniques',
     summary:
-      'An umbrella term for minimally invasive abdominal operations — hernia repair, adhesiolysis, diagnostic laparoscopy, small-bowel resection and more.',
+      'An umbrella for a wide range of minimally invasive abdominal operations — hernia repair, adhesiolysis, diagnostic laparoscopy, small-bowel resection, and more — all performed through small keyhole incisions rather than a long open cut.',
     volume: 1500,
     category: 'General',
     details: {
@@ -136,7 +136,7 @@ export const services: ServiceEntry[] = [
     title: 'Colon Surgery',
     subtitle: 'Complex colorectal procedures',
     summary:
-      'Surgery on the colon for cancer, diverticular disease, inflammatory bowel disease or large polyps that can’t be removed endoscopically.',
+      'Surgery on the colon for cancer, complicated diverticular disease, inflammatory bowel disease, or large polyps that cannot be safely removed during a colonoscopy. Performed laparoscopically wherever the anatomy allows.',
     volume: 65,
     category: 'Colorectal',
     details: {
@@ -165,7 +165,7 @@ export const services: ServiceEntry[] = [
     title: 'Anterior Resection',
     subtitle: 'Precise rectal surgical approach',
     summary:
-      'Removal of the upper or middle rectum for cancer, reconnecting healthy colon to the remaining rectum to preserve continence.',
+      'Removal of the upper or middle rectum — most often for cancer — followed by a careful reconnection of healthy colon to the remaining rectum to preserve normal bowel function and continence.',
     volume: 88,
     category: 'Colorectal',
     details: {
@@ -194,7 +194,7 @@ export const services: ServiceEntry[] = [
     title: 'Low Anterior Resection',
     subtitle: 'Specialised colorectal technique',
     summary:
-      'A technically demanding operation for cancers of the lower rectum, preserving the anal sphincter where possible.',
+      'A technically demanding operation for cancers of the lower rectum. The goal is complete tumour removal while preserving the anal sphincter — and with it, normal continence — wherever the cancer’s position allows.',
     volume: 79,
     category: 'Colorectal',
     details: {
@@ -223,7 +223,7 @@ export const services: ServiceEntry[] = [
     title: 'Right Hemicolectomy',
     subtitle: 'Right-side colon resection',
     summary:
-      'Removal of the right half of the colon (cecum, ascending colon and part of the transverse colon), most often for cancer.',
+      'Removal of the right half of the colon — the cecum, ascending colon, and part of the transverse colon — most commonly performed for cancer of the right colon. Laparoscopic wherever feasible.',
     volume: 63,
     category: 'Colorectal',
     details: {
@@ -252,7 +252,7 @@ export const services: ServiceEntry[] = [
     title: 'Hemicolectomy',
     subtitle: 'Left-side colon resection',
     summary:
-      'Removal of the left half of the colon (descending and sigmoid colon), most often for cancer or complicated diverticular disease.',
+      'Removal of the left half of the colon — the descending and sigmoid colon — most often indicated for cancer or for complicated diverticular disease that has not settled with medical treatment.',
     volume: 71,
     category: 'Colorectal',
     details: {
@@ -281,7 +281,7 @@ export const services: ServiceEntry[] = [
     title: 'Partial Gastrectomy',
     subtitle: 'Stomach partial removal',
     summary:
-      'Removal of part of the stomach — usually for early gastric cancer or a refractory ulcer or stricture — preserving as much gastric function as possible.',
+      'Removal of part of the stomach — usually for early gastric cancer, a refractory ulcer, or a stricture — while preserving as much healthy gastric function as the disease allows.',
     volume: 59,
     category: 'Upper GI',
     details: {
@@ -310,7 +310,7 @@ export const services: ServiceEntry[] = [
     title: 'Esophagectomy',
     subtitle: 'Esophagus surgical removal',
     summary:
-      'Removal of all or most of the oesophagus, usually for cancer. One of the most complex abdominal operations; high-volume surgeons and centres matter.',
+      'Removal of all or most of the oesophagus, usually for cancer. Among the most complex abdominal operations in surgery — outcomes are best in the hands of high-volume surgeons working in experienced centres.',
     volume: 82,
     category: 'Upper GI',
     details: {
@@ -353,8 +353,8 @@ export const bariatricProcedures: BariatricProcedure[] = [
     number: '01',
     title: 'Roux-en-Y gastric bypass',
     summary:
-      'A small stomach pouch is created and connected directly to the lower small intestine. The oldest, most studied bariatric operation — particularly effective for severe obesity with type 2 diabetes or severe reflux.',
-    body: 'A smaller stomach pouch is connected directly to the lower small intestine. The operation most often chosen when durable metabolic effect is the priority.',
+      'A small stomach pouch is created and connected directly to the lower small intestine. The oldest and most extensively studied bariatric operation — particularly effective for severe obesity combined with type 2 diabetes or severe reflux.',
+    body: 'A small stomach pouch is connected directly to the lower small intestine. Most often chosen when durable, long-term metabolic effect is the priority.',
     details: {
       sections: [
         {
@@ -388,8 +388,8 @@ export const bariatricProcedures: BariatricProcedure[] = [
     number: '02',
     title: 'Sleeve gastrectomy',
     summary:
-      'Roughly three-quarters of the stomach is removed laparoscopically, leaving a narrow banana-shaped sleeve. A simpler operation than bypass, often chosen as a first bariatric procedure.',
-    body: 'Laparoscopic removal of roughly 75 percent of the stomach to leave a narrow sleeve. A one-hour operation; most patients are home the same day and back to everyday movement in four to six weeks.',
+      'Roughly three-quarters of the stomach is removed laparoscopically, leaving a narrow banana-shaped sleeve. A simpler operation than a bypass and often chosen as a first bariatric procedure for patients who are otherwise well.',
+    body: 'Laparoscopic removal of roughly 75 percent of the stomach to leave a narrow vertical sleeve. About a one-hour operation; most patients are home the same day or the next, and back to everyday movement in four to six weeks.',
     details: {
       sections: [
         {
@@ -423,8 +423,8 @@ export const bariatricProcedures: BariatricProcedure[] = [
     number: '03',
     title: 'Mini gastric bypass (OAGB)',
     summary:
-      'A long narrow stomach pouch is connected to a loop of small intestine via a single join. Simpler and faster than Roux-en-Y, with comparable weight-loss and metabolic outcomes.',
-    body: 'A single-anastomosis gastric bypass — faster and simpler to perform than Roux-en-Y, with comparable metabolic outcomes in the right candidate.',
+      'A long, narrow stomach pouch is connected to a loop of small intestine via a single join. Simpler and faster to perform than Roux-en-Y, with comparable weight-loss and metabolic outcomes in well-selected patients.',
+    body: 'A single-anastomosis gastric bypass — technically simpler and faster than Roux-en-Y, with comparable metabolic benefit in the right candidate.',
     details: {
       sections: [
         {
@@ -458,8 +458,8 @@ export const bariatricProcedures: BariatricProcedure[] = [
     number: '04',
     title: 'Revision bariatric surgery',
     summary:
-      'A second bariatric operation to address inadequate weight loss, weight regain, reflux after sleeve, or a mechanical complication from an earlier procedure. One of Dr. Siddiq’s long-standing specialities.',
-    body: 'Corrective operations for patients whose earlier bariatric procedure needs adjustment — one of Dr. Siddiq’s longest-running specialities.',
+      'A second bariatric operation to address inadequate weight loss, weight regain, reflux after a sleeve, or a mechanical complication from an earlier procedure. Revision surgery is technically demanding — and one of Dr. Siddiq’s long-standing specialities.',
+    body: 'Corrective operations for patients whose earlier bariatric procedure needs adjustment or rescue. One of Dr. Siddiq’s longest-running specialities, drawing on years of experience with scarred, previously operated anatomy.',
     details: {
       sections: [
         {
@@ -489,9 +489,9 @@ export const bariatricProcedures: BariatricProcedure[] = [
 
 export const bariatricIntro = {
   title: 'Bariatric Surgery',
-  subtitle: 'A novel solution for obesity',
+  subtitle: 'A modern approach to obesity and its metabolic consequences',
   body: [
-    'Laparoscopic Bariatric surgery, a transformative weight-loss procedure, has found a pioneering champion in Dr. Ghulam Siddiq at Shifa International Hospital, Islamabad. Since 2010, he has performed over 1,400 successful laparoscopic cases, establishing himself as Pakistan’s leading authority in minimally invasive bariatric procedures.',
-    'He routinely performs laparoscopic Roux-en-Y gastric bypasses, Sleeve Gastrectomies, Mini gastric bypasses (OAGB) and revision bariatric procedures.',
+    'Laparoscopic bariatric surgery is a transformative weight-loss intervention that has found a pioneering champion in Dr. Ghulam Siddiq at Shifa International Hospital, Islamabad. Since 2010 he has performed over 1,400 successful laparoscopic cases, establishing himself as Pakistan’s leading authority in minimally invasive bariatric procedures.',
+    'He routinely performs laparoscopic Roux-en-Y gastric bypasses, Sleeve Gastrectomies, Mini gastric bypasses (OAGB) and revision bariatric procedures — each selected carefully around the individual patient’s weight, health, and long-term goals rather than a one-size-fits-all formula.',
   ],
 } as const;

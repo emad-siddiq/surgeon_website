@@ -15,13 +15,13 @@ export const distinctionsHeading = 'A shining legacy in endoscopic surgery';
 export const distinctions: Distinction[] = [
   {
     title: 'Presidential Award for Surgical Excellence',
-    body: 'Dr. Ghulam Siddiq has been honoured with the highly prestigious Presidential Award for Surgical Excellence — a testament to his exceptional skills, dedication and groundbreaking contributions to the field of medical science. His commitment to patient care and his ability to perform complex procedures with precision have earned him respect and admiration from colleagues and patients alike. The Presidential Award is a reflection of his tireless work ethic, dedication to excellence, and relentless pursuit of perfection in the operating room.',
+    body: 'Dr. Ghulam Siddiq has been honoured with the highly prestigious Presidential Award for Surgical Excellence — a recognition of his exceptional technical skill, his dedication to patients, and his groundbreaking contributions to surgical science in Pakistan. His steady commitment to patient care and his ability to perform complex procedures with precision have earned him the respect and admiration of colleagues and patients alike. The Presidential Award reflects decades of tireless work, an unwavering standard of excellence, and a relentless pursuit of better outcomes in the operating room.',
     image: award,
     imageAlt: 'Dr. Ghulam Siddiq receiving the Presidential Award for Surgical Excellence',
   },
   {
     title: 'Internationally renowned in Endoscopic Surgery',
-    body: 'With an impressive record of 970 bariatric surgery procedures, Dr. Siddiq stands as a pioneering figure in metabolic and weight-loss surgical interventions. His extensive experience demonstrates not just technical proficiency, but a commitment to transforming patient lives through advanced surgical solutions.',
+    body: 'With an impressive record of 970 bariatric surgery procedures, Dr. Siddiq stands as a pioneering figure in metabolic and weight-loss surgery — recognised across Pakistan and in international endoscopic surgery circles. His extensive experience reflects not only technical proficiency, but a long-term commitment to transforming patients’ lives through modern, minimally invasive surgical solutions.',
     image: oxford,
     imageAlt: 'Dr. Ghulam Siddiq — international endoscopic surgery recognition',
     stat: { value: '970', label: 'Bariatric procedures' },

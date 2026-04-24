@@ -53,4 +53,4 @@ export const contact = {
  * cards.
  */
 export const bookingLine =
-  "When you reach the hospital, request a consultation with Dr. Ghulam Siddiq, Chief of Surgery.";
+  "When you reach the hospital, please ask specifically for a consultation with Dr. Ghulam Siddiq, Chief of Surgery.";

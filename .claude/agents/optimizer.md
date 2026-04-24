@@ -12,6 +12,8 @@ invocation.
 - `visual-tests/report.json` (visual-qa output)
 - `visual-tests/ux-flow.json` (ux-flow output)
 - `visual-tests/api-mock.log` + parsed summary (api-mock output)
+- [.claude/docs/goal-state.md](../docs/goal-state.md) — read it every
+  iteration; its checklist is the backlog once the quality bar is clean.
 
 ## Decision order
 1. Any `critical` issue from visual-qa → fix.
@@ -19,9 +21,20 @@ invocation.
    → fix.
 3. Any `failed > 0` from api-mock → fix.
 4. Highest-severity `major` from visual-qa → fix.
-5. `minor` visual issue → fix only if time budget allows.
+5. **Goal-state gap** — the highest-priority unchecked item in
+   `.claude/docs/goal-state.md` (bucket G1 before G2 before G3…). If the
+   work fits the single-commit budget, pick it. If it needs user sign-off
+   (e.g. new copy for a G4 SEO keyword), append a one-line entry under
+   `## Decisions needed` in `history.md` and move to the next gap.
+6. `minor` visual issue → fix only if nothing above qualifies.
 
 Pick **exactly one** item. Do not batch.
+
+## When the goal item is closed
+After your fix verifies, flip its checkbox in `.claude/docs/goal-state.md`
+(`[ ]` → `[x]`) in the same commit. Never mark an item checked unless the
+current build demonstrably satisfies it — this file is the scoreboard the
+user reads to decide when to set a new goal.
 
 ## Execution
 1. Read the source file(s) implicated by the issue. Confirm the hypothesis.

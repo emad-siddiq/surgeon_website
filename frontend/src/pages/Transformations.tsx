@@ -19,7 +19,7 @@ export function Transformations() {
       <PageHeader
         eyebrow="Patient outcomes"
         title={<>Twelve months, in their own bodies.</>}
-        lead="Drag the handle to compare. Every photograph on this page is shared with written consent from the patient. Individual results vary — these are representative cases, not guarantees."
+        lead="Drag the handle to compare before and after. Every photograph on this page has been shared with written consent from the patient. Individual results always vary — these are representative, real-world cases, not a guarantee of any particular outcome."
       />
 
       <Section tone="base" size="lg">

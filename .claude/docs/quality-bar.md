@@ -3,6 +3,11 @@
 The optimizer enforces these. If a change would violate any of them, the
 optimizer should pick a different fix.
 
+> The quality bar is the *floor*: "not broken." The product *ceiling* —
+> what the loop is driving toward — lives in
+> [goal-state.md](goal-state.md). `/iterate` fixes bar violations first,
+> then closes goal-state gaps.
+
 ## Visual
 - **Contrast AA minimum** for body/nav/link text. The textPrimary
   (`#1F2937`) on canvas (`#FFFFFF`) or gradient-from (`#FDF8F6`) baseline

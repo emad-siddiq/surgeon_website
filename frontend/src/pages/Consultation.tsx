@@ -37,10 +37,10 @@ export function Consultation() {
                 Two ways to reach the practice.
               </h1>
               <p className="t-body-lg mt-4 max-w-[56ch] text-textSecondary sm:mt-6">
-                Consultations are booked through Shifa International Hospital&rsquo;s
-                main line. WhatsApp is usually the fastest way &mdash; messages
-                reach the appointments desk directly. If you prefer to speak to
-                someone, call.
+                All consultations are booked through Shifa International Hospital&rsquo;s
+                main line. WhatsApp is usually the fastest route &mdash; messages reach
+                the appointments desk directly and are answered during working hours. If
+                you&rsquo;d rather speak to someone, a phone call works just as well.
               </p>
 
               <div className="mt-8">
@@ -128,26 +128,28 @@ export function Consultation() {
           <article>
             <h3 className="t-h3 font-medium">Before your visit</h3>
             <p className="t-body mt-3 text-textSecondary">
-              First consultations are 30&ndash;45 minutes. Bring any prior
-              imaging (ultrasound, CT, MRI), blood reports, a list of
-              medications, and any recent specialist letters.
+              First consultations run 30&ndash;45 minutes and are deliberately
+              unhurried. Please bring any prior imaging (ultrasound, CT, MRI),
+              recent blood reports, a current list of medications, and any
+              specialist letters you&rsquo;ve received &mdash; the more context,
+              the better the conversation.
             </p>
           </article>
           <article>
             <h3 className="t-h3 font-medium">Who Dr. Siddiq sees</h3>
             <p className="t-body mt-3 text-textSecondary">
               General laparoscopic, bariatric, colorectal and upper-GI
-              cases &mdash; adults of all ages, including revision bariatric
-              surgery and second opinions on previously recommended
-              procedures.
+              cases in adults of all ages &mdash; including revision bariatric
+              surgery, complex reoperative work, and second opinions on
+              procedures that have already been recommended elsewhere.
             </p>
           </article>
           <article>
             <h3 className="t-h3 font-medium">Finding the clinic</h3>
             <p className="t-body mt-3 text-textSecondary">
-              Shifa International Hospital is in H-8/4, Islamabad. There&rsquo;s
-              on-site parking and a dedicated OPD entrance. Ask reception
-              for the surgical OPD on arrival.
+              Shifa International Hospital is located in H-8/4, Islamabad, with
+              on-site parking and a dedicated OPD entrance. When you arrive,
+              simply ask reception to direct you to the surgical OPD.
             </p>
           </article>
         </div>

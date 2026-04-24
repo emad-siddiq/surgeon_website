@@ -15,11 +15,16 @@ export function Gallery() {
       <PageHeader
         eyebrow="Gallery"
         title={<>A few quiet frames from the clinic.</>}
-        lead="Photographs from Shifa International Hospital and Dr. Siddiq's practice, shared with the hospital's permission."
+        lead="A small collection of photographs from Shifa International Hospital and Dr. Siddiq's practice — a glimpse of the spaces, the team and the everyday work behind the surgery, shared with the hospital's permission."
       />
 
       <Section tone="base" size="lg">
-        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4">
+        {/*
+         * `grid-flow-dense` lets smaller items backfill the gaps left by
+         * row-span / col-span accents so the grid doesn't end on a ragged
+         * set of empty trailing tracks.
+         */}
+        <ul className="grid grid-flow-row-dense grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4">
           {galleryImages.map((image, i) => (
             <li
               key={image.src}

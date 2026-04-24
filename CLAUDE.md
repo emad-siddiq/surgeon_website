@@ -5,10 +5,11 @@ Production website for a laparoscopic / bariatric surgeon. **Vite + React + TS
 posts log to stdout.
 
 ## Where to look
+- **Goal state**: [.claude/docs/goal-state.md](.claude/docs/goal-state.md) — what the loop is driving toward. `/iterate` picks its fix from here once the quality bar is clean and declares `GOAL REACHED` when every item is checked.
 - **Product state**: [README.md](README.md) — stack, scripts, envs, deploy.
 - **Design tokens**: [.claude/docs/design-tokens.md](.claude/docs/design-tokens.md) — palette, type, radii, shadows. Source of truth alongside `frontend/tailwind.config.ts` + `frontend/src/design-system/tokens.css`.
 - **Architecture**: [.claude/docs/architecture.md](.claude/docs/architecture.md) — routes, components, content files, backend handlers.
-- **Quality bar**: [.claude/docs/quality-bar.md](.claude/docs/quality-bar.md) — what "good" looks like; enforced by the optimizer agent.
+- **Quality bar**: [.claude/docs/quality-bar.md](.claude/docs/quality-bar.md) — what "not broken" looks like; enforced by the optimizer agent. Complements the goal state.
 - **Testing**: [.claude/docs/testing.md](.claude/docs/testing.md) — visual-qa, ux-flow, api-mock scripts.
 - **History / pre-launch checklist**: [.claude/docs/history.md](.claude/docs/history.md) — archive of migration plan, before/after receipts, open TODOs.
 

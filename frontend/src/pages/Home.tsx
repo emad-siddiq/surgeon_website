@@ -229,8 +229,9 @@ function ConsultCta() {
             <Eyebrow>Consultation</Eyebrow>
             <h2 className="t-h1 mt-3 max-w-[22ch]">Looking for a consultation?</h2>
             <p className="t-body mt-3 max-w-[60ch] text-textSecondary">
-              First appointments are unhurried — we talk through your history, goals and the
-              honest trade-offs before we discuss anything operative.
+              First appointments are unhurried and personal — we take the time to understand
+              your history, your goals, and the honest trade-offs of each option before anything
+              operative is even discussed.
             </p>
           </div>
           <ButtonRouterLink
