@@ -215,13 +215,18 @@ function DistinctionTeaser() {
     <Section id="home-distinctions" tone="base" size="md" className="py-10 sm:py-12 md:py-16">
       <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12">
         <div className="md:col-span-5">
-          <img
-            src={lead.image}
-            alt={lead.imageAlt}
-            className="w-full rounded-lg border border-border1 object-cover shadow-card"
-            loading="lazy"
-            decoding="async"
-          />
+          {/* Aspect-ratio wrapper + surface fill prevents an empty white
+              rectangle when the image decode is late — same pattern as
+              AboutTeaser above. The source (1280×850) matches 3/2. */}
+          <div className="relative w-full overflow-hidden rounded-lg border border-border1 bg-surface shadow-card aspect-[3/2]">
+            <img
+              src={lead.image}
+              alt={lead.imageAlt}
+              loading="eager"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
         </div>
         <div className="md:col-span-7">
           <Eyebrow>Distinctions</Eyebrow>

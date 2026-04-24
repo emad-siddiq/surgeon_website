@@ -52,6 +52,10 @@ Source of truth lives in this file, not scattered across other docs.
   - 2026-04-24 iter 7: reset — 2 criticals surfaced by user-steered
     whitespace review (home airy-bands on mobile + desktop); counter
     restarts at 0.
+  - 2026-04-24 iter 8: 1st consecutive clean — 1 more needed. Fixed home
+    DistinctionTeaser empty-image-box on desktop/tablet by wrapping the
+    `<img>` in an aspect-[3/2] + `bg-surface` slot with `loading="eager"`
+    (same pattern AboutTeaser uses).
 - [x] `ux-flow` reports **0 failed** flows.
   - Confirmed 2026-04-24: `visual-tests/ux-flow.json` → `passed: 17`,
     `failed: 0`, `failures: []`. Green across every iteration run so far.
