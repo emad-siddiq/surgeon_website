@@ -33,7 +33,7 @@ function Hero() {
       aria-labelledby="hero-headline"
       className="relative bg-gradient-hero"
     >
-      <Container className="py-12 sm:py-16 md:py-24 lg:py-28">
+      <Container className="py-10 sm:py-12 md:py-20 lg:py-20">
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-7">
             <Eyebrow>Shifa International Hospital · Islamabad</Eyebrow>
@@ -79,7 +79,13 @@ function Hero() {
 
 function Stats() {
   return (
-    <Section id="home-stats" tone="surface" size="sm" aria-labelledby="stats-heading">
+    <Section
+      id="home-stats"
+      tone="surface"
+      size="sm"
+      className="py-6 md:py-8"
+      aria-labelledby="stats-heading"
+    >
       <h2 id="stats-heading" className="sr-only">
         Practice at a glance
       </h2>
@@ -104,7 +110,7 @@ function Stats() {
 
 function AboutTeaser() {
   return (
-    <Section id="home-about" tone="base" size="md">
+    <Section id="home-about" tone="base" size="md" className="py-10 sm:py-12 md:py-16">
       <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12">
         <div className="md:col-span-5">
           {/* Wrapper owns the aspect-ratio + skeleton tone so the slot is
@@ -152,6 +158,7 @@ function FeaturedProcedures({ onOpen }: { onOpen: (service: ServiceEntry) => voi
       id="home-procedures"
       tone="surface"
       size="md"
+      className="py-10 sm:py-12 md:py-16"
       aria-labelledby="featured-proc-heading"
     >
       <div className="flex flex-wrap items-end justify-between gap-6">
@@ -205,7 +212,7 @@ function FeaturedProcedures({ onOpen }: { onOpen: (service: ServiceEntry) => voi
 function DistinctionTeaser() {
   const lead = distinctions[0];
   return (
-    <Section id="home-distinctions" tone="base" size="md">
+    <Section id="home-distinctions" tone="base" size="md" className="py-10 sm:py-12 md:py-16">
       <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12">
         <div className="md:col-span-5">
           <img
@@ -234,7 +241,7 @@ function DistinctionTeaser() {
 function ConsultCta() {
   return (
     <section id="home-consult" className="bg-gradient-hero">
-      <Container className="py-12 sm:py-16 md:py-20">
+      <Container className="py-10 sm:py-12 md:py-16">
         <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[1fr,auto]">
           <div>
             <Eyebrow>Consultation</Eyebrow>

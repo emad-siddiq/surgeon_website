@@ -49,6 +49,9 @@ Source of truth lives in this file, not scattered across other docs.
     consecutive iterations.
   - 2026-04-24 iter 6: 1st consecutive clean visual-qa since regression —
     1 more needed before re-flip.
+  - 2026-04-24 iter 7: reset — 2 criticals surfaced by user-steered
+    whitespace review (home airy-bands on mobile + desktop); counter
+    restarts at 0.
 - [x] `ux-flow` reports **0 failed** flows.
   - Confirmed 2026-04-24: `visual-tests/ux-flow.json` → `passed: 17`,
     `failed: 0`, `failures: []`. Green across every iteration run so far.
