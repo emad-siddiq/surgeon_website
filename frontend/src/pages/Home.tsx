@@ -107,12 +107,18 @@ function AboutTeaser() {
     <Section id="home-about" tone="base" size="md">
       <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12">
         <div className="md:col-span-5">
+          {/* Eager-loaded on purpose: on 390px viewports this portrait is
+              the very next image after the hero and appears within ~1
+              viewport of scroll. Leaving it lazy causes it to still be
+              unresolved when the AboutTeaser section paints, producing a
+              ~500px blank gap between the stats strip and the heading
+              (the reserved aspect-ratio box with no pixels yet). */}
           <img
             src={aboutPortrait.src}
             alt={aboutPortrait.alt}
             width={800}
             height={1000}
-            loading="lazy"
+            loading="eager"
             decoding="async"
             className="w-full rounded-lg border border-border1 object-cover shadow-card"
           />
