@@ -7,8 +7,11 @@ import about1 from '@/assets/images/about1.jpg';
 
 import b1 from '@/assets/images/before_after/before_1.jpg';
 import a1 from '@/assets/images/before_after/after_1.jpg';
-import b2 from '@/assets/images/before_after/before_2.jpg';
-import a2 from '@/assets/images/before_after/after_2.jpg';
+// NOTE: before_2.jpg / after_2.jpg are withheld — those source files ship
+// with a circular photo mask and baked-in "Before" / "After" watermark
+// text, which breaks the drag-to-compare pattern mid-drag. Reinstate the
+// second story when the practice supplies a clean rectangular pair. See
+// .claude/docs/history.md § "Decisions needed".
 import b3 from '@/assets/images/before_after/before_3.png';
 import a3 from '@/assets/images/before_after/after_3.png';
 
@@ -64,12 +67,6 @@ export const beforeAfterStories: BeforeAfter[] = [
     after: { src: a1, alt: 'Patient twelve months after bariatric surgery' },
     beforeCaption: 'Weight before surgery: 140 kg',
     afterCaption: 'Weight 12 months later: 70 kg',
-  },
-  {
-    before: { src: b2, alt: 'Patient before bariatric surgery' },
-    after: { src: a2, alt: 'Patient nine months after bariatric surgery' },
-    beforeCaption: 'Weight before surgery: 150 kg',
-    afterCaption: 'Weight 9 months later: 70 kg',
   },
   {
     before: { src: b3, alt: 'Patient before bariatric surgery' },

@@ -38,6 +38,15 @@ Unresolved, awaits user input:
   is CORS-safe, but any `application/json` POST from a browser at a
   non-whitelisted origin will 403 at the preflight. Investigate before
   launch.
+- **Replacement photos for B/A story 2** (surfaced 2026-04-23): the source
+  assets `frontend/src/assets/images/before_after/before_2.jpg` and
+  `after_2.jpg` ship with a circular photo mask and baked-in "Before" /
+  "After" watermark text, which broke the rectangular drag-to-compare
+  pattern mid-drag (visual-qa major on `transformations/slider-35-*`).
+  The story has been temporarily removed from `beforeAfterStories` in
+  `frontend/src/content/media.ts`. Request clean, rectangular, unwatermarked
+  originals from the practice for the 150 kg → 70 kg / 9-month patient and
+  reinstate the entry when received.
 
 ## Unfinished iterations
 
