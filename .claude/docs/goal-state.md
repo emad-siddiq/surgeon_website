@@ -47,6 +47,8 @@ Source of truth lives in this file, not scattered across other docs.
     requires ≥2 consecutive clean visual-qa runs before re-flipping. The
     rule going forward: G1.1/G1.2 only flip if confirmed across two
     consecutive iterations.
+  - 2026-04-24 iter 6: 1st consecutive clean visual-qa since regression —
+    1 more needed before re-flip.
 - [x] `ux-flow` reports **0 failed** flows.
   - Confirmed 2026-04-24: `visual-tests/ux-flow.json` → `passed: 17`,
     `failed: 0`, `failures: []`. Green across every iteration run so far.
@@ -74,8 +76,22 @@ Source of truth lives in this file, not scattered across other docs.
 ### G2 — Appointment conversion
 - [ ] WhatsApp CTA + Shifa phone CTA visible above the fold on every route
   at 390px (header or hero, not only footer).
-- [ ] Phone links use `tel:` with the `contact.phone.tel` value; WhatsApp
+- [x] Phone links use `tel:` with the `contact.phone.tel` value; WhatsApp
   links point at `contact.whatsapp.url`. Grep confirms no hardcoded numbers.
+  - Audit 2026-04-24 iter 6. Method: `grep -rn "tel:"`, `grep -rn
+    "wa.me\|api.whatsapp.com\|whatsapp"`, and `grep -rnE
+    "\+92|92518464646|518464646"` across `frontend/src/**/*.{ts,tsx}`.
+  - tel: 8 matches — 1 definition in `contact.ts:10`, 2 comments in
+    `BookingActions.tsx:19,24` (neutral), and 5 consumers
+    (`BookingActions.tsx:61`, `MobileSidebar.tsx:138`, `Footer.tsx:84`,
+    `HoverNavBar.tsx:68,113`, `Location.tsx:72`) all using the template
+    `` `tel:${contact.phone.tel}` ``.
+  - WhatsApp: 2 URL consumers (`BookingActions.tsx:38`, `Footer.tsx:91`)
+    both use `contact.whatsapp.url`; remaining matches are channel-label
+    strings/types in `BookingFeedbackPrompt.tsx` / `useBookingFeedback.ts`,
+    not URLs (neutral).
+  - Hardcoded numbers: only `contact.ts:9,10,18,19` (the source of truth).
+    Zero stragglers elsewhere. Audit clean — no code change needed.
 - [ ] `bookingLine` ("ask specifically for Dr. Ghulam Siddiq, Chief of
   Surgery") appears on `/consultation` and on procedure pages where a CTA
   fires.
