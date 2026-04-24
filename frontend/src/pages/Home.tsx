@@ -217,13 +217,18 @@ function DistinctionTeaser() {
         <div className="md:col-span-5">
           {/* Aspect-ratio wrapper + surface fill prevents an empty white
               rectangle when the image decode is late — same pattern as
-              AboutTeaser above. The source (1280×850) matches 3/2. */}
+              AboutTeaser above. The source (1280×850) matches 3/2.
+              decoding="sync" mirrors the portrait treatment: async decode
+              produced an empty paint at 390/834 captures because the
+              off-main-thread decode hadn't landed by the time Playwright
+              snapshotted the scrolled slice. sync forces the decode to
+              complete before the frame commits. */}
           <div className="relative w-full overflow-hidden rounded-lg border border-border1 bg-surface shadow-card aspect-[3/2]">
             <img
               src={lead.image}
               alt={lead.imageAlt}
               loading="eager"
-              decoding="async"
+              decoding="sync"
               className="absolute inset-0 h-full w-full object-cover"
             />
           </div>
