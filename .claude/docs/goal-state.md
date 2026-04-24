@@ -35,7 +35,7 @@ Maintained by the optimizer. Mark `[x]` in the commit that achieves it.
 Source of truth lives in this file, not scattered across other docs.
 
 ### G1 — UI error-free (mobile + web)
-- [x] `visual-qa` reports **0 critical, 0 major** issues across all 42 shots.
+- [ ] `visual-qa` reports **0 critical, 0 major** issues across all 42 shots.
   - Confirmed 2026-04-24: `visual-tests/report.json` → `failures: []`,
     `issues: []` (three `minor` notes already logged, none blocking).
   - Harness captures 41 shots, not 42: at the 1920×1080 viewport the
@@ -43,6 +43,10 @@ Source of truth lives in this file, not scattered across other docs.
     rendered (`menuBtn.count() === 0`). Not a regression; follow-up is a
     harness tweak — expected-count should be 41 or the state should be
     gated to <lg viewports explicitly.
+  - 2026-04-24: re-opened after regression in home/default-390x844; flip
+    requires ≥2 consecutive clean visual-qa runs before re-flipping. The
+    rule going forward: G1.1/G1.2 only flip if confirmed across two
+    consecutive iterations.
 - [x] `ux-flow` reports **0 failed** flows.
   - Confirmed 2026-04-24: `visual-tests/ux-flow.json` → `passed: 17`,
     `failed: 0`, `failures: []`. Green across every iteration run so far.

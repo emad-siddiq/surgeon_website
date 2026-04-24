@@ -107,21 +107,26 @@ function AboutTeaser() {
     <Section id="home-about" tone="base" size="md">
       <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12">
         <div className="md:col-span-5">
-          {/* Eager-loaded on purpose: on 390px viewports this portrait is
-              the very next image after the hero and appears within ~1
-              viewport of scroll. Leaving it lazy causes it to still be
-              unresolved when the AboutTeaser section paints, producing a
-              ~500px blank gap between the stats strip and the heading
-              (the reserved aspect-ratio box with no pixels yet). */}
-          <img
-            src={aboutPortrait.src}
-            alt={aboutPortrait.alt}
-            width={800}
-            height={1000}
-            loading="eager"
-            decoding="async"
-            className="w-full rounded-lg border border-border1 object-cover shadow-card"
-          />
+          {/* Wrapper owns the aspect-ratio + skeleton tone so the slot is
+              never an empty white rectangle even if the image decode is
+              late (previous eager-only fix still produced a ~400px blank
+              gap on 390px cold loads — see history.md "home portrait"
+              regressions). The source is a 2048×1536 landscape shot, so
+              4/3 matches its intrinsic aspect; the previous `width={800}
+              height={1000}` attributes lied and reserved a taller
+              portrait slot than the image ever filled. fetchPriority +
+              sync decode pull this above the hero slideshow's lazy
+              candidates on mobile. */}
+          <div className="relative w-full overflow-hidden rounded-lg border border-border1 bg-surface shadow-card aspect-[4/3]">
+            <img
+              src={aboutPortrait.src}
+              alt={aboutPortrait.alt}
+              loading="eager"
+              decoding="sync"
+              fetchPriority="high"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
         </div>
         <div className="md:col-span-7">
           <Eyebrow>About the surgeon</Eyebrow>
