@@ -56,6 +56,11 @@ Source of truth lives in this file, not scattered across other docs.
     DistinctionTeaser empty-image-box on desktop/tablet by wrapping the
     `<img>` in an aspect-[3/2] + `bg-surface` slot with `loading="eager"`
     (same pattern AboutTeaser uses).
+  - 2026-04-25 iter 10: 1st consecutive clean — 1 more needed for re-flip.
+    Fixed SectionProgress anchor-pill bisecting footer/consult-CTA seam on
+    wide desktop via an IntersectionObserver on `<footer>` + `#home-consult`
+    that fades the rail out when either enters the viewport
+    (`motion-reduce:transition-none` honours reduced-motion).
 - [x] `ux-flow` reports **0 failed** flows.
   - Confirmed 2026-04-24: `visual-tests/ux-flow.json` → `passed: 17`,
     `failed: 0`, `failures: []`. Green across every iteration run so far.

@@ -30,6 +30,10 @@ export function SectionProgress({ sections }: SectionProgressProps) {
   const ids = useMemo(() => sections.map((s) => s.id), [sections]);
   const [activeId, setActiveId] = useState<string>(ids[0] ?? '');
   const [progress, setProgress] = useState(0);
+  // Hide the rail when the page's footer or the in-page "consultation" CTA
+  // enters the viewport — otherwise the vertical pill bisects the footer
+  // gutter and crowds the CTA seam on wide desktops.
+  const [nearFooter, setNearFooter] = useState(false);
 
   // Track overall scroll progress (0..1).
   useEffect(() => {
@@ -88,6 +92,35 @@ export function SectionProgress({ sections }: SectionProgressProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ids]);
 
+  // Observe the site footer + the page consultation CTA. When either
+  // enters the viewport, mark `nearFooter` so the rail can fade out.
+  useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') return;
+    const footer = document.querySelector('footer');
+    const consult = document.getElementById('home-consult');
+    const targets = [footer, consult].filter(
+      (el): el is HTMLElement => el !== null,
+    );
+    if (targets.length === 0) return;
+
+    const visible = new Set<Element>();
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            visible.add(entry.target);
+          } else {
+            visible.delete(entry.target);
+          }
+        }
+        setNearFooter(visible.size > 0);
+      },
+      { rootMargin: '0px 0px 0px 0px', threshold: 0 },
+    );
+    targets.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -98,7 +131,11 @@ export function SectionProgress({ sections }: SectionProgressProps) {
   return (
     <aside
       aria-label="Page sections"
-      className="pointer-events-none fixed right-6 top-1/2 z-30 hidden -translate-y-1/2 lg:block"
+      aria-hidden={nearFooter ? 'true' : undefined}
+      className={cn(
+        'pointer-events-none fixed right-6 top-1/2 z-30 hidden -translate-y-1/2 transition-opacity duration-300 ease-breathe motion-reduce:transition-none lg:block',
+        nearFooter ? 'opacity-0' : 'opacity-100',
+      )}
     >
       <div className="pointer-events-auto relative flex flex-col gap-5 py-2">
         {/* background track */}
