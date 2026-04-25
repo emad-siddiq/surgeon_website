@@ -6,6 +6,15 @@ import { BookingActions } from '@/components/ui/BookingActions';
 import { contact } from '@/content/contact';
 import { videos } from '@/content/media';
 
+/**
+ * Deep-link into Google Maps directions targeting the clinic's lat/lng.
+ * `api=1` is the documented Maps URL scheme — opens the native app on
+ * iOS/Android and the maps.google.com web view on desktop. Keep the
+ * destination as raw coordinates so it does not depend on the Google
+ * Places index resolving "Shifa International Hospital".
+ */
+const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${contact.clinic.geo.lat},${contact.clinic.geo.lng}`;
+
 export function Location() {
   return (
     <>
@@ -87,6 +96,28 @@ export function Location() {
                 allowFullScreen
               />
             </div>
+            <a
+              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primaryHover"
+              href={directionsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Get directions
+              <svg
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M7 17 17 7" />
+                <path d="M8 7h9v9" />
+              </svg>
+            </a>
           </div>
         </div>
       </Section>

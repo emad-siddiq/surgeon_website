@@ -35,7 +35,7 @@ Maintained by the optimizer. Mark `[x]` in the commit that achieves it.
 Source of truth lives in this file, not scattered across other docs.
 
 ### G1 — UI error-free (mobile + web)
-- [ ] `visual-qa` reports **0 critical, 0 major** issues across all 42 shots.
+- [x] `visual-qa` reports **0 critical, 0 major** issues across all 42 shots.
   - Confirmed 2026-04-24: `visual-tests/report.json` → `failures: []`,
     `issues: []` (three `minor` notes already logged, none blocking).
   - Harness captures 41 shots, not 42: at the 1920×1080 viewport the
@@ -61,6 +61,7 @@ Source of truth lives in this file, not scattered across other docs.
     wide desktop via an IntersectionObserver on `<footer>` + `#home-consult`
     that fades the rail out when either enters the viewport
     (`motion-reduce:transition-none` honours reduced-motion).
+  - 2026-04-25 iter 11: 2nd consecutive clean — re-flipped after iter-5 regression.
 - [x] `ux-flow` reports **0 failed** flows.
   - Confirmed 2026-04-24: `visual-tests/ux-flow.json` → `passed: 17`,
     `failed: 0`, `failures: []`. Green across every iteration run so far.
@@ -109,8 +110,14 @@ Source of truth lives in this file, not scattered across other docs.
   fires.
 - [ ] `BookingFeedbackPrompt` fires after WhatsApp/phone click and POSTs to
   `/api/feedback` (ux-flow covers this — keep it green).
-- [ ] `/location` embeds Shifa Hospital map with a click-through to Google
+- [x] `/location` embeds Shifa Hospital map with a click-through to Google
   Maps directions.
+  - 2026-04-25 iter 11: added "Get directions" anchor in
+    `frontend/src/pages/Location.tsx` (around L91), built from
+    `contact.clinic.geo` lat/lng via the Google Maps Universal URL scheme
+    (`https://www.google.com/maps/dir/?api=1&destination=<lat>,<lng>`).
+    Opens in a new tab with `rel="noopener noreferrer"`. Verified across
+    390/834/1920 — link renders below the map embed on every viewport.
 
 ### G3 — Prestige tone
 - [ ] Hero headline reads as authority, not advertising. Current copy
