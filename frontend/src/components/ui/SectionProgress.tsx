@@ -133,20 +133,20 @@ export function SectionProgress({ sections }: SectionProgressProps) {
       aria-label="Page sections"
       aria-hidden={nearFooter ? 'true' : undefined}
       className={cn(
-        'pointer-events-none fixed right-6 top-1/2 z-30 hidden -translate-y-1/2 transition-opacity duration-300 ease-breathe motion-reduce:transition-none lg:block',
+        'pointer-events-none fixed left-6 top-1/2 z-30 hidden -translate-y-1/2 transition-opacity duration-300 ease-breathe motion-reduce:transition-none lg:block',
         nearFooter ? 'opacity-0' : 'opacity-100',
       )}
     >
-      <div className="pointer-events-auto relative flex flex-col gap-5 py-2">
+      <div className="pointer-events-auto relative flex flex-col gap-6 py-2">
         {/* background track */}
         <span
           aria-hidden="true"
-          className="absolute left-[5px] top-2 bottom-2 w-px bg-border1"
+          className="absolute left-[6.5px] top-2 bottom-2 w-px bg-border1"
         />
         {/* filled portion based on overall scroll progress */}
         <span
           aria-hidden="true"
-          className="absolute left-[5px] top-2 w-px origin-top bg-primary transition-[height] duration-300 ease-breathe"
+          className="absolute left-[6.5px] top-2 w-px origin-top bg-primary transition-[height] duration-300 ease-breathe"
           style={{ height: `calc(${progress * 100}% - ${progress * 16}px)` }}
         />
         {sections.map((section) => {
@@ -165,7 +165,7 @@ export function SectionProgress({ sections }: SectionProgressProps) {
               <span
                 aria-hidden="true"
                 className={cn(
-                  'inline-flex h-[11px] w-[11px] shrink-0 items-center justify-center rounded-full border-2 bg-white transition-all duration-200',
+                  'inline-flex h-[14px] w-[14px] shrink-0 items-center justify-center rounded-full border-2 bg-white transition-all duration-200',
                   isActive
                     ? 'border-primary bg-primary scale-110 shadow-[0_0_0_3px_rgba(13,110,253,0.15)]'
                     : 'border-border2 group-hover:border-primary',
