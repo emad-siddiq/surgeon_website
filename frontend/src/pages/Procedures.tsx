@@ -1,3 +1,14 @@
+/**
+ * `/procedures` route. PageHeader + one <Section> per category
+ * (alternating tone="base" / tone="surface" bands), each section
+ * showing the category's procedures as <ClickableCard>s. Card click
+ * opens <ProcedureDetailModal> with the active service. Closes with
+ * <CtaBand>.
+ *
+ * Procedures come from content/services.ts. groupByCategory() below
+ * preserves the canonical category order (categoryOrder) regardless
+ * of the array's natural order.
+ */
 import { useState } from 'react';
 import { Seo } from '@/components/seo/Seo';
 import { PageHeader } from '@/components/ui/PageHeader';
@@ -11,6 +22,13 @@ import { CtaBand } from '@/components/ui/CtaBand';
 import { ClickableCard, LearnMoreHint } from '@/components/ui/ClickableCard';
 import { services, type ServiceEntry, type Category } from '@/content/services';
 
+// Category legend. Adding a new category requires updating ALL FOUR
+// of these places in lockstep:
+//   1. The `Category` literal union in content/services.ts.
+//   2. categoryTone — the Tag colour shown on cards.
+//   3. categoryOrder — the section order on the page.
+//   4. categoryHeading — the long-form section heading.
+// Missing any one will produce a runtime undefined or a missed section.
 const categoryTone: Record<Category, TagTone> = {
   General: 'primary',
   Bariatric: 'accent',

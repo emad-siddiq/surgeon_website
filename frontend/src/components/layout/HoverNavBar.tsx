@@ -1,3 +1,19 @@
+/**
+ * Sticky site header.
+ *
+ * Two layouts driven by viewport (via useIsMobile, which fires below
+ * Tailwind's `lg` breakpoint):
+ *   - Mobile (<lg): logo + a tel: icon + a hamburger that toggles
+ *     <MobileSidebar>. The drawer renders into a body portal.
+ *   - Desktop (lg+): logo + <DesktopNav> (NavLink rail with an animated
+ *     underline) + tel display + Book Appointment CTA.
+ *
+ * Closes the mobile drawer on route change (effect on `location.pathname`).
+ * Restores focus to the trigger when the drawer closes via Esc/backdrop.
+ *
+ * Watches window scroll; once past SCROLL_TRIGGER_PX the bar swaps from
+ * a translucent backdrop to a blurred + bordered + shadowed state.
+ */
 import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ButtonLink, ButtonRouterLink } from '@/components/ui/Button';
@@ -9,6 +25,9 @@ import { Logo } from './Logo';
 import { MobileSidebar } from './MobileSidebar';
 import { cn } from '@/lib/cn';
 
+// Pixels from the top at which the bar swaps from translucent to
+// blurred-with-shadow. Small on purpose — feedback should fire as soon
+// as the user starts scrolling, not after a noticeable delay.
 const SCROLL_TRIGGER_PX = 8;
 
 function DesktopNav() {

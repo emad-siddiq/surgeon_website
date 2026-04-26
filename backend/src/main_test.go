@@ -1,3 +1,12 @@
+// Backend tests.
+//
+// Two flavours:
+//   - Focused unit tests on individual handlers and validators
+//     (TestFeedbackValidate, TestFeedbackHandler).
+//   - TestMockFlows exercises the full HTTP contract through a real
+//     httptest server + router + CORS middleware. Each subtest maps
+//     1:1 to a contract item in .claude/agents/api-mock.md so the
+//     api-mock subagent can read pass/fail per item.
 package main
 
 import (

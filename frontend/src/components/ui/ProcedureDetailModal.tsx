@@ -1,3 +1,15 @@
+/**
+ * The "tap a procedure card → see details" panel.
+ *
+ * Presentation-only wrapper around <Modal>: header (eyebrow + title +
+ * subtitle), summary, headed DetailSections, and a fixed footer with a
+ * consultation CTA that closes the modal on click.
+ *
+ * Consumed by Home.tsx (top-3 featured procedures), Procedures.tsx
+ * (full grouped list), and Bariatric.tsx (the four bariatric ops).
+ * All three pages own the open/close state and pass an active service
+ * entry in.
+ */
 import { Modal } from './Modal';
 import { ButtonRouterLink } from './Button';
 import type { DetailSection } from '@/content/services';
@@ -12,11 +24,6 @@ interface ProcedureDetailModalProps {
   sections: DetailSection[];
 }
 
-/**
- * Presentation-only wrapper around Modal that renders a procedure's
- * detailed, patient-oriented content: summary on top, then a sequence
- * of headed sections, ending with a consultation CTA.
- */
 export function ProcedureDetailModal({
   open,
   onClose,

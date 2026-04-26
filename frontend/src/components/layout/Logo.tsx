@@ -1,3 +1,14 @@
+/**
+ * Logo lockup. Renders the practice mark and (optionally) the doctor's
+ * name as a wordmark, wrapped in a router <Link to="/"> so it always
+ * routes home.
+ *
+ * Props:
+ *   - wordmark=false: icon only at 64px (used by HoverNavBar).
+ *   - wordmark=true (default): 48px mark + name. Footer uses this.
+ *   - compact=true: shows the short form ("Dr. Siddiq") instead of the
+ *     full name. Currently unused but kept for tight layouts.
+ */
 import { Link } from 'react-router-dom';
 import { doctor } from '@/content/doctor';
 import logoSrc from '@/assets/logo.png';

@@ -1,3 +1,13 @@
+/**
+ * `/about` route. Custom gradient-hero (not <PageHeader>) with two
+ * columns: bio + CTAs on the left, click-to-play intro video on the
+ * right. Below: a Card grid of education/training credentials, then a
+ * surface section listing expertise areas.
+ *
+ * The video player toggles between a poster-image placeholder and a
+ * native <video controls> element via the `playing` state — no
+ * autoplay, no third-party embed.
+ */
 import { useState } from 'react';
 import { Seo } from '@/components/seo/Seo';
 import { Container } from '@/components/ui/Container';

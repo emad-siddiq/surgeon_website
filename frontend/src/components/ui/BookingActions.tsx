@@ -12,6 +12,11 @@ import { recordBookingClick } from '@/hooks/useBookingFeedback';
  * - Call uses tel: so the OS dialler opens on phones; on desktop the
  *   behaviour depends on the user's default tel handler (FaceTime,
  *   Skype, etc.).
+ *
+ * This component is the SOLE entry point into the booking-feedback flow:
+ * each click invokes recordBookingClick (hooks/useBookingFeedback.ts),
+ * which writes a localStorage record that BookingFeedbackPrompt later
+ * uses to surface a "did you book?" toast.
  */
 export function BookingActions() {
   return (
@@ -21,9 +26,10 @@ export function BookingActions() {
         target="_blank"
         rel="noopener noreferrer"
         variant="primary"
-        // Record the click BEFORE the browser hands off to the OS /
-        // new tab — `onClick` fires synchronously, so localStorage is
-        // written before the navigation.
+        // Synchronous on-click recording is load-bearing. The browser
+        // may tear down this page (new tab, OS dialler hand-off) before
+        // any async work finishes, so the localStorage write must
+        // complete in the same event tick. Don't await anything here.
         onClick={() => recordBookingClick('whatsapp')}
         className="w-full bg-[#25D366] hover:bg-[#1fb655] sm:w-auto"
       >

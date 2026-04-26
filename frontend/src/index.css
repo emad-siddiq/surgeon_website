@@ -1,3 +1,14 @@
+/*
+ * Global stylesheet.
+ *
+ * Layers, in order:
+ *   1. design-system/tokens.css — CSS custom properties + Roboto Flex
+ *      @font-face. Mirrored by tailwind.config.ts.
+ *   2. Tailwind base / components / utilities.
+ *   3. @layer base resets and the type-scale utilities (.t-display,
+ *      .t-h1, .t-h2, .t-h3, .t-body-lg, .t-body, .t-caption,
+ *      .t-eyebrow). Components compose these instead of raw text-* classes.
+ */
 @import './design-system/tokens.css';
 
 @tailwind base;

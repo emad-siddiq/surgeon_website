@@ -1,3 +1,15 @@
+/**
+ * One-shot IntersectionObserver hook.
+ *
+ * Returns `{ ref, inView }`. `inView` flips from false to true the
+ * first time the observed element crosses the viewport (default
+ * threshold 0.2), then never flips back — the observer disconnects on
+ * the first hit. Pass IntersectionObserverInit to override threshold
+ * or rootMargin.
+ *
+ * Single consumer in the codebase: AnimatedCounter, which uses it to
+ * defer the count animation until the element scrolls into view.
+ */
 import { useEffect, useRef, useState } from 'react';
 
 /**

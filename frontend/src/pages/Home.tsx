@@ -1,3 +1,14 @@
+/**
+ * `/` route. Six stacked sections: Hero (custom, with HeroSlideshow),
+ * Stats (animated counters), AboutTeaser, FeaturedProcedures (top-3
+ * services as ClickableCards → ProcedureDetailModal), DistinctionTeaser,
+ * ConsultCta (a custom variant of CtaBand with the SectionProgress
+ * anchor id `home-consult`).
+ *
+ * The page owns the procedure-detail modal state in `active`. The
+ * SectionProgress rail (visible only at lg+) observes the section ids
+ * declared in the `sections` array below.
+ */
 import { useState } from 'react';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';

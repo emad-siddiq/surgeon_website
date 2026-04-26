@@ -1,3 +1,13 @@
+/**
+ * `/teaching` route. PageHeader → two-column section: YouTube channel
+ * pitch on the left (text + outbound buttons), oversized YouTube-styled
+ * play tile on the right (a single anchor that opens the channel in a
+ * new tab) → CtaBand pointing to /distinctions for the workshops &
+ * conferences callout.
+ *
+ * Copy lives in content/teaching.ts; the channel URL is the only
+ * external link the page emits.
+ */
 import { Seo } from '@/components/seo/Seo';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';

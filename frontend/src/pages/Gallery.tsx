@@ -1,3 +1,12 @@
+/**
+ * `/gallery` route. PageHeader → static photo grid (2/3/4 columns
+ * across breakpoints). Two indices get a row-span/col-span accent so
+ * the grid doesn't read as a flat tile pattern.
+ *
+ * Images come from `galleryImages` in content/media.ts. The first four
+ * are eager-loaded; the rest are lazy. Square aspect ratio by default;
+ * overrides per-index.
+ */
 import { Seo } from '@/components/seo/Seo';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';

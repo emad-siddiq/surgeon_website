@@ -1,3 +1,15 @@
+/**
+ * Site footer. Branded gradient band with a four-column grid: logo +
+ * tagline + social icons (left two columns), Explore sitemap (column 3),
+ * and Visit details + tel + WhatsApp (column 4). Copyright + medical
+ * disclaimer below a soft rule.
+ *
+ * Mounted once by App.tsx. Pulls all copy from content/contact.ts,
+ * content/doctor.ts, and content/nav.ts — nothing here is hardcoded.
+ *
+ * SocialIcon is a local helper that paints one of three inline SVGs
+ * (facebook, instagram, youtube). No icon library.
+ */
 import { Link } from 'react-router-dom';
 import { Container } from '@/components/ui/Container';
 import { Logo } from './Logo';

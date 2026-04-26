@@ -1,3 +1,17 @@
+/**
+ * Reactive media-query hooks.
+ *
+ * useMediaQuery(query) is the generic primitive: returns a boolean that
+ * tracks `window.matchMedia(query)` and updates when it changes. Safe
+ * to call on the server (returns false until hydrated).
+ *
+ * Two preset wrappers are exported:
+ *   - useIsMobile() — true at viewports below Tailwind's `lg` (1024px).
+ *     This is what HoverNavBar uses to swap to the hamburger layout.
+ *   - usePrefersReducedMotion() — honours the OS-level reduced-motion
+ *     preference. Used by AnimatedCounter and HeroSlideshow to drop
+ *     animations.
+ */
 import { useEffect, useState } from 'react';
 
 /**

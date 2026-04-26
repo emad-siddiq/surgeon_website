@@ -1,3 +1,13 @@
+/**
+ * `/location` route. PageHeader (with <BookingActions> in its CTA slot)
+ * → a hospital ambient-loop video → a two-column "Visit" section with
+ * address/hours/phone on the left and an embedded Google Maps iframe +
+ * "Get directions" deep-link on the right.
+ *
+ * The directions URL targets raw lat/lng (not a Places lookup) so it
+ * still resolves if Google's Places index loses or renames the clinic.
+ * Constants live just above the component.
+ */
 import { Seo } from '@/components/seo/Seo';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';

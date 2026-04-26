@@ -1,3 +1,16 @@
+/**
+ * `/bariatric` route. The practice's headline specialty page.
+ *
+ * Layout: PageHeader → bariatric portrait + intro paragraphs + total-
+ * cases counters → grid of four BariatricCards (Roux-en-Y, sleeve,
+ * OAGB, revision) → custom gradient-hero CTA strip closing the page.
+ *
+ * BariatricCard is a local <ClickableCard> wrapper that renders proc
+ * number / title / summary and opens <ProcedureDetailModal>. Bariatric
+ * procedures come from `bariatricProcedures` in content/services.ts —
+ * a separate dataset from the main `services` array because the shape
+ * is different (carries a `number` label like "01", no `volume`).
+ */
 import { useState } from 'react';
 import { Seo } from '@/components/seo/Seo';
 import { Container } from '@/components/ui/Container';

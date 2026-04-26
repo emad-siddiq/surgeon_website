@@ -1,3 +1,16 @@
+/**
+ * `/consultation` route.
+ *
+ * IMPORTANT: this page is NOT a form. The practice does not run its
+ * own appointment system; consultations are booked through Shifa
+ * International Hospital's switchboard (WhatsApp or phone). The page
+ * renders <BookingActions> for the two channels plus a side card with
+ * a verbatim "What to say" script that names Dr. Siddiq up front so
+ * reception routes the patient correctly.
+ *
+ * If you find yourself adding <input>/<form> here, stop and confirm
+ * with the practice — there is no /api/consultation endpoint to POST to.
+ */
 import { Seo } from '@/components/seo/Seo';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';

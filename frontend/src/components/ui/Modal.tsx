@@ -26,7 +26,9 @@ export interface ModalProps {
  *  - Escape closes. Backdrop click closes.
  *  - Body scroll is locked while open.
  *  - Rendered via React portal into `document.body` so stacking is not
- *    affected by ancestor `overflow` or `transform` styles.
+ *    affected by ancestor `overflow`, `transform`, or `backdrop-filter`.
+ *    The sticky HoverNavBar uses `backdrop-blur`, which creates a
+ *    containing block that would otherwise clip `position: fixed` here.
  */
 export function Modal({ open, onClose, title, eyebrow, children, className }: ModalProps) {
   const panelRef = useRef<HTMLDivElement>(null);

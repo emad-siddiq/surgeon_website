@@ -1,3 +1,17 @@
+// Single-file HTTP server for the practice site.
+//
+// Routes:
+//   GET  /api/health    — liveness probe; always 200 once up.
+//   GET  /api/ready     — readiness probe; flips to 503 on shutdown.
+//   POST /api/feedback  — booking-feedback intake.
+//
+// No database. /api/feedback writes a structured slog event to stdout
+// per request and returns "ok" — that's the entire persistence story
+// for v1. Health/ready exist for orchestrators (Docker compose health
+// check, k8s probes); ready also gates the graceful-shutdown window.
+//
+// CORS allowlist comes from ALLOWED_ORIGIN (comma-separated). Other
+// config: PORT, LOG_LEVEL. See loadConfig below for defaults.
 package main
 
 import (
@@ -84,6 +98,11 @@ type feedback struct {
 	ElapsedMs int64 `json:"elapsed_ms"`
 }
 
+// These literals are duplicated in the frontend as the BookingChannel
+// and BookingOutcome union types in frontend/src/hooks/useBookingFeedback.ts.
+// Any change here MUST be mirrored there (and vice versa) — there is
+// no shared type source. Mismatches surface as 422 "invalid channel"
+// or "invalid outcome" responses with no other signal.
 var (
 	validChannels = map[string]struct{}{
 		"whatsapp": {},
@@ -119,6 +138,10 @@ func feedbackHandler(logger *slog.Logger) http.HandlerFunc {
 
 		var req feedback
 		dec := json.NewDecoder(r.Body)
+		// Strict decoding: any field not declared on `feedback` returns
+		// 400 "invalid request body". The list of valid fields is the
+		// struct definition above — if the frontend starts sending a
+		// new key, add the field here in the same change.
 		dec.DisallowUnknownFields()
 		if err := dec.Decode(&req); err != nil {
 			logger.Warn("feedback: invalid body", "error", err)
@@ -207,6 +230,10 @@ func main() {
 
 	router.HandleFunc("/api/feedback", feedbackHandler(logger)).Methods(http.MethodPost)
 
+	// AllowedMethods is GET/POST/OPTIONS only. If a future endpoint
+	// needs PATCH/PUT/DELETE, add it here too — without that, the
+	// browser fails the preflight and the request never reaches the
+	// router. AllowCredentials stays false (no cookies, no auth).
 	corsMiddleware := cors.New(cors.Options{
 		AllowedOrigins:   cfg.allowedOrigins,
 		AllowedMethods:   []string{http.MethodGet, http.MethodPost, http.MethodOptions},

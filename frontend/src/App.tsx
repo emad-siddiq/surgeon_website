@@ -1,3 +1,19 @@
+/**
+ * Top-level shell: chrome (HoverNavBar + Footer), the route table, and
+ * the always-mounted booking-feedback toast.
+ *
+ * The route table includes four legacy aliases (`/services`,
+ * `/contact`, `/book-appointment`, `/experience`) that <Navigate>-redirect
+ * to the canonical paths. `*` falls through to <NotFound>.
+ *
+ * `BookingFeedbackPrompt` is mounted here, not on /consultation,
+ * because a click recorded in a previous session can surface the
+ * prompt on whatever page the patient lands on next (within the 24 h
+ * TTL — see hooks/useBookingFeedback.ts).
+ *
+ * `useRouteScrollReset` (defined below) scrolls to the top on every
+ * pathname change, deferring to a hash anchor if the URL has one.
+ */
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { HoverNavBar } from './components/layout/HoverNavBar';

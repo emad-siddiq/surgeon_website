@@ -1,3 +1,11 @@
+/**
+ * `*` fallback. Plain page: 404 eyebrow + display headline + a list of
+ * primaryNav links + Return-home / Book-an-Appointment CTAs.
+ *
+ * Wired in App.tsx as the last <Route>. The legacy aliases registered
+ * before it (/services, /contact, etc.) take precedence so renamed
+ * URLs redirect rather than 404.
+ */
 import { Seo } from '@/components/seo/Seo';
 import { Section } from '@/components/ui/Section';
 import { ButtonRouterLink } from '@/components/ui/Button';

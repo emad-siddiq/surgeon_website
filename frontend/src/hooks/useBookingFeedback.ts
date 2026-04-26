@@ -28,6 +28,10 @@ interface FeedbackRecord {
   promptShownAt: number | null;
 }
 
+// The `v1` suffix is intentional. If the on-disk shape ever changes
+// (e.g. add a field to FeedbackRecord), bump to `ds.booking-feedback.v2`
+// so existing v1 keys are ignored — readRecord() will return null for
+// the unrecognised key and the user starts fresh.
 const STORAGE_KEY = 'ds.booking-feedback.v1';
 
 /** Time to wait after the click before surfacing the prompt, same-session. */
@@ -36,6 +40,10 @@ const PROMPT_AFTER_MS = 90_000; // 90 seconds
  *  relevant. Beyond this we silently drop the record. */
 const STORAGE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 
+// Read at BUILD time, not runtime — Vite inlines `import.meta.env.*` into
+// the bundle. Rebuilding without VITE_API_BASE_URL leaves an empty base,
+// so the fetch becomes a relative `/api/feedback` (works on same-origin
+// Docker; breaks across origins). See README "Run it locally".
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? '';
 
 function readRecord(): FeedbackRecord | null {
@@ -80,8 +88,12 @@ function writeRecord(record: FeedbackRecord | null) {
  */
 export function recordBookingClick(channel: BookingChannel) {
   writeRecord({ channel, clickedAt: Date.now(), promptShownAt: null });
-  // Notify the in-page listener so the prompt timer can start without a
-  // page reload. Using a CustomEvent keeps this module decoupled.
+  // 'ds:booking-click' is the in-page broadcast channel between the
+  // click site (BookingActions) and the toast (BookingFeedbackPrompt,
+  // via useBookingFeedback's listener). Without it, the 90-second
+  // same-session timer wouldn't start until the next mount/reload —
+  // CustomEvent decouples the two without coupling either to a shared
+  // store.
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new CustomEvent('ds:booking-click'));
   }

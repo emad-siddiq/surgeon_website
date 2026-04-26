@@ -1,3 +1,11 @@
+/**
+ * `/transformations` route. PageHeader → grid of <BeforeAfter> drag
+ * sliders (one per story in `beforeAfterStories`) → CtaBand close.
+ *
+ * Each story is a paired before/after photograph shared with the
+ * patient's written consent (see content/media.ts). The lead copy on
+ * PageHeader notes that individual results vary — required language.
+ */
 import { Seo } from '@/components/seo/Seo';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';

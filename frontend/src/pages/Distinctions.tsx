@@ -1,3 +1,13 @@
+/**
+ * `/distinctions` route. PageHeader → one <Section> per distinction
+ * with alternating tone (base / surface) and alternating image side
+ * (left on even index, right on odd via the [&>*:first-child]:order-last
+ * trick) → CtaBand close.
+ *
+ * Distinctions come from content/distinctions.ts. The first
+ * distinction's image is `loading="eager"` because it's above the fold;
+ * the rest are lazy.
+ */
 import { Seo } from '@/components/seo/Seo';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';
