@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { ButtonLink, ButtonRouterLink } from '@/components/ui/Button';
 import { primaryNav, secondaryNav } from '@/content/nav';
 import { contact } from '@/content/contact';
+import { useFocusTrap } from '@/hooks/useFocusTrap';
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import { cn } from '@/lib/cn';
 
 interface MobileSidebarProps {
@@ -14,42 +16,8 @@ interface MobileSidebarProps {
 export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
   const panelRef = useRef<HTMLDivElement>(null);
 
-  // Trap focus; close on Escape.
-  useEffect(() => {
-    if (!open) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        onClose();
-        return;
-      }
-      if (e.key !== 'Tab' || !panelRef.current) return;
-      const focusables = panelRef.current.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
-      );
-      if (focusables.length === 0) return;
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    };
-    document.addEventListener('keydown', onKeyDown);
-    return () => document.removeEventListener('keydown', onKeyDown);
-  }, [open, onClose]);
-
-  useEffect(() => {
-    if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [open]);
+  useFocusTrap(panelRef, open, onClose);
+  useBodyScrollLock(open);
 
   useEffect(() => {
     if (!open) return;
