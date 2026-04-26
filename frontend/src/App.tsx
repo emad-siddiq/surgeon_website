@@ -1,8 +1,8 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { HoverNavBar } from './components/layout/HoverNavBar';
 import { Footer } from './components/layout/Footer';
 import { BookingFeedbackPrompt } from './components/ui/BookingFeedbackPrompt';
-import { useRouteScrollReset } from './hooks/useRouteScrollReset';
 
 import { Home } from './pages/Home';
 import { About } from './pages/About';
@@ -15,6 +15,23 @@ import { Location } from './pages/Location';
 import { Consultation } from './pages/Consultation';
 import { Gallery } from './pages/Gallery';
 import { NotFound } from './pages/NotFound';
+
+// Scroll the window to the top on every pathname change. If the URL
+// includes a hash (e.g. /#consultation), defer to that anchor instead.
+function useRouteScrollReset() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '');
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'instant' as ScrollBehavior, block: 'start' });
+        return;
+      }
+    }
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+  }, [pathname, hash]);
+}
 
 export default function App() {
   useRouteScrollReset();

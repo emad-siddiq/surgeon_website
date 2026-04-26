@@ -3,12 +3,13 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { ButtonLink, ButtonRouterLink } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { useIsMobile } from '@/hooks/useMediaQuery';
-import { useScrolled } from '@/hooks/useScrolled';
 import { contact } from '@/content/contact';
 import { primaryNav } from '@/content/nav';
 import { Logo } from './Logo';
 import { MobileSidebar } from './MobileSidebar';
 import { cn } from '@/lib/cn';
+
+const SCROLL_TRIGGER_PX = 8;
 
 function DesktopNav() {
   return (
@@ -37,15 +38,22 @@ function DesktopNav() {
 }
 
 export function HoverNavBar() {
-  const scrolled = useScrolled(8);
   const location = useLocation();
   const isMobile = useIsMobile();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > SCROLL_TRIGGER_PX);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <header
