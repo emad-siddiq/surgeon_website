@@ -1,13 +1,12 @@
 import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '@/lib/cn';
 
-export type CardTone = 'base' | 'surface' | 'primary';
+export type CardTone = 'base' | 'surface';
 export type CardPadding = 'sm' | 'md' | 'lg';
 
 const toneClass: Record<CardTone, string> = {
   base: 'bg-white border-border1 text-textPrimary',
   surface: 'bg-surface border-border1 text-textPrimary',
-  primary: 'bg-primary border-transparent text-white',
 };
 
 const paddingClass: Record<CardPadding, string> = {

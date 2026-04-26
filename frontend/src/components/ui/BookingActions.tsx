@@ -1,18 +1,6 @@
-import type { ReactNode } from 'react';
 import { ButtonLink } from './Button';
 import { contact } from '@/content/contact';
 import { recordBookingClick } from '@/hooks/useBookingFeedback';
-import { cn } from '@/lib/cn';
-
-interface BookingActionsProps {
-  /** Layout variant. Default stacks buttons full-width on phones. */
-  size?: 'sm' | 'md';
-  /** When true, the buttons stretch to the container width on every
-   * viewport (useful inside narrow side columns). */
-  fullWidth?: boolean;
-  className?: string;
-  children?: ReactNode;
-}
 
 /**
  * The two booking channels the practice actually uses — WhatsApp first
@@ -25,26 +13,19 @@ interface BookingActionsProps {
  *   behaviour depends on the user's default tel handler (FaceTime,
  *   Skype, etc.).
  */
-export function BookingActions({
-  size = 'md',
-  fullWidth = false,
-  className,
-  children,
-}: BookingActionsProps) {
-  const widthClass = fullWidth ? 'w-full' : 'w-full sm:w-auto';
+export function BookingActions() {
   return (
-    <div className={cn('flex flex-col gap-3 sm:flex-row sm:flex-wrap', className)}>
+    <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
       <ButtonLink
         href={contact.whatsapp.url}
         target="_blank"
         rel="noopener noreferrer"
         variant="primary"
-        size={size}
         // Record the click BEFORE the browser hands off to the OS /
         // new tab — `onClick` fires synchronously, so localStorage is
         // written before the navigation.
         onClick={() => recordBookingClick('whatsapp')}
-        className={cn(widthClass, 'bg-[#25D366] hover:bg-[#1fb655]')}
+        className="w-full bg-[#25D366] hover:bg-[#1fb655] sm:w-auto"
       >
         <svg
           viewBox="0 0 24 24"
@@ -60,9 +41,8 @@ export function BookingActions({
       <ButtonLink
         href={`tel:${contact.phone.tel}`}
         variant="secondary"
-        size={size}
         onClick={() => recordBookingClick('phone')}
-        className={widthClass}
+        className="w-full sm:w-auto"
       >
         <svg
           viewBox="0 0 24 24"
@@ -79,7 +59,6 @@ export function BookingActions({
         </svg>
         Call {contact.phone.display}
       </ButtonLink>
-      {children}
     </div>
   );
 }

@@ -8,7 +8,7 @@ interface SeoProps {
   path?: string;
   /** OG image relative to the site root. */
   ogImage?: string;
-  schema?: 'home' | 'about' | 'plain';
+  schema?: 'home' | 'plain';
 }
 
 const SITE_URL = import.meta.env.SITE_URL ?? 'https://drsiddiq.example';

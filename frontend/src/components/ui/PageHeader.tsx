@@ -1,39 +1,22 @@
 import type { ReactNode } from 'react';
 import { Container } from './Container';
 import { Eyebrow } from './Eyebrow';
-import { cn } from '@/lib/cn';
 
 interface PageHeaderProps {
   eyebrow?: string;
   title: ReactNode;
   lead?: ReactNode;
   actions?: ReactNode;
-  /** `gradient` (default) | `base` | `surface` */
-  tone?: 'gradient' | 'base' | 'surface';
-  className?: string;
 }
 
 /**
- * Consistent top-of-page intro: soft gradient band (by default), eyebrow +
- * display headline + lead + optional CTAs. Every sub-page uses this so
- * they feel part of the same product.
+ * Consistent top-of-page intro: soft gradient band, eyebrow + display
+ * headline + lead + optional CTAs. Every sub-page uses this so they
+ * feel part of the same product.
  */
-export function PageHeader({
-  eyebrow,
-  title,
-  lead,
-  actions,
-  tone = 'gradient',
-  className,
-}: PageHeaderProps) {
-  const toneClass =
-    tone === 'gradient'
-      ? 'bg-gradient-hero'
-      : tone === 'surface'
-        ? 'bg-surface'
-        : 'bg-canvas';
+export function PageHeader({ eyebrow, title, lead, actions }: PageHeaderProps) {
   return (
-    <section className={cn(toneClass, className)}>
+    <section className="bg-gradient-hero">
       <Container className="py-12 sm:py-16 md:py-20 lg:py-24">
         {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
         <h1 className="t-display mt-3 max-w-[22ch] sm:mt-4 md:max-w-[34ch] lg:max-w-[40ch]">

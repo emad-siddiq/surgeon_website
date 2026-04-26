@@ -2,14 +2,12 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '@/lib/cn';
 import { Container } from './Container';
 
-export type SectionTone = 'base' | 'surface' | 'gradient' | 'dark';
+export type SectionTone = 'base' | 'surface';
 export type SectionSize = 'sm' | 'md' | 'lg';
 
 const toneClass: Record<SectionTone, string> = {
   base: 'bg-canvas text-textPrimary',
   surface: 'bg-surface text-textPrimary',
-  gradient: 'bg-gradient-hero text-textPrimary',
-  dark: 'bg-textPrimary text-white',
 };
 
 // Slimmer vertical padding on narrow screens so sections don't feel
