@@ -344,7 +344,6 @@ export interface BariatricProcedure {
   number: string;
   title: string;
   summary: string;
-  body: string;
   details: ProcedureDetails;
 }
 
@@ -354,7 +353,6 @@ export const bariatricProcedures: BariatricProcedure[] = [
     title: 'Roux-en-Y gastric bypass',
     summary:
       'A small stomach pouch is created and connected directly to the lower small intestine. The oldest and most extensively studied bariatric operation — particularly effective for severe obesity combined with type 2 diabetes or severe reflux.',
-    body: 'A small stomach pouch is connected directly to the lower small intestine. Most often chosen when durable, long-term metabolic effect is the priority.',
     details: {
       sections: [
         {
@@ -389,7 +387,6 @@ export const bariatricProcedures: BariatricProcedure[] = [
     title: 'Sleeve gastrectomy',
     summary:
       'Roughly three-quarters of the stomach is removed laparoscopically, leaving a narrow banana-shaped sleeve. A simpler operation than a bypass and often chosen as a first bariatric procedure for patients who are otherwise well.',
-    body: 'Laparoscopic removal of roughly 75 percent of the stomach to leave a narrow vertical sleeve. About a one-hour operation; most patients are home the same day or the next, and back to everyday movement in four to six weeks.',
     details: {
       sections: [
         {
@@ -424,7 +421,6 @@ export const bariatricProcedures: BariatricProcedure[] = [
     title: 'Mini gastric bypass (OAGB)',
     summary:
       'A long, narrow stomach pouch is connected to a loop of small intestine via a single join. Simpler and faster to perform than Roux-en-Y, with comparable weight-loss and metabolic outcomes in well-selected patients.',
-    body: 'A single-anastomosis gastric bypass — technically simpler and faster than Roux-en-Y, with comparable metabolic benefit in the right candidate.',
     details: {
       sections: [
         {
@@ -459,7 +455,6 @@ export const bariatricProcedures: BariatricProcedure[] = [
     title: 'Revision bariatric surgery',
     summary:
       'A second bariatric operation to address inadequate weight loss, weight regain, reflux after a sleeve, or a mechanical complication from an earlier procedure. Revision surgery is technically demanding — and one of Dr. Siddiq’s long-standing specialities.',
-    body: 'Corrective operations for patients whose earlier bariatric procedure needs adjustment or rescue. One of Dr. Siddiq’s longest-running specialities, drawing on years of experience with scarred, previously operated anatomy.',
     details: {
       sections: [
         {
