@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Seo } from '@/components/seo/Seo';
-import { Container } from '@/components/ui/Container';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';
 import { Tag, type TagTone } from '@/components/ui/Tag';
@@ -8,6 +7,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
 import { ButtonRouterLink } from '@/components/ui/Button';
 import { ProcedureDetailModal } from '@/components/ui/ProcedureDetailModal';
+import { CtaBand } from '@/components/ui/CtaBand';
 import { services, type ServiceEntry, type Category } from '@/content/services';
 import { cn } from '@/lib/cn';
 
@@ -144,28 +144,13 @@ export function Procedures() {
         </Section>
       ))}
 
-      <section className="bg-gradient-hero">
-        <Container className="py-12 sm:py-14 md:py-20">
-          <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[1fr,auto]">
-            <div>
-              <Eyebrow>Not sure which procedure applies?</Eyebrow>
-              <h2 className="t-h1 mt-3 max-w-[22ch]">Start with a consultation.</h2>
-              <p className="t-body mt-3 max-w-[60ch] text-textSecondary">
-                A consultation is always the right first step. We review your medical history,
-                imaging and personal goals carefully together before any operative plan is put
-                on the table — so the path forward makes sense for your life, not just your chart.
-              </p>
-            </div>
-            <ButtonRouterLink
-              to="/consultation"
-              variant="primary"
-              className="w-full md:w-auto"
-            >
-              Book an Appointment
-            </ButtonRouterLink>
-          </div>
-        </Container>
-      </section>
+      <CtaBand
+        eyebrow="Not sure which procedure applies?"
+        headline="Start with a consultation."
+        body="A consultation is always the right first step. We review your medical history, imaging and personal goals carefully together before any operative plan is put on the table — so the path forward makes sense for your life, not just your chart."
+        to="/consultation"
+        cta="Book an Appointment"
+      />
 
       <ProcedureDetailModal
         open={active !== null}

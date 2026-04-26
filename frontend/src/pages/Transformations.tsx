@@ -1,9 +1,7 @@
 import { Seo } from '@/components/seo/Seo';
-import { Container } from '@/components/ui/Container';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';
-import { Eyebrow } from '@/components/ui/Eyebrow';
-import { ButtonRouterLink } from '@/components/ui/Button';
+import { CtaBand } from '@/components/ui/CtaBand';
 import { BeforeAfter } from '@/components/ui/BeforeAfter';
 import { beforeAfterStories } from '@/content/media';
 
@@ -36,25 +34,12 @@ export function Transformations() {
         </div>
       </Section>
 
-      <section className="bg-gradient-hero">
-        <Container className="py-12 sm:py-14 md:py-20">
-          <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[1fr,auto]">
-            <div>
-              <Eyebrow>Could this be you?</Eyebrow>
-              <h2 className="t-h1 mt-3 max-w-[22ch]">
-                Book a consultation and find out.
-              </h2>
-            </div>
-            <ButtonRouterLink
-              to="/consultation"
-              variant="primary"
-              className="w-full md:w-auto"
-            >
-              Book an Appointment
-            </ButtonRouterLink>
-          </div>
-        </Container>
-      </section>
+      <CtaBand
+        eyebrow="Could this be you?"
+        headline="Book a consultation and find out."
+        to="/consultation"
+        cta="Book an Appointment"
+      />
     </>
   );
 }

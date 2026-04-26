@@ -1,9 +1,8 @@
 import { Seo } from '@/components/seo/Seo';
-import { Container } from '@/components/ui/Container';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';
 import { Eyebrow } from '@/components/ui/Eyebrow';
-import { ButtonRouterLink } from '@/components/ui/Button';
+import { CtaBand } from '@/components/ui/CtaBand';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
 import { distinctions, distinctionsHeading } from '@/content/distinctions';
 
@@ -64,23 +63,12 @@ export function Distinctions() {
         </Section>
       ))}
 
-      <section className="bg-gradient-hero">
-        <Container className="py-12 sm:py-14 md:py-20">
-          <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[1fr,auto]">
-            <div>
-              <Eyebrow>Want to discuss your case?</Eyebrow>
-              <h2 className="t-h1 mt-3 max-w-[22ch]">Book a consultation.</h2>
-            </div>
-            <ButtonRouterLink
-              to="/consultation"
-              variant="primary"
-              className="w-full md:w-auto"
-            >
-              Book an Appointment
-            </ButtonRouterLink>
-          </div>
-        </Container>
-      </section>
+      <CtaBand
+        eyebrow="Want to discuss your case?"
+        headline="Book a consultation."
+        to="/consultation"
+        cta="Book an Appointment"
+      />
     </>
   );
 }
