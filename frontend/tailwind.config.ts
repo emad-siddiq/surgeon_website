@@ -1,9 +1,12 @@
 import type { Config } from 'tailwindcss';
 
 /**
- * Tokens mirror src/design-system/tokens.ts and the live site's theme at
- * commit 0fb3280 (blue primary, Roboto, peach/lavender gradient bands).
- * Update tokens.ts + tokens.css + this file together — never in isolation.
+ * Design tokens. The two sources of truth are this file (Tailwind utilities)
+ * and src/design-system/tokens.css (CSS custom properties + the @font-face
+ * for Roboto Flex). Keep their hex values in sync.
+ *
+ * Theme baseline: blue primary, Roboto, peach/lavender gradient bands —
+ * matches the live site at commit 0fb3280.
  */
 const config: Config = {
   content: ['./index.html', './src/**/*.{ts,tsx}'],

@@ -1,14 +1,10 @@
 /*
- * Design tokens — mirrors src/design-system/tokens.ts.
+ * Design tokens — CSS custom properties + the Roboto Flex @font-face.
+ * Mirrored by tailwind.config.ts (Tailwind utilities). Keep their hex
+ * values in sync.
  *
- * Matches the live site's original theme (commit 0fb3280): Roboto type,
- * blue primary accent (#0D6EFD), white base, soft peach/lavender gradient
- * bands on hero and footer.
- *
- * Type scale is rem-based and uses standard breakpoint-driven step-ups
- * (not clamp()/vw) so it responds predictably to the user's base font
- * size (browser zoom, a11y "large text" settings) and to standard Tailwind
- * breakpoints.
+ * Theme baseline: Roboto type, blue primary (#0D6EFD), white base, soft
+ * peach/lavender gradient bands — matches the live site at commit 0fb3280.
  */
 
 /* Self-host Roboto Flex (variable font); no third-party Google Fonts dependency. */
