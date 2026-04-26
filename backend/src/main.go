@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"regexp"
 	"strconv"
 	"strings"
 	"sync/atomic"
@@ -60,77 +59,10 @@ func envOr(key, fallback string) string {
 	return fallback
 }
 
-// ---- consultation endpoint -------------------------------------------------
-
-type consultation struct {
-	Name    string `json:"name"`
-	Email   string `json:"email"`
-	Phone   string `json:"phone"`
-	Day     string `json:"day"`
-	Reason  string `json:"reason"`
-	Message string `json:"message"`
-}
-
-var emailRegex = regexp.MustCompile(`^[^\s@]+@[^\s@]+\.[^\s@]+$`)
-
-func (c consultation) validate() error {
-	if strings.TrimSpace(c.Name) == "" {
-		return errors.New("name is required")
-	}
-	if !emailRegex.MatchString(c.Email) {
-		return errors.New("valid email is required")
-	}
-	if len(c.Message) > 2000 {
-		return errors.New("message exceeds maximum length")
-	}
-	return nil
-}
-
 func writeJSON(w http.ResponseWriter, status int, body any) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
 	_ = json.NewEncoder(w).Encode(body)
-}
-
-func consultationHandler(logger *slog.Logger) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		// 64 KB cap, avoids OOM on pathological payloads.
-		r.Body = http.MaxBytesReader(w, r.Body, 64<<10)
-		defer r.Body.Close()
-
-		var req consultation
-		dec := json.NewDecoder(r.Body)
-		dec.DisallowUnknownFields()
-		if err := dec.Decode(&req); err != nil {
-			logger.Warn("consultation: invalid body", "error", err)
-			writeJSON(w, http.StatusBadRequest, map[string]string{
-				"status":  "error",
-				"message": "invalid request body",
-			})
-			return
-		}
-		if err := req.validate(); err != nil {
-			writeJSON(w, http.StatusUnprocessableEntity, map[string]string{
-				"status":  "error",
-				"message": err.Error(),
-			})
-			return
-		}
-
-		// v1: log to stdout. Replace with an email queue/DB insert when ready.
-		logger.Info("consultation.request",
-			"name", req.Name,
-			"email", req.Email,
-			"day", req.Day,
-			"reason", req.Reason,
-			"message_length", len(req.Message),
-		)
-
-		writeJSON(w, http.StatusOK, map[string]string{
-			"status":  "ok",
-			"message": "We'll be in touch within one working day.",
-		})
-	}
 }
 
 // ---- booking feedback endpoint ---------------------------------------------
@@ -273,7 +205,6 @@ func main() {
 		writeJSON(w, http.StatusOK, map[string]string{"status": "ready"})
 	}).Methods(http.MethodGet)
 
-	router.HandleFunc("/api/consultation", consultationHandler(logger)).Methods(http.MethodPost)
 	router.HandleFunc("/api/feedback", feedbackHandler(logger)).Methods(http.MethodPost)
 
 	corsMiddleware := cors.New(cors.Options{
