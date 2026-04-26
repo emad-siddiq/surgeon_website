@@ -16,6 +16,7 @@ export default defineConfig({
         '/procedures',
         '/bariatric',
         '/distinctions',
+        '/teaching',
         '/transformations',
         '/location',
         '/consultation',
