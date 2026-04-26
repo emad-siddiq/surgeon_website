@@ -35,6 +35,7 @@ const ROUTES = [
   { slug: 'procedures', path: '/procedures' },
   { slug: 'bariatric', path: '/bariatric' },
   { slug: 'distinctions', path: '/distinctions' },
+  { slug: 'teaching', path: '/teaching' },
   { slug: 'transformations', path: '/transformations' },
   { slug: 'location', path: '/location' },
   { slug: 'consultation', path: '/consultation' },

@@ -60,8 +60,8 @@ export function HoverNavBar() {
           : 'bg-white/70 backdrop-blur-sm border-b border-transparent',
       )}
     >
-      <Container className="flex h-14 items-center justify-between gap-3 sm:h-16 sm:gap-4">
-        <Logo compact={isMobile} />
+      <Container className="flex h-16 items-center justify-between gap-3 sm:h-20 sm:gap-4">
+        <Logo wordmark={false} />
         {isMobile ? (
           <div className="flex items-center gap-1.5">
             <a

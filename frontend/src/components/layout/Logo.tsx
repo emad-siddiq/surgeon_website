@@ -5,9 +5,11 @@ import logoSrc from '@/assets/logo.png';
 interface LogoProps {
   className?: string;
   compact?: boolean;
+  wordmark?: boolean;
 }
 
-export function Logo({ className = '', compact = false }: LogoProps) {
+export function Logo({ className = '', compact = false, wordmark = true }: LogoProps) {
+  const size = wordmark ? 48 : 64;
   return (
     <Link
       to="/"
@@ -16,15 +18,17 @@ export function Logo({ className = '', compact = false }: LogoProps) {
     >
       <img
         src={logoSrc}
-        alt=""
-        aria-hidden="true"
-        width={36}
-        height={36}
-        className="h-9 w-9 rounded-sm object-contain"
+        alt={wordmark ? '' : `${doctor.fullName} — home`}
+        aria-hidden={wordmark ? 'true' : undefined}
+        width={size}
+        height={size}
+        className={wordmark ? 'h-12 w-12 rounded-sm object-contain' : 'h-16 w-16 rounded-sm object-contain'}
       />
-      <span className="text-[16px] font-medium tracking-tight text-textPrimary">
-        {compact ? doctor.short : doctor.fullName}
-      </span>
+      {wordmark ? (
+        <span className="text-[17px] font-medium tracking-tight text-textPrimary">
+          {compact ? doctor.short : doctor.fullName}
+        </span>
+      ) : null}
     </Link>
   );
 }

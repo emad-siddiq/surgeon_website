@@ -48,6 +48,7 @@ export function About() {
                   <video
                     className="aspect-video w-full bg-textPrimary"
                     controls
+                    controlsList="nodownload"
                     autoPlay
                     playsInline
                     preload="metadata"

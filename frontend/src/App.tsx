@@ -9,6 +9,7 @@ import { About } from './pages/About';
 import { Procedures } from './pages/Procedures';
 import { Bariatric } from './pages/Bariatric';
 import { Distinctions } from './pages/Distinctions';
+import { Teaching } from './pages/Teaching';
 import { Transformations } from './pages/Transformations';
 import { Location } from './pages/Location';
 import { Consultation } from './pages/Consultation';
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/procedures" element={<Procedures />} />
           <Route path="/bariatric" element={<Bariatric />} />
           <Route path="/distinctions" element={<Distinctions />} />
+          <Route path="/teaching" element={<Teaching />} />
           <Route path="/transformations" element={<Transformations />} />
           <Route path="/location" element={<Location />} />
           <Route path="/consultation" element={<Consultation />} />

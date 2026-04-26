@@ -137,17 +137,36 @@ export function SectionProgress({ sections }: SectionProgressProps) {
         nearFooter ? 'opacity-0' : 'opacity-100',
       )}
     >
-      <div className="pointer-events-auto relative flex flex-col gap-6 py-2">
+      <div className="pointer-events-auto relative flex flex-col gap-9 py-2">
         {/* background track */}
         <span
           aria-hidden="true"
-          className="absolute left-[6.5px] top-2 bottom-2 w-px bg-border1"
+          className="absolute left-[5px] top-2 bottom-2 w-[3px] rounded-full bg-border1/70"
         />
-        {/* filled portion based on overall scroll progress */}
+        {/* filled portion: vertical gradient that strengthens as the user
+            scrolls. The trailing fade keeps the leading edge feeling
+            alive instead of a hard stop. */}
         <span
           aria-hidden="true"
-          className="absolute left-[6.5px] top-2 w-px origin-top bg-primary transition-[height] duration-300 ease-breathe"
-          style={{ height: `calc(${progress * 100}% - ${progress * 16}px)` }}
+          className="absolute left-[5px] top-2 w-[3px] origin-top rounded-full transition-[height] duration-300 ease-breathe"
+          style={{
+            height: `calc(${progress * 100}% - ${progress * 16}px)`,
+            background:
+              'linear-gradient(to bottom, rgba(13,110,253,0.35) 0%, rgba(13,110,253,0.85) 60%, rgba(13,110,253,1) 100%)',
+            boxShadow: '0 0 8px rgba(13,110,253,0.35)',
+          }}
+        />
+        {/* glowing leading edge — sits at the bottom of the filled portion
+            and softly pulses, giving the rail a "flow" feel as the page
+            scrolls. */}
+        <span
+          aria-hidden="true"
+          className="absolute left-[1px] h-[11px] w-[11px] -translate-y-1/2 rounded-full bg-primary opacity-90 motion-safe:animate-pulse motion-reduce:opacity-60"
+          style={{
+            top: `calc(8px + ${progress * 100}% - ${progress * 16}px)`,
+            boxShadow: '0 0 10px 2px rgba(13,110,253,0.55)',
+            transition: 'top 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          }}
         />
         {sections.map((section) => {
           const isActive = activeId === section.id;

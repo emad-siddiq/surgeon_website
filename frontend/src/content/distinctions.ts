@@ -1,5 +1,8 @@
 import award from '@/assets/images/distinctions/1.jpeg';
 import oxford from '@/assets/images/distinctions/oxford1.png';
+// TODO(content): replace with a POMSS conference / workshop photograph once
+// the practice supplies one. Reusing a gallery asset as a placeholder.
+import pomssPlaceholder from '@/assets/images/gallery/10.jpeg';
 
 /** Distinctions — sourced from Distinctions.jsx at commit 0fb3280. */
 export interface Distinction {
@@ -25,5 +28,11 @@ export const distinctions: Distinction[] = [
     image: oxford,
     imageAlt: 'Dr. Ghulam Siddiq — international endoscopic surgery recognition',
     stat: { value: '970', label: 'Bariatric procedures' },
+  },
+  {
+    title: 'President, Pakistan Obesity & Metabolic Surgery Society',
+    body: 'Dr. Siddiq serves as President of POMSS — the Pakistan Obesity and Metabolic Surgery Society — leading hands-on training workshops in hospitals from Upper Dir, Swat and Peshawar in the north to Faisalabad, Lahore, Multan and other cities, raising the standard of bariatric and metabolic surgery across the country. He chaired the society’s international conference, bringing together surgeons and societies from China, Lebanon, the UAE and other regional and international bodies for clinical exchange and live surgical demonstration.',
+    image: pomssPlaceholder,
+    imageAlt: 'Dr. Ghulam Siddiq leading a POMSS workshop',
   },
 ];

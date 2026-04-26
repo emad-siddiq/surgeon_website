@@ -9,6 +9,7 @@ export const primaryNav: NavLink[] = [
   { label: 'Procedures', to: '/procedures' },
   { label: 'Bariatric', to: '/bariatric' },
   { label: 'Distinctions', to: '/distinctions' },
+  { label: 'Teaching', to: '/teaching' },
   { label: 'Transformations', to: '/transformations' },
   { label: 'Location', to: '/location' },
 ];

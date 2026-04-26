@@ -36,9 +36,13 @@ export function PageHeader({
     <section className={cn(toneClass, className)}>
       <Container className="py-12 sm:py-16 md:py-20 lg:py-24">
         {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-        <h1 className="t-display mt-3 max-w-[22ch] sm:mt-4">{title}</h1>
+        <h1 className="t-display mt-3 max-w-[22ch] sm:mt-4 md:max-w-[34ch] lg:max-w-[40ch]">
+          {title}
+        </h1>
         {lead ? (
-          <p className="t-body-lg mt-4 max-w-[62ch] text-textSecondary sm:mt-6">{lead}</p>
+          <p className="t-body-lg mt-4 max-w-[62ch] text-textSecondary sm:mt-6 md:max-w-[72ch]">
+            {lead}
+          </p>
         ) : null}
         {actions ? (
           // Stack on phones so buttons don't get squeezed; wrap from sm up.

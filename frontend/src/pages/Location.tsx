@@ -44,6 +44,8 @@ export function Location() {
             autoPlay
             loop
             playsInline
+            controls
+            controlsList="nodownload"
             preload="metadata"
             aria-label="Ambient loop of Shifa International Hospital interiors"
           />
