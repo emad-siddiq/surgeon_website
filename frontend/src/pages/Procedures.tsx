@@ -8,8 +8,8 @@ import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
 import { ButtonRouterLink } from '@/components/ui/Button';
 import { ProcedureDetailModal } from '@/components/ui/ProcedureDetailModal';
 import { CtaBand } from '@/components/ui/CtaBand';
+import { ClickableCard, LearnMoreHint } from '@/components/ui/ClickableCard';
 import { services, type ServiceEntry, type Category } from '@/content/services';
-import { cn } from '@/lib/cn';
 
 const categoryTone: Record<Category, TagTone> = {
   General: 'primary',
@@ -39,10 +39,6 @@ function groupByCategory(list: ServiceEntry[]) {
     .filter((group) => group.items.length > 0);
 }
 
-/**
- * A card that behaves as a button. Opens the detail modal on click,
- * and is keyboard-accessible out of the box because it IS a button.
- */
 function ProcedureCard({
   service,
   onOpen,
@@ -51,17 +47,9 @@ function ProcedureCard({
   onOpen: (service: ServiceEntry) => void;
 }) {
   return (
-    <button
-      type="button"
+    <ClickableCard
       onClick={() => onOpen(service)}
-      aria-haspopup="dialog"
-      aria-label={`Learn more about ${service.title}`}
-      className={cn(
-        'group flex h-full w-full flex-col rounded-lg border border-border1 bg-white p-6 text-left shadow-card',
-        'transition-[transform,box-shadow,border-color] duration-[220ms] ease-breathe',
-        'hover:-translate-y-1 hover:border-primary hover:shadow-raised',
-        'focus-visible:border-primary focus-visible:outline-none',
-      )}
+      ariaLabel={`Learn more about ${service.title}`}
     >
       <div className="flex items-start justify-between gap-4">
         <Tag tone={categoryTone[service.category]}>{service.category}</Tag>
@@ -69,21 +57,11 @@ function ProcedureCard({
           <AnimatedCounter to={service.volume} suffix="+" />
         </span>
       </div>
-
       <h3 className="mt-4 text-xl font-medium leading-snug">{service.title}</h3>
       <p className="t-caption mt-1 text-textMuted">{service.subtitle}</p>
       <p className="t-body mt-3 text-textSecondary">{service.summary}</p>
-
-      <span
-        aria-hidden="true"
-        className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-medium text-primary transition-transform duration-[220ms] ease-breathe group-hover:translate-x-0.5"
-      >
-        Learn more
-        <svg width={14} height={14} viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-          <path d="M2 7h10M8 3l4 4-4 4" />
-        </svg>
-      </span>
-    </button>
+      <LearnMoreHint />
+    </ClickableCard>
   );
 }
 

@@ -7,13 +7,13 @@ import { HeroSlideshow } from '@/components/ui/HeroSlideshow';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
 import { SectionProgress } from '@/components/ui/SectionProgress';
 import { ProcedureDetailModal } from '@/components/ui/ProcedureDetailModal';
+import { ClickableCard, LearnMoreHint } from '@/components/ui/ClickableCard';
 import { Seo } from '@/components/seo/Seo';
 import { doctor } from '@/content/doctor';
 import { heroImages, aboutPortrait } from '@/content/media';
 import { services, type ServiceEntry } from '@/content/services';
 import { distinctions } from '@/content/distinctions';
 import { Tag } from '@/components/ui/Tag';
-import { cn } from '@/lib/cn';
 
 // Anchor ids used by SectionProgress; each page section below wires the
 // same id as its DOM `id` attribute so the rail can observe them.
@@ -175,17 +175,9 @@ function FeaturedProcedures({ onOpen }: { onOpen: (service: ServiceEntry) => voi
       <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {featured.map((service) => (
           <li key={service.slug} className="flex">
-            <button
-              type="button"
+            <ClickableCard
               onClick={() => onOpen(service)}
-              aria-haspopup="dialog"
-              aria-label={`Learn more about ${service.title}`}
-              className={cn(
-                'group flex h-full w-full flex-col rounded-lg border border-border1 bg-white p-6 text-left shadow-card',
-                'transition-[transform,box-shadow,border-color] duration-[220ms] ease-breathe',
-                'hover:-translate-y-1 hover:border-primary hover:shadow-raised',
-                'focus-visible:border-primary focus-visible:outline-none',
-              )}
+              ariaLabel={`Learn more about ${service.title}`}
             >
               <div className="flex items-start justify-between gap-4">
                 <Tag>{service.category}</Tag>
@@ -195,13 +187,8 @@ function FeaturedProcedures({ onOpen }: { onOpen: (service: ServiceEntry) => voi
               </div>
               <h3 className="mt-4 text-xl font-medium leading-snug">{service.title}</h3>
               <p className="t-body mt-2 text-textSecondary">{service.summary}</p>
-              <span
-                aria-hidden="true"
-                className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-medium text-primary transition-transform duration-[220ms] ease-breathe group-hover:translate-x-0.5"
-              >
-                Learn more →
-              </span>
-            </button>
+              <LearnMoreHint />
+            </ClickableCard>
           </li>
         ))}
       </ul>

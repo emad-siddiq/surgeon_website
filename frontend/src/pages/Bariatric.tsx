@@ -7,13 +7,13 @@ import { Eyebrow } from '@/components/ui/Eyebrow';
 import { ButtonRouterLink } from '@/components/ui/Button';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
 import { ProcedureDetailModal } from '@/components/ui/ProcedureDetailModal';
+import { ClickableCard, LearnMoreHint } from '@/components/ui/ClickableCard';
 import {
   bariatricIntro,
   bariatricProcedures,
   type BariatricProcedure,
 } from '@/content/services';
 import { bariatricPortrait } from '@/content/media';
-import { cn } from '@/lib/cn';
 
 function BariatricCard({
   proc,
@@ -23,44 +23,18 @@ function BariatricCard({
   onOpen: (proc: BariatricProcedure) => void;
 }) {
   return (
-    <button
-      type="button"
+    <ClickableCard
       onClick={() => onOpen(proc)}
-      aria-haspopup="dialog"
-      aria-label={`Learn more about ${proc.title}`}
-      className={cn(
-        'group flex h-full w-full flex-col rounded-lg border border-border1 bg-white p-6 text-left shadow-card md:p-8',
-        'transition-[transform,box-shadow,border-color] duration-[220ms] ease-breathe',
-        'hover:-translate-y-1 hover:border-primary hover:shadow-raised',
-        'focus-visible:border-primary focus-visible:outline-none',
-      )}
+      ariaLabel={`Learn more about ${proc.title}`}
+      className="md:p-8"
     >
-      <span
-        aria-hidden="true"
-        className="text-sm font-medium tracking-[0.18em] text-primary"
-      >
+      <span aria-hidden="true" className="text-sm font-medium tracking-[0.18em] text-primary">
         {proc.number}
       </span>
       <h3 className="mt-3 text-[1.375rem] font-medium leading-snug">{proc.title}</h3>
       <p className="t-body mt-3 text-textSecondary">{proc.summary}</p>
-      <span
-        aria-hidden="true"
-        className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-medium text-primary transition-transform duration-[220ms] ease-breathe group-hover:translate-x-0.5"
-      >
-        Learn more
-        <svg
-          width={14}
-          height={14}
-          viewBox="0 0 14 14"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        >
-          <path d="M2 7h10M8 3l4 4-4 4" />
-        </svg>
-      </span>
-    </button>
+      <LearnMoreHint />
+    </ClickableCard>
   );
 }
 
