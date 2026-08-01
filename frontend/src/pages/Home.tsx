@@ -1,10 +1,10 @@
 /**
- * `/` route. Seven stacked sections: Hero (custom, with HeroSlideshow),
+ * `/` route. Eight stacked sections: Hero (custom, with HeroSlideshow),
  * Stats (animated counters), AboutTeaser, FeaturedProcedures (top-3
  * services as ClickableCards → ProcedureDetailModal), DistinctionTeaser,
- * MediaTeaser (YouTube channel + podcast outbound cards), ConsultCta
- * (a custom variant of CtaBand with the SectionProgress anchor id
- * `home-consult`).
+ * MediaTeaser (YouTube channel + podcast outbound cards), ReviewsTeaser
+ * (aggregate + Google-review CTA), ConsultCta (a custom variant of
+ * CtaBand with the SectionProgress anchor id `home-consult`).
  *
  * The page owns the procedure-detail modal state in `active`. The
  * SectionProgress rail (visible only at lg+) observes the section ids
@@ -26,6 +26,15 @@ import { heroImages, aboutPortrait } from '@/content/media';
 import { services, type ServiceEntry } from '@/content/services';
 import { distinctions } from '@/content/distinctions';
 import { mediaTeaser, youtubeChannel, podcast } from '@/content/teaching';
+import {
+  reviewsHeading,
+  reviewsLead,
+  reviewAggregate,
+  googleReview,
+  patientReviews,
+} from '@/content/reviews';
+import { ButtonLink } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
 import { Tag } from '@/components/ui/Tag';
 
 // Anchor ids used by SectionProgress; each page section below wires the
@@ -37,6 +46,7 @@ const sections = [
   { id: 'home-procedures', label: 'Procedures' },
   { id: 'home-distinctions', label: 'Distinctions' },
   { id: 'home-media', label: 'Videos & podcast' },
+  { id: 'home-reviews', label: 'Patient reviews' },
   { id: 'home-consult', label: 'Consultation' },
 ];
 
@@ -353,6 +363,75 @@ function MediaTeaser() {
   );
 }
 
+/**
+ * Patient-experience section. Quote grid renders only once the practice
+ * supplies consent-backed quotes in content/reviews.ts (goal-state G3
+ * forbids anything else); until then the section carries the aggregate
+ * tile + the Google-review ask, which is the conversion we want anyway.
+ */
+function ReviewsTeaser() {
+  return (
+    <Section
+      id="home-reviews"
+      tone="base"
+      size="md"
+      className="py-10 sm:py-12 md:py-16"
+      aria-labelledby="reviews-heading"
+    >
+      <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12">
+        <div className="md:col-span-7">
+          <Eyebrow>Patient experience</Eyebrow>
+          <h2 id="reviews-heading" className="t-h1 mt-3 max-w-[20ch]">
+            {reviewsHeading}
+          </h2>
+          <p className="t-body-lg mt-5 max-w-[62ch] text-textSecondary">{reviewsLead}</p>
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <ButtonLink
+              href={googleReview.url}
+              variant="primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto"
+            >
+              {googleReview.cta}
+            </ButtonLink>
+          </div>
+          <p className="t-caption mt-4 text-textMuted">{googleReview.note}</p>
+        </div>
+        <div className="md:col-span-5">
+          <Card tone="surface" padding="lg" className="text-center md:text-left">
+            <p className="text-5xl font-medium tracking-tight text-primary md:text-6xl">
+              {reviewAggregate.score}
+              <span className="text-2xl text-textMuted md:text-3xl">
+                {' '}
+                / {reviewAggregate.outOf}
+              </span>
+            </p>
+            <p className="t-body mt-3 text-textSecondary">{reviewAggregate.caption}</p>
+          </Card>
+        </div>
+      </div>
+      {patientReviews.length > 0 ? (
+        <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {patientReviews.map((review) => (
+            <li key={review.quote} className="flex">
+              <Card as="figure" tone="surface" className="flex w-full flex-col">
+                <blockquote className="t-body text-textPrimary">
+                  &ldquo;{review.quote}&rdquo;
+                </blockquote>
+                <figcaption className="t-caption mt-4 text-textMuted">
+                  {review.name}
+                  {review.context ? ` · ${review.context}` : ''}
+                </figcaption>
+              </Card>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </Section>
+  );
+}
+
 function ConsultCta() {
   return (
     <section id="home-consult" className="bg-gradient-hero">
@@ -392,6 +471,7 @@ export function Home() {
       <FeaturedProcedures onOpen={setActive} />
       <DistinctionTeaser />
       <MediaTeaser />
+      <ReviewsTeaser />
       <ConsultCta />
       <ProcedureDetailModal
         open={active !== null}

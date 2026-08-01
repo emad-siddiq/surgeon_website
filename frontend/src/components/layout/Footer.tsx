@@ -16,6 +16,7 @@ import { Logo } from './Logo';
 import { contact } from '@/content/contact';
 import { doctor } from '@/content/doctor';
 import { primaryNav, secondaryNav } from '@/content/nav';
+import { googleReview } from '@/content/reviews';
 
 function SocialIcon({ kind }: { kind: 'facebook' | 'instagram' | 'youtube' }) {
   const paths = {
@@ -105,6 +106,16 @@ export function Footer() {
                   rel="noopener noreferrer"
                 >
                   WhatsApp
+                </a>
+              </li>
+              <li>
+                <a
+                  className="hover:text-primary"
+                  href={googleReview.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {googleReview.cta}
                 </a>
               </li>
             </ul>

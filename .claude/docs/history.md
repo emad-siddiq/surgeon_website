@@ -47,6 +47,23 @@ Unresolved, awaits user input:
   `frontend/src/content/media.ts`. Request clean, rectangular, unwatermarked
   originals from the practice for the 150 kg → 70 kg / 9-month patient and
   reinstate the entry when received.
+- **Consent-backed patient quotes for #home-reviews** (surfaced 2026-08-01):
+  the new reviews section on Home renders a quote grid from
+  `frontend/src/content/reviews.ts` → `patientReviews`, which ships empty —
+  goal-state G3 allows consent-backed quotes only, and no consented quotes
+  exist (the old site published none; directory sites expose only aggregate
+  ratings). Ask the practice to collect 3–6 short quotes with written
+  permission (first name or initials only). The aggregate line ("4.8 / 5
+  across 1,100+ reviews", snapshot of Healthwire 2026-08-01) also needs
+  re-verification before launch.
+- **Google Business Profile write-review link** (surfaced 2026-08-01): the
+  "Leave a Google review" CTA (home + footer) currently uses the universal
+  Maps search deep link for "Dr. Ghulam Siddiq, Shifa International
+  Hospital, Islamabad" because the Places API key in the repo is
+  billing-restricted and no place id could be resolved. Confirm whether the
+  practice has its own Google Business Profile and swap in the exact
+  `https://search.google.com/local/writereview?placeid=…` link in
+  `frontend/src/content/reviews.ts`.
 
 ## Unfinished iterations
 

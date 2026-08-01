@@ -224,6 +224,32 @@ async function main() {
       await ctx.close();
     }
 
+    // Flow 8: reviews — Google-review CTA on home section + global footer.
+    {
+      const ctx = await browser.newContext({
+        viewport: { width: 1440, height: 900 },
+        serviceWorkers: 'block',
+      });
+      const page = await ctx.newPage();
+      await page.goto(BASE + '/', { waitUntil: 'domcontentloaded' });
+      await step('reviews', 'home-section', async () => {
+        const section = page.locator('#home-reviews');
+        if (!(await section.count())) throw new Error('#home-reviews section missing');
+        const a = section.locator('a[href*="google.com/maps"]').first();
+        if (!(await a.count())) throw new Error('no Google review link inside #home-reviews');
+        if ((await a.getAttribute('target')) !== '_blank') {
+          throw new Error('Google review link does not open in new tab');
+        }
+        const rel = (await a.getAttribute('rel')) || '';
+        if (!/noopener/.test(rel)) throw new Error(`review link rel=${rel}`);
+      });
+      await step('reviews', 'footer-link', async () => {
+        const a = page.locator('footer a[href*="google.com/maps"]').first();
+        if (!(await a.count())) throw new Error('no Google review link in footer');
+      });
+      await ctx.close();
+    }
+
     // Flow 5: 404 recovery.
     {
       const ctx = await browser.newContext({
