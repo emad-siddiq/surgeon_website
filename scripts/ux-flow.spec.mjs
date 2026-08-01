@@ -16,7 +16,7 @@ const OUT = path.join(REPO, 'visual-tests', 'ux-flow.json');
 const BASE = 'http://localhost:5175';
 
 const require = createRequire(
-  new URL('../frontend/package.json', import.meta.url),
+  new URL('../package.json', import.meta.url),
 );
 const { chromium } = require('@playwright/test');
 
@@ -45,7 +45,7 @@ async function ensureServer() {
   const child = spawn(
     'npm',
     ['run', 'dev', '--', '--port', '5175', '--strictPort'],
-    { cwd: path.join(REPO, 'frontend'), stdio: 'ignore' },
+    { cwd: REPO, stdio: 'ignore' },
   );
   const up = await waitFor(BASE, 30000);
   if (!up) {
@@ -113,12 +113,12 @@ async function step(flow, where, fn) {
 
 async function main() {
   // Flow 0a: copy integrity, static. The content layer (CLAUDE.md rule 3
-  // keeps all user-visible strings in frontend/src/content/*.ts) must be
+  // keeps all user-visible strings in src/content/*.ts) must be
   // free of em dashes and unsourced superlative claims. Scanning the
   // files rather than the DOM also covers modal-only copy that a
   // rendered sweep cannot reach without opening every dialog.
   {
-    const contentDir = path.join(REPO, 'frontend', 'src', 'content');
+    const contentDir = path.join(REPO, 'src', 'content');
     const files = (await fs.readdir(contentDir)).filter((f) => f.endsWith('.ts'));
     for (const file of files) {
       await step('copy-integrity', `content/${file}`, async () => {
@@ -445,6 +445,48 @@ async function main() {
         const a = page.locator('footer a[href*="google.com/maps"]').first();
         if (!(await a.count())) throw new Error('no Google review link in footer');
       });
+      await ctx.close();
+    }
+
+    // Flow 12: mobile density — Galaxy-width (360×800) editorial checks.
+    // Page leads must be one concise line of copy, not an essay: every
+    // t-body-lg paragraph in a route's opening section stays ≤160 chars.
+    // /about is exempt by design (the long-form bio IS the page). Also:
+    // no horizontal scroll at 360px, the narrowest mainstream Android
+    // width, which the 390px iPhone baseline does not cover.
+    {
+      const ctx = await browser.newContext({
+        viewport: { width: 360, height: 800 },
+        serviceWorkers: 'block',
+      });
+      const page = await ctx.newPage();
+      for (const href of ROUTES) {
+        await step('mobile-density', `no-h-scroll ${href}`, async () => {
+          await page.goto(BASE + href, { waitUntil: 'domcontentloaded' });
+          await page.locator('h1').first().waitFor({ state: 'visible', timeout: 5000 });
+          const overflow = await page.evaluate(
+            () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          );
+          if (overflow > 0) throw new Error(`horizontal overflow of ${overflow}px`);
+        });
+        if (href === '/about') continue;
+        await step('mobile-density', `lead-concise ${href}`, async () => {
+          const leads = await page.evaluate(() => {
+            const section = document.querySelector('main section');
+            if (!section) return [];
+            return Array.from(section.querySelectorAll('p.t-body-lg')).map((p) =>
+              p.innerText.trim(),
+            );
+          });
+          for (const lead of leads) {
+            if (lead.length > 160) {
+              throw new Error(
+                `lead is ${lead.length} chars (cap 160): "${lead.slice(0, 60)}..."`,
+              );
+            }
+          }
+        });
+      }
       await ctx.close();
     }
 

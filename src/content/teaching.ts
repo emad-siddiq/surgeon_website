@@ -3,7 +3,7 @@ import { contact } from './contact';
 export const teachingHeading = 'Teaching the next generation of surgeons.';
 
 export const teachingLead =
-  'Beyond the operating theatre, Dr. Siddiq invests in the surgical community through a public surgical-education channel, training workshops across Pakistan, and the leadership of an international conference.';
+  'A public surgical-education channel, training workshops across Pakistan, and the leadership of an international conference.';
 
 export const youtubeChannel = {
   url: contact.social.youtube,

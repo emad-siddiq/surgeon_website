@@ -25,7 +25,7 @@ export function Transformations() {
       <PageHeader
         eyebrow="Patient outcomes"
         title={<>Before and after surgery.</>}
-        lead="Drag the handle to compare before and after. Every photograph on this page has been shared with written consent from the patient. Individual results always vary; these are real cases, not a guarantee of any particular outcome."
+        lead="Drag to compare. Every photograph is shared with the patient's written consent; individual results vary."
       />
 
       <Section tone="base" size="lg">

@@ -16,7 +16,7 @@ export const doctor = {
 
   heroHeadline: 'Laparoscopic and bariatric surgery, in experienced hands',
   heroLead:
-    'Dr. Ghulam Siddiq is Chief of Surgery at Shifa International Hospital. For more than 25 years his work has centred on minimally invasive surgery: smaller incisions, less pain, and a faster return to ordinary life.',
+    'Chief of Surgery at Shifa International Hospital: 25 years of minimally invasive surgery, with smaller incisions and a faster return to ordinary life.',
 
   tagline: 'Minimally invasive surgery. Thoughtful, compassionate care.',
 

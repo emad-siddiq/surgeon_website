@@ -65,7 +65,7 @@ export function Bariatric() {
       <PageHeader
         eyebrow={bariatricIntro.title}
         title={<>{bariatricIntro.subtitle}</>}
-        lead={bariatricIntro.body[0]}
+        lead={bariatricIntro.lead}
         actions={
           <>
             <ButtonRouterLink to="/consultation" variant="primary">

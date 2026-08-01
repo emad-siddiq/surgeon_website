@@ -486,6 +486,8 @@ export const bariatricProcedures: BariatricProcedure[] = [
 export const bariatricIntro = {
   title: 'Bariatric Surgery',
   subtitle: 'A modern approach to obesity and its metabolic consequences',
+  /** One-line PageHeader lead; the body paragraphs carry the detail. */
+  lead: 'Surgery for obesity and its metabolic consequences: type 2 diabetes, sleep apnoea, hypertension and fatty liver disease.',
   body: [
     'Bariatric surgery treats obesity and the conditions that travel with it, including type 2 diabetes, sleep apnoea, hypertension and fatty liver disease. At Shifa International Hospital, Dr. Ghulam Siddiq has performed more than 1,400 laparoscopic procedures since 2010, with bariatric operations at the centre of his practice.',
     'He routinely performs laparoscopic Roux-en-Y gastric bypass, sleeve gastrectomy, mini gastric bypass (OAGB) and revision bariatric surgery. The operation is chosen around the individual patient: weight, health, surgical history and long-term goals, never a one-size-fits-all formula.',

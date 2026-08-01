@@ -98,7 +98,7 @@ export function Procedures() {
       <PageHeader
         eyebrow="Surgical Expertise & Experience"
         title={<>Procedures performed by Dr. Siddiq.</>}
-        lead="Ten core operations, refined across 25 years of practice at Shifa International Hospital. Click any procedure for a plain-language explanation of what it treats, how it is performed, and what recovery looks like, written for patients rather than clinicians."
+        lead="Ten core operations, refined across 25 years. Open any procedure for what it treats, how it is performed, and what recovery looks like."
         actions={
           <>
             <ButtonRouterLink to="/consultation" variant="primary">

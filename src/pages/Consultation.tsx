@@ -51,10 +51,8 @@ export function Consultation() {
                 Two ways to reach the practice.
               </h1>
               <p className="t-body-lg mt-4 max-w-[56ch] text-textSecondary sm:mt-6">
-                All consultations are booked through Shifa International Hospital&rsquo;s
-                main line. WhatsApp is usually the fastest route: messages reach
-                the appointments desk directly and are answered during working hours. If
-                you&rsquo;d rather speak to someone, a phone call works just as well.
+                Consultations are booked through Shifa International Hospital&rsquo;s
+                main line; WhatsApp is usually the fastest route.
               </p>
 
               <div className="mt-8">

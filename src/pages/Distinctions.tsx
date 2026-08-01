@@ -28,7 +28,7 @@ export function Distinctions() {
       <PageHeader
         eyebrow="Recognition"
         title={<>{distinctionsHeading}.</>}
-        lead="More than two decades of laparoscopic and bariatric practice in Pakistan, marked by a national award, the presidency of a national surgical society, and a caseload built patient by patient."
+        lead="Two decades of laparoscopic practice: a national award, a society presidency, and a caseload built patient by patient."
       />
 
       {distinctions.map((d, i) => (
