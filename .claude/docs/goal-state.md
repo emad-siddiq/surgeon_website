@@ -84,8 +84,13 @@ Source of truth lives in this file, not scattered across other docs.
     implies no broken `src` at any captured viewport.
 
 ### G2 — Appointment conversion
-- [ ] WhatsApp CTA + Shifa phone CTA visible above the fold on every route
+- [x] WhatsApp CTA + Shifa phone CTA visible above the fold on every route
   at 390px (header or hero, not only footer).
+  - 2026-08-01: `MobileBookingBar` (components/layout/) — fixed bottom
+    bar at <lg with WhatsApp + Call, fades out when `<footer>` enters
+    the viewport (IntersectionObserver, SectionProgress pattern).
+    Covered by ux-flow `mobile-booking-bar` (10 routes above-fold +
+    hides-at-footer).
 - [x] Phone links use `tel:` with the `contact.phone.tel` value; WhatsApp
   links point at `contact.whatsapp.url`. Grep confirms no hardcoded numbers.
   - Audit 2026-04-24 iter 6. Method: `grep -rn "tel:"`, `grep -rn

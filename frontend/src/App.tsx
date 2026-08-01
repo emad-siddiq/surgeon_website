@@ -18,6 +18,7 @@ import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { HoverNavBar } from './components/layout/HoverNavBar';
 import { Footer } from './components/layout/Footer';
+import { MobileBookingBar } from './components/layout/MobileBookingBar';
 import { BookingFeedbackPrompt } from './components/ui/BookingFeedbackPrompt';
 
 import { Home } from './pages/Home';
@@ -54,6 +55,13 @@ export default function App() {
   return (
     <>
       <HoverNavBar />
+      {/* <lg only: keeps WhatsApp + phone one tap away on every route.
+          Mounted BEFORE the routed content so the bar's links are the
+          first booking anchors in DOM/tab order — position:fixed means
+          placement here has no visual effect, but assistive tech and
+          the ux-flow above-fold assertions (which take the first
+          matching anchor) reach the bar, not the footer. */}
+      <MobileBookingBar />
       <main id="main" className="relative">
         <Routes>
           <Route path="/" element={<Home />} />

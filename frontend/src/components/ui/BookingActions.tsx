@@ -13,10 +13,11 @@ import { recordBookingClick } from '@/hooks/useBookingFeedback';
  *   behaviour depends on the user's default tel handler (FaceTime,
  *   Skype, etc.).
  *
- * This component is the SOLE entry point into the booking-feedback flow:
- * each click invokes recordBookingClick (hooks/useBookingFeedback.ts),
- * which writes a localStorage record that BookingFeedbackPrompt later
- * uses to surface a "did you book?" toast.
+ * Booking-feedback flow: each click invokes recordBookingClick
+ * (hooks/useBookingFeedback.ts), which writes a localStorage record
+ * that BookingFeedbackPrompt later uses to surface a "did you book?"
+ * toast. MobileBookingBar (layout/) is the other entry point — keep
+ * the two recording call sites in sync.
  */
 export function BookingActions() {
   return (

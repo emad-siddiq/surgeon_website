@@ -176,6 +176,57 @@ async function main() {
       await ctx.close();
     }
 
+    // Flow 9: mobile booking bar — the two booking channels (tel: +
+    // WhatsApp) must be reachable WITHOUT scrolling on every route at
+    // 390×844 (goal-state G2 "above the fold on every route").
+    {
+      const ctx = await browser.newContext({
+        viewport: { width: 390, height: 844 },
+        serviceWorkers: 'block',
+      });
+      const page = await ctx.newPage();
+      for (const href of ['/', '/about', '/procedures', '/bariatric', '/distinctions', '/teaching', '/transformations', '/location', '/consultation', '/gallery']) {
+        await step('mobile-booking-bar', `above-fold ${href}`, async () => {
+          await page.goto(BASE + href, { waitUntil: 'domcontentloaded' });
+          const inFold = (box) =>
+            box && box.y >= 0 && box.y + box.height <= 844 && box.width > 0;
+          // Any visible link counts — pages may render the same channel
+          // twice (hero CTA, footer); at least one must sit in the fold.
+          const anyInFold = async (selector) => {
+            for (const el of await page.locator(selector).all()) {
+              if (inFold(await el.boundingBox())) return true;
+            }
+            return false;
+          };
+          if (!(await anyInFold('a[href^="tel:"]:visible'))) {
+            throw new Error('no tel: link inside the initial viewport');
+          }
+          if (
+            !(await anyInFold(
+              'a[href*="api.whatsapp.com"]:visible, a[href*="wa.me"]:visible',
+            ))
+          ) {
+            throw new Error('no WhatsApp link inside the initial viewport');
+          }
+        });
+      }
+      // The bar must yield to the footer (which carries its own contact
+      // links) instead of overlaying it.
+      await step('mobile-booking-bar', 'hides-at-footer', async () => {
+        await page.goto(BASE + '/', { waitUntil: 'domcontentloaded' });
+        const bar = page.locator('nav[aria-label="Quick booking actions"]');
+        if (!(await bar.count())) throw new Error('booking bar not present');
+        await page.evaluate(() =>
+          document.querySelector('footer')?.scrollIntoView({ behavior: 'instant', block: 'center' }),
+        );
+        await page.waitForTimeout(600);
+        if (await bar.isVisible()) {
+          throw new Error('booking bar still visible over the footer');
+        }
+      });
+      await ctx.close();
+    }
+
     // Flow 6: teaching media — YouTube channel + podcast outbound links.
     {
       const ctx = await browser.newContext({
