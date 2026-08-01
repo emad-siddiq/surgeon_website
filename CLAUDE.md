@@ -24,6 +24,7 @@ posts log to stdout.
 3. **Content is data-driven.** User-visible strings live in `frontend/src/content/*.ts`. Do not hardcode copy in components.
 4. **No analytics, no third-party scripts.** Only external loads allowed: Google Maps iframe on `/location` (lazy), WhatsApp deep-link on user click.
 5. **Commit per iteration.** One fix, one commit. Message format: `fix(frontend): <concise>` or `feat(frontend): <concise>`.
+6. **Test-driven. Always.** No production-code change lands without a test that went red→green on this fix. Extend `scripts/ux-flow.spec.mjs`, `backend/src/main_test.go`, or `scripts/visual-qa.mjs`'s heuristic checks — whichever tier owns the regression. The new/modified test and the fix ship in the same commit. Never weaken or delete a test to make a fix pass; if a test is genuinely stale, document it under `## Decisions needed` in `history.md` and pick another item. See [.claude/docs/testing.md](.claude/docs/testing.md) → "TDD discipline".
 
 ## Loop budget
 Each `/iterate` run has a **2 hour wall-clock budget**. Wrap up and commit between the **1h45m–2h00m** mark. If a fix isn't ready by then, revert and leave a note in `.claude/docs/history.md`.

@@ -39,3 +39,29 @@ orthogonal to the loop — leave it alone unless the copy assertion
 ## Budget + reporting shape
 All three agents produce JSON reports ≤3KB each. The optimizer agent
 consumes all three and picks **one** fix. One iteration = one commit.
+
+## TDD discipline
+The three agents above are **runners** — read-only by contract. The
+optimizer is the only role that writes tests, and it must follow strict
+red-green-refactor (CLAUDE.md hot rule #6, quality-bar.md → Process):
+
+1. **RED** — extend the test that owns the regression *before* touching
+   production code:
+   - Functional / interaction / a11y → `scripts/ux-flow.spec.mjs`.
+   - Backend contract → a new subtest under `TestMockFlows` in
+     `backend/src/main_test.go`.
+   - Visual-DOM (computed style, presence, layout box) → prefer a
+     Playwright assertion in `ux-flow.spec.mjs`; only fall back to a
+     `visual-qa.mjs` before/after pair when no code assertion is
+     possible, and explain why in the commit body.
+   Run the test. Confirm it fails *for the right reason*.
+2. **GREEN** — make the smallest production change that flips the test
+   green. Don't edit the test you just wrote.
+3. **REFACTOR** — tighten under green; stop when the diff stops shrinking.
+4. Commit the test and the fix together. The commit body names the
+   test (file + case).
+
+A test that was weakened, skipped, or deleted to "pass" is a process
+failure, not a fix. If you believe a test is genuinely stale, log it
+under `## Decisions needed` in `.claude/docs/history.md` and pick
+another item.

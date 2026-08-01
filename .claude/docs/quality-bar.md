@@ -47,8 +47,27 @@ optimizer should pick a different fix.
 - Do not introduce state. V1 is stateless; consultation + feedback log
   to stdout only.
 
+## Process — TDD
+- **Failing test first.** Every code-changing commit must include a test
+  that went red→green on this fix. The new/extended test and the
+  production change ship in the same commit. (CLAUDE.md hot rule #6.)
+- **Tier ownership.** Functional + interaction → `ux-flow.spec.mjs`.
+  Backend handlers → `TestMockFlows` in `main_test.go`. Visual / DOM
+  shape → prefer a Playwright assertion in `ux-flow.spec.mjs`; fall back
+  to a `visual-qa.mjs` before/after pair only when no code assertion is
+  possible, and document that in the commit body.
+- **Tests are the spec.** Never weaken, delete, mark `skip`, or
+  short-circuit a test to make it pass. If a test is stale because the
+  spec changed, log it under `## Decisions needed` in `history.md` —
+  don't quietly rewrite it.
+- **No same-loop test edits to chase green.** Once you write a failing
+  test, you don't get to edit that test until the production code makes
+  it pass on its own.
+
 ## Commits
 - Conventional-commit prefix: `fix(frontend):`, `fix(backend):`,
   `feat(...):`, `docs:`, `chore:`.
 - One fix per commit. One commit per `/iterate` run.
+- Each `fix`/`feat` commit body names the test that locked the
+  regression (file + case name).
 - Co-author line preserved.

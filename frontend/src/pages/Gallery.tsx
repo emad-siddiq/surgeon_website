@@ -1,11 +1,10 @@
 /**
- * `/gallery` route. PageHeader → static photo grid (2/3/4 columns
- * across breakpoints). Two indices get a row-span/col-span accent so
- * the grid doesn't read as a flat tile pattern.
+ * `/gallery` route. PageHeader → static photo grid (1/2/3 columns
+ * across breakpoints) of wide 3:2 tiles matching the landscape
+ * source photos.
  *
  * Images come from `galleryImages` in content/media.ts. The first four
- * are eager-loaded; the rest are lazy. Square aspect ratio by default;
- * overrides per-index.
+ * are eager-loaded; the rest are lazy.
  */
 import { Seo } from '@/components/seo/Seo';
 import { PageHeader } from '@/components/ui/PageHeader';
@@ -28,32 +27,17 @@ export function Gallery() {
       />
 
       <Section tone="base" size="lg">
-        {/*
-         * `grid-flow-dense` lets smaller items backfill the gaps left by
-         * row-span / col-span accents so the grid doesn't end on a ragged
-         * set of empty trailing tracks.
-         */}
-        <ul className="grid grid-flow-row-dense grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4">
+        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
           {galleryImages.map((image, i) => (
-            <li
-              key={image.src}
-              className={
-                // Give a few images extra presence — taller and spanning two columns at the large breakpoint.
-                i === 0 || i === 7
-                  ? 'sm:row-span-2 sm:[&>img]:aspect-[3/4]'
-                  : i === 3
-                    ? 'lg:col-span-2 lg:[&>img]:aspect-[16/9]'
-                    : ''
-              }
-            >
+            <li key={image.src}>
               <img
                 src={image.src}
                 alt={image.alt}
-                width={800}
+                width={1200}
                 height={800}
                 loading={i < 4 ? 'eager' : 'lazy'}
                 decoding="async"
-                className="aspect-square h-full w-full rounded-lg border border-border1 object-cover shadow-card transition-transform duration-300 ease-breathe hover:-translate-y-1"
+                className="aspect-[3/2] h-full w-full rounded-lg border border-border1 object-cover shadow-card transition-transform duration-300 ease-breathe hover:-translate-y-1"
               />
             </li>
           ))}

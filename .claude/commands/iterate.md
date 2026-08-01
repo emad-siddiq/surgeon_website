@@ -29,10 +29,15 @@ and **2h00m** marks.
    already summarized them.
 
 5. **Delegate to `optimizer`** with the merged reports **and the list of
-   unchecked goal-state items** in its prompt. The optimizer picks ONE fix
-   following its decision order (bugs first, then highest-priority goal
-   gap), implements it, re-shoots the affected view, flips the goal-state
-   checkbox if applicable, commits, and returns a summary.
+   unchecked goal-state items** in its prompt. Remind the optimizer that
+   it is bound by **TDD** (CLAUDE.md hot rule #6): write the failing
+   test first, watch it go RED, make the production change to GREEN,
+   refactor under green, ship test + fix in the same commit. The
+   optimizer picks ONE fix following its decision order (bugs first,
+   then highest-priority goal gap), implements it, re-shoots the affected
+   view, flips the goal-state checkbox if applicable, commits, and
+   returns a summary including the test that locked the regression
+   (`test` + `redToGreen` fields).
 
 6. **Time check.** If the optimizer is not done and the wall clock is past
    **1h45m** from `iterationStartedAt`, send the optimizer one final message:

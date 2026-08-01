@@ -36,15 +36,47 @@ After your fix verifies, flip its checkbox in `.claude/docs/goal-state.md`
 current build demonstrably satisfies it — this file is the scoreboard the
 user reads to decide when to set a new goal.
 
-## Execution
-1. Read the source file(s) implicated by the issue. Confirm the hypothesis.
-2. Make the smallest change that fixes it. Preserve surrounding code.
-3. Re-run the *affected* subset of visual-qa (`node scripts/visual-qa.mjs
-   --only <route>`) or re-run ux-flow for just the failing flow.
-4. Read the re-shot / re-run output to confirm the fix.
-5. `git add` only the files you touched + any updated screenshot snapshots.
-6. Commit with message:
-   `fix(frontend): <8-word summary>` or `fix(backend): <...>`.
+## Execution — Red, Green, Refactor
+
+You are bound by the TDD rule (CLAUDE.md hot rule #6). The fix ships
+**with** a test that went red→green on this change. No exceptions for
+"trivial" fixes — if it's worth a commit, it's worth a regression lock.
+
+1. **Read the source file(s)** implicated by the issue. Confirm the
+   hypothesis.
+2. **Write the failing test (RED).** Pick the tier that owns the
+   regression:
+   - **Functional / interaction / accessibility** → extend
+     `scripts/ux-flow.spec.mjs` with a new assertion or flow.
+   - **Backend contract / handler / CORS** → add a subtest under
+     `TestMockFlows` in `backend/src/main_test.go`.
+   - **Visual / DOM-shape / computed-style** → prefer a Playwright
+     assertion in `ux-flow.spec.mjs` (computed style, presence, class,
+     `bounding-box`). Only if the regression is genuinely unassertable
+     in code (e.g. "the hero feels cramped") may you fall back to a
+     before/after pair from `visual-qa.mjs`; in that case the commit body
+     **must** name the two screenshot paths and explain why no code
+     assertion was possible.
+   Run the test. Confirm it **fails for the right reason** (not a typo,
+   not a harness error). A test that goes red because the harness can't
+   find a selector you just renamed is not a real RED.
+3. **Make the smallest production change that turns it GREEN.** Preserve
+   surrounding code. Do not edit the test you just wrote to make it pass.
+4. **Refactor under green.** Tighten the fix while the test stays green.
+   Stop refactoring as soon as the diff stops shrinking — this is not the
+   place for opportunistic cleanup.
+5. **Re-run the broader tier** to confirm no regression: the affected
+   subset of visual-qa (`node scripts/visual-qa.mjs --only <route>`),
+   the full `scripts/ux-flow.spec.mjs`, or `go test ./src -run
+   TestMockFlows -v`. The new test must still be green; existing tests
+   must still be green.
+6. `git add` the test file(s), the production file(s), and any updated
+   screenshot snapshots. Tests and fix go in the **same commit** — never
+   split them.
+7. Commit with message:
+   `fix(frontend): <8-word summary>` or `fix(backend): <...>`. The body
+   should name the test you added/extended (one line, e.g. `Locks via
+   ux-flow.spec.mjs → "footer not white-on-white at 1920"`).
 
 ## Time budget
 You operate inside a 2-hour `/iterate` loop. If you aren't ready to commit
@@ -55,7 +87,17 @@ append a one-line note to `.claude/docs/history.md` under `## Unfinished`.
 - If the top issue requires a design decision (new copy, new token, new
   component), do not guess. Write a one-line entry under `## Decisions
   needed` in `.claude/docs/history.md`, then pick the next item.
-- Never disable a failing test to "fix" it.
+- Never disable, delete, weaken, or mark `skip`/`todo` on a failing test
+  to "fix" it. If a test is genuinely stale (the spec changed, not the
+  code), log a one-line entry under `## Decisions needed` in
+  `history.md` describing the test and the spec drift, then pick a
+  different item.
+- Never edit a newly written failing test in the same loop in order to
+  make it pass — the test pins the spec, the production code moves to
+  meet it.
+- If you cannot express the regression as a test (functional or
+  visual-DOM assertion) and the visual-shot fallback also doesn't apply,
+  the issue is not optimizer-shaped. Skip it and pick the next item.
 - Never commit to a branch other than `main` unless the parent explicitly
   requested a worktree.
 
@@ -67,8 +109,14 @@ Emit a brief JSON summary the parent can log:
   "timestamp": "<ISO>",
   "picked": "<issue key>",
   "file": "<file:line>",
+  "test": "<test file:case name that locked the regression>",
+  "redToGreen": true,
   "commit": "<sha>",
   "verificationShot": "<path>",
   "followups": ["<next candidates>"]
 }
 ```
+
+`redToGreen: false` is only acceptable when the visual-shot fallback was
+used; in that case `test` should reference the before/after screenshot
+paths and the commit body must justify the absence of a code assertion.

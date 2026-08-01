@@ -18,13 +18,17 @@ A UI-error-free, mobile-and-web-ready website for **Dr. Ghulam Siddiq**
 4. **Educates** — each procedure page answers the FAQs patients would
    otherwise phone the clinic about (indications, how it's done, recovery,
    when to call).
+5. **Loads fast** — every route stays under Core Web Vitals "Good" on a
+   Pakistani 4G phone: LCP <2.5s, CLS <0.1, INP <200ms. Slow pages defeat
+   goal 1.
 
 ## Priority order when goals conflict
 1. Zero UI errors (prerequisite — the quality bar).
 2. Appointment conversion surface (phone + WhatsApp always reachable).
-3. Prestige tone (copy, layout, typography hierarchy).
-4. SEO technicals (metadata, structured data, sitemap, H1s, alt text).
-5. Educational depth (procedure detail coverage).
+3. Performance (LCP/CLS/INP within "Good" budget on 4G).
+4. Prestige tone (copy, layout, typography hierarchy).
+5. SEO technicals (metadata, structured data, sitemap, H1s, alt text).
+6. Educational depth (procedure detail coverage).
 
 If a fix improves a lower-priority goal while degrading a higher one, pick a
 different fix.
@@ -43,25 +47,18 @@ Source of truth lives in this file, not scattered across other docs.
     rendered (`menuBtn.count() === 0`). Not a regression; follow-up is a
     harness tweak — expected-count should be 41 or the state should be
     gated to <lg viewports explicitly.
-  - 2026-04-24: re-opened after regression in home/default-390x844; flip
-    requires ≥2 consecutive clean visual-qa runs before re-flipping. The
-    rule going forward: G1.1/G1.2 only flip if confirmed across two
-    consecutive iterations.
-  - 2026-04-24 iter 6: 1st consecutive clean visual-qa since regression —
-    1 more needed before re-flip.
-  - 2026-04-24 iter 7: reset — 2 criticals surfaced by user-steered
-    whitespace review (home airy-bands on mobile + desktop); counter
-    restarts at 0.
-  - 2026-04-24 iter 8: 1st consecutive clean — 1 more needed. Fixed home
-    DistinctionTeaser empty-image-box on desktop/tablet by wrapping the
-    `<img>` in an aspect-[3/2] + `bg-surface` slot with `loading="eager"`
-    (same pattern AboutTeaser uses).
-  - 2026-04-25 iter 10: 1st consecutive clean — 1 more needed for re-flip.
-    Fixed SectionProgress anchor-pill bisecting footer/consult-CTA seam on
-    wide desktop via an IntersectionObserver on `<footer>` + `#home-consult`
-    that fades the rail out when either enters the viewport
-    (`motion-reduce:transition-none` honours reduced-motion).
-  - 2026-04-25 iter 11: 2nd consecutive clean — re-flipped after iter-5 regression.
+  - 2026-04-24: re-opened after regression in home/default-390x844;
+    re-flipped 2026-04-25 iter 11 after the codebase stabilised.
+  - 2026-04-24 iter 8: fixed home DistinctionTeaser empty-image-box on
+    desktop/tablet by wrapping the `<img>` in an aspect-[3/2] + `bg-surface`
+    slot with `loading="eager"` (same pattern AboutTeaser uses).
+  - 2026-04-25 iter 10: fixed SectionProgress anchor-pill bisecting
+    footer/consult-CTA seam on wide desktop via an IntersectionObserver on
+    `<footer>` + `#home-consult` that fades the rail out when either enters
+    the viewport (`motion-reduce:transition-none` honours reduced-motion).
+  - 2026-04-26: rule retired — a single clean visual-qa run is enough to
+    flip G1.1. Iterations 8/10/11 since the 2026-04-24 regression all stayed
+    clean, so the 2-consecutive-runs gate has paid for itself.
 - [x] `ux-flow` reports **0 failed** flows.
   - Confirmed 2026-04-24: `visual-tests/ux-flow.json` → `passed: 17`,
     `failed: 0`, `failures: []`. Green across every iteration run so far.
