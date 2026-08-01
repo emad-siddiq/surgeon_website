@@ -448,6 +448,37 @@ async function main() {
       await ctx.close();
     }
 
+    // Flow 11: SEO technicals — sitemap present and complete; exactly
+    // one h1 per route (goal-state G4).
+    {
+      const ctx = await browser.newContext({
+        viewport: { width: 1440, height: 900 },
+        serviceWorkers: 'block',
+      });
+      const page = await ctx.newPage();
+      await step('seo', 'sitemap-xml', async () => {
+        const resp = await page.request.get(BASE + '/sitemap.xml');
+        if (resp.status() !== 200) throw new Error(`status ${resp.status()}`);
+        const body = await resp.text();
+        if (!body.includes('<urlset')) throw new Error('no <urlset> root element');
+        for (const route of ROUTES) {
+          // Absolute <loc> URLs; match on the path suffix so the test
+          // stays agnostic of the deploy domain.
+          const re = new RegExp(`<loc>[^<]*${route === '/' ? '/' : route + '/?'}</loc>`);
+          if (!re.test(body)) throw new Error(`route ${route} missing from sitemap`);
+        }
+      });
+      for (const href of ROUTES) {
+        await step('seo', `unique-h1 ${href}`, async () => {
+          await page.goto(BASE + href, { waitUntil: 'domcontentloaded' });
+          await page.locator('h1').first().waitFor({ state: 'visible', timeout: 5000 });
+          const count = await page.locator('h1').count();
+          if (count !== 1) throw new Error(`${count} h1 elements, expected exactly 1`);
+        });
+      }
+      await ctx.close();
+    }
+
     // Flow 5: 404 recovery.
     {
       const ctx = await browser.newContext({

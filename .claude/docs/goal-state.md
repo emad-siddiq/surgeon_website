@@ -137,15 +137,21 @@ Source of truth lives in this file, not scattered across other docs.
 ### G4 — SEO (rank for "best surgeon in pakistan/islamabad")
 - [ ] Every route renders a unique `<title>`, `<meta name="description">`,
   and `<link rel="canonical">` via the `Seo` component.
-- [ ] `<h1>` present exactly once per route (ux-flow asserts presence; add
+- [x] `<h1>` present exactly once per route (ux-flow asserts presence; add
   a uniqueness check).
+  - 2026-08-01: ux-flow `seo / unique-h1` asserts count === 1 on all 10
+    routes; green on first run (no production change needed).
 - [ ] `Physician` JSON-LD on Home carries `name`, `medicalSpecialty`,
   `address`, `geo`, `telephone`, `areaServed: Islamabad, Pakistan`,
   `hasCredential` for FRCS, and `memberOf` for Shifa International Hospital.
 - [ ] `MedicalProcedure` JSON-LD emitted per procedure on `/procedures` and
   `/bariatric`, linked to the `Physician` by `@id`.
-- [ ] `/sitemap.xml` exists at the site root with every route and current
+- [x] `/sitemap.xml` exists at the site root with every route and current
   `lastmod`. Robots.txt already references it; the file itself is missing.
+  - 2026-08-01: `frontend/public/sitemap.xml`, all 10 routes, absolute
+    `<loc>` on the SITE_URL placeholder domain (swap at launch, comment
+    in file). ux-flow `seo / sitemap-xml` asserts 200 + `<urlset>` +
+    every route path.
 - [ ] Open Graph image (`og:image`) exists and renders correctly in the
   share-card preview for Home, About, and Procedures.
 - [ ] Target-phrase coverage: the strings **"best laparoscopic surgeon in

@@ -31,6 +31,16 @@ launch.
 
 Unresolved, awaits user input:
 
+- **Outcome chips on /transformations** (surfaced 2026-08-01): the Hims
+  "real results" pattern (per-story chips like "gastric sleeve · 8
+  months" over each before/after pair, found via Mobbin research) is the
+  strongest upgrade available for that page, but it is blocked on
+  content: `media.ts` deliberately withholds per-story figures until the
+  practice confirms them against patient records (existing
+  `TODO(content)`). When consented figures arrive, add a
+  `chip`/`timeframe` field to `BeforeAfter` and render it as a Tag over
+  each slider; extend ux-flow with a chip-presence assertion.
+
 - **rs/cors preflight quirk** (surfaced 2026-04-23): `rs/cors` v1.11.1
   aborts OPTIONS preflight with `Preflight aborted: headers '[Content-Type]'
   not allowed`, even with `Content-Type` in `AllowedHeaders`. Browser POSTs
