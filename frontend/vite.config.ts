@@ -6,6 +6,9 @@ import sitemap from 'vite-plugin-sitemap';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // SITE_URL must reach client code (Seo.tsx canonical/OG tags), but Vite
+  // only exposes VITE_-prefixed vars by default — allow this one through.
+  envPrefix: ['VITE_', 'SITE_URL'],
   plugins: [
     react(),
     sitemap({
