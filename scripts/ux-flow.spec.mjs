@@ -195,6 +195,14 @@ async function main() {
         const section = page.locator('#teaching-podcast');
         if (!(await section.count())) throw new Error('#teaching-podcast heading missing');
       });
+      await step('teaching-media', 'podcast-note-once', async () => {
+        // The tile and the CTA column must not both carry the same
+        // "Episodes are published…" caption — it reads twice on mobile
+        // where the two stack directly on top of each other.
+        const notes = page.getByText('Episodes are published on the YouTube channel.');
+        const n = await notes.count();
+        if (n !== 1) throw new Error(`podcast note appears ${n} times, expected 1`);
+      });
       await step('teaching-media', 'podcast-playlist-link', async () => {
         const a = page.locator('a[href*="list=PLWiwfcR9mm1g"]').first();
         if (!(await a.count())) throw new Error('no podcast playlist link on /teaching');

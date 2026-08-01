@@ -102,7 +102,6 @@ export function Teaching() {
                 Latest episode →
               </ButtonLink>
             </div>
-            <p className="t-caption mt-5 text-textMuted">{podcast.note}</p>
           </div>
           <div className="md:order-1 md:col-span-5">
             <a
