@@ -10,7 +10,8 @@ frontend/   Vite + React 18 + TS + Tailwind 3. 10 routes, SPA.
       ui/           18 design-system primitives.
       seo/          Seo component wraps react-helmet-async.
     content/        Data-driven copy. All user-visible strings live here.
-      doctor.ts, contact.ts, services.ts, distinctions.ts, media.ts, nav.ts
+      doctor.ts, contact.ts, services.ts, distinctions.ts, media.ts,
+      nav.ts, teaching.ts, reviews.ts
     design-system/  tokens.ts (TS mirror) + tokens.css (CSS custom props).
     hooks/          useMediaQuery, useActiveSection.
     lib/            cn(), api() client.
@@ -30,6 +31,7 @@ scripts/              visual-qa / ux-flow / api-mock harnesses.
 | `/procedures` | Procedures.tsx | Categorized procedure cards |
 | `/bariatric` | Bariatric.tsx | Bariatric deep-dive |
 | `/distinctions` | Distinctions.tsx | Awards |
+| `/teaching` | Teaching.tsx | YouTube channel + podcast series |
 | `/transformations` | Transformations.tsx | Before/after slider gallery |
 | `/location` | Location.tsx | Hospital info + map |
 | `/consultation` | Consultation.tsx | WhatsApp + phone booking |
