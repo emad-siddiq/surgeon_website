@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Update the domain when the production hostname is confirmed; it must
-     match the SITE_URL used for canonical tags (see components/seo/Seo.tsx). -->
+<!-- Dev-server copy only. At build time vite-plugin-sitemap (see
+     vite.config.ts) regenerates dist/sitemap.xml from SITE_URL and its
+     dynamicRoutes list, clobbering this file — verified 2026-08-01.
+     Keep the route list here in sync with vite.config.ts so dev and
+     prod agree; ux-flow's 'seo / sitemap-xml' step asserts this copy. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://drsiddiq.example/</loc>
