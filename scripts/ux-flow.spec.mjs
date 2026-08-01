@@ -112,6 +112,23 @@ async function step(flow, where, fn) {
 }
 
 async function main() {
+  // Flow 0a: copy integrity, static. The content layer (CLAUDE.md rule 3
+  // keeps all user-visible strings in frontend/src/content/*.ts) must be
+  // free of em dashes and unsourced superlative claims. Scanning the
+  // files rather than the DOM also covers modal-only copy that a
+  // rendered sweep cannot reach without opening every dialog.
+  {
+    const contentDir = path.join(REPO, 'frontend', 'src', 'content');
+    const files = (await fs.readdir(contentDir)).filter((f) => f.endsWith('.ts'));
+    for (const file of files) {
+      await step('copy-integrity', `content/${file}`, async () => {
+        const text = await fs.readFile(path.join(contentDir, file), 'utf8');
+        const hits = copyViolations(text, file);
+        if (hits.length) throw new Error(hits.join('; '));
+      });
+    }
+  }
+
   const server = await ensureServer();
   const browser = await chromium.launch();
   try {
@@ -122,12 +139,44 @@ async function main() {
         serviceWorkers: 'block',
       });
       const page = await ctx.newPage();
-      for (const href of ['/', '/about', '/procedures', '/bariatric', '/distinctions', '/teaching', '/transformations', '/location', '/consultation', '/gallery']) {
+      for (const href of ROUTES) {
         await step('navigation', `GET ${href}`, async () => {
           const resp = await page.goto(BASE + href, { waitUntil: 'domcontentloaded' });
           if (!resp || !resp.ok()) throw new Error(`status ${resp?.status()}`);
           const h1 = page.locator('h1').first();
           if (!(await h1.isVisible({ timeout: 3000 }))) throw new Error('h1 not visible');
+        });
+      }
+      await ctx.close();
+    }
+
+    // Flow 0b: copy integrity, rendered. Every route's visible text and
+    // meta description must satisfy the same editorial rules; this
+    // catches copy hardcoded in page components that the static content
+    // scan cannot see.
+    {
+      const ctx = await browser.newContext({
+        viewport: { width: 1440, height: 900 },
+        serviceWorkers: 'block',
+      });
+      const page = await ctx.newPage();
+      for (const href of ROUTES) {
+        await step('copy-integrity', `rendered ${href}`, async () => {
+          await page.goto(BASE + href, { waitUntil: 'domcontentloaded' });
+          await page.locator('h1').first().waitFor({ state: 'visible', timeout: 5000 });
+          await page.waitForTimeout(150);
+          const { text, meta } = await page.evaluate(() => ({
+            text: document.body.innerText,
+            meta:
+              document
+                .querySelector('meta[name="description"]')
+                ?.getAttribute('content') || '',
+          }));
+          const hits = [
+            ...copyViolations(text, 'page text'),
+            ...copyViolations(meta, 'meta description'),
+          ];
+          if (hits.length) throw new Error(hits.join('; '));
         });
       }
       await ctx.close();

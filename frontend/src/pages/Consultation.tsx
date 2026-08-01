@@ -18,6 +18,7 @@ import { Card } from '@/components/ui/Card';
 import { BookingActions } from '@/components/ui/BookingActions';
 import { Section } from '@/components/ui/Section';
 import { contact, bookingLine } from '@/content/contact';
+import { aboutPortrait } from '@/content/media';
 import { doctor } from '@/content/doctor';
 
 /**
@@ -106,6 +107,27 @@ export function Consultation() {
               className="md:col-span-5"
               aria-labelledby="what-to-say"
             >
+              {/* Face-to-name header: patients are told to ask for Dr.
+                  Siddiq by name, so the card showing them what to say
+                  also shows them who they are asking for. */}
+              <div className="flex items-center gap-4">
+                <img
+                  src={aboutPortrait.src}
+                  alt={aboutPortrait.alt}
+                  width={56}
+                  height={56}
+                  loading="eager"
+                  decoding="async"
+                  className="h-14 w-14 shrink-0 rounded-full border border-border1 object-cover object-top shadow-card"
+                />
+                <div>
+                  <p className="font-medium text-textPrimary">{doctor.fullName}</p>
+                  <p className="t-caption text-textMuted">{doctor.role}</p>
+                </div>
+              </div>
+
+              <hr className="hr-soft my-5" />
+
               <Eyebrow>What to say</Eyebrow>
               <h2 id="what-to-say" className="t-h3 mt-2 font-medium">
                 A short script you can use verbatim.
