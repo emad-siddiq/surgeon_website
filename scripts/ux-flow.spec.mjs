@@ -88,7 +88,7 @@ async function main() {
         serviceWorkers: 'block',
       });
       const page = await ctx.newPage();
-      for (const href of ['/', '/about', '/procedures', '/bariatric', '/distinctions', '/transformations', '/location', '/consultation', '/gallery']) {
+      for (const href of ['/', '/about', '/procedures', '/bariatric', '/distinctions', '/teaching', '/transformations', '/location', '/consultation', '/gallery']) {
         await step('navigation', `GET ${href}`, async () => {
           const resp = await page.goto(BASE + href, { waitUntil: 'domcontentloaded' });
           if (!resp || !resp.ok()) throw new Error(`status ${resp?.status()}`);
@@ -172,6 +172,54 @@ async function main() {
       await step('booking', 'tel-href', async () => {
         const a = page.locator('a[href^="tel:"]').first();
         if (!(await a.count())) throw new Error('no tel: link present');
+      });
+      await ctx.close();
+    }
+
+    // Flow 6: teaching media — YouTube channel + podcast outbound links.
+    {
+      const ctx = await browser.newContext({
+        viewport: { width: 1440, height: 900 },
+        serviceWorkers: 'block',
+      });
+      const page = await ctx.newPage();
+      await page.goto(BASE + '/teaching', { waitUntil: 'domcontentloaded' });
+      await step('teaching-media', 'channel-link', async () => {
+        const a = page.locator('a[href*="youtube.com/@dr.ghulamsiddiq"]').first();
+        if (!(await a.count())) throw new Error('no channel link on /teaching');
+        if ((await a.getAttribute('target')) !== '_blank') {
+          throw new Error('channel link does not open in new tab');
+        }
+      });
+      await step('teaching-media', 'podcast-section', async () => {
+        const section = page.locator('#teaching-podcast');
+        if (!(await section.count())) throw new Error('#teaching-podcast heading missing');
+      });
+      await step('teaching-media', 'podcast-playlist-link', async () => {
+        const a = page.locator('a[href*="list=PLWiwfcR9mm1g"]').first();
+        if (!(await a.count())) throw new Error('no podcast playlist link on /teaching');
+        if ((await a.getAttribute('target')) !== '_blank') {
+          throw new Error('podcast link does not open in new tab');
+        }
+        const rel = (await a.getAttribute('rel')) || '';
+        if (!/noopener/.test(rel)) throw new Error(`podcast link rel=${rel}`);
+      });
+      await ctx.close();
+    }
+
+    // Flow 7: home surfaces the channel + podcast teaser.
+    {
+      const ctx = await browser.newContext({
+        viewport: { width: 1440, height: 900 },
+        serviceWorkers: 'block',
+      });
+      const page = await ctx.newPage();
+      await page.goto(BASE + '/', { waitUntil: 'domcontentloaded' });
+      await step('home-media', 'teaser-present', async () => {
+        const section = page.locator('#home-media');
+        if (!(await section.count())) throw new Error('#home-media section missing');
+        const yt = section.locator('a[href*="youtube.com"]');
+        if (!(await yt.count())) throw new Error('no YouTube link inside #home-media');
       });
       await ctx.close();
     }

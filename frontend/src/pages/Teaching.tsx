@@ -14,7 +14,7 @@ import { Section } from '@/components/ui/Section';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { ButtonLink, ButtonRouterLink } from '@/components/ui/Button';
 import { CtaBand } from '@/components/ui/CtaBand';
-import { teachingHeading, teachingLead, youtubeChannel } from '@/content/teaching';
+import { teachingHeading, teachingLead, youtubeChannel, podcast } from '@/content/teaching';
 
 export function Teaching() {
   return (
@@ -69,6 +69,69 @@ export function Teaching() {
                   </span>
                   <span className="text-sm font-medium tracking-wide opacity-90">YouTube</span>
                   <span className="text-xs opacity-60">{youtubeChannel.handle}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </Section>
+
+      <Section tone="surface" size="md" aria-labelledby="teaching-podcast">
+        <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12 md:gap-12">
+          <div className="md:order-2 md:col-span-7">
+            <Eyebrow>Podcast</Eyebrow>
+            <h2 id="teaching-podcast" className="t-h1 mt-3 max-w-[24ch]">
+              {podcast.title}.
+            </h2>
+            <p className="t-body-lg mt-5 max-w-[62ch] text-textSecondary">{podcast.body}</p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <ButtonLink
+                href={podcast.playlistUrl}
+                variant="primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {podcast.cta}
+              </ButtonLink>
+              <ButtonLink
+                href={podcast.episodeUrl}
+                variant="secondary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Latest episode →
+              </ButtonLink>
+            </div>
+            <p className="t-caption mt-5 text-textMuted">{podcast.note}</p>
+          </div>
+          <div className="md:order-1 md:col-span-5">
+            <a
+              href={podcast.playlistUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open the podcast playlist: ${podcast.title}`}
+              className="group relative block overflow-hidden rounded-lg border border-border1 bg-textPrimary shadow-card"
+            >
+              <div className="aspect-video w-full bg-gradient-to-br from-[#1c2836] via-[#141d28] to-[#1c2836]">
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center text-white">
+                  <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-accent text-white shadow-raised transition-transform duration-300 group-hover:scale-110">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width={28}
+                      height={28}
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2.2}
+                      strokeLinecap="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M4 10v4M8 7v10M12 4v16M16 7v10M20 10v4" />
+                    </svg>
+                  </span>
+                  <span className="text-sm font-medium tracking-wide opacity-90">
+                    {podcast.title}
+                  </span>
+                  <span className="text-xs opacity-60">{podcast.note}</span>
                 </div>
               </div>
             </a>

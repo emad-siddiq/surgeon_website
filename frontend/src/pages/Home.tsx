@@ -1,9 +1,10 @@
 /**
- * `/` route. Six stacked sections: Hero (custom, with HeroSlideshow),
+ * `/` route. Seven stacked sections: Hero (custom, with HeroSlideshow),
  * Stats (animated counters), AboutTeaser, FeaturedProcedures (top-3
  * services as ClickableCards → ProcedureDetailModal), DistinctionTeaser,
- * ConsultCta (a custom variant of CtaBand with the SectionProgress
- * anchor id `home-consult`).
+ * MediaTeaser (YouTube channel + podcast outbound cards), ConsultCta
+ * (a custom variant of CtaBand with the SectionProgress anchor id
+ * `home-consult`).
  *
  * The page owns the procedure-detail modal state in `active`. The
  * SectionProgress rail (visible only at lg+) observes the section ids
@@ -24,6 +25,7 @@ import { doctor } from '@/content/doctor';
 import { heroImages, aboutPortrait } from '@/content/media';
 import { services, type ServiceEntry } from '@/content/services';
 import { distinctions } from '@/content/distinctions';
+import { mediaTeaser, youtubeChannel, podcast } from '@/content/teaching';
 import { Tag } from '@/components/ui/Tag';
 
 // Anchor ids used by SectionProgress; each page section below wires the
@@ -34,6 +36,7 @@ const sections = [
   { id: 'home-about', label: 'About the surgeon' },
   { id: 'home-procedures', label: 'Procedures' },
   { id: 'home-distinctions', label: 'Distinctions' },
+  { id: 'home-media', label: 'Videos & podcast' },
   { id: 'home-consult', label: 'Consultation' },
 ];
 
@@ -246,6 +249,110 @@ function DistinctionTeaser() {
   );
 }
 
+/**
+ * Outbound media card — same shell as ClickableCard but a real <a>,
+ * since both destinations (channel + podcast) live on YouTube.
+ */
+function MediaCard({
+  href,
+  title,
+  body,
+  cta,
+  icon,
+}: {
+  href: string;
+  title: string;
+  body: string;
+  cta: string;
+  icon: 'play' | 'waveform';
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={
+        'group flex h-full w-full flex-col rounded-lg border border-border1 bg-white p-6 text-left shadow-card ' +
+        'transition-[transform,box-shadow,border-color] duration-[220ms] ease-breathe ' +
+        'hover:-translate-y-1 hover:border-primary hover:shadow-raised ' +
+        'focus-visible:border-primary focus-visible:outline-none'
+      }
+    >
+      <span
+        aria-hidden="true"
+        className={`inline-flex h-11 w-11 items-center justify-center rounded-full text-white ${
+          icon === 'play' ? 'bg-[#FF0033]' : 'bg-accent'
+        }`}
+      >
+        {icon === 'play' ? (
+          <svg viewBox="0 0 24 24" width={20} height={20} fill="currentColor">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        ) : (
+          <svg
+            viewBox="0 0 24 24"
+            width={20}
+            height={20}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2.2}
+            strokeLinecap="round"
+          >
+            <path d="M4 10v4M8 7v10M12 4v16M16 7v10M20 10v4" />
+          </svg>
+        )}
+      </span>
+      <h3 className="mt-4 text-xl font-medium leading-snug">{title}</h3>
+      <p className="t-body mt-2 text-textSecondary">{body}</p>
+      <LearnMoreHint>{cta}</LearnMoreHint>
+    </a>
+  );
+}
+
+function MediaTeaser() {
+  return (
+    <Section
+      id="home-media"
+      tone="surface"
+      size="md"
+      className="py-10 sm:py-12 md:py-16"
+      aria-labelledby="media-teaser-heading"
+    >
+      <div className="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <Eyebrow>{mediaTeaser.eyebrow}</Eyebrow>
+          <h2 id="media-teaser-heading" className="t-h1 mt-3 max-w-[22ch]">
+            {mediaTeaser.heading}
+          </h2>
+        </div>
+        <ButtonRouterLink to="/teaching" variant="ghost">
+          {mediaTeaser.moreLink} →
+        </ButtonRouterLink>
+      </div>
+      <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <li className="flex">
+          <MediaCard
+            href={youtubeChannel.url}
+            title={mediaTeaser.channelCard.title}
+            body={mediaTeaser.channelCard.body}
+            cta={mediaTeaser.channelCard.cta}
+            icon="play"
+          />
+        </li>
+        <li className="flex">
+          <MediaCard
+            href={podcast.playlistUrl}
+            title={mediaTeaser.podcastCard.title}
+            body={mediaTeaser.podcastCard.body}
+            cta={mediaTeaser.podcastCard.cta}
+            icon="waveform"
+          />
+        </li>
+      </ul>
+    </Section>
+  );
+}
+
 function ConsultCta() {
   return (
     <section id="home-consult" className="bg-gradient-hero">
@@ -284,6 +391,7 @@ export function Home() {
       <AboutTeaser />
       <FeaturedProcedures onOpen={setActive} />
       <DistinctionTeaser />
+      <MediaTeaser />
       <ConsultCta />
       <ProcedureDetailModal
         open={active !== null}
