@@ -62,6 +62,40 @@ const report = {
   failures: [],
 };
 
+const ROUTES = ['/', '/about', '/procedures', '/bariatric', '/distinctions', '/teaching', '/transformations', '/location', '/consultation', '/gallery'];
+
+/**
+ * Editorial rules for user-facing copy. Em dashes are banned outright;
+ * the claim patterns ban superlatives the practice cannot source
+ * (marketing language, blanket "successful cases" counts).
+ */
+const BANNED_COPY = [
+  { name: 'em dash', re: /—/ },
+  { name: 'pioneer claim', re: /pioneer/i },
+  { name: 'leading-authority claim', re: /leading authority/i },
+  { name: 'renown claim', re: /renown/i },
+  { name: 'world-class claim', re: /world[\s-]?class/i },
+  { name: 'groundbreaking claim', re: /ground-?breaking/i },
+  { name: 'prestige claim', re: /prestigious/i },
+  { name: 'shining-legacy claim', re: /shining/i },
+  {
+    name: 'blanket success claim',
+    re: /successful\s+(?:laparoscopic\s+|bariatric\s+)?(?:cases|procedures|operations)/i,
+  },
+];
+
+function copyViolations(text, where) {
+  const hits = [];
+  for (const { name, re } of BANNED_COPY) {
+    const m = text.match(re);
+    if (m) {
+      const line = text.slice(0, m.index).split('\n').length;
+      hits.push(`${name} in ${where} (line ${line}: "${m[0]}")`);
+    }
+  }
+  return hits;
+}
+
 async function step(flow, where, fn) {
   try {
     await fn();
@@ -172,6 +206,18 @@ async function main() {
       await step('booking', 'tel-href', async () => {
         const a = page.locator('a[href^="tel:"]').first();
         if (!(await a.count())) throw new Error('no tel: link present');
+      });
+      // The booking surface must attach a face to the name patients are
+      // told to ask for: a visible portrait of Dr. Siddiq plus his role
+      // line on /consultation (Hers "chat with a provider" pattern).
+      await step('booking', 'provider-card-portrait', async () => {
+        // Deliberately strict: the nav logo's alt also mentions the
+        // doctor's name, so match the portrait's alt text specifically.
+        const img = page.locator('img[alt="Portrait of Dr. Ghulam Siddiq"]').first();
+        if (!(await img.count())) throw new Error('no portrait img on /consultation');
+        if (!(await img.isVisible())) throw new Error('portrait img not visible');
+        const role = page.getByText('Chief of Surgery, Shifa International Hospital', { exact: false }).first();
+        if (!(await role.count())) throw new Error('role line missing next to portrait');
       });
       await ctx.close();
     }
