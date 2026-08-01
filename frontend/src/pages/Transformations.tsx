@@ -18,14 +18,14 @@ export function Transformations() {
     <>
       <Seo
         title="Transformations"
-        description="Real patient outcomes after bariatric surgery with Dr. Ghulam Siddiq. Drag the slider to compare before and after — every photograph is shared with written consent."
+        description="Before and after photographs from bariatric patients of Dr. Ghulam Siddiq, each shared with the patient's written consent. Drag the slider to compare."
         path="/transformations"
       />
 
       <PageHeader
         eyebrow="Patient outcomes"
-        title={<>Twelve months, in their own bodies.</>}
-        lead="Drag the handle to compare before and after. Every photograph on this page has been shared with written consent from the patient. Individual results always vary — these are representative, real-world cases, not a guarantee of any particular outcome."
+        title={<>Before and after surgery.</>}
+        lead="Drag the handle to compare before and after. Every photograph on this page has been shared with written consent from the patient. Individual results always vary; these are real cases, not a guarantee of any particular outcome."
       />
 
       <Section tone="base" size="lg">

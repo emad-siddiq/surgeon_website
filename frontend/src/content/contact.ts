@@ -1,6 +1,6 @@
 /**
  * Practice contact details. There are TWO and only two ways a patient
- * should reach the practice — WhatsApp and a phone call to the hospital
+ * should reach the practice: WhatsApp and a phone call to the hospital
  * switchboard. Keep this file as the single source of truth for those
  * touchpoints.
  */

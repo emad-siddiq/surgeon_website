@@ -1,6 +1,11 @@
 /**
- * Authoritative copy for the doctor. Sourced from the live site as it stood
- * at commit 0fb3280; edit freely as the practice provides fresh material.
+ * Authoritative copy for the doctor. Case counts and positions come from
+ * the practice's own records as published on the original site (commit
+ * 0fb3280); edit freely as the practice provides fresh material.
+ *
+ * Editorial rules, enforced by the copy-integrity flow in
+ * scripts/ux-flow.spec.mjs: no em dashes anywhere, and no superlative
+ * claims the practice cannot back with a source.
  */
 export const doctor = {
   fullName: 'Dr. Ghulam Siddiq',
@@ -9,21 +14,21 @@ export const doctor = {
   credentials: 'M.B.B.S. · FRCS (Fellow, Royal College of Surgeons)',
   pronouns: 'he/him',
 
-  heroHeadline: 'Pioneer of Laparoscopic Bariatric Surgery in Pakistan',
+  heroHeadline: 'Laparoscopic and bariatric surgery, in experienced hands',
   heroLead:
-    'A quarter-century of minimally invasive surgery at Shifa International Hospital — more than 1,400 successful laparoscopic cases, each treated with the same careful precision.',
+    'Dr. Ghulam Siddiq is Chief of Surgery at Shifa International Hospital. For more than 25 years his work has centred on minimally invasive surgery: smaller incisions, less pain, and a faster return to ordinary life.',
 
   tagline: 'Minimally invasive surgery. Thoughtful, compassionate care.',
 
   /** Short bio used on Home + SEO description. */
   bioShort:
-    'Dr. Ghulam Siddiq is Chief of Surgery at Shifa International Hospital, Islamabad, specialising in laparoscopic bariatric surgery — a modern, minimally invasive technique that helps patients recover faster with smaller scars and less discomfort.',
+    'Dr. Ghulam Siddiq is Chief of Surgery at Shifa International Hospital, Islamabad. He specialises in laparoscopic bariatric surgery, operating through small incisions so that most patients recover sooner, with less pain and smaller scars.',
 
   /** Long bio used on About. */
   bioLong: [
-    'Dr. Ghulam Siddiq is Chief of Surgery at Shifa International Hospital in Islamabad, Pakistan, where he has practised for over 25 years. His focus is Laparoscopic Bariatric Surgery — a state-of-the-art, minimally invasive approach that is transforming how weight-loss operations are performed in the region.',
-    'He routinely performs laparoscopic Roux-en-Y gastric bypasses, Sleeve Gastrectomies, Mini gastric bypasses (OAGB) and revision bariatric procedures. Since 2010 he has completed over 1,400 successful laparoscopic cases, building a reputation as Pakistan’s leading authority in minimally invasive bariatric surgery.',
-    'Beyond the operating theatre, Dr. Siddiq is known for unhurried consultations, plain-language explanations, and long-term follow-through. Each patient is guided through the decision, the surgery and the months of recovery that follow — a partnership rather than a transaction.',
+    'Dr. Ghulam Siddiq is Chief of Surgery at Shifa International Hospital in Islamabad, where he has practised for more than 25 years. His work centres on laparoscopic bariatric surgery: weight-loss operations performed through small incisions rather than a single long cut, so that patients spend less time in hospital and return to their lives sooner.',
+    'He routinely performs laparoscopic Roux-en-Y gastric bypass, sleeve gastrectomy, mini gastric bypass (OAGB) and revision bariatric surgery. Since 2010 he has performed more than 1,400 laparoscopic procedures, and he serves as President of the Pakistan Obesity and Metabolic Surgery Society, training surgeons in bariatric technique across the country.',
+    'Beyond the operating theatre, Dr. Siddiq is known for unhurried consultations, plain-language explanations and long-term follow-up. Each patient is guided through the decision, the operation and the months of recovery that follow.',
   ],
 
   proofPoints: [

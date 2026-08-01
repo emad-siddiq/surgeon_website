@@ -12,7 +12,7 @@ interface SeoProps {
 }
 
 const SITE_URL = import.meta.env.SITE_URL ?? 'https://drsiddiq.example';
-const DEFAULT_TITLE = `${doctor.fullName} \u2014 Laparoscopic & Bariatric Surgery, Islamabad`;
+const DEFAULT_TITLE = `${doctor.fullName} \u00b7 Laparoscopic & Bariatric Surgery, Islamabad`;
 const DEFAULT_DESCRIPTION = doctor.bioShort;
 
 function jsonLdHome() {
@@ -40,7 +40,7 @@ function jsonLdHome() {
 }
 
 export function Seo({ title, description, path = '/', ogImage, schema = 'plain' }: SeoProps) {
-  const fullTitle = title ? `${title} \u2014 ${doctor.fullName}` : DEFAULT_TITLE;
+  const fullTitle = title ? `${title} \u00b7 ${doctor.fullName}` : DEFAULT_TITLE;
   const desc = description ?? DEFAULT_DESCRIPTION;
   const canonical = `${SITE_URL.replace(/\/$/, '')}${path}`;
   const ogImageUrl = ogImage ? `${SITE_URL}${ogImage}` : undefined;

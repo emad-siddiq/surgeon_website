@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test('home renders with hero headline and primary nav', async ({ page }) => {
   await page.goto('/');
   await expect(
-    page.getByRole('heading', { level: 1, name: /pioneer of laparoscopic bariatric surgery/i }),
+    page.getByRole('heading', { level: 1, name: /laparoscopic and bariatric surgery/i }),
   ).toBeVisible();
   await expect(
     page.getByRole('link', { name: /book an appointment/i }).first(),

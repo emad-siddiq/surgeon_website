@@ -25,11 +25,11 @@ export function Logo({ className = '', compact = false, wordmark = true }: LogoP
     <Link
       to="/"
       className={`inline-flex items-center gap-2.5 ${className}`}
-      aria-label={`${doctor.fullName} — home`}
+      aria-label={`${doctor.fullName}, home`}
     >
       <img
         src={logoSrc}
-        alt={wordmark ? '' : `${doctor.fullName} — home`}
+        alt={wordmark ? '' : `${doctor.fullName}, home`}
         aria-hidden={wordmark ? 'true' : undefined}
         width={size}
         height={size}

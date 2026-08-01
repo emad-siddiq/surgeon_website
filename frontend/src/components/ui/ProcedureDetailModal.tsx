@@ -50,7 +50,7 @@ export function ProcedureDetailModal({
 
       <footer className="mt-8 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border1 bg-surface px-5 py-4">
         <p className="t-caption text-textSecondary">
-          Individual cases vary — details and suitability are reviewed in consultation.
+          Individual cases vary. Details and suitability are reviewed in consultation.
         </p>
         <ButtonRouterLink to="/consultation" variant="primary" size="sm" onClick={onClose}>
           Book a consultation

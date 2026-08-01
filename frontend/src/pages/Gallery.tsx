@@ -23,7 +23,7 @@ export function Gallery() {
       <PageHeader
         eyebrow="Gallery"
         title={<>A few quiet frames from the clinic.</>}
-        lead="A small collection of photographs from Shifa International Hospital and Dr. Siddiq's practice — a glimpse of the spaces, the team and the everyday work behind the surgery, shared with the hospital's permission."
+        lead="A small collection of photographs from Shifa International Hospital and Dr. Siddiq's practice: the spaces, the team and the everyday work behind the surgery, shared with the hospital's permission."
       />
 
       <Section tone="base" size="lg">

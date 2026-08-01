@@ -7,7 +7,7 @@ import about1 from '@/assets/images/about1.jpg';
 
 import b1 from '@/assets/images/before_after/before_1.jpg';
 import a1 from '@/assets/images/before_after/after_1.jpg';
-// NOTE: before_2.jpg / after_2.jpg are withheld — those source files ship
+// NOTE: before_2.jpg / after_2.jpg are withheld. Those source files ship
 // with a circular photo mask and baked-in "Before" / "After" watermark
 // text, which breaks the drag-to-compare pattern mid-drag. Reinstate the
 // second story when the practice supplies a clean rectangular pair. See
@@ -47,12 +47,17 @@ export const aboutPortrait = {
 
 export const bariatricPortrait = {
   src: about1,
-  alt: 'Dr. Ghulam Siddiq — bariatric surgery practice',
+  alt: 'Dr. Ghulam Siddiq in his bariatric surgery practice',
 };
 
 /**
- * Before/after pairs — three stories as shipped on the original site.
- * TODO(content): provide real patient-supplied weight figures and captions.
+ * Before/after pairs as shipped on the original site.
+ *
+ * Captions are deliberately neutral. The original site carried specific
+ * weight figures, but the practice has not yet confirmed them against
+ * patient records, and unverified numbers do not belong on the page.
+ * TODO(content): restore per-story figures and timeframes once the
+ * practice supplies patient-consented data.
  */
 export interface BeforeAfter {
   before: { src: string; alt: string };
@@ -64,20 +69,20 @@ export interface BeforeAfter {
 export const beforeAfterStories: BeforeAfter[] = [
   {
     before: { src: b1, alt: 'Patient before bariatric surgery' },
-    after: { src: a1, alt: 'Patient twelve months after bariatric surgery' },
-    beforeCaption: 'Weight before surgery: 140 kg',
-    afterCaption: 'Weight 12 months later: 70 kg',
+    after: { src: a1, alt: 'Patient after bariatric surgery' },
+    beforeCaption: 'Before surgery',
+    afterCaption: 'After surgery',
   },
   {
     before: { src: b3, alt: 'Patient before bariatric surgery' },
     after: { src: a3, alt: 'Patient after bariatric surgery' },
-    beforeCaption: 'Weight before surgery: undisclosed',
-    afterCaption: 'Durable 12-month result',
+    beforeCaption: 'Before surgery',
+    afterCaption: 'After surgery',
   },
 ];
 
 /**
- * Gallery — fifteen images as shipped on the original site. Alt text is
+ * Gallery: fifteen images as shipped on the original site. Alt text is
  * placeholder pending real descriptions from the practice.
  */
 export interface GalleryImage {
@@ -87,7 +92,7 @@ export interface GalleryImage {
 
 // TODO(content): provide per-image alt text.
 export const galleryImages: GalleryImage[] = [
-  { src: g1, alt: 'Clinic interior — main reception' },
+  { src: g1, alt: 'Main reception at the clinic' },
   { src: g2, alt: 'Operating theatre' },
   { src: g3, alt: 'Surgical team prepping for a case' },
   { src: g4, alt: 'Consultation room' },
@@ -105,8 +110,8 @@ export const galleryImages: GalleryImage[] = [
 ];
 
 export const videos = {
-  /** Used on the Location page — silent ambient loop of the hospital. */
+  /** Used on the Location page: silent ambient loop of the hospital. */
   clinicLoop: shifaLoop,
-  /** Used on About + Consultation pages — introduction video with audio. */
+  /** Used on About + Consultation pages: introduction video with audio. */
   intro: shifaIntro,
 } as const;

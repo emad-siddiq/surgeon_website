@@ -91,14 +91,14 @@ export function Procedures() {
     <>
       <Seo
         title="Procedures"
-        description="Surgical procedures performed by Dr. Ghulam Siddiq at Shifa International Hospital — general laparoscopic, bariatric, colorectal, and upper-GI surgery. Click any procedure to read a patient-oriented explanation."
+        description="Surgical procedures performed by Dr. Ghulam Siddiq at Shifa International Hospital: general laparoscopic, bariatric, colorectal, and upper-GI surgery. Click any procedure to read a patient-oriented explanation."
         path="/procedures"
       />
 
       <PageHeader
         eyebrow="Surgical Expertise & Experience"
         title={<>Procedures performed by Dr. Siddiq.</>}
-        lead="Ten core operations, refined across 25 years of practice at Shifa International Hospital. Click any procedure for a plain-language explanation of what it treats, how it is performed, and what recovery looks like — written for patients, not clinicians."
+        lead="Ten core operations, refined across 25 years of practice at Shifa International Hospital. Click any procedure for a plain-language explanation of what it treats, how it is performed, and what recovery looks like, written for patients rather than clinicians."
         actions={
           <>
             <ButtonRouterLink to="/consultation" variant="primary">
@@ -143,7 +143,7 @@ export function Procedures() {
       <CtaBand
         eyebrow="Not sure which procedure applies?"
         headline="Start with a consultation."
-        body="A consultation is always the right first step. We review your medical history, imaging and personal goals carefully together before any operative plan is put on the table — so the path forward makes sense for your life, not just your chart."
+        body="A consultation is always the right first step. We review your medical history, imaging and personal goals carefully together before any operative plan is put on the table, so the path forward makes sense for your life, not just your chart."
         to="/consultation"
         cta="Book an Appointment"
       />

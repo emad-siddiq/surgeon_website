@@ -1,8 +1,9 @@
 /**
  * Procedures content. Written for patients who are considering the
  * operation, not for clinicians. The tone is factual and directs people
- * to an in-person consultation for their specific case — phrases like
- * "typically" and "in most patients" are intentional: every case differs.
+ * to an in-person consultation for their specific case; phrases like
+ * "typically" and "in most patients" are intentional, because every
+ * case differs.
  *
  * Volumes are approximate career totals at Shifa International Hospital
  * (values from the original site at commit 0fb3280).
@@ -74,14 +75,14 @@ export const services: ServiceEntry[] = [
     title: 'Appendix Surgery',
     subtitle: 'Laparoscopic appendicectomy',
     summary:
-      'Emergency keyhole removal of the appendix for acute appendicitis. Operating early — before the appendix ruptures — gives the smoothest, fastest recovery.',
+      'Emergency keyhole removal of the appendix for acute appendicitis. Operating early, before the appendix ruptures, gives the smoothest and fastest recovery.',
     volume: 8000,
     category: 'General',
     details: {
       sections: [
         {
           heading: 'When it is recommended',
-          body: 'Acute appendicitis — sudden inflammation of the appendix, usually presenting as pain that begins around the navel and moves to the right lower abdomen, often with nausea, fever and loss of appetite. Left untreated, the appendix can rupture, which is a more serious problem requiring longer hospitalisation and antibiotics.',
+          body: 'Acute appendicitis: sudden inflammation of the appendix, usually presenting as pain that begins around the navel and moves to the right lower abdomen, often with nausea, fever and loss of appetite. Left untreated, the appendix can rupture, which is a more serious problem requiring longer hospitalisation and antibiotics.',
         },
         {
           heading: 'How the operation is performed',
@@ -93,7 +94,7 @@ export const services: ServiceEntry[] = [
         },
         {
           heading: 'Is the appendix useful?',
-          body: 'The appendix has no essential function in adults — life without it is entirely normal. Early surgery before rupture is always preferable to observing and waiting.',
+          body: 'The appendix has no essential function in adults; life without it is entirely normal. Early surgery before rupture is always preferable to observing and waiting.',
         },
         {
           heading: 'When to call the clinic',
@@ -107,7 +108,7 @@ export const services: ServiceEntry[] = [
     title: 'Laparoscopic Surgery',
     subtitle: 'Advanced minimally invasive techniques',
     summary:
-      'An umbrella for a wide range of minimally invasive abdominal operations — hernia repair, adhesiolysis, diagnostic laparoscopy, small-bowel resection, and more — all performed through small keyhole incisions rather than a long open cut.',
+      'A wide range of minimally invasive abdominal operations, from hernia repair and adhesiolysis to diagnostic laparoscopy and small-bowel resection, all performed through small keyhole incisions rather than a long open cut.',
     volume: 1500,
     category: 'General',
     details: {
@@ -122,7 +123,7 @@ export const services: ServiceEntry[] = [
         },
         {
           heading: 'Who may need open surgery instead',
-          body: 'Patients with extensive prior abdominal surgery, severe adhesions, very large tumours, or some emergencies may be safer with an open approach. Occasionally a laparoscopic operation is converted to open mid-procedure if anatomy is unclear — this is a sensible safety decision, not a failure. Dr. Siddiq will advise on the most appropriate approach during consultation.',
+          body: 'Patients with extensive prior abdominal surgery, severe adhesions, very large tumours, or some emergencies may be safer with an open approach. Occasionally a laparoscopic operation is converted to open mid-procedure if the anatomy is unclear. That is a sensible safety decision, not a failure. Dr. Siddiq will advise on the most appropriate approach during consultation.',
         },
         {
           heading: 'Recovery, in general',
@@ -151,7 +152,7 @@ export const services: ServiceEntry[] = [
         },
         {
           heading: 'Recovery',
-          body: 'Hospital stay is typically 4–6 days. Early mobilisation is encouraged from the day after surgery — walking reduces the risk of blood clots and speeds bowel function recovery. Diet advances gradually from sips of water to a regular diet over 3–5 days as bowel function returns.',
+          body: 'Hospital stay is typically 4–6 days. Early mobilisation is encouraged from the day after surgery, because walking reduces the risk of blood clots and speeds the return of bowel function. Diet advances gradually from sips of water to a regular diet over 3–5 days as bowel function returns.',
         },
         {
           heading: 'What to expect afterwards',
@@ -165,7 +166,7 @@ export const services: ServiceEntry[] = [
     title: 'Anterior Resection',
     subtitle: 'Precise rectal surgical approach',
     summary:
-      'Removal of the upper or middle rectum — most often for cancer — followed by a careful reconnection of healthy colon to the remaining rectum to preserve normal bowel function and continence.',
+      'Removal of the upper or middle rectum, most often for cancer, followed by a careful reconnection of healthy colon to the remaining rectum to preserve normal bowel function and continence.',
     volume: 88,
     category: 'Colorectal',
     details: {
@@ -180,11 +181,11 @@ export const services: ServiceEntry[] = [
         },
         {
           heading: 'Temporary ileostomy',
-          body: 'Many patients have a temporary loop ileostomy (a small-bowel stoma on the abdomen) to protect the new join while it heals — this is usually reversed in a second, smaller operation 8–12 weeks later. Whether a stoma is needed is discussed in detail before surgery.',
+          body: 'Many patients have a temporary loop ileostomy (a small-bowel stoma on the abdomen) to protect the new join while it heals. The stoma is usually reversed in a second, smaller operation 8–12 weeks later. Whether one is needed is discussed in detail before surgery.',
         },
         {
           heading: 'Recovery',
-          body: 'Hospital stay is typically 5–7 days. Bowel function after anterior resection can change — stools may be more frequent or loose for several months before settling. Pelvic floor exercises and dietary adjustments help. A stoma-care nurse supports patients with temporary ileostomies.',
+          body: 'Hospital stay is typically 5–7 days. Bowel function after anterior resection can change: stools may be more frequent or loose for several months before settling. Pelvic floor exercises and dietary adjustments help. A stoma-care nurse supports patients with temporary ileostomies.',
         },
       ],
     },
@@ -194,7 +195,7 @@ export const services: ServiceEntry[] = [
     title: 'Low Anterior Resection',
     subtitle: 'Specialised colorectal technique',
     summary:
-      'A technically demanding operation for cancers of the lower rectum. The goal is complete tumour removal while preserving the anal sphincter — and with it, normal continence — wherever the cancer’s position allows.',
+      'A technically demanding operation for cancers of the lower rectum. The goal is complete tumour removal while preserving the anal sphincter, and with it normal continence, wherever the cancer’s position allows.',
     volume: 79,
     category: 'Colorectal',
     details: {
@@ -213,7 +214,7 @@ export const services: ServiceEntry[] = [
         },
         {
           heading: 'Recovery and function',
-          body: 'Hospital stay 6–8 days. Bowel function after low anterior resection changes — many patients experience “low anterior resection syndrome” (frequent, urgent or clustered bowel movements) in the first 6–12 months, which usually improves substantially with time, diet and pelvic floor therapy.',
+          body: 'Hospital stay 6–8 days. Bowel function after low anterior resection changes: many patients experience “low anterior resection syndrome” (frequent, urgent or clustered bowel movements) in the first 6–12 months, which usually improves substantially with time, diet and pelvic floor therapy.',
         },
       ],
     },
@@ -223,7 +224,7 @@ export const services: ServiceEntry[] = [
     title: 'Right Hemicolectomy',
     subtitle: 'Right-side colon resection',
     summary:
-      'Removal of the right half of the colon — the cecum, ascending colon, and part of the transverse colon — most commonly performed for cancer of the right colon. Laparoscopic wherever feasible.',
+      'Removal of the right half of the colon (the cecum, the ascending colon and part of the transverse colon), most commonly performed for cancer of the right colon. Laparoscopic wherever feasible.',
     volume: 63,
     category: 'Colorectal',
     details: {
@@ -252,7 +253,7 @@ export const services: ServiceEntry[] = [
     title: 'Hemicolectomy',
     subtitle: 'Left-side colon resection',
     summary:
-      'Removal of the left half of the colon — the descending and sigmoid colon — most often indicated for cancer or for complicated diverticular disease that has not settled with medical treatment.',
+      'Removal of the left half of the colon (the descending and sigmoid colon), most often indicated for cancer or for complicated diverticular disease that has not settled with medical treatment.',
     volume: 71,
     category: 'Colorectal',
     details: {
@@ -281,7 +282,7 @@ export const services: ServiceEntry[] = [
     title: 'Partial Gastrectomy',
     subtitle: 'Stomach partial removal',
     summary:
-      'Removal of part of the stomach — usually for early gastric cancer, a refractory ulcer, or a stricture — while preserving as much healthy gastric function as the disease allows.',
+      'Removal of part of the stomach, usually for early gastric cancer, a refractory ulcer or a stricture, while preserving as much healthy gastric function as the disease allows.',
     volume: 59,
     category: 'Upper GI',
     details: {
@@ -296,7 +297,7 @@ export const services: ServiceEntry[] = [
         },
         {
           heading: 'Recovery',
-          body: 'Hospital stay is typically 6–8 days. Diet begins with sips of water and advances gradually — small, frequent meals for the first several months. A dietitian meets every patient before discharge.',
+          body: 'Hospital stay is typically 6–8 days. Diet begins with sips of water and advances gradually, with small, frequent meals for the first several months. A dietitian meets every patient before discharge.',
         },
         {
           heading: 'Long-term nutrition',
@@ -310,7 +311,7 @@ export const services: ServiceEntry[] = [
     title: 'Esophagectomy',
     subtitle: 'Esophagus surgical removal',
     summary:
-      'Removal of all or most of the oesophagus, usually for cancer. Among the most complex abdominal operations in surgery — outcomes are best in the hands of high-volume surgeons working in experienced centres.',
+      'Removal of all or most of the oesophagus, usually for cancer. This is among the most complex operations in abdominal surgery, and outcomes are best in the hands of high-volume surgeons working in experienced centres.',
     volume: 82,
     category: 'Upper GI',
     details: {
@@ -329,7 +330,7 @@ export const services: ServiceEntry[] = [
         },
         {
           heading: 'Long-term adjustments',
-          body: 'Because the new food-pipe is less muscular than the oesophagus it replaces, patients eat small, frequent meals, chew thoroughly, avoid drinking large volumes with meals, and sit up or walk for 30–60 minutes after eating rather than lying flat. Anti-reflux precautions — elevated head of bed, avoiding late-night eating — are lifelong. Most patients return to a good quality of life.',
+          body: 'Because the new food-pipe is less muscular than the oesophagus it replaces, patients eat small, frequent meals, chew thoroughly, avoid drinking large volumes with meals, and sit up or walk for 30–60 minutes after eating rather than lying flat. Anti-reflux precautions (an elevated head of bed, no late-night eating) are lifelong. Most patients return to a good quality of life.',
         },
       ],
     },
@@ -352,7 +353,7 @@ export const bariatricProcedures: BariatricProcedure[] = [
     number: '01',
     title: 'Roux-en-Y gastric bypass',
     summary:
-      'A small stomach pouch is created and connected directly to the lower small intestine. The oldest and most extensively studied bariatric operation — particularly effective for severe obesity combined with type 2 diabetes or severe reflux.',
+      'A small stomach pouch is created and connected directly to the lower small intestine. The oldest and most extensively studied bariatric operation, particularly effective when severe obesity is combined with type 2 diabetes or severe reflux.',
     details: {
       sections: [
         {
@@ -365,11 +366,11 @@ export const bariatricProcedures: BariatricProcedure[] = [
         },
         {
           heading: 'Typical weight loss and outcomes',
-          body: 'Most patients lose 60–80 % of their excess body weight over 12–18 months. Type 2 diabetes goes into remission or improves substantially in the majority of patients (often within weeks, before major weight loss has occurred). Sleep apnoea, hypertension, high cholesterol and fatty liver also commonly improve.',
+          body: 'Most patients lose 60–80% of their excess body weight over 12–18 months. Type 2 diabetes goes into remission or improves substantially in the majority of patients (often within weeks, before major weight loss has occurred). Sleep apnoea, hypertension, high cholesterol and fatty liver also commonly improve.',
         },
         {
           heading: 'Recovery',
-          body: '2–3 day hospital stay. A staged diet over the first month: clear liquids for the first few days, full liquids for 1–2 weeks, puréed foods for weeks 2–4, soft then regular foods thereafter — always in small, protein-first portions.',
+          body: '2–3 day hospital stay. A staged diet over the first month: clear liquids for the first few days, full liquids for 1–2 weeks, puréed foods for weeks 2–4, then soft and finally regular foods, always in small, protein-first portions.',
         },
         {
           heading: 'Long-term commitments',
@@ -377,7 +378,7 @@ export const bariatricProcedures: BariatricProcedure[] = [
         },
         {
           heading: 'Things to consider',
-          body: 'A more complex operation than sleeve gastrectomy. Reversible in principle, but rarely reversed. Not recommended for patients with certain chronic nutritional deficiencies or specific intestinal diseases — these are reviewed in consultation.',
+          body: 'A more complex operation than sleeve gastrectomy. Reversible in principle, but rarely reversed. Not recommended for patients with certain chronic nutritional deficiencies or specific intestinal diseases; these are reviewed in consultation.',
         },
       ],
     },
@@ -395,11 +396,11 @@ export const bariatricProcedures: BariatricProcedure[] = [
         },
         {
           heading: 'How the operation is performed',
-          body: 'Laparoscopically, through five small keyhole incisions. A long stapler is used to remove approximately 75–80 % of the stomach along the greater curvature, leaving a thin vertical tube. The removed portion is permanently gone. Operating time is typically about 60 minutes.',
+          body: 'Laparoscopically, through five small keyhole incisions. A long stapler is used to remove approximately 75–80% of the stomach along the greater curvature, leaving a thin vertical tube. The removed portion is permanently gone. Operating time is typically about 60 minutes.',
         },
         {
           heading: 'Typical weight loss and outcomes',
-          body: 'Most patients lose 50–70 % of their excess body weight over 12–18 months. Significant improvements in type 2 diabetes, sleep apnoea and hypertension are common, though on average the metabolic effect is slightly less pronounced than gastric bypass.',
+          body: 'Most patients lose 50–70% of their excess body weight over 12–18 months. Significant improvements in type 2 diabetes, sleep apnoea and hypertension are common, though on average the metabolic effect is slightly less pronounced than gastric bypass.',
         },
         {
           heading: 'Recovery',
@@ -411,7 +412,7 @@ export const bariatricProcedures: BariatricProcedure[] = [
         },
         {
           heading: 'Things to consider',
-          body: 'Reflux can develop or worsen in a minority of patients after sleeve; if severe and unresponsive to medication, conversion to gastric bypass is sometimes offered later. Not reversible — the removed portion of the stomach is permanently gone.',
+          body: 'Reflux can develop or worsen in a minority of patients after sleeve; if severe and unresponsive to medication, conversion to gastric bypass is sometimes offered later. Not reversible: the removed portion of the stomach is permanently gone.',
         },
       ],
     },
@@ -440,8 +441,8 @@ export const bariatricProcedures: BariatricProcedure[] = [
           body: 'Similar to Roux-en-Y: 2–3 day hospital stay; the same staged diet progression over the first month.',
         },
         {
-          heading: 'Bile reflux — a specific consideration',
-          body: 'Because of the single-loop design, some patients experience bile-reflux symptoms (burning behind the breastbone, bitter taste, heartburn). This is a specific point of discussion in consultation — OAGB may not be the right choice for patients with pre-existing severe reflux.',
+          heading: 'Bile reflux: a specific consideration',
+          body: 'Because of the single-loop design, some patients experience bile-reflux symptoms (burning behind the breastbone, bitter taste, heartburn). This is a specific point of discussion in consultation; OAGB may not be the right choice for patients with pre-existing severe reflux.',
         },
         {
           heading: 'Long-term commitments',
@@ -454,7 +455,7 @@ export const bariatricProcedures: BariatricProcedure[] = [
     number: '04',
     title: 'Revision bariatric surgery',
     summary:
-      'A second bariatric operation to address inadequate weight loss, weight regain, reflux after a sleeve, or a mechanical complication from an earlier procedure. Revision surgery is technically demanding — and one of Dr. Siddiq’s long-standing specialities.',
+      'A second bariatric operation to address inadequate weight loss, weight regain, reflux after a sleeve, or a mechanical complication from an earlier procedure. Revision surgery is technically demanding and has long been a particular focus of Dr. Siddiq’s practice.',
     details: {
       sections: [
         {
@@ -475,7 +476,7 @@ export const bariatricProcedures: BariatricProcedure[] = [
         },
         {
           heading: 'Outcomes',
-          body: 'Reflux resolution rates are very high when converting sleeve to Roux-en-Y for that indication. Further weight loss of 10–25 % of excess weight, on average, after revision for weight regain. Outcomes always depend on the specific revision and on the patient’s long-term follow-through with diet and lifestyle.',
+          body: 'Reflux resolution rates are very high when converting sleeve to Roux-en-Y for that indication. Further weight loss of 10–25% of excess weight, on average, after revision for weight regain. Outcomes always depend on the specific revision and on the patient’s long-term follow-through with diet and lifestyle.',
         },
       ],
     },
@@ -486,7 +487,7 @@ export const bariatricIntro = {
   title: 'Bariatric Surgery',
   subtitle: 'A modern approach to obesity and its metabolic consequences',
   body: [
-    'Laparoscopic bariatric surgery is a transformative weight-loss intervention that has found a pioneering champion in Dr. Ghulam Siddiq at Shifa International Hospital, Islamabad. Since 2010 he has performed over 1,400 successful laparoscopic cases, establishing himself as Pakistan’s leading authority in minimally invasive bariatric procedures.',
-    'He routinely performs laparoscopic Roux-en-Y gastric bypasses, Sleeve Gastrectomies, Mini gastric bypasses (OAGB) and revision bariatric procedures — each selected carefully around the individual patient’s weight, health, and long-term goals rather than a one-size-fits-all formula.',
+    'Bariatric surgery treats obesity and the conditions that travel with it, including type 2 diabetes, sleep apnoea, hypertension and fatty liver disease. At Shifa International Hospital, Dr. Ghulam Siddiq has performed more than 1,400 laparoscopic procedures since 2010, with bariatric operations at the centre of his practice.',
+    'He routinely performs laparoscopic Roux-en-Y gastric bypass, sleeve gastrectomy, mini gastric bypass (OAGB) and revision bariatric surgery. The operation is chosen around the individual patient: weight, health, surgical history and long-term goals, never a one-size-fits-all formula.',
   ],
 } as const;

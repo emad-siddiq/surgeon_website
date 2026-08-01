@@ -112,7 +112,7 @@ export function BookingFeedbackPrompt() {
               Were you able to book a consultation after {channelLabel}?
             </h2>
             <p className="t-caption mt-2 text-textMuted">
-              Takes a second &mdash; helps us improve how the practice responds.
+              Takes a second and helps us improve how the practice responds.
             </p>
             <div className="mt-4 grid grid-cols-1 gap-2">
               <button
@@ -189,7 +189,7 @@ export function BookingFeedbackPrompt() {
           <div>
             <p className="t-eyebrow text-primary">Thanks</p>
             <p className="mt-1 pr-6 text-base leading-snug text-textPrimary">
-              Appreciate the feedback &mdash; it genuinely helps the practice.
+              Appreciate the feedback. It genuinely helps the practice.
             </p>
           </div>
         )}

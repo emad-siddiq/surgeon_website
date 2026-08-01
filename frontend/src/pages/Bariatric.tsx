@@ -58,7 +58,7 @@ export function Bariatric() {
     <>
       <Seo
         title="Bariatric Surgery"
-        description="Laparoscopic bariatric surgery at Shifa International Hospital, Islamabad — Roux-en-Y gastric bypass, sleeve gastrectomy, mini gastric bypass (OAGB), and revision surgery. Click any procedure for patient-oriented details."
+        description="Laparoscopic bariatric surgery at Shifa International Hospital, Islamabad: Roux-en-Y gastric bypass, sleeve gastrectomy, mini gastric bypass (OAGB), and revision surgery. Click any procedure for patient-oriented details."
         path="/bariatric"
       />
 
@@ -90,7 +90,7 @@ export function Bariatric() {
             />
           </div>
           <div className="md:col-span-7">
-            <Eyebrow>A pioneering practice in Pakistan</Eyebrow>
+            <Eyebrow>The practice in numbers</Eyebrow>
             <h2 className="t-h1 mt-3 max-w-[20ch]">25 years, 1,400+ cases.</h2>
             {bariatricIntro.body.map((p, i) => (
               <p
@@ -129,7 +129,7 @@ export function Bariatric() {
         </h2>
         <p className="t-body mt-4 max-w-[64ch] text-textSecondary">
           Click any operation below for a patient-oriented explanation written in plain
-          language — who it is for, how the operation is performed, what recovery typically
+          language: who it is for, how the operation is performed, what recovery typically
           looks like, and the long-term commitments that come with each choice.
         </p>
         <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -150,7 +150,7 @@ export function Bariatric() {
               <p className="t-body mt-3 max-w-[56ch] text-textSecondary">
                 Bariatric surgery is a long-term partnership rather than a one-off event. Book
                 an unhurried first visit and we’ll walk through your medical history, your
-                goals, and the honest trade-offs of each procedure — together — before any
+                goals, and the honest trade-offs of each procedure together, before any
                 decision is made.
               </p>
             </div>

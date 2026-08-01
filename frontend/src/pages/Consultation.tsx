@@ -52,7 +52,7 @@ export function Consultation() {
               </h1>
               <p className="t-body-lg mt-4 max-w-[56ch] text-textSecondary sm:mt-6">
                 All consultations are booked through Shifa International Hospital&rsquo;s
-                main line. WhatsApp is usually the fastest route &mdash; messages reach
+                main line. WhatsApp is usually the fastest route: messages reach
                 the appointments desk directly and are answered during working hours. If
                 you&rsquo;d rather speak to someone, a phone call works just as well.
               </p>
@@ -79,7 +79,7 @@ export function Consultation() {
                 </svg>
                 <span>
                   <span className="font-medium text-textPrimary">A small note:</span>{' '}
-                  {bookingLine} Shifa is a large hospital with many consultants &mdash;
+                  {bookingLine} Shifa is a large hospital with many consultants;
                   naming Dr. Siddiq up front makes scheduling straightforward.
                 </span>
               </div>
@@ -135,7 +135,7 @@ export function Consultation() {
 
               <figure className="mt-4 rounded-md border-l-4 border-primary bg-surface px-4 py-3">
                 <blockquote className="t-body text-textPrimary">
-                  &ldquo;Hello &mdash; I&rsquo;d like to book a consultation with{' '}
+                  &ldquo;Hello, I&rsquo;d like to book a consultation with{' '}
                   <span className="font-medium">Dr. Ghulam Siddiq</span>, Chief of Surgery.
                   When is his next available slot?&rdquo;
                 </blockquote>
@@ -151,7 +151,7 @@ export function Consultation() {
 
               <p className="t-caption text-textMuted">
                 If you reach voicemail or the line is busy, WhatsApp the same
-                number &mdash; messages are answered during working hours.
+                number; messages are answered during working hours.
               </p>
             </Card>
           </div>
@@ -166,7 +166,7 @@ export function Consultation() {
               First consultations run 30&ndash;45 minutes and are deliberately
               unhurried. Please bring any prior imaging (ultrasound, CT, MRI),
               recent blood reports, a current list of medications, and any
-              specialist letters you&rsquo;ve received &mdash; the more context,
+              specialist letters you&rsquo;ve received. The more context,
               the better the conversation.
             </p>
           </article>
@@ -174,7 +174,7 @@ export function Consultation() {
             <h3 className="t-h3 font-medium">Who Dr. Siddiq sees</h3>
             <p className="t-body mt-3 text-textSecondary">
               General laparoscopic, bariatric, colorectal and upper-GI
-              cases in adults of all ages &mdash; including revision bariatric
+              cases in adults of all ages, including revision bariatric
               surgery, complex reoperative work, and second opinions on
               procedures that have already been recommended elsewhere.
             </p>

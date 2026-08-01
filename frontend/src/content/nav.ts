@@ -3,7 +3,7 @@ export interface NavLink {
   to: string;
 }
 
-/** The desktop + mobile primary nav — every entry is a real page. */
+/** The desktop + mobile primary nav; every entry is a real page. */
 export const primaryNav: NavLink[] = [
   { label: 'About', to: '/about' },
   { label: 'Procedures', to: '/procedures' },

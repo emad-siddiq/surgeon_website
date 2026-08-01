@@ -21,14 +21,14 @@ export function Distinctions() {
     <>
       <Seo
         title="Distinctions"
-        description="Recognition and awards for Dr. Ghulam Siddiq — Presidential Award for Surgical Excellence and international renown in endoscopic surgery with 970+ bariatric procedures."
+        description="Recognition and awards for Dr. Ghulam Siddiq: the Presidential Award for Surgical Excellence, the presidency of the Pakistan Obesity and Metabolic Surgery Society, and a record of 970 bariatric procedures."
         path="/distinctions"
       />
 
       <PageHeader
         eyebrow="Recognition"
         title={<>{distinctionsHeading}.</>}
-        lead="More than two decades of laparoscopic and bariatric practice in Pakistan — recognised at the highest level nationally and in international endoscopic surgery circles."
+        lead="More than two decades of laparoscopic and bariatric practice in Pakistan, marked by a national award, the presidency of a national surgical society, and a caseload built patient by patient."
       />
 
       {distinctions.map((d, i) => (

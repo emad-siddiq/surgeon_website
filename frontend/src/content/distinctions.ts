@@ -4,7 +4,7 @@ import oxford from '@/assets/images/distinctions/oxford1.png';
 // the practice supplies one. Reusing a gallery asset as a placeholder.
 import pomssPlaceholder from '@/assets/images/gallery/10.jpeg';
 
-/** Distinctions — sourced from Distinctions.jsx at commit 0fb3280. */
+/** Distinctions. Facts sourced from the original site at commit 0fb3280. */
 export interface Distinction {
   title: string;
   body: string;
@@ -13,25 +13,25 @@ export interface Distinction {
   stat?: { value: string; label: string };
 }
 
-export const distinctionsHeading = 'A shining legacy in endoscopic surgery';
+export const distinctionsHeading = 'The record behind the practice';
 
 export const distinctions: Distinction[] = [
   {
     title: 'Presidential Award for Surgical Excellence',
-    body: 'Dr. Ghulam Siddiq has been honoured with the highly prestigious Presidential Award for Surgical Excellence — a recognition of his exceptional technical skill, his dedication to patients, and his groundbreaking contributions to surgical science in Pakistan. His steady commitment to patient care and his ability to perform complex procedures with precision have earned him the respect and admiration of colleagues and patients alike. The Presidential Award reflects decades of tireless work, an unwavering standard of excellence, and a relentless pursuit of better outcomes in the operating room.',
+    body: 'Dr. Ghulam Siddiq received the Presidential Award for Surgical Excellence, a national honour recognising his contribution to surgery in Pakistan. The award sits on top of decades of ordinary weeks: full operating lists, complex cases, and patients seen through from first consultation to final follow-up.',
     image: award,
     imageAlt: 'Dr. Ghulam Siddiq receiving the Presidential Award for Surgical Excellence',
   },
   {
-    title: 'Internationally renowned in Endoscopic Surgery',
-    body: 'With an impressive record of 970 bariatric surgery procedures, Dr. Siddiq stands as a pioneering figure in metabolic and weight-loss surgery — recognised across Pakistan and in international endoscopic surgery circles. His extensive experience reflects not only technical proficiency, but a long-term commitment to transforming patients’ lives through modern, minimally invasive surgical solutions.',
+    title: 'Depth of experience in bariatric surgery',
+    body: 'Dr. Siddiq has performed 970 bariatric procedures across his career in metabolic and weight-loss surgery. Depth of this kind matters: bariatric surgery is a field where outcomes track surgeon experience, and where the judgment to match each patient with the right operation is built case by case.',
     image: oxford,
-    imageAlt: 'Dr. Ghulam Siddiq — international endoscopic surgery recognition',
+    imageAlt: 'Recognition of Dr. Ghulam Siddiq’s work in endoscopic surgery',
     stat: { value: '970', label: 'Bariatric procedures' },
   },
   {
     title: 'President, Pakistan Obesity & Metabolic Surgery Society',
-    body: 'Dr. Siddiq serves as President of POMSS — the Pakistan Obesity and Metabolic Surgery Society — leading hands-on training workshops in hospitals from Upper Dir, Swat and Peshawar in the north to Faisalabad, Lahore, Multan and other cities, raising the standard of bariatric and metabolic surgery across the country. He chaired the society’s international conference, bringing together surgeons and societies from China, Lebanon, the UAE and other regional and international bodies for clinical exchange and live surgical demonstration.',
+    body: 'Dr. Siddiq serves as President of the Pakistan Obesity and Metabolic Surgery Society (POMSS). In that role he leads hands-on training workshops in hospitals across the country, from Upper Dir, Swat and Peshawar in the north to Faisalabad, Lahore and Multan, raising the standard of bariatric and metabolic surgery nationally. He also chaired the society’s international conference, which brought surgeons and specialist societies from China, Lebanon, the UAE and beyond together for clinical exchange and live surgical demonstration.',
     image: pomssPlaceholder,
     imageAlt: 'Dr. Ghulam Siddiq leading a POMSS workshop',
   },

@@ -249,7 +249,7 @@ function DistinctionTeaser() {
         </div>
         <div className="md:col-span-7">
           <Eyebrow>Distinctions</Eyebrow>
-          <h2 className="t-h1 mt-3 max-w-[20ch]">A shining legacy in endoscopic surgery.</h2>
+          <h2 className="t-h1 mt-3 max-w-[20ch]">Recognition in endoscopic surgery.</h2>
           <p className="t-body-lg mt-5 max-w-[60ch] text-textSecondary">{lead.body}</p>
           <div className="mt-8">
             <ButtonRouterLink to="/distinctions" variant="secondary">
@@ -444,7 +444,7 @@ function ConsultCta() {
             <Eyebrow>Consultation</Eyebrow>
             <h2 className="t-h1 mt-3 max-w-[22ch]">Looking for a consultation?</h2>
             <p className="t-body mt-3 max-w-[60ch] text-textSecondary">
-              First appointments are unhurried and personal — we take the time to understand
+              First appointments are unhurried and personal. We take the time to understand
               your history, your goals, and the honest trade-offs of each option before anything
               operative is even discussed.
             </p>
