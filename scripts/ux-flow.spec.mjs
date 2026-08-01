@@ -469,6 +469,18 @@ async function main() {
           );
           if (overflow > 0) throw new Error(`horizontal overflow of ${overflow}px`);
         });
+        // Whitespace budget: the opening section's container must not
+        // spend more than 40px of top padding at phone widths (the
+        // desktop scale steps back in via sm:/md: variants).
+        await step('mobile-density', `header-padding ${href}`, async () => {
+          const pad = await page.evaluate(() => {
+            const container = document.querySelector('main section > div');
+            if (!container) return -1;
+            return parseFloat(getComputedStyle(container).paddingTop);
+          });
+          if (pad === -1) throw new Error('opening section container missing');
+          if (pad > 40) throw new Error(`opening container padding-top ${pad}px, cap 40px`);
+        });
         if (href === '/about') continue;
         await step('mobile-density', `lead-concise ${href}`, async () => {
           const leads = await page.evaluate(() => {
@@ -487,6 +499,19 @@ async function main() {
           }
         });
       }
+      // The home hero (headline, lead, CTAs, proof points, slideshow)
+      // must fit within one Galaxy viewport so the first swipe lands on
+      // content, not the tail of the hero.
+      await step('mobile-density', 'hero-fits-viewport /', async () => {
+        await page.goto(BASE + '/', { waitUntil: 'domcontentloaded' });
+        await page.locator('h1').first().waitFor({ state: 'visible', timeout: 5000 });
+        const height = await page.evaluate(() => {
+          const hero = document.querySelector('main section');
+          return hero ? Math.round(hero.getBoundingClientRect().height) : -1;
+        });
+        if (height === -1) throw new Error('hero section missing');
+        if (height > 800) throw new Error(`hero is ${height}px tall, cap 800px (one 360x800 viewport)`);
+      });
       await ctx.close();
     }
 

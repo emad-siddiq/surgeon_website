@@ -13,9 +13,9 @@ const toneClass: Record<SectionTone, string> = {
 // Slimmer vertical padding on narrow screens so sections don't feel
 // like they're drifting apart on a 375px viewport.
 const sizeClass: Record<SectionSize, string> = {
-  sm: 'py-10 md:py-12',
-  md: 'py-12 sm:py-16 md:py-20',
-  lg: 'py-16 sm:py-20 md:py-28',
+  sm: 'py-8 md:py-12',
+  md: 'py-8 sm:py-14 md:py-20',
+  lg: 'py-10 sm:py-20 md:py-28',
 };
 
 export interface SectionProps extends HTMLAttributes<HTMLElement> {

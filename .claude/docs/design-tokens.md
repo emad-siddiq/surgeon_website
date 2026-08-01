@@ -1,7 +1,7 @@
 # Design tokens (condensed)
 
-Source of truth: `frontend/tailwind.config.ts` and
-`frontend/src/design-system/tokens.css`. This doc is a quick reference.
+Source of truth: `tailwind.config.ts` and
+`src/design-system/tokens.css`. This doc is a quick reference.
 
 ## Colors
 

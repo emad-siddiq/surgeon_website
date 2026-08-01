@@ -75,7 +75,7 @@ Source of truth lives in this file, not scattered across other docs.
     difference between 375 and 390 cleanly. No horizontal-scroll-prone
     patterns present.
 - [x] All images have non-empty `alt`; no broken `<img>` src at any viewport.
-  - Audit 2026-04-24: 10 `<img>` call sites in `frontend/src/**/*.tsx`.
+  - Audit 2026-04-24: 10 `<img>` call sites in `src/**/*.tsx`.
     Data-driven alts (`media.ts` heroes/portraits/B-A/gallery,
     `distinctions.ts` `imageAlt`) are all populated with descriptive
     strings. Decorative images (`Logo`, `HeroSlideshow` off-screen slides,
@@ -95,7 +95,7 @@ Source of truth lives in this file, not scattered across other docs.
   links point at `contact.whatsapp.url`. Grep confirms no hardcoded numbers.
   - Audit 2026-04-24 iter 6. Method: `grep -rn "tel:"`, `grep -rn
     "wa.me\|api.whatsapp.com\|whatsapp"`, and `grep -rnE
-    "\+92|92518464646|518464646"` across `frontend/src/**/*.{ts,tsx}`.
+    "\+92|92518464646|518464646"` across `src/**/*.{ts,tsx}`.
   - tel: 8 matches — 1 definition in `contact.ts:10`, 2 comments in
     `BookingActions.tsx:19,24` (neutral), and 5 consumers
     (`BookingActions.tsx:61`, `MobileSidebar.tsx:138`, `Footer.tsx:84`,
@@ -115,7 +115,7 @@ Source of truth lives in this file, not scattered across other docs.
 - [x] `/location` embeds Shifa Hospital map with a click-through to Google
   Maps directions.
   - 2026-04-25 iter 11: added "Get directions" anchor in
-    `frontend/src/pages/Location.tsx` (around L91), built from
+    `src/pages/Location.tsx` (around L91), built from
     `contact.clinic.geo` lat/lng via the Google Maps Universal URL scheme
     (`https://www.google.com/maps/dir/?api=1&destination=<lat>,<lng>`).
     Opens in a new tab with `rel="noopener noreferrer"`. Verified across
@@ -148,7 +148,7 @@ Source of truth lives in this file, not scattered across other docs.
   `/bariatric`, linked to the `Physician` by `@id`.
 - [x] `/sitemap.xml` exists at the site root with every route and current
   `lastmod`. Robots.txt already references it; the file itself is missing.
-  - 2026-08-01: `frontend/public/sitemap.xml`, all 10 routes, absolute
+  - 2026-08-01: `public/sitemap.xml`, all 10 routes, absolute
     `<loc>` on the SITE_URL placeholder domain (swap at launch, comment
     in file). ux-flow `seo / sitemap-xml` asserts 200 + `<urlset>` +
     every route path.

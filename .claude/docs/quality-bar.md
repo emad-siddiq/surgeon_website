@@ -28,7 +28,7 @@ optimizer should pick a different fix.
 - Line length: long-form prose capped near 62ch (`max-w-[62ch]`).
 
 ## Copy
-- Strings live in `frontend/src/content/*.ts`. Do not hardcode copy in
+- Strings live in `src/content/*.ts`. Do not hardcode copy in
   components.
 - Do not rewrite copy as part of a bug fix. Copy changes need explicit
   user sign-off.
@@ -65,7 +65,7 @@ optimizer should pick a different fix.
   it pass on its own.
 
 ## Commits
-- Conventional-commit prefix: `fix(frontend):`, `fix(backend):`,
+- Conventional-commit prefix: `fix(frontend):`,
   `feat(...):`, `docs:`, `chore:`.
 - One fix per commit. One commit per `/iterate` run.
 - Each `fix`/`feat` commit body names the test that locked the

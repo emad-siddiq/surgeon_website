@@ -10,6 +10,14 @@ export default [
   { ignores: ['dist', 'node_modules', 'coverage', 'playwright-report', 'test-results'] },
   js.configs.recommended,
   {
+    // Agent harnesses: Node scripts that also embed browser code inside
+    // page.evaluate() callbacks, so they need both global sets.
+    files: ['scripts/**/*.mjs'],
+    languageOptions: {
+      globals: { ...globals.node, ...globals.browser },
+    },
+  },
+  {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2022,

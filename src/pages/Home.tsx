@@ -57,7 +57,7 @@ function Hero() {
       aria-labelledby="hero-headline"
       className="relative bg-gradient-hero"
     >
-      <Container className="py-10 sm:py-12 md:py-20 lg:py-20">
+      <Container className="py-8 sm:py-12 md:py-20 lg:py-20">
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-7">
             <Eyebrow>Shifa International Hospital · Islamabad</Eyebrow>
@@ -70,7 +70,7 @@ function Hero() {
             {/* On phones the CTA pair stacks to full width; from sm up
                 they sit inline. This avoids the two buttons cramming
                 side-by-side below 375px. */}
-            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center">
+            <div className="mt-5 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center">
               <ButtonRouterLink to="/consultation" variant="primary" className="w-full sm:w-auto">
                 Book an Appointment
               </ButtonRouterLink>
@@ -78,13 +78,13 @@ function Hero() {
                 About Dr. Siddiq
               </ButtonRouterLink>
             </div>
-            <ul className="mt-8 flex flex-col gap-2 text-sm text-textSecondary sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6">
+            <ul className="mt-6 flex flex-row flex-wrap items-center gap-x-4 gap-y-2 text-sm text-textSecondary sm:mt-10 sm:gap-x-6">
               {doctor.proofPoints.map((point, i) => (
                 <li key={point} className="flex items-center gap-3">
                   {i > 0 ? (
                     <span
                       aria-hidden="true"
-                      className="hidden h-1 w-1 rounded-full bg-border2 sm:inline-block"
+                      className="inline-block h-1 w-1 rounded-full bg-border2"
                     />
                   ) : null}
                   <span>{point}</span>

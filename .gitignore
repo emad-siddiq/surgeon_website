@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 dist
+dist-ssr
 build
 coverage
 .env
@@ -8,6 +9,16 @@ coverage
 *.log
 *.tsbuildinfo
 /tmp
+
+# tool caches / local state
+.eslintcache
+.vite
+.wrangler
+
+# Playwright
+/playwright-report
+/test-results
+/playwright/.cache
 
 # Claude Code: track shared agent scaffolding, ignore per-machine state.
 .claude/settings.local.json

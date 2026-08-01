@@ -1,5 +1,5 @@
 ---
-description: One 2h product-cycle iteration. Runs visual-qa + ux-flow + api-mock in parallel, then the optimizer commits a single fix.
+description: One 2h product-cycle iteration. Runs visual-qa + ux-flow in parallel, then the optimizer commits a single fix.
 ---
 
 Run one product-cycle iteration toward
@@ -16,15 +16,14 @@ and **2h00m** marks.
    unchecked items in priority order (G1 → G5). If every item is already
    `[x]`, skip to step 7 and print `GOAL REACHED` instead of iterating.
 
-3. **Fan out, in parallel** (single Agent-tool message with three calls):
+3. **Fan out, in parallel** (single Agent-tool message with two calls):
    - `visual-qa` subagent → returns `report.json` summary
    - `ux-flow` subagent → returns `ux-flow.json` summary
-   - `api-mock` subagent → returns `api-mock.log` summary
 
-   Do not wait sequentially; all three read the dev server on :5175, so the
-   first caller starts it and the others reuse it.
+   Do not wait sequentially; both read the dev server on :5175, so the
+   first caller starts it and the other reuses it.
 
-4. **Merge the three reports.** You (the parent) should see ≤7KB of JSON
+4. **Merge the two reports.** You (the parent) should see ≤7KB of JSON
    total. Do not read raw screenshots at this step — the visual-qa agent
    already summarized them.
 

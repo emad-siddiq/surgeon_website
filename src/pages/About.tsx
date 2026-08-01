@@ -26,7 +26,7 @@ export function About() {
       <Seo title="About" description={doctor.bioShort} path="/about" schema="home" />
 
       <section className="bg-gradient-hero">
-        <Container className="py-12 sm:py-16 md:py-24">
+        <Container className="py-8 sm:py-14 md:py-24">
           <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12 md:gap-12">
             <div className="md:col-span-6">
               <Eyebrow>{doctor.credentials}</Eyebrow>

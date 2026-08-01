@@ -19,7 +19,7 @@ const OUT = path.join(REPO, 'visual-tests');
 const BASE = 'http://localhost:5175';
 
 const require = createRequire(
-  new URL('../frontend/package.json', import.meta.url),
+  new URL('../package.json', import.meta.url),
 );
 const { chromium } = require('@playwright/test');
 
@@ -72,7 +72,7 @@ async function ensureServer() {
   const child = spawn(
     'npm',
     ['run', 'dev', '--', '--port', '5175', '--strictPort'],
-    { cwd: path.join(REPO, 'frontend'), stdio: 'ignore' },
+    { cwd: REPO, stdio: 'ignore' },
   );
   const up = await waitFor(BASE, 30000);
   if (!up) {
@@ -86,7 +86,7 @@ async function ensureDir(p) {
   await fs.mkdir(p, { recursive: true });
 }
 
-function analyzeShot({ filename, bytes, naturalHeight, width }) {
+function analyzeShot({ bytes, naturalHeight, width }) {
   const issues = [];
   // Heuristics on the *captured* file. Real perceptual critique is the
   // model's job; these are cheap sanity gates that survive a JSON report.

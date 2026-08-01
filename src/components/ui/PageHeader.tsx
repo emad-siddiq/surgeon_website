@@ -23,7 +23,7 @@ export function PageHeader({ eyebrow, title, lead, actions }: PageHeaderProps) {
   const hasSide = Boolean(lead || actions);
   return (
     <section className="bg-gradient-hero">
-      <Container className="py-12 sm:py-16 md:py-20 lg:py-24">
+      <Container className="py-8 sm:py-14 md:py-20 lg:py-24">
         <div
           className={
             hasSide

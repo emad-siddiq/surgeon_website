@@ -43,7 +43,7 @@ export function Consultation() {
       />
 
       <section className="bg-gradient-hero">
-        <Container className="py-12 sm:py-16 md:py-20 lg:py-24">
+        <Container className="py-8 sm:py-14 md:py-20 lg:py-24">
           <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-12 md:gap-10">
             <div className="md:col-span-7">
               <Eyebrow>Book a consultation</Eyebrow>

@@ -4,7 +4,7 @@
 > original theme (as it stood at git commit `0fb3280`, last commit before the
 > Vite migration) — the look the practice wants to keep.
 >
-> The Claude Design artifact in [`docs/design/style-guide.html`](docs/design/style-guide.html)
+> The Claude Design artifact (formerly `docs/design/style-guide.html`, now only in git history)
 > is retained purely as a reference; **the spec below supersedes it**. Do not
 > re-introduce the cream / peach / lilac palette, Fraunces / Inter fonts, or
 > the WebGL aurora from that artifact without an explicit sign-off from the

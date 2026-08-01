@@ -48,8 +48,6 @@ You are bound by the TDD rule (CLAUDE.md hot rule #6). The fix ships
    regression:
    - **Functional / interaction / accessibility** → extend
      `scripts/ux-flow.spec.mjs` with a new assertion or flow.
-   - **Backend contract / handler / CORS** → add a subtest under
-     `TestMockFlows` in `backend/src/main_test.go`.
    - **Visual / DOM-shape / computed-style** → prefer a Playwright
      assertion in `ux-flow.spec.mjs` (computed style, presence, class,
      `bounding-box`). Only if the regression is genuinely unassertable
@@ -66,15 +64,14 @@ You are bound by the TDD rule (CLAUDE.md hot rule #6). The fix ships
    Stop refactoring as soon as the diff stops shrinking — this is not the
    place for opportunistic cleanup.
 5. **Re-run the broader tier** to confirm no regression: the affected
-   subset of visual-qa (`node scripts/visual-qa.mjs --only <route>`),
-   the full `scripts/ux-flow.spec.mjs`, or `go test ./src -run
-   TestMockFlows -v`. The new test must still be green; existing tests
+   subset of visual-qa (`node scripts/visual-qa.mjs --only <route>`)
+   or the full `scripts/ux-flow.spec.mjs`. The new test must still be green; existing tests
    must still be green.
 6. `git add` the test file(s), the production file(s), and any updated
    screenshot snapshots. Tests and fix go in the **same commit** — never
    split them.
 7. Commit with message:
-   `fix(frontend): <8-word summary>` or `fix(backend): <...>`. The body
+   `fix(frontend): <8-word summary>`. The body
    should name the test you added/extended (one line, e.g. `Locks via
    ux-flow.spec.mjs → "footer not white-on-white at 1920"`).
 
