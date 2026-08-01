@@ -165,16 +165,23 @@ async function main() {
           await page.goto(BASE + href, { waitUntil: 'domcontentloaded' });
           await page.locator('h1').first().waitFor({ state: 'visible', timeout: 5000 });
           await page.waitForTimeout(150);
-          const { text, meta } = await page.evaluate(() => ({
+          const { text, title, metas } = await page.evaluate(() => ({
             text: document.body.innerText,
-            meta:
-              document
-                .querySelector('meta[name="description"]')
-                ?.getAttribute('content') || '',
+            title: document.title,
+            // Helmet appends its own description tags alongside the
+            // static one from index.html — scan every variant.
+            metas: Array.from(
+              document.querySelectorAll(
+                'meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]',
+              ),
+            )
+              .map((m) => m.getAttribute('content') || '')
+              .join('\n'),
           }));
           const hits = [
             ...copyViolations(text, 'page text'),
-            ...copyViolations(meta, 'meta description'),
+            ...copyViolations(title, 'document title'),
+            ...copyViolations(metas, 'meta descriptions'),
           ];
           if (hits.length) throw new Error(hits.join('; '));
         });
@@ -374,6 +381,43 @@ async function main() {
         if (!(await section.count())) throw new Error('#home-media section missing');
         const yt = section.locator('a[href*="youtube.com"]');
         if (!(await yt.count())) throw new Error('no YouTube link inside #home-media');
+      });
+      await ctx.close();
+    }
+
+    // Flow 10: home stats read as editorial display numerals, not
+    // body-sized figures. Computed-style check: the largest type inside
+    // #home-stats must reach display scale (>=44px at 1440w — t-h1's lg
+    // step is 48px; the old ad-hoc md:text-4xl capped at 36px), and all
+    // four stat labels must render.
+    {
+      const ctx = await browser.newContext({
+        viewport: { width: 1440, height: 900 },
+        serviceWorkers: 'block',
+      });
+      const page = await ctx.newPage();
+      await page.goto(BASE + '/', { waitUntil: 'domcontentloaded' });
+      await step('home-stats', 'display-scale-numerals', async () => {
+        const max = await page.evaluate(() => {
+          const root = document.getElementById('home-stats');
+          if (!root) return -1;
+          let biggest = 0;
+          for (const el of root.querySelectorAll('*')) {
+            biggest = Math.max(
+              biggest,
+              parseFloat(getComputedStyle(el).fontSize) || 0,
+            );
+          }
+          return biggest;
+        });
+        if (max === -1) throw new Error('#home-stats missing');
+        if (max < 44) throw new Error(`largest stat type ${max}px, expected >=44px`);
+      });
+      await step('home-stats', 'four-labeled-stats', async () => {
+        const labels = page.locator('#home-stats p');
+        if ((await labels.count()) < 4) {
+          throw new Error(`only ${await labels.count()} stat labels`);
+        }
       });
       await ctx.close();
     }

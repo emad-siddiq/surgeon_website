@@ -113,7 +113,10 @@ function Stats() {
       <h2 id="stats-heading" className="sr-only">
         Practice at a glance
       </h2>
-      <div className="grid grid-cols-2 gap-5 sm:gap-6 md:grid-cols-4">
+      {/* Editorial stat row (Mailchimp-style via Mobbin): display-scale
+          numerals in quiet ink, small muted captions, no card boxes.
+          t-h1 keeps the numerals a step below the hero's t-display. */}
+      <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-8 md:grid-cols-4">
         {[
           { n: 25, s: '', label: 'Years in practice' },
           { n: 1400, s: '+', label: 'Laparoscopic cases' },
@@ -121,10 +124,10 @@ function Stats() {
           { n: 9000, s: '+', label: 'Gall bladder surgeries' },
         ].map((stat) => (
           <div key={stat.label} className="md:text-left">
-            <div className="text-2xl font-medium tracking-tight text-primary sm:text-3xl md:text-4xl">
+            <div className="t-h1 text-textPrimary">
               <AnimatedCounter to={stat.n} suffix={stat.s} />
             </div>
-            <p className="t-caption mt-1.5 text-textSecondary">{stat.label}</p>
+            <p className="t-caption mt-2 text-textMuted">{stat.label}</p>
           </div>
         ))}
       </div>
