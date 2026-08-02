@@ -152,8 +152,8 @@ export function SectionProgress({ sections }: SectionProgressProps) {
           style={{
             height: `calc(${progress * 100}% - ${progress * 16}px)`,
             background:
-              'linear-gradient(to bottom, rgba(13,110,253,0.35) 0%, rgba(13,110,253,0.85) 60%, rgba(13,110,253,1) 100%)',
-            boxShadow: '0 0 8px rgba(13,110,253,0.35)',
+              'linear-gradient(to bottom, rgba(23,52,83,0.35) 0%, rgba(23,52,83,0.85) 60%, rgba(23,52,83,1) 100%)',
+            boxShadow: '0 0 8px rgba(23,52,83,0.35)',
           }}
         />
         {/* glowing leading edge — sits at the bottom of the filled portion
@@ -164,7 +164,7 @@ export function SectionProgress({ sections }: SectionProgressProps) {
           className="absolute left-[1px] h-[11px] w-[11px] -translate-y-1/2 rounded-full bg-primary opacity-90 motion-safe:animate-pulse motion-reduce:opacity-60"
           style={{
             top: `calc(8px + ${progress * 100}% - ${progress * 16}px)`,
-            boxShadow: '0 0 10px 2px rgba(13,110,253,0.55)',
+            boxShadow: '0 0 10px 2px rgba(23,52,83,0.55)',
             transition: 'top 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
           }}
         />
@@ -186,7 +186,7 @@ export function SectionProgress({ sections }: SectionProgressProps) {
                 className={cn(
                   'inline-flex h-[14px] w-[14px] shrink-0 items-center justify-center rounded-full border-2 bg-white transition-all duration-200',
                   isActive
-                    ? 'border-primary bg-primary scale-110 shadow-[0_0_0_3px_rgba(13,110,253,0.15)]'
+                    ? 'border-primary bg-primary scale-110 shadow-[0_0_0_3px_rgba(23,52,83,0.15)]'
                     : 'border-border2 group-hover:border-primary',
                 )}
               />

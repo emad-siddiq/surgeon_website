@@ -3,10 +3,11 @@ import type { Config } from 'tailwindcss';
 /**
  * Design tokens. The two sources of truth are this file (Tailwind utilities)
  * and src/design-system/tokens.css (CSS custom properties + the @font-face
- * for Roboto Flex). Keep their hex values in sync.
+ * declarations). Keep their hex values in sync.
  *
- * Theme baseline: blue primary, Roboto, peach/lavender gradient bands —
- * matches the live site at commit 0fb3280.
+ * Theme baseline: warm paper canvas, deep navy primary, muted teal accent,
+ * Source Serif 4 headings over Inter body. Replaces the blue/peach/lavender
+ * default theme that shipped through commit 18c0578.
  */
 const config: Config = {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
@@ -16,28 +17,38 @@ const config: Config = {
         // `canvas`, not `base` — `text-base` is a Tailwind font-size utility;
         // naming the color `base` creates `text-base` / `bg-base` color utilities
         // that collide with the type-scale utility and paint text white at runtime.
-        canvas: '#FFFFFF',
-        surface: '#F9FAFB',
-        gradientFrom: '#FDF8F6',
-        gradientVia: '#F9E4DA',
-        gradientTo: '#E3E3FA',
+        canvas: '#FCFBF9',
+        surface: '#F7F5F1',
+        surfaceSunken: '#EFEBE4',
 
-        primary: '#0D6EFD',
-        primaryHover: '#0B5ED7',
-        accent: '#39A7F1',
+        // Dark surface (footer). `ink` is the same value as textPrimary; the
+        // separate name marks it as a *background* role so a future tweak to
+        // body text colour does not silently repaint the footer.
+        ink: '#121A24',
+        inkMuted: '#A29A8D',
+        inkBorder: '#2C3742',
 
-        textPrimary: '#1F2937',
-        textSecondary: '#34495E',
-        textMuted: '#6C757D',
+        primary: '#173453',
+        primaryHover: '#1F4468',
+        accent: '#2C6E75',
+        // Accent darkened for text set on an accent/10 tint — the tint is far
+        // too pale to carry the accent itself at AA. Replaces the old ad-hoc
+        // #0B6FA8 in Tag.tsx.
+        accentDeep: '#1F4E54',
 
-        border1: '#E5E7EB',
-        border2: '#D1D5DB',
+        textPrimary: '#121A24',
+        textSecondary: '#41505F',
+        textMuted: '#6E675C',
+
+        border1: '#E0DBD2',
+        border2: '#CBC4B8',
 
         success: '#198754',
         warn: '#F59F00',
       },
       fontFamily: {
-        sans: ['"Roboto Flex"', '"Roboto"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+        serif: ['"Source Serif 4"', 'Georgia', '"Times New Roman"', 'serif'],
+        sans: ['"Inter"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       borderRadius: {
@@ -48,22 +59,43 @@ const config: Config = {
         xl: '1.5rem',
       },
       boxShadow: {
-        card: '0 10px 20px rgba(0, 0, 0, 0.08)',
-        raised: '0 15px 30px rgba(0, 0, 0, 0.10)',
-        focus: '0 0 0 3px rgba(13, 110, 253, 0.25)',
+        card: '0 10px 20px rgba(18, 26, 36, 0.08)',
+        raised: '0 15px 30px rgba(18, 26, 36, 0.10)',
+        focus: '0 0 0 3px rgba(23, 52, 83, 0.28)',
       },
       maxWidth: {
         container: '1280px',
         prose: '64ch',
+        // Measure scale. Closed set of line-length caps: 20/22/24 clamp
+        // headlines, 42 asides, 56/62/64 body prose. Replaces 14 ad-hoc
+        // max-w-[Nch] values.
+        'measure-20': '20ch',
+        'measure-22': '22ch',
+        'measure-24': '24ch',
+        'measure-42': '42ch',
+        'measure-56': '56ch',
+        'measure-62': '62ch',
+        'measure-64': '64ch',
+      },
+      letterSpacing: {
+        // Single eyebrow tracking. Collapses tracking-[0.12em]/[0.14em]/[0.18em]
+        // and tracking-widest into one value. 0.09em on Inter's caps sets
+        // about as open as 0.12em did on Roboto Flex, which was narrower.
+        eyebrow: '0.09em',
+        // Inter metric compensation. Inter is drawn wider than Roboto Flex and
+        // its own dynamic-metrics curve asks for negative tracking that grows
+        // with size. Values below follow that curve at each tier we set.
+        ui: '-0.006em', // 14px
+        body: '-0.011em', // 16px
+        lead: '-0.014em', // 18px
+      },
+      transitionDuration: {
+        // Mirrors --motion-micro / --motion-reveal in tokens.css.
+        micro: '180ms',
+        reveal: '400ms',
       },
       transitionTimingFunction: {
         breathe: 'cubic-bezier(.2,.7,.2,1)',
-      },
-      backgroundImage: {
-        'gradient-hero':
-          'linear-gradient(to bottom, #FDF8F6, #F9E4DA, #E3E3FA)',
-        'gradient-footer':
-          'linear-gradient(to bottom right, #FCFCFC, #F4F8FA, #F5E7E7, #B8B8DB)',
       },
       keyframes: {
         rise: {

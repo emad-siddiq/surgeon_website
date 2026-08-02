@@ -1,5 +1,5 @@
 /**
- * Site footer. Branded gradient band with a four-column grid: logo +
+ * Site footer. Dark ink band with a four-column grid: logo +
  * tagline + social icons (left two columns), Explore sitemap (column 3),
  * and Visit details + tel + WhatsApp (column 4). Copyright + medical
  * disclaimer below a soft rule.
@@ -37,12 +37,12 @@ function SocialIcon({ kind }: { kind: 'facebook' | 'instagram' | 'youtube' }) {
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-gradient-footer">
+    <footer className="bg-ink">
       <Container className="py-10 md:py-20">
         <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 md:gap-10">
           <div className="col-span-2 md:col-span-2">
-            <Logo />
-            <p className="mt-3 max-w-[42ch] text-sm leading-relaxed text-textPrimary md:mt-4 md:text-base">
+            <Logo className="text-canvas" />
+            <p className="mt-3 max-w-measure-42 text-sm leading-relaxed text-inkMuted md:mt-4 md:text-base">
               {doctor.role}. {doctor.tagline}
             </p>
             <div className="mt-4 flex items-center gap-3 md:mt-5">
@@ -51,7 +51,7 @@ export function Footer() {
                 aria-label="Dr. Ghulam Siddiq on Facebook"
                 target="_blank"
                 rel="noreferrer"
-                className="text-textPrimary hover:text-primary"
+                className="text-canvas hover:text-white"
               >
                 <SocialIcon kind="facebook" />
               </a>
@@ -60,7 +60,7 @@ export function Footer() {
                 aria-label="Dr. Ghulam Siddiq on Instagram"
                 target="_blank"
                 rel="noreferrer"
-                className="text-textPrimary hover:text-primary"
+                className="text-canvas hover:text-white"
               >
                 <SocialIcon kind="instagram" />
               </a>
@@ -69,19 +69,19 @@ export function Footer() {
                 aria-label="Dr. Ghulam Siddiq on YouTube"
                 target="_blank"
                 rel="noreferrer"
-                className="text-textPrimary hover:text-primary"
+                className="text-canvas hover:text-white"
               >
                 <SocialIcon kind="youtube" />
               </a>
             </div>
           </div>
           <nav aria-label="Footer sitemap" className="min-w-0">
-            <p className="t-eyebrow text-textSecondary">Explore</p>
-            <ul className="mt-3 space-y-1.5 text-sm text-textPrimary md:space-y-2 md:text-base">
-              {/* intentional — nav list reads as textPrimary for contrast */}
+            <p className="t-eyebrow text-inkMuted">Explore</p>
+            <ul className="mt-3 space-y-1.5 text-sm text-canvas md:space-y-2 md:text-base">
+              {/* intentional — nav list reads as canvas for contrast on ink */}
               {[...primaryNav, ...secondaryNav].map((item) => (
                 <li key={item.to}>
-                  <Link className="hover:text-primary" to={item.to}>
+                  <Link className="hover:text-white" to={item.to}>
                     {item.label}
                   </Link>
                 </li>
@@ -89,18 +89,18 @@ export function Footer() {
             </ul>
           </nav>
           <div className="min-w-0">
-            <p className="t-eyebrow text-textSecondary">Visit</p>
-            <ul className="mt-3 space-y-1.5 text-sm text-textPrimary md:space-y-2 md:text-base">
+            <p className="t-eyebrow text-inkMuted">Visit</p>
+            <ul className="mt-3 space-y-1.5 text-sm text-canvas md:space-y-2 md:text-base">
               <li>{contact.clinic.name}</li>
               <li>{contact.clinic.area}</li>
               <li>
-                <a className="hover:text-primary" href={`tel:${contact.phone.tel}`}>
+                <a className="hover:text-white" href={`tel:${contact.phone.tel}`}>
                   {contact.phone.display}
                 </a>
               </li>
               <li>
                 <a
-                  className="hover:text-primary"
+                  className="hover:text-white"
                   href={contact.whatsapp.url}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -110,7 +110,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  className="hover:text-primary"
+                  className="hover:text-white"
                   href={googleReview.url}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -121,8 +121,8 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <hr className="hr-soft my-6 md:my-10" />
-        <div className="grid grid-cols-1 gap-2 text-xs leading-relaxed text-textSecondary md:grid-cols-[auto,1fr] md:items-start md:gap-4 md:text-sm">
+        <hr className="hr-soft-ink my-6 md:my-10" />
+        <div className="grid grid-cols-1 gap-2 text-xs leading-relaxed text-inkMuted md:grid-cols-[auto,1fr] md:items-start md:gap-4 md:text-sm">
           <p className="md:whitespace-nowrap">
             © {year} {doctor.fullName}. All rights reserved.
           </p>

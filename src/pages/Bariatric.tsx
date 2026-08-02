@@ -3,7 +3,7 @@
  *
  * Layout: PageHeader → bariatric portrait + intro paragraphs + total-
  * cases counters → grid of four BariatricCards (Roux-en-Y, sleeve,
- * OAGB, revision) → custom gradient-hero CTA strip closing the page.
+ * OAGB, revision) → custom surface CTA strip closing the page.
  *
  * BariatricCard is a local <ClickableCard> wrapper that renders proc
  * number / title / summary and opens <ProcedureDetailModal>. Bariatric
@@ -41,10 +41,10 @@ function BariatricCard({
       ariaLabel={`Learn more about ${proc.title}`}
       className="md:p-8"
     >
-      <span aria-hidden="true" className="text-sm font-medium tracking-[0.18em] text-primary">
+      <span aria-hidden="true" className="text-sm font-medium tracking-eyebrow text-primary">
         {proc.number}
       </span>
-      <h3 className="mt-3 text-[1.375rem] font-medium leading-snug">{proc.title}</h3>
+      <h3 className="t-h3 mt-3">{proc.title}</h3>
       <p className="t-body mt-3 text-textSecondary">{proc.summary}</p>
       <LearnMoreHint />
     </ClickableCard>
@@ -91,7 +91,7 @@ export function Bariatric() {
           </div>
           <div className="md:col-span-7">
             <Eyebrow>The practice in numbers</Eyebrow>
-            <h2 className="t-h1 mt-3 max-w-[20ch]">25 years, 1,400+ cases.</h2>
+            <h2 className="t-h1 mt-3 max-w-measure-20">25 years, 1,400+ cases.</h2>
             {bariatricIntro.body.map((p, i) => (
               <p
                 key={i}
@@ -124,10 +124,10 @@ export function Bariatric() {
 
       <Section tone="surface" size="lg" aria-labelledby="bariatric-procedures-heading">
         <Eyebrow>The four operations</Eyebrow>
-        <h2 id="bariatric-procedures-heading" className="t-h1 mt-3 max-w-[22ch]">
+        <h2 id="bariatric-procedures-heading" className="t-h1 mt-3 max-w-measure-22">
           Procedures Dr. Siddiq routinely performs.
         </h2>
-        <p className="t-body mt-4 max-w-[64ch] text-textSecondary">
+        <p className="t-body mt-4 max-w-measure-64 text-textSecondary">
           Click any operation below for a patient-oriented explanation written in plain
           language: who it is for, how the operation is performed, what recovery typically
           looks like, and the long-term commitments that come with each choice.
@@ -141,13 +141,13 @@ export function Bariatric() {
         </ul>
       </Section>
 
-      <section className="bg-gradient-hero">
+      <section className="bg-surface">
         <Container className="py-12 sm:py-16 md:py-20">
           <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[1fr,auto]">
             <div>
               <Eyebrow>Next step</Eyebrow>
-              <h2 className="t-h1 mt-3 max-w-[22ch]">A careful first conversation.</h2>
-              <p className="t-body mt-3 max-w-[56ch] text-textSecondary">
+              <h2 className="t-h1 mt-3 max-w-measure-22">A careful first conversation.</h2>
+              <p className="t-body mt-3 max-w-measure-56 text-textSecondary">
                 Bariatric surgery is a long-term partnership rather than a one-off event. Book
                 an unhurried first visit and we’ll walk through your medical history, your
                 goals, and the honest trade-offs of each procedure together, before any

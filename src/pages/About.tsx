@@ -1,5 +1,5 @@
 /**
- * `/about` route. Custom gradient-hero (not <PageHeader>) with two
+ * `/about` route. Custom surface band (not <PageHeader>) with two
  * columns: bio + CTAs on the left, click-to-play intro video on the
  * right. Below: a Card grid of education/training credentials, then a
  * surface section listing expertise areas.
@@ -25,20 +25,20 @@ export function About() {
     <>
       <Seo title="About" description={doctor.bioShort} path="/about" schema="home" />
 
-      <section className="bg-gradient-hero">
+      <section className="bg-surface">
         <Container className="py-8 sm:py-14 md:py-24">
           <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12 md:gap-12">
             <div className="md:col-span-6">
               <Eyebrow>{doctor.credentials}</Eyebrow>
-              <h1 className="t-display mt-4 max-w-[16ch]">{doctor.fullName}</h1>
+              <h1 className="t-display mt-4 max-w-measure-20">{doctor.fullName}</h1>
               <p className="t-caption mt-3 text-textMuted">{doctor.role}</p>
-              <p className="t-body-lg mt-6 max-w-[58ch] text-textSecondary">
+              <p className="t-body-lg mt-6 max-w-measure-56 text-textSecondary">
                 {doctor.bioShort}
               </p>
               {doctor.bioLong.map((paragraph) => (
                 <p
                   key={paragraph.slice(0, 24)}
-                  className="t-body mt-5 max-w-[64ch] text-textSecondary"
+                  className="t-body mt-5 max-w-measure-64 text-textSecondary"
                 >
                   {paragraph}
                 </p>
@@ -102,13 +102,13 @@ export function About() {
 
       <Section tone="base" size="md">
         <Eyebrow>Credentials</Eyebrow>
-        <h2 className="t-h1 mt-3 max-w-[22ch]">Education &amp; training.</h2>
+        <h2 className="t-h1 mt-3 max-w-measure-22">Education &amp; training.</h2>
         <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {doctor.education.map((item) => (
             <li key={item.title}>
               <Card padding="md" interactive className="h-full">
                 <Eyebrow tone="muted">{item.title}</Eyebrow>
-                <p className="mt-3 text-[20px] font-medium leading-snug">{item.detail}</p>
+                <p className="mt-3 text-xl font-medium leading-snug">{item.detail}</p>
               </Card>
             </li>
           ))}
@@ -119,10 +119,10 @@ export function About() {
         <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[1fr,auto]">
           <div>
             <Eyebrow>Expertise</Eyebrow>
-            <h2 className="t-h2 mt-3 max-w-[24ch]">
+            <h2 className="t-h2 mt-3 max-w-measure-24">
               Minimally invasive surgery, end to end.
             </h2>
-            <p className="t-body mt-4 max-w-[56ch] text-textSecondary">
+            <p className="t-body mt-4 max-w-measure-56 text-textSecondary">
               From first consultation through operation and long-term follow-up, care is delivered
               by the same surgeon, to the same standard, across the following areas:
             </p>

@@ -59,15 +59,15 @@ export function Distinctions() {
                   <span className="text-5xl font-medium tracking-tight text-primary md:text-6xl">
                     <AnimatedCounter to={Number(d.stat.value)} />
                   </span>
-                  <span className="t-caption uppercase tracking-widest text-textMuted">
+                  <span className="t-caption uppercase tracking-eyebrow text-textMuted">
                     {d.stat.label}
                   </span>
                 </div>
               ) : null}
-              <h2 id={`distinction-${i}`} className="t-h1 mt-4 max-w-[22ch]">
+              <h2 id={`distinction-${i}`} className="t-h1 mt-4 max-w-measure-22">
                 {d.title}
               </h2>
-              <p className="t-body-lg mt-5 max-w-[62ch] text-textSecondary">{d.body}</p>
+              <p className="t-body-lg mt-5 max-w-measure-62 text-textSecondary">{d.body}</p>
             </div>
           </div>
         </Section>

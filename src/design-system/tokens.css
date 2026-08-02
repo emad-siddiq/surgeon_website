@@ -1,39 +1,89 @@
 /*
- * Design tokens — CSS custom properties + the Roboto Flex @font-face.
+ * Design tokens — CSS custom properties + the @font-face declarations.
  * Mirrored by tailwind.config.ts (Tailwind utilities). Keep their hex
  * values in sync.
  *
- * Theme baseline: Roboto type, blue primary (#0D6EFD), white base, soft
- * peach/lavender gradient bands — matches the live site at commit 0fb3280.
+ * Theme baseline: warm paper canvas (#FCFBF9), deep navy primary
+ * (#173453), muted teal accent (#2C6E75), Source Serif 4 headings over
+ * Inter body. Replaces the blue/peach/lavender default theme that
+ * shipped through commit 18c0578.
  */
 
-/* Self-host Roboto Flex (variable font); no third-party Google Fonts dependency. */
+/*
+ * Self-hosted, subset variable fonts. No Google Fonts request at runtime.
+ * Each family ships two files split by unicode-range, so English pages
+ * fetch only the `latin` file. The weight axis is clipped to the range the
+ * design actually uses. Rebuild with `python scripts/build-fonts.py`.
+ */
+
+/* Headings — Source Serif 4, weight axis 400–600, opsz pinned at 24
+   (the serif is only ever set between 24px and 60px). */
 @font-face {
-  font-family: "Roboto Flex";
+  font-family: "Source Serif 4";
   font-style: normal;
-  font-weight: 100 1000;
+  font-weight: 400 600;
   font-display: swap;
-  src: url("../assets/fonts/RobotoFlex-VariableFont.ttf") format("truetype-variations");
+  src: url("../assets/fonts/SourceSerif4-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191-U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../assets/fonts/SourceSerif4-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Body / UI — Inter, weight axis 400–500, opsz pinned at 14. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url("../assets/fonts/Inter-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191-U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url("../assets/fonts/Inter-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 :root {
   /* ---------- Color ---------- */
-  --color-base: #FFFFFF;
-  --color-surface: #F9FAFB;
-  --color-gradient-from: #FDF8F6;
-  --color-gradient-via: #F9E4DA;
-  --color-gradient-to: #E3E3FA;
+  --color-base: #FCFBF9;
+  --color-surface: #F7F5F1;
+  --color-surface-sunken: #EFEBE4;
 
-  --color-primary: #0D6EFD;
-  --color-primary-hover: #0B5ED7;
-  --color-accent: #39A7F1;
+  /* Dark surface (footer). Same value as --color-text; the separate name
+     marks it as a background role. */
+  --color-ink: #121A24;
+  --color-ink-muted: #A29A8D;
+  --color-ink-border: #2C3742;
 
-  --color-text: #1F2937;
-  --color-text-2: #34495E;
-  --color-text-3: #6C757D;
+  --color-primary: #173453;
+  --color-primary-hover: #1F4468;
+  --color-accent: #2C6E75;
+  --color-accent-deep: #1F4E54;
 
-  --color-border-1: #E5E7EB;
-  --color-border-2: #D1D5DB;
+  --color-text: #121A24;
+  --color-text-2: #41505F;
+  --color-text-3: #6E675C;
+
+  --color-border-1: #E0DBD2;
+  --color-border-2: #CBC4B8;
 
   --color-success: #198754;
   --color-warn: #F59F00;
@@ -47,9 +97,9 @@
   --radius-pill: 9999px;
 
   /* ---------- Shadow ---------- */
-  --shadow-card: 0 10px 20px rgba(0, 0, 0, 0.08);
-  --shadow-raised: 0 15px 30px rgba(0, 0, 0, 0.10);
-  --shadow-focus: 0 0 0 3px rgba(13, 110, 253, 0.25);
+  --shadow-card: 0 10px 20px rgba(18, 26, 36, 0.08);
+  --shadow-raised: 0 15px 30px rgba(18, 26, 36, 0.10);
+  --shadow-focus: 0 0 0 3px rgba(23, 52, 83, 0.28);
 
   /* ---------- Motion ---------- */
   --motion-micro: 180ms;
@@ -57,23 +107,27 @@
   --motion-ease: cubic-bezier(.2, .7, .2, 1);
 
   /* ---------- Typography ---------- */
-  --font-sans: "Roboto Flex", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Gradient bands */
-  --gradient-hero: linear-gradient(
-    to bottom,
-    var(--color-gradient-from),
-    var(--color-gradient-via),
-    var(--color-gradient-to)
-  );
-  --gradient-footer: linear-gradient(
-    to bottom right,
-    #FCFCFC,
-    #F4F8FA,
-    #F5E7E7,
-    #B8B8DB
-  );
+  /* ---------- Tracking ---------- */
+  /* Inter is drawn wider than Roboto Flex and its dynamic-metrics curve
+     asks for negative tracking that grows with size. Mirrored by the
+     `letterSpacing` scale in tailwind.config.ts. */
+  --tracking-eyebrow: 0.09em;
+  --tracking-ui: -0.006em;
+  --tracking-body: -0.011em;
+  --tracking-lead: -0.014em;
+
+  /* ---------- Measure ---------- */
+  --measure-20: 20ch;
+  --measure-22: 22ch;
+  --measure-24: 24ch;
+  --measure-42: 42ch;
+  --measure-56: 56ch;
+  --measure-62: 62ch;
+  --measure-64: 64ch;
 
   color-scheme: light;
 }
@@ -85,10 +139,9 @@
   border: 0;
 }
 
-/* ---------- Gradient band (hero / consultation / footer) ---------- */
-.band-gradient {
-  background: var(--gradient-hero);
-}
-.band-gradient-footer {
-  background: var(--gradient-footer);
+/* Same rule on the dark footer surface. */
+.hr-soft-ink {
+  height: 1px;
+  background: var(--color-ink-border);
+  border: 0;
 }

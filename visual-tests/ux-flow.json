@@ -1,6 +1,13 @@
 {
-  "timestamp": "2026-08-01T15:20:57.075Z",
-  "passed": 98,
-  "failed": 0,
-  "failures": []
+  "timestamp": "2026-08-01T20:54:27.405Z",
+  "passed": 97,
+  "failed": 1,
+  "failures": [
+    {
+      "flow": "mobile-density",
+      "where": "hero-fits-viewport /",
+      "expected": "success",
+      "actual": "hero is 806px tall, cap 800px (one 360x800 viewport)"
+    }
+  ]
 }

@@ -45,7 +45,7 @@ export function Location() {
       {/* Video first — sets the scene before the practical directions. */}
       <Section tone="base" size="md">
         <Eyebrow>Inside the hospital</Eyebrow>
-        <h2 className="t-h2 mt-3 max-w-[24ch]">A brief look at the facility.</h2>
+        <h2 className="t-h2 mt-3 max-w-measure-24">A brief look at the facility.</h2>
         <div className="mt-8 overflow-hidden rounded-lg border border-border1 shadow-card">
           <video
             className="aspect-video w-full bg-textPrimary"
@@ -67,7 +67,7 @@ export function Location() {
         <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
             <Eyebrow>Visit</Eyebrow>
-            <h2 className="t-h1 mt-3 max-w-[18ch]">Come see us in Islamabad.</h2>
+            <h2 className="t-h1 mt-3 max-w-measure-20">Come see us in Islamabad.</h2>
             <dl className="mt-8 grid grid-cols-1 gap-6 text-sm sm:grid-cols-2">
               <div>
                 <dt className="text-textMuted">Hospital</dt>

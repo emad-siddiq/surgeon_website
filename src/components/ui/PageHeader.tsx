@@ -22,7 +22,7 @@ interface PageHeaderProps {
 export function PageHeader({ eyebrow, title, lead, actions }: PageHeaderProps) {
   const hasSide = Boolean(lead || actions);
   return (
-    <section className="bg-gradient-hero">
+    <section className="bg-surface">
       <Container className="py-8 sm:py-14 md:py-20 lg:py-24">
         <div
           className={
@@ -33,14 +33,14 @@ export function PageHeader({ eyebrow, title, lead, actions }: PageHeaderProps) {
         >
           <div className={hasSide ? 'lg:col-span-7' : ''}>
             {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-            <h1 className="t-display mt-3 max-w-[22ch] sm:mt-4 md:max-w-[34ch] lg:max-w-none">
+            <h1 className="t-display mt-3 max-w-measure-22 sm:mt-4 md:max-w-measure-42 lg:max-w-none">
               {title}
             </h1>
           </div>
           {hasSide ? (
             <div className="lg:col-span-5">
               {lead ? (
-                <p className="t-body-lg max-w-[62ch] text-textSecondary md:max-w-[72ch] lg:max-w-none">
+                <p className="t-body-lg max-w-measure-62 text-textSecondary md:max-w-measure-64 lg:max-w-none">
                   {lead}
                 </p>
               ) : null}

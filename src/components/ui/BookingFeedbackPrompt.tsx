@@ -119,7 +119,7 @@ export function BookingFeedbackPrompt() {
                 type="button"
                 onClick={() => handleQuick('booked')}
                 disabled={submitting}
-                className="inline-flex min-h-[44px] items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-colors duration-[180ms] ease-breathe hover:bg-primaryHover disabled:opacity-60"
+                className="inline-flex min-h-[44px] items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-colors duration-micro ease-breathe hover:bg-primaryHover disabled:opacity-60"
               >
                 Yes, got an appointment
               </button>
@@ -128,7 +128,7 @@ export function BookingFeedbackPrompt() {
                   type="button"
                   onClick={() => handleQuick('not_booked')}
                   disabled={submitting}
-                  className="inline-flex min-h-[44px] items-center justify-center rounded-md border border-border2 bg-white px-4 py-2 text-sm font-medium text-textPrimary transition-colors duration-[180ms] ease-breathe hover:border-primary hover:text-primary disabled:opacity-60"
+                  className="inline-flex min-h-[44px] items-center justify-center rounded-md border border-border2 bg-white px-4 py-2 text-sm font-medium text-textPrimary transition-colors duration-micro ease-breathe hover:border-primary hover:text-primary disabled:opacity-60"
                 >
                   Not yet
                 </button>
@@ -136,7 +136,7 @@ export function BookingFeedbackPrompt() {
                   type="button"
                   onClick={() => handleQuick('trying')}
                   disabled={submitting}
-                  className="inline-flex min-h-[44px] items-center justify-center rounded-md border border-border2 bg-white px-4 py-2 text-sm font-medium text-textPrimary transition-colors duration-[180ms] ease-breathe hover:border-primary hover:text-primary disabled:opacity-60"
+                  className="inline-flex min-h-[44px] items-center justify-center rounded-md border border-border2 bg-white px-4 py-2 text-sm font-medium text-textPrimary transition-colors duration-micro ease-breathe hover:border-primary hover:text-primary disabled:opacity-60"
                 >
                   Still trying
                 </button>
@@ -158,14 +158,14 @@ export function BookingFeedbackPrompt() {
               rows={3}
               maxLength={1000}
               placeholder="e.g. reception tried to book me with another consultant"
-              className="mt-3 w-full rounded-md border border-border1 bg-white px-3 py-2 text-sm leading-snug text-textPrimary placeholder:text-textMuted focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_rgba(13,110,253,0.2)]"
+              className="mt-3 w-full rounded-md border border-border1 bg-white px-3 py-2 text-sm leading-snug text-textPrimary placeholder:text-textMuted focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_rgba(23,52,83,0.2)]"
             />
             <div className="mt-3 flex gap-2">
               <button
                 type="button"
                 onClick={handleSubmitNote}
                 disabled={submitting}
-                className="inline-flex min-h-[44px] flex-1 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-colors duration-[180ms] ease-breathe hover:bg-primaryHover disabled:opacity-60"
+                className="inline-flex min-h-[44px] flex-1 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-colors duration-micro ease-breathe hover:bg-primaryHover disabled:opacity-60"
               >
                 {submitting ? 'Sending…' : 'Send'}
               </button>

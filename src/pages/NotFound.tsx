@@ -18,8 +18,8 @@ export function NotFound() {
       <Seo title="Not found" path="/404" />
       <Section tone="base" size="lg">
         <p className="t-eyebrow text-textMuted">404</p>
-        <h1 className="t-display mt-6 max-w-[18ch]">We couldn’t find that page.</h1>
-        <p className="t-body-lg mt-5 max-w-[52ch] text-textSecondary">
+        <h1 className="t-display mt-6 max-w-measure-20">We couldn’t find that page.</h1>
+        <p className="t-body-lg mt-5 max-w-measure-56 text-textSecondary">
           The link may be out of date, or the content may have moved somewhere else on the site.
           Try one of these instead:
         </p>

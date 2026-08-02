@@ -5,7 +5,7 @@ export type TagTone = 'primary' | 'accent' | 'neutral';
 
 const toneClass: Record<TagTone, string> = {
   primary: 'bg-primary/10 text-primary border-primary/20',
-  accent: 'bg-accent/10 text-[#0B6FA8] border-accent/20',
+  accent: 'bg-accent/10 text-accentDeep border-accent/20',
   neutral: 'bg-surface text-textSecondary border-border1',
 };
 

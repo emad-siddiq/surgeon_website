@@ -31,6 +31,20 @@ launch.
 
 Unresolved, awaits user input:
 
+- **Home hero exceeds the 360x800 cap after the type retune** (surfaced
+  2026-08-02, deferred to retune Phase 2 by user decision): `ux-flow`
+  `mobile-density / hero-fits-viewport /` fails at 806px against the 800px
+  cap. Cause is the Roboto Flex -> Inter swap: Inter sets wider, so three
+  hero text blocks each gained a line (+70px total). Phase 1 typography
+  recovered 50px of that (Inter metric tracking, eyebrow 0.12em -> 0.09em,
+  t-body-lg leading 1.625 -> 1.55). The residual 28px is the hero proof
+  list wrapping to a third row, and it is **not reachable by typography**:
+  32px of that row is separator chrome (`gap-x-4` + the 4px dot +
+  `gap-3`), so even at an unusable -0.025em tracking row 1 still needs
+  333px of 328px. Fix belongs with the page-level pass: either tighten the
+  hero's vertical margins (`ul mt-6`, buttons `mt-5`) or restructure the
+  proof list separators. Do not weaken the 800px assertion.
+
 - **Outcome chips on /transformations** (surfaced 2026-08-01): the Hims
   "real results" pattern (per-story chips like "gastric sleeve · 8
   months" over each before/after pair, found via Mobbin research) is the

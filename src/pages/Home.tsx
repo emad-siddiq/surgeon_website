@@ -55,16 +55,16 @@ function Hero() {
     <section
       id="home-top"
       aria-labelledby="hero-headline"
-      className="relative bg-gradient-hero"
+      className="relative bg-surface"
     >
       <Container className="py-8 sm:py-12 md:py-20 lg:py-20">
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-7">
             <Eyebrow>Shifa International Hospital · Islamabad</Eyebrow>
-            <h1 id="hero-headline" className="t-display mt-3 max-w-[18ch] sm:mt-4">
+            <h1 id="hero-headline" className="t-display mt-3 max-w-measure-20 sm:mt-4">
               {doctor.heroHeadline}
             </h1>
-            <p className="t-body-lg mt-4 max-w-[56ch] text-textSecondary sm:mt-6">
+            <p className="t-body-lg mt-4 max-w-measure-56 text-textSecondary sm:mt-6">
               {doctor.heroLead}
             </p>
             {/* On phones the CTA pair stacks to full width; from sm up
@@ -163,10 +163,10 @@ function AboutTeaser() {
         </div>
         <div className="md:col-span-7">
           <Eyebrow>About the surgeon</Eyebrow>
-          <h2 className="t-h1 mt-3 max-w-[16ch]">{doctor.fullName}</h2>
+          <h2 className="t-h1 mt-3 max-w-measure-20">{doctor.fullName}</h2>
           <p className="t-caption mt-2 text-textMuted">{doctor.role}</p>
           <p className="t-caption text-textMuted">{doctor.credentials}</p>
-          <p className="t-body-lg mt-6 max-w-[62ch] text-textSecondary">{doctor.bioShort}</p>
+          <p className="t-body-lg mt-6 max-w-measure-62 text-textSecondary">{doctor.bioShort}</p>
           <div className="mt-8">
             <ButtonRouterLink to="/about" variant="secondary">
               Read the full bio →
@@ -191,7 +191,7 @@ function FeaturedProcedures({ onOpen }: { onOpen: (service: ServiceEntry) => voi
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
           <Eyebrow>Surgical expertise</Eyebrow>
-          <h2 id="featured-proc-heading" className="t-h1 mt-3 max-w-[22ch]">
+          <h2 id="featured-proc-heading" className="t-h1 mt-3 max-w-measure-22">
             Procedures performed by Dr. Siddiq.
           </h2>
         </div>
@@ -249,8 +249,8 @@ function DistinctionTeaser() {
         </div>
         <div className="md:col-span-7">
           <Eyebrow>Distinctions</Eyebrow>
-          <h2 className="t-h1 mt-3 max-w-[20ch]">Recognition in endoscopic surgery.</h2>
-          <p className="t-body-lg mt-5 max-w-[60ch] text-textSecondary">{lead.body}</p>
+          <h2 className="t-h1 mt-3 max-w-measure-20">Recognition in endoscopic surgery.</h2>
+          <p className="t-body-lg mt-5 max-w-measure-62 text-textSecondary">{lead.body}</p>
           <div className="mt-8">
             <ButtonRouterLink to="/distinctions" variant="secondary">
               See all distinctions →
@@ -334,7 +334,7 @@ function MediaTeaser() {
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
           <Eyebrow>{mediaTeaser.eyebrow}</Eyebrow>
-          <h2 id="media-teaser-heading" className="t-h1 mt-3 max-w-[22ch]">
+          <h2 id="media-teaser-heading" className="t-h1 mt-3 max-w-measure-22">
             {mediaTeaser.heading}
           </h2>
         </div>
@@ -384,10 +384,10 @@ function ReviewsTeaser() {
       <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12">
         <div className="md:col-span-7">
           <Eyebrow>Patient experience</Eyebrow>
-          <h2 id="reviews-heading" className="t-h1 mt-3 max-w-[20ch]">
+          <h2 id="reviews-heading" className="t-h1 mt-3 max-w-measure-20">
             {reviewsHeading}
           </h2>
-          <p className="t-body-lg mt-5 max-w-[62ch] text-textSecondary">{reviewsLead}</p>
+          <p className="t-body-lg mt-5 max-w-measure-62 text-textSecondary">{reviewsLead}</p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <ButtonLink
               href={googleReview.url}
@@ -437,13 +437,13 @@ function ReviewsTeaser() {
 
 function ConsultCta() {
   return (
-    <section id="home-consult" className="bg-gradient-hero">
+    <section id="home-consult" className="bg-surface">
       <Container className="py-10 sm:py-12 md:py-16">
         <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[1fr,auto]">
           <div>
             <Eyebrow>Consultation</Eyebrow>
-            <h2 className="t-h1 mt-3 max-w-[22ch]">Looking for a consultation?</h2>
-            <p className="t-body mt-3 max-w-[60ch] text-textSecondary">
+            <h2 className="t-h1 mt-3 max-w-measure-22">Looking for a consultation?</h2>
+            <p className="t-body mt-3 max-w-measure-62 text-textSecondary">
               First appointments are unhurried and personal. We take the time to understand
               your history, your goals, and the honest trade-offs of each option before anything
               operative is even discussed.

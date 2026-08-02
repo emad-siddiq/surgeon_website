@@ -31,10 +31,10 @@ export function Teaching() {
         <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12 md:gap-12">
           <div className="md:col-span-7">
             <Eyebrow>Surgical education channel</Eyebrow>
-            <h2 id="teaching-youtube" className="t-h1 mt-3 max-w-[24ch]">
+            <h2 id="teaching-youtube" className="t-h1 mt-3 max-w-measure-24">
               Narrated cases from the operating room.
             </h2>
-            <p className="t-body-lg mt-5 max-w-[62ch] text-textSecondary">
+            <p className="t-body-lg mt-5 max-w-measure-62 text-textSecondary">
               {youtubeChannel.body}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
@@ -80,10 +80,10 @@ export function Teaching() {
         <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12 md:gap-12">
           <div className="md:order-2 md:col-span-7">
             <Eyebrow>Podcast</Eyebrow>
-            <h2 id="teaching-podcast" className="t-h1 mt-3 max-w-[24ch]">
+            <h2 id="teaching-podcast" className="t-h1 mt-3 max-w-measure-24">
               {podcast.title}.
             </h2>
-            <p className="t-body-lg mt-5 max-w-[62ch] text-textSecondary">{podcast.body}</p>
+            <p className="t-body-lg mt-5 max-w-measure-62 text-textSecondary">{podcast.body}</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <ButtonLink
                 href={podcast.playlistUrl}

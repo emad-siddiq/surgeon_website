@@ -42,15 +42,15 @@ export function Consultation() {
         path="/consultation"
       />
 
-      <section className="bg-gradient-hero">
+      <section className="bg-surface">
         <Container className="py-8 sm:py-14 md:py-20 lg:py-24">
           <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-12 md:gap-10">
             <div className="md:col-span-7">
               <Eyebrow>Book a consultation</Eyebrow>
-              <h1 className="t-display mt-3 max-w-[20ch] sm:mt-4">
+              <h1 className="t-display mt-3 max-w-measure-20 sm:mt-4">
                 Two ways to reach the practice.
               </h1>
-              <p className="t-body-lg mt-4 max-w-[56ch] text-textSecondary sm:mt-6">
+              <p className="t-body-lg mt-4 max-w-measure-56 text-textSecondary sm:mt-6">
                 Consultations are booked through Shifa International Hospital&rsquo;s
                 main line; WhatsApp is usually the fastest route.
               </p>

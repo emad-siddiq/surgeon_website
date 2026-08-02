@@ -121,7 +121,7 @@ export function Procedures() {
           <header className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <Eyebrow>{group.category}</Eyebrow>
-              <h2 id={`group-${group.category}`} className="t-h2 mt-2 max-w-[24ch]">
+              <h2 id={`group-${group.category}`} className="t-h2 mt-2 max-w-measure-24">
                 {categoryHeading[group.category]}
               </h2>
             </div>

@@ -2,8 +2,8 @@
  * Global stylesheet.
  *
  * Layers, in order:
- *   1. design-system/tokens.css — CSS custom properties + Roboto Flex
- *      @font-face. Mirrored by tailwind.config.ts.
+ *   1. design-system/tokens.css — CSS custom properties + the Source Serif 4
+ *      and Inter @font-face rules. Mirrored by tailwind.config.ts.
  *   2. Tailwind base / components / utilities.
  *   3. @layer base resets and the type-scale utilities (.t-display,
  *      .t-h1, .t-h2, .t-h3, .t-body-lg, .t-body, .t-caption,
@@ -35,6 +35,9 @@
     font-family: var(--font-sans);
     font-size: 1rem;
     line-height: 1.6;
+    /* Inter metric compensation at the 16px tier. The serif tiers reset
+       this themselves (.t-display / .t-h1 / .t-h2). */
+    letter-spacing: var(--tracking-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     /* Honour iOS / Android notches and safe areas at the body edge so
@@ -75,7 +78,7 @@
   }
 
   ::selection {
-    background: rgba(13, 110, 253, 0.18);
+    background: rgba(23, 52, 83, 0.16);
     color: var(--color-text);
   }
 
@@ -84,6 +87,19 @@
   h3,
   h4 {
     color: var(--color-text);
+  }
+
+  /* Two-family system: the serif carries display sizes only (h1/h2, set by
+     .t-display / .t-h1 / .t-h2). h3 and below stay on the grotesque so
+     small headings share a texture with body copy. */
+  h1,
+  h2 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+  }
+
+  h3,
+  h4 {
     font-family: var(--font-sans);
     font-weight: 500;
   }
@@ -117,28 +133,36 @@
  *   text-5xl 3rem · text-6xl 3.75rem
  */
 @layer components {
+  /* t-display / t-h1 / t-h2 are the serif tier, set at weight 400 —
+     Source Serif 4 at regular carries more authority here than a bolder
+     cut. Line-heights run ~0.03 tighter than the old sans values because
+     the serif sets looser at the same nominal leading. */
   .t-display {
-    @apply text-4xl sm:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-tight;
+    @apply font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.07] tracking-tight;
   }
   .t-h1 {
-    @apply text-3xl sm:text-4xl lg:text-5xl font-medium leading-[1.15] tracking-tight;
+    @apply font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.12] tracking-tight;
   }
+  /* The serif tiers opt out of Inter's metric compensation — .t-display and
+     .t-h1 set their own `tracking-tight`, .t-h2 resets to normal. */
   .t-h2 {
-    @apply text-2xl md:text-3xl font-medium leading-tight;
+    @apply font-serif text-2xl md:text-3xl font-normal leading-[1.22] tracking-normal;
   }
   .t-h3 {
-    @apply text-lg md:text-xl font-medium leading-snug;
+    @apply font-sans text-lg md:text-xl font-medium leading-snug tracking-body;
   }
+  /* 1.55 rather than leading-relaxed (1.625): Inter's x-height is large
+     enough that 1.625 reads airy at lead sizes. */
   .t-body-lg {
-    @apply text-lg leading-relaxed;
+    @apply text-lg leading-[1.55] tracking-lead;
   }
   .t-body {
-    @apply text-base leading-relaxed;
+    @apply text-base leading-relaxed tracking-body;
   }
   .t-caption {
-    @apply text-sm leading-normal;
+    @apply text-sm leading-normal tracking-ui;
   }
   .t-eyebrow {
-    @apply text-xs font-medium uppercase tracking-[0.12em];
+    @apply text-xs font-medium uppercase tracking-eyebrow;
   }
 }

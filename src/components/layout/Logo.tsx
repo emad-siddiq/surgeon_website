@@ -35,8 +35,10 @@ export function Logo({ className = '', compact = false, wordmark = true }: LogoP
         height={size}
         className={wordmark ? 'h-12 w-12 rounded-sm object-contain' : 'h-16 w-16 rounded-sm object-contain'}
       />
+      {/* The wordmark inherits its colour so the same lockup works on the
+          light nav and the dark footer; callers set it via `className`. */}
       {wordmark ? (
-        <span className="text-[17px] font-medium tracking-tight text-textPrimary">
+        <span className="text-[17px] font-medium tracking-tight">
           {compact ? doctor.short : doctor.fullName}
         </span>
       ) : null}

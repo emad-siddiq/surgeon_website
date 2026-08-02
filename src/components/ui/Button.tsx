@@ -19,7 +19,7 @@ interface BaseProps {
 
 const base =
   'inline-flex items-center justify-center gap-2 rounded-md font-sans font-medium leading-none ' +
-  'transition-[transform,background-color,box-shadow,color,border-color] duration-[180ms] ease-breathe ' +
+  'transition-[transform,background-color,box-shadow,color,border-color] duration-micro ease-breathe ' +
   'border border-transparent disabled:cursor-not-allowed disabled:transform-none ' +
   // 44px minimum touch target per WCAG + iOS HIG. `min-h` covers it
   // regardless of the size variant's padding so mobile taps always land.

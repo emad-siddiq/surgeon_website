@@ -127,7 +127,7 @@ export function BeforeAfter({
         <span
           aria-hidden="true"
           className={cn(
-            'absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-textPrimary backdrop-blur-sm transition-opacity duration-200',
+            'absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-medium uppercase tracking-eyebrow text-textPrimary backdrop-blur-sm transition-opacity duration-200',
             dragging ? 'opacity-0' : 'opacity-100',
           )}
         >
@@ -136,7 +136,7 @@ export function BeforeAfter({
         <span
           aria-hidden="true"
           className={cn(
-            'absolute bottom-3 right-3 rounded-full bg-primary/90 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-white backdrop-blur-sm transition-opacity duration-200',
+            'absolute bottom-3 right-3 rounded-full bg-primary/90 px-2.5 py-1 text-[10px] font-medium uppercase tracking-eyebrow text-white backdrop-blur-sm transition-opacity duration-200',
             dragging ? 'opacity-0' : 'opacity-100',
           )}
         >
@@ -178,11 +178,11 @@ export function BeforeAfter({
       {(beforeCaption || afterCaption) && (
         <figcaption className="flex items-start justify-between gap-4 text-sm text-textSecondary">
           <span className="flex flex-col">
-            <span className="text-xs uppercase tracking-widest text-textMuted">Before</span>
+            <span className="text-xs uppercase tracking-eyebrow text-textMuted">Before</span>
             <span className="mt-0.5 font-medium text-textPrimary">{beforeCaption}</span>
           </span>
           <span className="flex flex-col text-right">
-            <span className="text-xs uppercase tracking-widest text-textMuted">After</span>
+            <span className="text-xs uppercase tracking-eyebrow text-textMuted">After</span>
             <span className="mt-0.5 font-medium text-textPrimary">{afterCaption}</span>
           </span>
         </figcaption>
